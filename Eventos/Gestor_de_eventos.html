@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 Gestor de Eventos Estético</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f472b6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #0da271);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .event-log {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .log-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .log-item.success {
+            border-left-color: var(--success);
+        }
+
+        .log-item.warning {
+            border-left-color: var(--warning);
+        }
+
+        .log-item.error {
+            border-left-color: var(--danger);
+        }
+
+        .log-time {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .log-message {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .emoji {
+            font-size: 1.2rem;
+        }
+
+        .event-preview {
+            background: linear-gradient(135deg, #8b5cf6, var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 992px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🎭</div>
+            <h1>Gestor de Eventos Estético</h1>
+            <p class="subtitle">Sistema elegante para manejo de eventos en JavaScript</p>
+        </header>
+
+        <main class="dashboard">
+            <!-- Panel de Control -->
+            <section class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚙️</span>
+                    <h2>Control de Eventos</h2>
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="eventName">Nombre del Evento</label>
+                        <div class="input-group">
+                            <input type="text" id="eventName" placeholder="Ej: usuario.login" value="usuario.click">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="eventData">Datos del Evento (JSON)</label>
+                        <div class="input-group">
+                            <textarea id="eventData" rows="4" placeholder='{"action": "click", "timestamp": "..."}'>{"action": "click", "element": "boton", "timestamp": ""}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="priority">Prioridad del Listener</label>
+                        <div class="input-group">
+                            <select id="priority">
+                                <option value="0">Normal (0)</option>
+                                <option value="1">Baja (1)</option>
+                                <option value="5">Media (5)</option>
+                                <option value="10">Alta (10)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn" id="registerBtn">
+                            <span class="emoji">📝</span>
+                            Registrar Listener
+                        </button>
+                        <button class="btn btn-success" id="emitBtn">
+                            <span class="emoji">🚀</span>
+                            Emitir Evento
+                        </button>
+                        <button class="btn btn-danger" id="clearBtn">
+                            <span class="emoji">🗑️</span>
+                            Limpiar Logs
+                        </button>
+                    </div>
+
+                    <div class="event-preview" id="eventPreview">
+                        Esperando eventos...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Logs -->
+            <section class="card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <h2>Logs en Tiempo Real</h2>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="eventsCount">0</div>
+                        <div class="stat-label">Eventos Emitidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="listenersCount">0</div>
+                        <div class="stat-label">Listeners Activos</div>
+                    </div>
+                </div>
+
+                <div class="event-log" id="eventLog">
+                    <!-- Los logs aparecerán aquí -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        class EventManager {
+            constructor() {
+                this.events = new Map();
+                this.stats = {
+                    emitted: 0,
+                    listeners: 0
+                };
+                this.init();
+            }
+
+            init() {
+                this.log('🎉 Gestor de eventos inicializado', 'success');
+                // Registrar algunos eventos de ejemplo
+                this.registerExampleEvents();
+            }
+
+            registerExampleEvents() {
+                // Evento de ejemplo 1
+                this.on('app.cargado', (data) => {
+                    this.log(`Aplicación cargada: ${JSON.stringify(data)}`, 'success');
+                });
+
+                // Evento de ejemplo 2
+                this.on('ui.interaccion', (data) => {
+                    this.log(`Interacción UI: ${data.tipo}`, 'warning');
+                }, { priority: 5 });
+
+                // Actualizar estadísticas
+                this.updateStats();
+            }
+
+            on(eventName, callback, options = {}) {
+                if (!this.events.has(eventName)) {
+                    this.events.set(eventName, []);
+                }
+
+                const listeners = this.events.get(eventName);
+                const listenerId = Symbol(`listener-${eventName}-${Date.now()}`);
+
+                listeners.push({
+                    id: listenerId,
+                    callback,
+                    priority: options.priority || 0,
+                    createdAt: new Date()
+                });
+
+                // Ordenar por prioridad
+                listeners.sort((a, b) => b.priority - a.priority);
+
+                this.stats.listeners++;
+                this.updateStats();
+                this.log(`📝 Listener registrado para: ${eventName}`, 'info');
+
+                return () => this.off(eventName, listenerId);
+            }
+
+            emit(eventName, data = {}) {
+                if (!this.events.has(eventName)) {
+                    this.log(`⚠️ Evento no encontrado: ${eventName}`, 'warning');
+                    return [];
+                }
+
+                const listeners = this.events.get(eventName);
+                const results = [];
+                const timestamp = new Date().toISOString();
+
+                // Actualizar preview
+                this.updateEventPreview(eventName, data);
+
+                this.stats.emitted++;
+                this.updateStats();
+                this.log(`🚀 Emitiendo evento: ${eventName}`, 'success');
+
+                // Ejecutar listeners
+                listeners.forEach(listener => {
+                    try {
+                        const eventData = {
+                            ...data,
+                            timestamp,
+                            eventName,
+                            listenerId: listener.id.description
+                        };
+
+                        const result = listener.callback(eventData);
+                        results.push(result);
+                    } catch (error) {
+                        this.log(`❌ Error en listener: ${error.message}`, 'error');
+                    }
+                });
+
+                return results;
+            }
+
+            off(eventName, listenerId) {
+                if (!this.events.has(eventName)) return;
+
+                const listeners = this.events.get(eventName);
+                const initialLength = listeners.length;
+
+                this.events.set(
+                    eventName,
+                    listeners.filter(listener => listener.id !== listenerId)
+                );
+
+                if (initialLength !== listeners.length) {
+                    this.stats.listeners--;
+                    this.updateStats();
+                    this.log(`🗑️ Listener removido de: ${eventName}`, 'info');
+                }
+            }
+
+            log(message, type = 'info') {
+                const logContainer = document.getElementById('eventLog');
+                const logItem = document.createElement('div');
+                logItem.className = `log-item ${type}`;
+
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('es-ES', {
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+
+                logItem.innerHTML = `
+                    <div class="log-time">
+                        <span>🕒 ${timeString}</span>
+                        <span>•</span>
+                        <span>${type.toUpperCase()}</span>
+                    </div>
+                    <div class="log-message">${message}</div>
+                `;
+
+                logContainer.insertBefore(logItem, logContainer.firstChild);
+
+                // Limitar a 20 logs
+                if (logContainer.children.length > 20) {
+                    logContainer.removeChild(logContainer.lastChild);
+                }
+            }
+
+            updateStats() {
+                document.getElementById('eventsCount').textContent = this.stats.emitted;
+                document.getElementById('listenersCount').textContent = this.stats.listeners;
+            }
+
+            updateEventPreview(eventName, data) {
+                const preview = document.getElementById('eventPreview');
+                const truncatedData = JSON.stringify(data).substring(0, 50) + '...';
+                preview.innerHTML = `
+                    🎯 <strong>${eventName}</strong><br>
+                    📦 ${truncatedData}
+                `;
+                
+                // Efecto visual
+                preview.style.animation = 'none';
+                setTimeout(() => {
+                    preview.style.animation = 'pulse 2s infinite';
+                }, 10);
+            }
+
+            clearLogs() {
+                const logContainer = document.getElementById('eventLog');
+                logContainer.innerHTML = '';
+                this.log('🧹 Logs limpiados', 'warning');
+            }
+        }
+
+        // Inicialización cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            const eventManager = new EventManager();
+
+            // Referencias a elementos DOM
+            const eventNameInput = document.getElementById('eventName');
+            const eventDataInput = document.getElementById('eventData');
+            const prioritySelect = document.getElementById('priority');
+            const registerBtn = document.getElementById('registerBtn');
+            const emitBtn = document.getElementById('emitBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            // Emitir evento inicial
+            setTimeout(() => {
+                eventManager.emit('app.cargado', {
+                    version: '1.0.0',
+                    ambiente: 'desarrollo',
+                    timestamp: new Date().toISOString()
+                });
+            }, 500);
+
+            // Registrar nuevo listener
+            registerBtn.addEventListener('click', () => {
+                const eventName = eventNameInput.value.trim();
+                if (!eventName) {
+                    eventManager.log('⚠️ Por favor, ingresa un nombre para el evento', 'warning');
+                    return;
+                }
+
+                const priority = parseInt(prioritySelect.value);
+                
+                const removeListener = eventManager.on(eventName, (data) => {
+                    eventManager.log(`📨 Evento recibido: ${eventName}`, 'success');
+                    eventManager.log(`📊 Datos: ${JSON.stringify(data)}`, 'info');
+                }, { priority });
+
+                // Agregar botón para remover este listener específico
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'btn btn-danger';
+                removeBtn.innerHTML = '❌ Remover este listener';
+                removeBtn.style.marginTop = '10px';
+                removeBtn.onclick = () => {
+                    removeListener();
+                    removeBtn.remove();
+                };
+                
+                registerBtn.parentNode.appendChild(removeBtn);
+            });
+
+            // Emitir evento personalizado
+            emitBtn.addEventListener('click', () => {
+                const eventName = eventNameInput.value.trim();
+                let eventData = {};
+                
+                try {
+                    eventData = JSON.parse(eventDataInput.value || '{}');
+                } catch (e) {
+                    eventManager.log('❌ JSON inválido en datos del evento', 'error');
+                    return;
+                }
+
+                // Agregar timestamp si no existe
+                if (!eventData.timestamp) {
+                    eventData.timestamp = new Date().toISOString();
+                }
+
+                eventManager.emit(eventName, eventData);
+            });
+
+            // Limpiar logs
+            clearBtn.addEventListener('click', () => {
+                eventManager.clearLogs();
+            });
+
+            // Ejemplo de evento periódico
+            setInterval(() => {
+                eventManager.emit('ui.interaccion', {
+                    tipo: 'heartbeat',
+                    timestamp: new Date().toISOString()
+                });
+            }, 30000);
+
+            // Eventos de teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    emitBtn.click();
+                }
+                if (e.key === 'Escape') {
+                    clearBtn.click();
+                }
+            });
+
+            // Evento de clic en documento
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.btn')) {
+                    eventManager.emit('document.click', {
+                        target: e.target.tagName,
+                        x: e.clientX,
+                        y: e.clientY
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
