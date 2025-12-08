@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Estético</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f1f1f1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 300;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+        
+        .algorithm-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .visualization-section {
+            flex: 2;
+            min-width: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #00dbde;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        
+        h2 i {
+            font-size: 1.5rem;
+        }
+        
+        .code-container {
+            background: #0f1525;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #00dbde;
+        }
+        
+        pre {
+            color: #e0e0e0;
+            font-size: 1rem;
+            line-height: 1.5;
+            white-space: pre;
+            tab-size: 2;
+        }
+        
+        .comment {
+            color: #6a9955;
+        }
+        
+        .keyword {
+            color: #569cd6;
+        }
+        
+        .function {
+            color: #dcdcaa;
+        }
+        
+        .variable {
+            color: #9cdcfe;
+        }
+        
+        .string {
+            color: #ce9178;
+        }
+        
+        .array-visualization {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            padding: 2rem 0;
+            margin-bottom: 1.5rem;
+            background: rgba(15, 21, 37, 0.7);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .array-element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 8px;
+            transition: all 0.4s ease;
+        }
+        
+        .element-bar {
+            width: 40px;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .element-value {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        button {
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .primary-btn {
+            background: linear-gradient(90deg, #00dbde, #0093E9);
+            color: white;
+            flex: 1;
+        }
+        
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1f1f1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex: 1;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .primary-btn:hover {
+            background: linear-gradient(90deg, #0093E9, #00dbde);
+        }
+        
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid #fc00ff;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00dbde;
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .comparing {
+            background-color: #ffcc00 !important;
+            box-shadow: 0 0 15px #ffcc00 !important;
+        }
+        
+        .swapping {
+            background-color: #ff375f !important;
+            box-shadow: 0 0 15px #ff375f !important;
+        }
+        
+        .sorted {
+            background-color: #4cd964 !important;
+            box-shadow: 0 0 10px #4cd964 !important;
+        }
+        
+        .current {
+            background-color: #00dbde !important;
+            box-shadow: 0 0 15px #00dbde !important;
+        }
+        
+        @media (max-width: 1100px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .algorithm-section, .visualization-section {
+                min-width: 100%;
+            }
+        }
+        
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        .explanation {
+            margin-top: 1.5rem;
+            line-height: 1.6;
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 4px solid #fc00ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-sort-amount-up"></i> Bubble Sort Estético</h1>
+            <p class="subtitle">Una implementación visual y elegante del algoritmo de ordenamiento Bubble Sort</p>
+        </header>
+        
+        <div class="content">
+            <section class="algorithm-section">
+                <h2><i class="fas fa-code"></i> Implementación</h2>
+                <div class="code-container">
+                    <pre><code><span class="comment">/**
+ * Implementación estética de Bubble Sort
+ * Ordena un array comparando elementos adyacentes
+ * e intercambiándolos si están en el orden incorrecto
+ * 
+ * @param {Array} arr - Array a ordenar
+ * @returns {Object} - Objeto con el array ordenado y estadísticas
+ */</span>
+<span class="keyword">function</span> <span class="function">bubbleSort</span>(<span class="variable">arr</span>) {
+    <span class="keyword">let</span> <span class="variable">n</span> = <span class="variable">arr</span>.<span class="function">length</span>;
+    <span class="keyword">let</span> <span class="variable">comparisons</span> = <span class="number">0</span>;
+    <span class="keyword">let</span> <span class="variable">swaps</span> = <span class="number">0</span>;
+    <span class="keyword">let</span> <span class="variable">sorted</span> = <span class="keyword">false</span>;
+    
+    <span class="comment">// Bucle externo: pasadas por todo el array</span>
+    <span class="keyword">for</span> (<span class="keyword">let</span> <span class="variable">i</span> = <span class="number">0</span>; <span class="variable">i</span> < <span class="variable">n</span> - <span class="number">1</span>; <span class="variable">i</span>++) {
+        <span class="variable">sorted</span> = <span class="keyword">true</span>;
+        
+        <span class="comment">// Bucle interno: comparar elementos adyacentes</span>
+        <span class="keyword">for</span> (<span class="keyword">let</span> <span class="variable">j</span> = <span class="number">0</span>; <span class="variable">j</span> < <span class="variable">n</span> - <span class="variable">i</span> - <span class="number">1</span>; <span class="variable">j</span>++) {
+            <span class="variable">comparisons</span>++;
+            
+            <span class="comment">// Comparar elementos adyacentes</span>
+            <span class="keyword">if</span> (<span class="variable">arr</span>[<span class="variable">j</span>] > <span class="variable">arr</span>[<span class="variable">j</span> + <span class="number">1</span>]) {
+                
+                <span class="comment">// Intercambiar si están en orden incorrecto</span>
+                [<span class="variable">arr</span>[<span class="variable">j</span>], <span class="variable">arr</span>[<span class="variable">j</span> + <span class="number">1</span>]] = 
+                [<span class="variable">arr</span>[<span class="variable">j</span> + <span class="number">1</span>], <span class="variable">arr</span>[<span class="variable">j</span>]];
+                
+                <span class="variable">swaps</span>++;
+                <span class="variable">sorted</span> = <span class="keyword">false</span>;
+            }
+        }
+        
+        <span class="comment">// Si no hubo intercambios, el array ya está ordenado</span>
+        <span class="keyword">if</span> (<span class="variable">sorted</span>) <span class="keyword">break</span>;
+    }
+    
+    <span class="keyword">return</span> {
+        <span class="variable">sortedArray</span>: <span class="variable">arr</span>,
+        <span class="variable">comparisons</span>: <span class="variable">comparisons</span>,
+        <span class="variable">swaps</span>: <span class="variable">swaps</span>
+    };
+}</code></pre>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>¿Cómo funciona Bubble Sort?</strong></p>
+                    <p>El algoritmo recorre repetidamente el array, compara elementos adyacentes y los intercambia si están en el orden incorrecto. Este proceso se repite hasta que no se necesiten más intercambios, lo que indica que el array está ordenado.</p>
+                </div>
+            </section>
+            
+            <section class="visualization-section">
+                <h2><i class="fas fa-chart-bar"></i> Visualización</h2>
+                
+                <div class="array-visualization" id="arrayContainer">
+                    <!-- Los elementos del array se generarán aquí -->
+                </div>
+                
+                <div class="controls">
+                    <button class="primary-btn" id="startBtn">
+                        <i class="fas fa-play"></i> Iniciar Bubble Sort
+                    </button>
+                    <button class="secondary-btn" id="resetBtn">
+                        <i class="fas fa-redo"></i> Generar Nuevo Array
+                    </button>
+                    <button class="secondary-btn" id="stepBtn">
+                        <i class="fas fa-step-forward"></i> Paso a Paso
+                    </button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="comparisonsCount">0</div>
+                        <div class="stat-label">Comparaciones</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="swapsCount">0</div>
+                        <div class="stat-label">Intercambios</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="passesCount">0</div>
+                        <div class="stat-label">Pasadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="status">Listo</div>
+                        <div class="stat-label">Estado</div>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color comparing"></div>
+                        <span>Comparando</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color swapping"></div>
+                        <span>Intercambiando</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color sorted"></div>
+                        <span>Ordenado</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color current"></div>
+                        <span>Actual</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Implementación estética de Bubble Sort en JavaScript | Visualización de algoritmos de ordenamiento</p>
+        </footer>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const arrayContainer = document.getElementById('arrayContainer');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const stepBtn = document.getElementById('stepBtn');
+        const comparisonsCount = document.getElementById('comparisonsCount');
+        const swapsCount = document.getElementById('swapsCount');
+        const passesCount = document.getElementById('passesCount');
+        const statusElement = document.getElementById('status');
+
+        // Variables del estado
+        let array = [];
+        let isSorting = false;
+        let stepMode = false;
+        let currentStep = 0;
+        let animationSpeed = 400; // ms
+        let stats = {
+            comparisons: 0,
+            swaps: 0,
+            passes: 0
+        };
+
+        // Colores para las barras
+        const colors = [
+            "#FF6B6B", "#4ECDC4", "#FFD166", "#06D6A0", "#118AB2", 
+            "#EF476F", "#073B4C", "#7209B7", "#3A86FF", "#FB5607"
+        ];
+
+        // Inicializar el array
+        function initializeArray() {
+            array = [];
+            const size = 10; // Tamaño fijo del array para mejor visualización
+            
+            for (let i = 0; i < size; i++) {
+                array.push(Math.floor(Math.random() * 95) + 5); // Valores entre 5 y 100
+            }
+            
+            renderArray();
+            resetStats();
+        }
+
+        // Renderizar el array visualmente
+        function renderArray(highlightIndices = [], state = 'default') {
+            arrayContainer.innerHTML = '';
+            
+            const maxValue = Math.max(...array);
+            
+            array.forEach((value, index) => {
+                const element = document.createElement('div');
+                element.className = 'array-element';
+                
+                const barHeight = (value / maxValue) * 240; // Altura proporcional
+                
+                const bar = document.createElement('div');
+                bar.className = 'element-bar';
+                bar.style.height = `${barHeight}px`;
+                
+                // Asignar color según el estado
+                if (state === 'sorted' && highlightIndices.includes(index)) {
+                    bar.classList.add('sorted');
+                    bar.style.backgroundColor = colors[index % colors.length];
+                } else if (highlightIndices.includes(index)) {
+                    if (state === 'comparing') {
+                        bar.classList.add('comparing');
+                    } else if (state === 'swapping') {
+                        bar.classList.add('swapping');
+                    } else if (state === 'current') {
+                        bar.classList.add('current');
+                    }
+                    bar.style.backgroundColor = colors[index % colors.length];
+                } else {
+                    bar.style.backgroundColor = colors[index % colors.length];
+                }
+                
+                const valueText = document.createElement('div');
+                valueText.className = 'element-value';
+                valueText.textContent = value;
+                
+                element.appendChild(bar);
+                element.appendChild(valueText);
+                arrayContainer.appendChild(element);
+            });
+        }
+
+        // Reiniciar estadísticas
+        function resetStats() {
+            stats = {
+                comparisons: 0,
+                swaps: 0,
+                passes: 0
+            };
+            
+            updateStatsDisplay();
+            statusElement.textContent = 'Listo';
+            statusElement.style.color = '#00dbde';
+        }
+
+        // Actualizar la visualización de estadísticas
+        function updateStatsDisplay() {
+            comparisonsCount.textContent = stats.comparisons;
+            swapsCount.textContent = stats.swaps;
+            passesCount.textContent = stats.passes;
+        }
+
+        // Implementación de Bubble Sort con visualización
+        async function bubbleSortVisual() {
+            if (isSorting) return;
+            
+            isSorting = true;
+            stepMode = false;
+            startBtn.innerHTML = '<i class="fas fa-pause"></i> Pausar';
+            startBtn.classList.add('secondary-btn');
+            startBtn.classList.remove('primary-btn');
+            
+            const n = array.length;
+            let sorted = false;
+            
+            for (let i = 0; i < n - 1; i++) {
+                if (!isSorting) break;
+                
+                stats.passes = i + 1;
+                passesCount.textContent = stats.passes;
+                sorted = true;
+                
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (!isSorting) break;
+                    
+                    // Resaltar elementos comparados
+                    renderArray([j, j + 1], 'comparing');
+                    stats.comparisons++;
+                    updateStatsDisplay();
+                    statusElement.textContent = `Comparando ${array[j]} y ${array[j + 1]}`;
+                    
+                    // Esperar para visualización
+                    await sleep(animationSpeed);
+                    
+                    if (array[j] > array[j + 1]) {
+                        // Resaltar elementos intercambiados
+                        renderArray([j, j + 1], 'swapping');
+                        statusElement.textContent = `Intercambiando ${array[j]} y ${array[j + 1]}`;
+                        
+                        // Esperar para visualización
+                        await sleep(animationSpeed);
+                        
+                        // Intercambiar elementos
+                        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                        stats.swaps++;
+                        updateStatsDisplay();
+                        sorted = false;
+                        
+                        // Actualizar visualización después del intercambio
+                        renderArray([j, j + 1], 'current');
+                        await sleep(animationSpeed);
+                    }
+                    
+                    // Si estamos en modo paso a paso, esperar a que el usuario continúe
+                    if (stepMode) {
+                        statusElement.textContent = 'Pausado - Presiona Paso a Paso';
+                        await waitForStep();
+                    }
+                }
+                
+                // Marcar el último elemento como ordenado
+                if (isSorting) {
+                    renderArray([n - i - 1], 'sorted');
+                    await sleep(animationSpeed / 2);
+                }
+                
+                if (sorted) break;
+            }
+            
+            // Marcar todos como ordenados si se completó
+            if (isSorting) {
+                for (let i = 0; i < n; i++) {
+                    renderArray([i], 'sorted');
+                    await sleep(100);
+                }
+                
+                statusElement.textContent = '¡Ordenado!';
+                statusElement.style.color = '#4cd964';
+                startBtn.innerHTML = '<i class="fas fa-play"></i> Reiniciar';
+                startBtn.classList.add('primary-btn');
+                startBtn.classList.remove('secondary-btn');
+            } else {
+                statusElement.textContent = 'Pausado';
+            }
+            
+            isSorting = false;
+        }
+
+        // Función auxiliar para esperar
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Función para esperar en modo paso a paso
+        function waitForStep() {
+            return new Promise(resolve => {
+                const checkStep = () => {
+                    if (!stepMode) {
+                        resolve();
+                    } else {
+                        setTimeout(checkStep, 100);
+                    }
+                };
+                checkStep();
+            });
+        }
+
+        // Controladores de eventos
+        startBtn.addEventListener('click', () => {
+            if (!isSorting) {
+                if (statusElement.textContent === '¡Ordenado!') {
+                    initializeArray();
+                }
+                bubbleSortVisual();
+            } else {
+                isSorting = false;
+                startBtn.innerHTML = '<i class="fas fa-play"></i> Continuar';
+                startBtn.classList.add('primary-btn');
+                startBtn.classList.remove('secondary-btn');
+                statusElement.textContent = 'Pausado';
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            if (isSorting) {
+                isSorting = false;
+                setTimeout(() => {
+                    initializeArray();
+                    startBtn.innerHTML = '<i class="fas fa-play"></i> Iniciar Bubble Sort';
+                    startBtn.classList.add('primary-btn');
+                    startBtn.classList.remove('secondary-btn');
+                }, 100);
+            } else {
+                initializeArray();
+            }
+        });
+
+        stepBtn.addEventListener('click', () => {
+            if (isSorting) {
+                stepMode = !stepMode;
+                if (stepMode) {
+                    stepBtn.innerHTML = '<i class="fas fa-play"></i> Continuar Automático';
+                    stepBtn.classList.add('primary-btn');
+                    stepBtn.classList.remove('secondary-btn');
+                } else {
+                    stepBtn.innerHTML = '<i class="fas fa-step-forward"></i> Paso a Paso';
+                    stepBtn.classList.add('secondary-btn');
+                    stepBtn.classList.remove('primary-btn');
+                }
+            }
+        });
+
+        // Inicializar
+        initializeArray();
+        
+        // También puedes probar el algoritmo directamente en la consola
+        console.log("Prueba la función bubbleSort() en la consola!");
+        console.log("Ejemplo: bubbleSort([64, 34, 25, 12, 22, 11, 90])");
+    </script>
+</body>
+</html>
