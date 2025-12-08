@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código Estético en JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .code-section, .execution-section {
+            background: rgba(20, 25, 40, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 219, 222, 0.3);
+            color: #00dbde;
+        }
+        
+        .section-title i {
+            font-size: 1.4rem;
+        }
+        
+        .code-container {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            border: 1px solid rgba(100, 100, 150, 0.1);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .code-line {
+            margin-bottom: 8px;
+            display: flex;
+        }
+        
+        .line-number {
+            color: #6e7681;
+            width: 40px;
+            text-align: right;
+            padding-right: 15px;
+            user-select: none;
+        }
+        
+        .code {
+            flex: 1;
+            white-space: nowrap;
+        }
+        
+        .keyword {
+            color: #ff7b72;
+        }
+        
+        .function {
+            color: #d2a8ff;
+        }
+        
+        .parameter {
+            color: #79c0ff;
+        }
+        
+        .string {
+            color: #a5d6ff;
+        }
+        
+        .comment {
+            color: #8b949e;
+        }
+        
+        .number {
+            color: #79c0ff;
+        }
+        
+        .execution-container {
+            padding: 15px;
+            background: rgba(10, 15, 25, 0.6);
+            border-radius: 10px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .output {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00dbde;
+            font-family: 'Courier New', monospace;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        
+        .output-line {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #00dbde, #0093e9);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 147, 233, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 147, 233, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            box-shadow: 0 4px 10px rgba(255, 65, 108, 0.3);
+        }
+        
+        .btn-reset:hover {
+            box-shadow: 0 6px 15px rgba(255, 65, 108, 0.4);
+        }
+        
+        .explanation {
+            background: rgba(20, 25, 40, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+        }
+        
+        .explanation-title {
+            color: #fc00ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .explanation-content {
+            line-height: 1.7;
+            color: #c0c0e0;
+        }
+        
+        .highlight {
+            color: #00dbde;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8b949e;
+        }
+        
+        .heart {
+            color: #ff416c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Código Estético en JavaScript</h1>
+            <p class="subtitle">Funciones y parámetros - Belleza en la sintaxis</p>
+            <p>Explora ejemplos de funciones bien estructuradas con parámetros claros y expresivos</p>
+        </header>
+        
+        <div class="content">
+            <div class="code-section">
+                <div class="section-title">
+                    <i class="fas fa-code"></i>
+                    <h2>Código Ejemplo</h2>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-line">
+                        <span class="line-number">1</span>
+                        <div class="code">
+                            <span class="comment">// Función con parámetros por defecto y desestructuración</span>
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">2</span>
+                        <div class="code">
+                            <span class="keyword">function</span> <span class="function">crearUsuario</span>({ 
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">3</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="parameter">nombre</span> = <span class="string">'Invitado'</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">4</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="parameter">email</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">5</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="parameter">rol</span> = <span class="string">'usuario'</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">6</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="parameter">activo</span> = <span class="keyword">true</span>
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">7</span>
+                        <div class="code">
+                            }) {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">8</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">const</span> fechaRegistro = <span class="keyword">new</span> Date().toLocaleDateString();
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">9</span>
+                        <div class="code">
+                            &nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">10</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">return</span> {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">11</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">nombre</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">12</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">email</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">13</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">rol</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">14</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">activo</span>,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">15</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;fechaRegistro,
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">16</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;id: <span class="function">generarId</span>(<span class="parameter">nombre</span>)
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">17</span>
+                        <div class="code">
+                            &nbsp;&nbsp;};
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">18</span>
+                        <div class="code">
+                            }
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">19</span>
+                        <div class="code">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">20</span>
+                        <div class="code">
+                            <span class="comment">// Función de flecha con parámetros rest</span>
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">21</span>
+                        <div class="code">
+                            <span class="keyword">const</span> <span class="function">sumarNumeros</span> = (...<span class="parameter">numeros</span>) => {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">22</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">return</span> numeros.<span class="function">reduce</span>((<span class="parameter">total</span>, <span class="parameter">num</span>) => total + num, <span class="number">0</span>);
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">23</span>
+                        <div class="code">
+                            };
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">24</span>
+                        <div class="code">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">25</span>
+                        <div class="code">
+                            <span class="comment">// Función generadora con parámetros</span>
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">26</span>
+                        <div class="code">
+                            <span class="keyword">function</span>* <span class="function">generarSecuencia</span>(<span class="parameter">inicio</span>, <span class="parameter">fin</span>, <span class="parameter">paso</span> = <span class="number">1</span>) {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">27</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="parameter">inicio</span>; i <= <span class="parameter">fin</span>; i += <span class="parameter">paso</span>) {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">28</span>
+                        <div class="code">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">yield</span> i;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">29</span>
+                        <div class="code">
+                            &nbsp;&nbsp;}
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">30</span>
+                        <div class="code">
+                            }
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">31</span>
+                        <div class="code">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">32</span>
+                        <div class="code">
+                            <span class="comment">// Función auxiliar (helper)</span>
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">33</span>
+                        <div class="code">
+                            <span class="keyword">const</span> <span class="function">generarId</span> = (<span class="parameter">nombre</span>) => {
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">34</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">const</span> timestamp = Date.<span class="function">now</span>().<span class="function">toString</span>(<span class="number">36</span>);
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">35</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">const</span> nombreCodificado = <span class="function">btoa</span>(<span class="parameter">nombre</span>).<span class="function">substring</span>(<span class="number">0</span>, <span class="number">5</span>);
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">36</span>
+                        <div class="code">
+                            &nbsp;&nbsp;<span class="keyword">return</span> `${timestamp}-${nombreCodificado}`;
+                        </div>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">37</span>
+                        <div class="code">
+                            };
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="execution-section">
+                <div class="section-title">
+                    <i class="fas fa-play-circle"></i>
+                    <h2>Ejecución</h2>
+                </div>
+                
+                <div class="execution-container">
+                    <div class="output" id="output">
+                        <div class="output-line">Presiona "Ejecutar Funciones" para ver los resultados...</div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button class="btn" id="runBtn">
+                            <i class="fas fa-play"></i> Ejecutar Funciones
+                        </button>
+                        <button class="btn btn-reset" id="resetBtn">
+                            <i class="fas fa-redo"></i> Reiniciar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3 class="explanation-title">
+                <i class="fas fa-lightbulb"></i> ¿Qué hace este código estético?
+            </h3>
+            <div class="explanation-content">
+                <p>Este código muestra varias características de JavaScript que hacen que las funciones y parámetros sean más <span class="highlight">expresivos, legibles y mantenibles</span>:</p>
+                <br>
+                <p><span class="highlight">1. Desestructuración de parámetros:</span> La función <span class="highlight">crearUsuario</span> recibe un objeto como parámetro y desestructura sus propiedades inmediatamente.</p>
+                <p><span class="highlight">2. Parámetros por defecto:</span> Cada parámetro tiene un valor por defecto, lo que hace la función más flexible.</p>
+                <p><span class="highlight">3. Parámetros rest:</span> La función <span class="highlight">sumarNumeros</span> usa <span class="highlight">...numeros</span> para aceptar cualquier número de argumentos.</p>
+                <p><span class="highlight">4. Funciones generadoras:</span> <span class="highlight">generarSecuencia</span> usa <span class="highlight">function*</span> y <span class="highlight">yield</span> para crear un iterador personalizado.</p>
+                <p><span class="highlight">5. Funciones de flecha:</span> Sintaxis concisa para funciones pequeñas y claras.</p>
+                <br>
+                <p>Estas técnicas hacen que el código sea más <span class="highlight">declarativo</span> (se enfoca en el "qué" en lugar del "cómo") y menos propenso a errores.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Código JavaScript estético con funciones y parámetros</p>
+            <p>Hecho con <span class="heart">❤</span> para desarrolladores que valoran la belleza en el código</p>
+        </footer>
+    </div>
+
+    <script>
+        // Implementación de las funciones mostradas en el código
+        function crearUsuario({ 
+            nombre = 'Invitado',
+            email,
+            rol = 'usuario',
+            activo = true
+        }) {
+            const fechaRegistro = new Date().toLocaleDateString();
+            
+            return {
+                nombre,
+                email,
+                rol,
+                activo,
+                fechaRegistro,
+                id: generarId(nombre)
+            };
+        }
+        
+        // Función de flecha con parámetros rest
+        const sumarNumeros = (...numeros) => {
+            return numeros.reduce((total, num) => total + num, 0);
+        };
+        
+        // Función generadora con parámetros
+        function* generarSecuencia(inicio, fin, paso = 1) {
+            for (let i = inicio; i <= fin; i += paso) {
+                yield i;
+            }
+        }
+        
+        // Función auxiliar (helper)
+        const generarId = (nombre) => {
+            const timestamp = Date.now().toString(36);
+            const nombreCodificado = btoa(nombre).substring(0, 5);
+            return `${timestamp}-${nombreCodificado}`;
+        };
+        
+        // Elementos del DOM
+        const output = document.getElementById('output');
+        const runBtn = document.getElementById('runBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // Función para mostrar salida en el contenedor
+        function mostrarSalida(mensaje, tipo = 'normal') {
+            const linea = document.createElement('div');
+            linea.className = 'output-line';
+            
+            if (tipo === 'title') {
+                linea.innerHTML = `<strong>${mensaje}</strong>`;
+                linea.style.color = '#00dbde';
+            } else if (tipo === 'result') {
+                linea.innerHTML = `➤ ${mensaje}`;
+                linea.style.color = '#a5d6ff';
+            } else if (tipo === 'data') {
+                linea.textContent = `  ${mensaje}`;
+                linea.style.color = '#c0c0e0';
+                linea.style.marginLeft = '15px';
+            } else if (tipo === 'error') {
+                linea.innerHTML = `✗ ${mensaje}`;
+                linea.style.color = '#ff7b72';
+            } else {
+                linea.textContent = mensaje;
+            }
+            
+            output.appendChild(linea);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        // Función para ejecutar las funciones y mostrar resultados
+        function ejecutarFunciones() {
+            output.innerHTML = '';
+            
+            mostrarSalida('=== EJECUCIÓN DE FUNCIONES ESTÉTICAS ===', 'title');
+            mostrarSalida('');
+            
+            // 1. Probar función crearUsuario
+            mostrarSalida('1. Función crearUsuario:', 'title');
+            mostrarSalida('Creando usuarios con diferentes parámetros:', 'normal');
+            
+            const usuario1 = crearUsuario({ 
+                nombre: 'Ana García', 
+                email: 'ana@example.com',
+                rol: 'admin'
+            });
+            
+            mostrarSalida(`Usuario completo: ${JSON.stringify(usuario1, null, 2)}`, 'data');
+            
+            const usuario2 = crearUsuario({ 
+                email: 'invitado@example.com' 
+                // nombre, rol y activo usarán valores por defecto
+            });
+            
+            mostrarSalida(`Usuario con valores por defecto: ${JSON.stringify(usuario2, null, 2)}`, 'data');
+            
+            mostrarSalida('');
+            
+            // 2. Probar función sumarNumeros
+            mostrarSalida('2. Función sumarNumeros (parámetros rest):', 'title');
+            
+            const suma1 = sumarNumeros(1, 2, 3, 4, 5);
+            mostrarSalida(`sumarNumeros(1, 2, 3, 4, 5) = ${suma1}`, 'result');
+            
+            const suma2 = sumarNumeros(10, 20, 30);
+            mostrarSalida(`sumarNumeros(10, 20, 30) = ${suma2}`, 'result');
+            
+            const suma3 = sumarNumeros(2.5, 3.7, 1.8);
+            mostrarSalida(`sumarNumeros(2.5, 3.7, 1.8) = ${suma3}`, 'result');
+            
+            mostrarSalida('');
+            
+            // 3. Probar función generadora
+            mostrarSalida('3. Función generadora generarSecuencia:', 'title');
+            mostrarSalida('Secuencia del 1 al 5:', 'normal');
+            
+            const secuencia = generarSecuencia(1, 5);
+            let resultadoSecuencia = [];
+            
+            for (let valor of secuencia) {
+                resultadoSecuencia.push(valor);
+            }
+            
+            mostrarSalida(`[${resultadoSecuencia.join(', ')}]`, 'data');
+            
+            mostrarSalida('Secuencia del 0 al 10 con paso 2:', 'normal');
+            
+            const secuenciaPares = generarSecuencia(0, 10, 2);
+            resultadoSecuencia = [];
+            
+            for (let valor of secuenciaPares) {
+                resultadoSecuencia.push(valor);
+            }
+            
+            mostrarSalida(`[${resultadoSecuencia.join(', ')}]`, 'data');
+            
+            mostrarSalida('');
+            
+            // 4. Demostración de parámetros por defecto y desestructuración
+            mostrarSalida('4. Demostración de flexibilidad:', 'title');
+            
+            // Función con múltiples tipos de parámetros
+            const formatProduct = ({ name, price, category = 'general', discount = 0 }) => {
+                const finalPrice = price * (1 - discount);
+                return `${name} (${category}): $${finalPrice.toFixed(2)} ${discount > 0 ? `(${discount*100}% descuento)` : ''}`;
+            };
+            
+            const product1 = formatProduct({ name: 'Laptop', price: 1200, category: 'Electrónica' });
+            const product2 = formatProduct({ name: 'Libro', price: 25, discount: 0.1 });
+            const product3 = formatProduct({ name: 'Camisa', price: 40, category: 'Ropa', discount: 0.2 });
+            
+            mostrarSalida(product1, 'data');
+            mostrarSalida(product2, 'data');
+            mostrarSalida(product3, 'data');
+            
+            mostrarSalida('');
+            mostrarSalida('=== EJECUCIÓN COMPLETADA ===', 'title');
+            mostrarSalida('Revisa el código para ver la implementación estética', 'normal');
+        }
+        
+        // Función para reiniciar la salida
+        function reiniciarSalida() {
+            output.innerHTML = '<div class="output-line">Presiona "Ejecutar Funciones" para ver los resultados...</div>';
+        }
+        
+        // Event listeners
+        runBtn.addEventListener('click', ejecutarFunciones);
+        resetBtn.addEventListener('click', reiniciarSalida);
+        
+        // Ejecutar automáticamente al cargar la página
+        setTimeout(ejecutarFunciones, 1000);
+    </script>
+</body>
+</html>
