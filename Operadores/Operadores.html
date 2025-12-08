@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores JavaScript - Estética y Funcionalidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.5);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .operator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .operator-card {
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .operator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        .operator-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .operator-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .operator-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .operator-symbols {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .symbol {
+            background: rgba(102, 126, 234, 0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        .operator-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            opacity: 0.9;
+        }
+        
+        .example-container {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+        
+        .example-title {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #a3a3ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .code {
+            color: #f8f8f8;
+            line-height: 1.5;
+        }
+        
+        .comment {
+            color: #6a9955;
+        }
+        
+        .keyword {
+            color: #569cd6;
+        }
+        
+        .operator {
+            color: #dcdcaa;
+            font-weight: bold;
+        }
+        
+        .value {
+            color: #ce9178;
+        }
+        
+        .execution-section {
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .execution-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #a3a3ff;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a3a3ff;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 8px;
+            color: #f8f8f8;
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result-container {
+            margin-top: 30px;
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .result-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        #resultOutput {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            color: rgba(230, 230, 230, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .operator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .input-field {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-code"></i> Operadores JavaScript</h1>
+            <p class="subtitle">Una representación visual y estética de los diferentes tipos de operadores en JavaScript, con ejemplos interactivos que puedes ejecutar.</p>
+        </header>
+        
+        <main>
+            <div class="operator-grid">
+                <!-- Operadores Aritméticos -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="operator-title">Operadores Aritméticos</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">+</span>
+                        <span class="symbol">-</span>
+                        <span class="symbol">*</span>
+                        <span class="symbol">/</span>
+                        <span class="symbol">%</span>
+                        <span class="symbol">**</span>
+                    </div>
+                    <p class="operator-description">Realizan operaciones matemáticas básicas entre valores numéricos. Incluyen suma, resta, multiplicación, división, módulo y exponenciación.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="keyword">let</span> a = <span class="value">10</span>;<br>
+                            <span class="keyword">let</span> b = <span class="value">3</span>;<br>
+                            <span class="keyword">let</span> suma = a <span class="operator">+</span> b; <span class="comment">// 13</span><br>
+                            <span class="keyword">let</span> modulo = a <span class="operator">%</span> b; <span class="comment">// 1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Operadores de Asignación -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-equals"></i>
+                        </div>
+                        <h3 class="operator-title">Operadores de Asignación</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">=</span>
+                        <span class="symbol">+=</span>
+                        <span class="symbol">-=</span>
+                        <span class="symbol">*=</span>
+                        <span class="symbol">/=</span>
+                    </div>
+                    <p class="operator-description">Asignan valores a variables. Pueden combinarse con operadores aritméticos para realizar operaciones y asignaciones simultáneas.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="keyword">let</span> x = <span class="value">5</span>;<br>
+                            x <span class="operator">+=</span> <span class="value">3</span>; <span class="comment">// x = 8</span><br>
+                            x <span class="operator">*=</span> <span class="value">2</span>; <span class="comment">// x = 16</span><br>
+                            x <span class="operator">/=</span> <span class="value">4</span>; <span class="comment">// x = 4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Operadores de Comparación -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="operator-title">Operadores de Comparación</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">==</span>
+                        <span class="symbol">===</span>
+                        <span class="symbol">!=</span>
+                        <span class="symbol">!==</span>
+                        <span class="symbol">></span>
+                        <span class="symbol"><</span>
+                    </div>
+                    <p class="operator-description">Comparan dos valores y devuelven un valor booleano (true o false). "===" y "!==" comparan valor y tipo, mientras que "==" y "!=" solo comparan valor.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="value">5</span> <span class="operator">==</span> <span class="value">'5'</span> <span class="comment">// true</span><br>
+                            <span class="value">5</span> <span class="operator">===</span> <span class="value">'5'</span> <span class="comment">// false</span><br>
+                            <span class="value">10</span> <span class="operator">></span> <span class="value">5</span> <span class="comment">// true</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Operadores Lógicos -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="operator-title">Operadores Lógicos</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">&&</span>
+                        <span class="symbol">||</span>
+                        <span class="symbol">!</span>
+                    </div>
+                    <p class="operator-description">Combinan expresiones booleanas. "&&" (AND) devuelve true si ambas expresiones son verdaderas, "||" (OR) devuelve true si al menos una es verdadera, y "!" (NOT) invierte el valor.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="keyword">let</span> esMayor = (<span class="value">10</span> <span class="operator">></span> <span class="value">5</span>) <span class="operator">&&</span> (<span class="value">3</span> <span class="operator"><</span> <span class="value">7</span>); <span class="comment">// true</span><br>
+                            <span class="keyword">let</span> esVerdadero = <span class="operator">!</span>(<span class="value">5</span> <span class="operator">===</span> <span class="value">'5'</span>); <span class="comment">// true</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Operadores de Incremento/Decremento -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-sort-amount-up"></i>
+                        </div>
+                        <h3 class="operator-title">Incremento/Decremento</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">++</span>
+                        <span class="symbol">--</span>
+                    </div>
+                    <p class="operator-description">Aumentan o disminuyen el valor de una variable en 1. Pueden usarse como prefijo (++x) o sufijo (x++), lo que afecta al valor devuelto por la expresión.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="keyword">let</span> contador = <span class="value">5</span>;<br>
+                            contador<span class="operator">++</span>; <span class="comment">// contador = 6</span><br>
+                            <span class="operator">++</span>contador; <span class="comment">// contador = 7</span><br>
+                            contador<span class="operator">--</span>; <span class="comment">// contador = 6</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Operador Ternario -->
+                <div class="operator-card">
+                    <div class="operator-header">
+                        <div class="operator-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3 class="operator-title">Operador Ternario</h3>
+                    </div>
+                    <div class="operator-symbols">
+                        <span class="symbol">? :</span>
+                    </div>
+                    <p class="operator-description">Es una forma abreviada de escribir una estructura if-else. Evalúa una condición y devuelve un valor si es verdadera, o otro si es falsa.</p>
+                    <div class="example-container">
+                        <div class="example-title">Ejemplo:</div>
+                        <div class="code">
+                            <span class="keyword">let</span> edad = <span class="value">18</span>;<br>
+                            <span class="keyword">let</span> puedeVotar = (edad <span class="operator">>=</span> <span class="value">18</span>) <span class="operator">?</span> <span class="value">"Sí puede"</span> <span class="operator">:</span> <span class="value">"No puede"</span>;<br>
+                            <span class="comment">// "Sí puede"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="execution-section">
+                <h2 class="execution-title"><i class="fas fa-play-circle"></i> Zona de Pruebas Interactiva</h2>
+                <p class="subtitle" style="text-align: center; margin-bottom: 25px;">Ingresa valores y prueba diferentes operadores en tiempo real.</p>
+                
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="value1">Valor 1:</label>
+                        <input type="text" id="value1" placeholder="Ej: 10, 'texto', true" value="15">
+                    </div>
+                    <div class="input-field">
+                        <label for="value2">Valor 2:</label>
+                        <input type="text" id="value2" placeholder="Ej: 5, 'hola', false" value="3">
+                    </div>
+                    <div class="input-field">
+                        <label for="operator">Operador:</label>
+                        <input type="text" id="operator" placeholder="Ej: +, ===, &&" value="+">
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="executeBtn">
+                        <i class="fas fa-bolt"></i> Ejecutar Operación
+                    </button>
+                    <button id="arithmeticBtn">
+                        <i class="fas fa-calculator"></i> Ejemplo Aritmético
+                    </button>
+                    <button id="comparisonBtn">
+                        <i class="fas fa-balance-scale"></i> Ejemplo Comparación
+                    </button>
+                    <button id="logicalBtn">
+                        <i class="fas fa-project-diagram"></i> Ejemplo Lógico
+                    </button>
+                </div>
+                
+                <div class="result-container">
+                    <h3 class="result-title"><i class="fas fa-poll"></i> Resultado:</h3>
+                    <div id="resultOutput">Presiona "Ejecutar Operación" para ver resultados aquí.</div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2023 - Operadores JavaScript | Código estético con fines educativos</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Usa la zona interactiva para probar diferentes operadores con tus propios valores.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Referencias a los elementos del DOM
+        const value1Input = document.getElementById('value1');
+        const value2Input = document.getElementById('value2');
+        const operatorInput = document.getElementById('operator');
+        const executeBtn = document.getElementById('executeBtn');
+        const arithmeticBtn = document.getElementById('arithmeticBtn');
+        const comparisonBtn = document.getElementById('comparisonBtn');
+        const logicalBtn = document.getElementById('logicalBtn');
+        const resultOutput = document.getElementById('resultOutput');
+        
+        // Función para evaluar y ejecutar la operación
+        function executeOperation() {
+            const val1 = value1Input.value.trim();
+            const val2 = value2Input.value.trim();
+            const op = operatorInput.value.trim();
+            
+            // Intentar interpretar los valores (números, booleanos, strings)
+            let parsedVal1, parsedVal2;
+            
+            // Intentar parsear como número
+            if (!isNaN(val1) && val1 !== '') {
+                parsedVal1 = parseFloat(val1);
+            } else if (val1.toLowerCase() === 'true') {
+                parsedVal1 = true;
+            } else if (val1.toLowerCase() === 'false') {
+                parsedVal1 = false;
+            } else if (val1.startsWith("'") && val1.endsWith("'") || val1.startsWith('"') && val1.endsWith('"')) {
+                parsedVal1 = val1.substring(1, val1.length - 1);
+            } else {
+                parsedVal1 = val1;
+            }
+            
+            if (!isNaN(val2) && val2 !== '') {
+                parsedVal2 = parseFloat(val2);
+            } else if (val2.toLowerCase() === 'true') {
+                parsedVal2 = true;
+            } else if (val2.toLowerCase() === 'false') {
+                parsedVal2 = false;
+            } else if (val2.startsWith("'") && val2.endsWith("'") || val2.startsWith('"') && val2.endsWith('"')) {
+                parsedVal2 = val2.substring(1, val2.length - 1);
+            } else {
+                parsedVal2 = val2;
+            }
+            
+            let result;
+            let operationString = `${JSON.stringify(parsedVal1)} ${op} ${JSON.stringify(parsedVal2)}`;
+            
+            try {
+                // Evaluar la operación según el operador
+                switch(op) {
+                    case '+':
+                        result = parsedVal1 + parsedVal2;
+                        break;
+                    case '-':
+                        result = parsedVal1 - parsedVal2;
+                        break;
+                    case '*':
+                        result = parsedVal1 * parsedVal2;
+                        break;
+                    case '/':
+                        result = parsedVal1 / parsedVal2;
+                        break;
+                    case '%':
+                        result = parsedVal1 % parsedVal2;
+                        break;
+                    case '**':
+                        result = parsedVal1 ** parsedVal2;
+                        break;
+                    case '==':
+                        result = parsedVal1 == parsedVal2;
+                        break;
+                    case '===':
+                        result = parsedVal1 === parsedVal2;
+                        break;
+                    case '!=':
+                        result = parsedVal1 != parsedVal2;
+                        break;
+                    case '!==':
+                        result = parsedVal1 !== parsedVal2;
+                        break;
+                    case '>':
+                        result = parsedVal1 > parsedVal2;
+                        break;
+                    case '<':
+                        result = parsedVal1 < parsedVal2;
+                        break;
+                    case '>=':
+                        result = parsedVal1 >= parsedVal2;
+                        break;
+                    case '<=':
+                        result = parsedVal1 <= parsedVal2;
+                        break;
+                    case '&&':
+                        result = parsedVal1 && parsedVal2;
+                        break;
+                    case '||':
+                        result = parsedVal1 || parsedVal2;
+                        break;
+                    case '!':
+                        result = !parsedVal1;
+                        operationString = `!${JSON.stringify(parsedVal1)}`;
+                        break;
+                    default:
+                        // Intentar evaluar como expresión JavaScript
+                        result = eval(`${JSON.stringify(parsedVal1)} ${op} ${JSON.stringify(parsedVal2)}`);
+                }
+                
+                // Mostrar el resultado
+                resultOutput.innerHTML = `
+                    <div><strong>Operación:</strong> ${operationString}</div>
+                    <div><strong>Resultado:</strong> <span style="color: #4CAF50; font-weight: bold;">${JSON.stringify(result)}</span></div>
+                    <div><strong>Tipo de resultado:</strong> ${typeof result}</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">
+                        <i class="fas fa-info-circle"></i> Valores interpretados: val1 = ${JSON.stringify(parsedVal1)} (${typeof parsedVal1}), val2 = ${JSON.stringify(parsedVal2)} (${typeof parsedVal2})
+                    </div>
+                `;
+                
+            } catch (error) {
+                resultOutput.innerHTML = `
+                    <div style="color: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Error:</strong> No se pudo ejecutar la operación "${op}" con los valores proporcionados.
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9rem;">
+                        <strong>Detalles:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Función para establecer un ejemplo aritmético
+        function setArithmeticExample() {
+            value1Input.value = "15";
+            value2Input.value = "4";
+            operatorInput.value = "%";
+            executeOperation();
+        }
+        
+        // Función para establecer un ejemplo de comparación
+        function setComparisonExample() {
+            value1Input.value = "'10'";
+            value2Input.value = "10";
+            operatorInput.value = "===";
+            executeOperation();
+        }
+        
+        // Función para establecer un ejemplo lógico
+        function setLogicalExample() {
+            value1Input.value = "true";
+            value2Input.value = "false";
+            operatorInput.value = "||";
+            executeOperation();
+        }
+        
+        // Asignar eventos a los botones
+        executeBtn.addEventListener('click', executeOperation);
+        arithmeticBtn.addEventListener('click', setArithmeticExample);
+        comparisonBtn.addEventListener('click', setComparisonExample);
+        logicalBtn.addEventListener('click', setLogicalExample);
+        
+        // Ejecutar una operación al cargar la página
+        window.addEventListener('DOMContentLoaded', executeOperation);
+        
+        // Permitir ejecutar con Enter en los campos de entrada
+        [value1Input, value2Input, operatorInput].forEach(input => {
+            input.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    executeOperation();
+                }
+            });
+        });
+        
+        // Ejemplo adicional: mostrar diferentes operadores en acción
+        setTimeout(() => {
+            const examples = document.createElement('div');
+            examples.style.marginTop = '20px';
+            examples.style.padding = '15px';
+            examples.style.backgroundColor = 'rgba(20, 20, 30, 0.7)';
+            examples.style.borderRadius = '10px';
+            examples.style.fontSize = '0.9rem';
+            
+            examples.innerHTML = `
+                <div style="color: #a3a3ff; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> Más ejemplos que puedes probar:</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px;">
+                    <div>• Valor1: <code>10</code>, Valor2: <code>3</code>, Operador: <code>**</code> (exponenciación)</div>
+                    <div>• Valor1: <code>true</code>, Valor2: <code>false</code>, Operador: <code>&&</code> (AND lógico)</div>
+                    <div>• Valor1: <code>'Hola'</code>, Valor2: <code>'Mundo'</code>, Operador: <code>+</code> (concatenación)</div>
+                </div>
+            `;
+            
+            document.querySelector('.execution-section').appendChild(examples);
+        }, 1000);
+    </script>
+</body>
+</html>
