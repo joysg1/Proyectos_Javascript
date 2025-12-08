@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo Estético</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #a3d9ff;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .hello-world {
+            font-size: 5rem;
+            font-weight: 800;
+            margin: 20px 0;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                transform: scale(1.05);
+                text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #00b09b 0%, #96c93d 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #a3d9ff;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #00dbde;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hello-world {
+                font-size: 3.5rem;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-code"></i> Hola Mundo JavaScript</h1>
+            <p>Una implementación estética del clásico "Hello World"</p>
+        </div>
+
+        <div class="card">
+            <h2 class="hello-world" id="helloText">¡Hola Mundo!</h2>
+            <p class="message" id="message">
+                Este es un ejemplo visualmente atractivo del clásico "Hola Mundo" implementado con HTML, CSS y JavaScript. 
+                El diseño incluye gradientes, animaciones y efectos interactivos para una experiencia más envolvente.
+            </p>
+            
+            <div class="controls">
+                <button class="btn btn-primary" id="changeTextBtn">
+                    <i class="fas fa-magic"></i> Cambiar Texto
+                </button>
+                <button class="btn btn-secondary" id="changeColorBtn">
+                    <i class="fas fa-palette"></i> Cambiar Color
+                </button>
+                <button class="btn btn-primary" id="animateBtn">
+                    <i class="fas fa-play"></i> Animación
+                </button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-code"></i>
+                <h3>JavaScript</h3>
+                <p>Interactividad dinámica</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Diseño Estético</h3>
+                <p>UI moderna y atractiva</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsivo</h3>
+                <p>Adaptable a dispositivos</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h3>Animaciones</h3>
+                <p>Efectos visuales fluidos</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Proyecto "Hola Mundo Estético" | 
+                <a href="https://github.com/tuusuario/hola-mundo-estetico" target="_blank">
+                    <i class="fab fa-github"></i> Ver en GitHub
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const helloText = document.getElementById('helloText');
+        const message = document.getElementById('message');
+        const changeTextBtn = document.getElementById('changeTextBtn');
+        const changeColorBtn = document.getElementById('changeColorBtn');
+        const animateBtn = document.getElementById('animateBtn');
+        
+        // Array de textos para el saludo
+        const greetings = [
+            "¡Hola Mundo!",
+            "Hello World!",
+            "Bonjour le Monde!",
+            "Hallo Welt!",
+            "Ciao Mondo!",
+            "こんにちは世界！",
+            "안녕 세상!",
+            "Привет мир!",
+            "Olá Mundo!",
+            "مرحبا بالعالم!"
+        ];
+        
+        // Array de colores para el gradiente
+        const colors = [
+            "linear-gradient(90deg, #00dbde 0%, #fc00ff 100%)",
+            "linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%)",
+            "linear-gradient(90deg, #a8edea 0%, #fed6e3 100%)",
+            "linear-gradient(90deg, #74ebd5 0%, #9face6 100%)",
+            "linear-gradient(90deg, #667eea 0%, #764ba2 100%)",
+            "linear-gradient(90deg, #f093fb 0%, #f5576c 100%)",
+            "linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)",
+            "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)",
+            "linear-gradient(90deg, #fa709a 0%, #fee140 100%)",
+            "linear-gradient(90deg, #30cfd0 0%, #330867 100%)"
+        ];
+        
+        // Array de mensajes
+        const messages = [
+            "Este es un ejemplo visualmente atractivo del clásico 'Hola Mundo' implementado con HTML, CSS y JavaScript.",
+            "JavaScript es un lenguaje de programación que permite crear contenido interactivo en páginas web.",
+            "El diseño web moderno utiliza gradientes, animaciones y efectos para crear experiencias atractivas.",
+            "Este proyecto demuestra cómo combinar funcionalidad JavaScript con diseño estético.",
+            "Puedes personalizar este código para aprender conceptos básicos de desarrollo web frontend.",
+            "Cada clic en los botones activa funciones JavaScript que modifican el contenido de la página.",
+            "Las animaciones CSS y las transiciones mejoran la experiencia del usuario.",
+            "El diseño responsivo asegura que la página se vea bien en dispositivos de diferentes tamaños.",
+            "Explora el código para entender cómo funciona cada elemento de esta implementación.",
+            "¡Sigue experimentando y creando proyectos para mejorar tus habilidades de desarrollo!"
+        ];
+        
+        // Variables de estado
+        let currentGreetingIndex = 0;
+        let currentColorIndex = 0;
+        let currentMessageIndex = 0;
+        
+        // Función para cambiar el texto del saludo
+        function changeText() {
+            currentGreetingIndex = (currentGreetingIndex + 1) % greetings.length;
+            helloText.textContent = greetings[currentGreetingIndex];
+            
+            // También cambiamos el mensaje
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            message.textContent = messages[currentMessageIndex];
+            
+            // Efecto visual
+            helloText.style.transform = "scale(1.1)";
+            setTimeout(() => {
+                helloText.style.transform = "scale(1)";
+            }, 200);
+        }
+        
+        // Función para cambiar el color del gradiente
+        function changeColor() {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            helloText.style.backgroundImage = colors[currentColorIndex];
+            helloText.style.webkitBackgroundClip = "text";
+            helloText.style.backgroundClip = "text";
+            
+            // Efecto visual
+            changeColorBtn.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                changeColorBtn.style.transform = "scale(1)";
+            }, 150);
+        }
+        
+        // Función para activar una animación especial
+        function activateAnimation() {
+            // Guardar el color original
+            const originalColor = helloText.style.backgroundImage;
+            
+            // Aplicar animación de destello
+            helloText.style.animation = "none";
+            helloText.style.transform = "scale(1.5)";
+            helloText.style.backgroundImage = "linear-gradient(90deg, #ff0000 0%, #ffff00 50%, #00ff00 100%)";
+            
+            setTimeout(() => {
+                helloText.style.transform = "scale(1)";
+                helloText.style.backgroundImage = originalColor || colors[0];
+                helloText.style.animation = "pulse 2s infinite alternate";
+            }, 500);
+            
+            // Cambiar texto del botón temporalmente
+            const originalText = animateBtn.innerHTML;
+            animateBtn.innerHTML = '<i class="fas fa-check"></i> ¡Animado!';
+            
+            setTimeout(() => {
+                animateBtn.innerHTML = originalText;
+            }, 1000);
+        }
+        
+        // Añadir event listeners a los botones
+        changeTextBtn.addEventListener('click', changeText);
+        changeColorBtn.addEventListener('click', changeColor);
+        animateBtn.addEventListener('click', activateAnimation);
+        
+        // Inicializar con un saludo aleatorio
+        window.addEventListener('DOMContentLoaded', () => {
+            currentGreetingIndex = Math.floor(Math.random() * greetings.length);
+            currentColorIndex = Math.floor(Math.random() * colors.length);
+            currentMessageIndex = Math.floor(Math.random() * messages.length);
+            
+            helloText.textContent = greetings[currentGreetingIndex];
+            helloText.style.backgroundImage = colors[currentColorIndex];
+            message.textContent = messages[currentMessageIndex];
+            
+            // Efecto de entrada
+            document.querySelector('.card').style.opacity = '0';
+            document.querySelector('.card').style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                document.querySelector('.card').style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                document.querySelector('.card').style.opacity = '1';
+                document.querySelector('.card').style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
