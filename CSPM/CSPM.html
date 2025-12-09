@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSPM - Gestor de Proyectos Creativos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #554fd8;
+            --secondary: #FF6584;
+            --success: #36D399;
+            --warning: #FBBD23;
+            --danger: #F87272;
+            --dark: #2A2D43;
+            --light: #F8FAFC;
+            --gray: #94A3B8;
+            --gray-light: #E2E8F0;
+            --radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .sidebar-nav i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .stats {
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius);
+            padding: 20px;
+            color: white;
+        }
+
+        .stats h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Welcome card */
+        .welcome-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-text h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Projects grid */
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .project-category {
+            background: var(--gray-light);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .project-progress {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--primary);
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .project-team {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .team-avatars {
+            display: flex;
+        }
+
+        .team-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: -8px;
+            border: 3px solid white;
+        }
+
+        .team-avatar:first-child {
+            margin-left: 0;
+        }
+
+        /* Task list */
+        .tasks-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .tasks-list {
+            margin-top: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            background: var(--light);
+            transition: var(--transition);
+        }
+
+        .task-item:hover {
+            background: var(--gray-light);
+        }
+
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid var(--gray);
+            margin-right: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .task-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .task-info {
+            flex-grow: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .task-project {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .task-priority {
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            background: rgba(248, 114, 114, 0.2);
+            color: var(--danger);
+        }
+
+        .priority-medium {
+            background: rgba(251, 189, 35, 0.2);
+            color: var(--warning);
+        }
+
+        .priority-low {
+            background: rgba(54, 211, 153, 0.2);
+            color: var(--success);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-card {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="logo-text">CSPM</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">AS</div>
+                <div>
+                    <div class="user-name">Ana Sánchez</div>
+                    <div class="user-role">Project Manager</div>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </header>
+        
+        <div class="dashboard">
+            <aside class="sidebar">
+                <h3>Menú Principal</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Proyectos</a></li>
+                    <li><a href="#"><i class="fas fa-tasks"></i> Tareas</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Reportes</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+                </ul>
+                
+                <div class="stats">
+                    <h3>Resumen del Mes</h3>
+                    <div class="stat-item">
+                        <span>Proyectos completados</span>
+                        <span>12</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Tareas pendientes</span>
+                        <span>8</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Horas trabajadas</span>
+                        <span>142</span>
+                    </div>
+                </div>
+            </aside>
+            
+            <main class="main-content">
+                <div class="welcome-card">
+                    <div class="welcome-text">
+                        <h2>Bienvenida de nuevo, Ana</h2>
+                        <p>Tu panel de control muestra que tienes 3 proyectos activos, 8 tareas pendientes y 2 reuniones programadas para hoy.</p>
+                    </div>
+                    <button class="btn-primary" id="newProjectBtn">
+                        <i class="fas fa-plus"></i> Nuevo Proyecto
+                    </button>
+                </div>
+                
+                <section class="projects-section">
+                    <div class="projects-header">
+                        <h3 class="section-title">Proyectos Activos</h3>
+                        <div class="view-all">Ver todos</div>
+                    </div>
+                    
+                    <div class="projects-grid" id="projectsGrid">
+                        <!-- Proyectos se cargarán aquí con JavaScript -->
+                    </div>
+                </section>
+                
+                <section class="tasks-section">
+                    <div class="projects-header">
+                        <h3 class="section-title">Tareas Pendientes</h3>
+                        <div class="view-all">Ver todas</div>
+                    </div>
+                    
+                    <div class="tasks-list" id="tasksList">
+                        <!-- Tareas se cargarán aquí con JavaScript -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer>
+            <p>CSPM - Creative Studio Project Manager © 2023 | Todos los derechos reservados</p>
+            <p>Diseñado con <i class="fas fa-heart" style="color: var(--secondary);"></i> para equipos creativos</p>
+        </footer>
+    </div>
+
+    <script>
+        // Datos de ejemplo para proyectos
+        const projects = [
+            {
+                id: 1,
+                title: "Rediseño de Sitio Web",
+                category: "Diseño Web",
+                description: "Rediseño completo del sitio web corporativo con enfoque en experiencia de usuario.",
+                progress: 75,
+                team: ["JS", "MR", "AL", "+2"],
+                priority: "high"
+            },
+            {
+                id: 2,
+                title: "Campaña Publicitaria Q4",
+                category: "Marketing",
+                description: "Desarrollo de la campaña publicitaria para el cuarto trimestre del año.",
+                progress: 40,
+                team: ["AS", "PC", "TG"],
+                priority: "medium"
+            },
+            {
+                id: 3,
+                title: "App Móvil Finanzas",
+                category: "Desarrollo",
+                description: "Creación de aplicación móvil para gestión financiera personal.",
+                progress: 90,
+                team: ["DM", "VR", "LK", "+1"],
+                priority: "low"
+            },
+            {
+                id: 4,
+                title: "Branding Nueva Marca",
+                category: "Identidad",
+                description: "Desarrollo de identidad visual completa para nueva marca de ropa.",
+                progress: 30,
+                team: ["LS", "FG"],
+                priority: "medium"
+            }
+        ];
+
+        // Datos de ejemplo para tareas
+        const tasks = [
+            {
+                id: 1,
+                title: "Revisar mockups del homepage",
+                project: "Rediseño de Sitio Web",
+                completed: true,
+                priority: "high"
+            },
+            {
+                id: 2,
+                title: "Preparar presentación para cliente",
+                project: "Campaña Publicitaria Q4",
+                completed: false,
+                priority: "high"
+            },
+            {
+                id: 3,
+                title: "Corregir bugs en módulo de pagos",
+                project: "App Móvil Finanzas",
+                completed: false,
+                priority: "medium"
+            },
+            {
+                id: 4,
+                title: "Seleccionar paleta de colores",
+                project: "Branding Nueva Marca",
+                completed: true,
+                priority: "low"
+            },
+            {
+                id: 5,
+                title: "Coordinar reunión con equipo de desarrollo",
+                project: "App Móvil Finanzas",
+                completed: false,
+                priority: "medium"
+            }
+        ];
+
+        // Función para renderizar proyectos
+        function renderProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="project-header">
+                        <div class="project-category">${project.category}</div>
+                        <div class="project-priority priority-${project.priority}">
+                            ${project.priority === 'high' ? 'Alta' : project.priority === 'medium' ? 'Media' : 'Baja'}
+                        </div>
+                    </div>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${project.progress}%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>Progreso</span>
+                            <span>${project.progress}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-team">
+                        <div class="team-avatars">
+                            ${project.team.map(member => 
+                                `<div class="team-avatar">${member}</div>`
+                            ).join('')}
+                        </div>
+                        <div style="margin-left: auto; font-size: 14px; color: var(--gray);">
+                            <i class="far fa-calendar-alt"></i> 14 días
+                        </div>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Función para renderizar tareas
+        function renderTasks() {
+            const tasksList = document.getElementById('tasksList');
+            tasksList.innerHTML = '';
+            
+            tasks.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <div class="task-checkbox ${task.completed ? 'checked' : ''}" data-id="${task.id}">
+                        ${task.completed ? '<i class="fas fa-check"></i>' : ''}
+                    </div>
+                    <div class="task-info">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-project">${task.project}</div>
+                    </div>
+                    <div class="task-priority priority-${task.priority}">
+                        ${task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Media' : 'Baja'}
+                    </div>
+                `;
+                
+                tasksList.appendChild(taskItem);
+            });
+            
+            // Agregar event listeners a las checkboxes
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    const taskId = parseInt(this.getAttribute('data-id'));
+                    const task = tasks.find(t => t.id === taskId);
+                    if (task) {
+                        task.completed = !task.completed;
+                        renderTasks();
+                    }
+                });
+            });
+        }
+
+        // Función para simular la creación de un nuevo proyecto
+        function setupNewProjectButton() {
+            const newProjectBtn = document.getElementById('newProjectBtn');
+            newProjectBtn.addEventListener('click', function() {
+                // Crear un nuevo proyecto de ejemplo
+                const newProject = {
+                    id: projects.length + 1,
+                    title: "Nuevo Proyecto Creativo",
+                    category: "Innovación",
+                    description: "Proyecto recién creado para explorar nuevas ideas creativas.",
+                    progress: 10,
+                    team: ["AS", "NV"],
+                    priority: "medium"
+                };
+                
+                projects.unshift(newProject); // Agregar al principio
+                renderProjects();
+                
+                // Mostrar notificación visual
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Proyecto Creado';
+                btn.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Inicializar la aplicación cuando se cargue el DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProjects();
+            renderTasks();
+            setupNewProjectButton();
+            
+            // Efecto visual para elementos del sidebar
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.sidebar-nav a').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // Actualizar la hora en el encabezado cada minuto
+            function updateTime() {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const dateString = now.toLocaleDateString('es-ES', options);
+                
+                // Podríamos mostrar esto en algún lugar si agregamos un elemento para ello
+                console.log(`CSPM - ${dateString}`);
+            }
+            
+            updateTime();
+            setInterval(updateTime, 60000); // Actualizar cada minuto
+        });
+    </script>
+</body>
+</html>
