@@ -1,4 +1,4 @@
-🎨 CSPM - Creative Studio Project Manager
+# CSPM - Creative Studio Project Manager 🎨 
 
 <div align="center">
 
@@ -7,11 +7,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-Un panel de control elegante y moderno para la gestión de proyectos creativos
+## Un panel de control elegante y moderno para la gestión de proyectos creativos
 
 </div>
 
-🎨 Interfaz de Usuario
+## Interfaz de Usuario 🎨
 
     Diseño moderno con paleta de colores atractiva (púrpura/rosa degradados)
 
@@ -23,7 +23,7 @@ Un panel de control elegante y moderno para la gestión de proyectos creativos
 
     Barra lateral con navegación intuitiva
 
-📊 Gestión de Proyectos
+## Gestión de Proyectos 📊
 
     Vista en cuadrícula de proyectos activos
 
@@ -35,7 +35,7 @@ Un panel de control elegante y moderno para la gestión de proyectos creativos
 
     Visualización de miembros del equipo por proyecto
 
-✅ Gestión de Tareas
+## Gestión de Tareas ✅
 
     Lista interactiva de tareas pendientes
 
