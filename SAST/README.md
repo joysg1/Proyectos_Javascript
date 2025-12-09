@@ -1,4 +1,4 @@
-🎨 SAST - Static Application Security Testing Dashboard
+# SAST - Static Application Security Testing Dashboard 🎨 
 
 <div align="center">
 
@@ -7,11 +7,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-Dashboard interactivo y visual para análisis de seguridad estática en aplicaciones
+## Dashboard interactivo y visual para análisis de seguridad estática en aplicaciones
 
 </div>
 
-🌟 Características Principales
+## Características Principales 🌟 
 
     Tema oscuro profesional con efectos glassmorphism
 
@@ -29,6 +29,6 @@ Dashboard interactivo y visual para análisis de seguridad estática en aplicaci
 
     Estadísticas visuales de análisis de seguridad
 
-🚀 Uso Rápido
+## Uso Rápido 🚀
 
-Descarga el archivo HTML único y ábrelo en cualquier navegador moderno. Incluye Font Awesome, Google Fonts y todo el CSS/JS embebido. Simula escaneos SAST, explora casos de uso y sigue la evolución histórica.
+## Descarga el archivo HTML único y ábrelo en cualquier navegador moderno. Incluye Font Awesome, Google Fonts y todo el CSS/JS embebido. Simula escaneos SAST, explora casos de uso y sigue la evolución histórica.
