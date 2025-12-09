@@ -1,4 +1,4 @@
-Wazuh - Evolución y Casos de Uso 🛡️
+# Wazuh - Evolución y Casos de Uso 🛡️
 
 <div align="center">
 
@@ -7,12 +7,12 @@ Wazuh - Evolución y Casos de Uso 🛡️
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-Una experiencia interactiva sobre Wazuh - Plataforma de seguridad unificada de código abierto
+## Una experiencia interactiva sobre Wazuh - Plataforma de seguridad unificada de código abierto
 
 </div>
 
-🎨 Interfaz de Usuario
-✨ Características Visuales
+## Interfaz de Usuario 🎨
+## Características Visuales ✨
 
     Tema Oscuro Premium: Diseño moderno con gradientes turquesa y azul
 
@@ -26,7 +26,7 @@ Una experiencia interactiva sobre Wazuh - Plataforma de seguridad unificada de c
 
     Modales Elegantes: Ventanas emergentes con transiciones suaves
 
-🎯 Componentes Principales
+## Componentes Principales 🎯 
 
     Header con Gradiente: Título animado con efecto de texto degradado
 
