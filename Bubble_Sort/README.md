@@ -1,7 +1,7 @@
 # Bubble Sort Estético 🫧
 
 ## Una implementación visualmente atractiva y educativa del algoritmo Bubble Sort en JavaScript, con una interfaz interactiva que muestra el proceso de ordenamiento en tiempo real.
-# Características Principales ✨ 
+## Características Principales ✨ 
 
     🎯 Implementación elegante del algoritmo Bubble Sort con código bien documentado
 
