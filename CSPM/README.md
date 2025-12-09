@@ -9,10 +9,6 @@
 
 Un panel de control elegante y moderno para la gestión de proyectos creativos
 
-[✨ Demo Online](#) | [🚀 Características](#características) | [📦 Instalación](#instalación)
-
-![Preview](https://via.placeholder.com/800x400/6366f1/ffffff?text=Event+Manager+Preview)
-
 </div>
 
 🎨 Interfaz de Usuario
