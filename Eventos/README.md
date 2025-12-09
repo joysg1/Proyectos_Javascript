@@ -15,17 +15,6 @@
 
 </div>
 
-## 📋 Tabla de Contenidos
-- [🌟 Sobre el Proyecto](#-sobre-el-proyecto)
-- [✨ Características](#-características)
-- [🚀 Demo Rápida](#-demo-rápida)
-- [🛠️ Instalación](#️-instalación)
-- [🎯 Uso](#-uso)
-- [📖 API](#-api)
-- [🎨 Personalización](#-personalización)
-- [🤝 Contribuir](#-contribuir)
-- [📄 Licencia](#-licencia)
-- [🙏 Créditos](#-créditos)
 
 ## 🌟 Sobre el Proyecto
 
