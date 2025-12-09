@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean PDCA - Framework de Mejora Continua</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        :root {
+            --primary: #0a0f1a;
+            --secondary: #1a2332;
+            --accent: #00a8ff;
+            --accent-light: #33c1ff;
+            --accent-dark: #0097e6;
+            --plan: #00d4aa;
+            --do: #ffaa33;
+            --check: #9c88ff;
+            --act: #ff4d6d;
+            --accent-gradient: linear-gradient(135deg, #00a8ff 0%, #9c88ff 100%);
+            --plan-gradient: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%);
+            --do-gradient: linear-gradient(135deg, #ffaa33 0%, #ff6b6b 100%);
+            --check-gradient: linear-gradient(135deg, #9c88ff 0%, #00a8ff 100%);
+            --act-gradient: linear-gradient(135deg, #ff4d6d 0%, #ffaa33 100%);
+            --text-primary: #f0f6ff;
+            --text-secondary: #b0c4de;
+            --text-muted: #7a8fb9;
+            --success: #00cc88;
+            --warning: #ffaa33;
+            --danger: #ff4d6d;
+            --info: #00b4d8;
+            --border: #2a3a5a;
+            --border-light: #3a4a6a;
+            --card-bg: rgba(26, 35, 50, 0.8);
+            --card-bg-solid: #1a2332;
+            --glass-bg: rgba(10, 15, 26, 0.92);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --shadow-accent: rgba(0, 168, 255, 0.3);
+            --gradient-bg: linear-gradient(135deg, #0a0f1a 0%, #0d1b2a 50%, #1a1b3a 100%);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 168, 255, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(156, 136, 255, 0.08) 0%, transparent 25%),
+                var(--gradient-bg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header mejorado */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0.9;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: rgba(0, 168, 255, 0.12);
+            border: 1px solid rgba(0, 168, 255, 0.4);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.1);
+        }
+
+        /* PDCA Logo */
+        .pdca-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* Main grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Tarjetas mejoradas */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px var(--shadow-accent);
+        }
+
+        .card:hover::before {
+            opacity: 0.08;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 18px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px var(--shadow-accent);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* PDCA Cycle Visualization */
+        .pdca-cycle {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            margin: 3rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdca-step {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: all 0.5s;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .pdca-step.plan { 
+            background: var(--plan-gradient); 
+            top: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pdca-step.do { 
+            background: var(--do-gradient); 
+            right: 15%; 
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .pdca-step.check { 
+            background: var(--check-gradient); 
+            bottom: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pdca-step.act { 
+            background: var(--act-gradient); 
+            left: 15%; 
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pdca-step:hover {
+            transform: scale(1.15);
+            z-index: 10;
+        }
+
+        .cycle-line {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            border: 4px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            top: 15%;
+            left: 15%;
+        }
+
+        /* Listas */
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.9rem 0;
+            position: relative;
+            padding-left: 2.2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Código */
+        .code-container {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            position: relative;
+            border-left: 4px solid var(--accent);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-container::before {
+            content: "Implementación PDCA";
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--primary);
+            padding: 0 12px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .code-keyword {
+            color: #ff79c6;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        .code-string {
+            color: #f1fa8c;
+        }
+
+        .code-comment {
+            color: #6272a4;
+            font-style: italic;
+        }
+
+        .code-danger {
+            background: rgba(239, 68, 68, 0.15);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--danger);
+        }
+
+        /* Timeline mejorada */
+        .timeline-section {
+            margin: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent-light), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .timeline-item {
+            margin-bottom: 3.5rem;
+            position: relative;
+            width: 50%;
+            padding: 0 50px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2.2rem;
+            position: relative;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 168, 255, 0.25);
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 168, 255, 0.15);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 168, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            top: 24px;
+            z-index: 1;
+            box-shadow: 0 0 0 8px rgba(0, 168, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -16px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -16px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(0, 168, 255, 0.2);
+        }
+
+        .stat-value {
+            font-size: 3.8rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Botones */
+        .btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.3rem 2.8rem;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 8px 25px var(--shadow-accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px var(--shadow-accent);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent-light);
+            box-shadow: 0 5px 20px rgba(0, 168, 255, 0.25);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 168, 255, 0.1);
+        }
+
+        .btn-plan { background: var(--plan-gradient); }
+        .btn-do { background: var(--do-gradient); }
+        .btn-check { background: var(--check-gradient); }
+        .btn-act { background: var(--act-gradient); }
+
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3.5rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 100px !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-marker {
+                left: 26px !important;
+                right: auto !important;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            .pdca-cycle {
+                height: 250px;
+            }
+            
+            .pdca-step {
+                width: 120px;
+                height: 120px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+
+            .card-title {
+                font-size: 1.7rem;
+            }
+
+            .btn {
+                padding: 1.1rem 2.2rem;
+                font-size: 1.1rem;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+            
+            .pdca-cycle {
+                height: 220px;
+            }
+            
+            .pdca-step {
+                width: 100px;
+                height: 100px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1.8rem;
+            }
+
+            .timeline-item {
+                padding: 0 0 0 80px !important;
+            }
+
+            .timeline-marker {
+                left: 20px !important;
+            }
+
+            .stat-value {
+                font-size: 3rem;
+            }
+            
+            .pdca-cycle {
+                height: 180px;
+            }
+            
+            .pdca-step {
+                width: 80px;
+                height: 80px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 25px rgba(0, 168, 255, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(0, 168, 255, 0.9); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .glow-animation {
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .spin-animation {
+            animation: spin 20s linear infinite;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 18, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 750px;
+            padding: 3.5rem;
+            position: relative;
+            transform: translateY(40px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 8px;
+            border: 3px solid var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+
+        /* Utilidades */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 168, 255, 0.3);
+        }
+
+        .pdca-highlight {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* Efectos de partículas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Badge para componentes */
+        .component-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 168, 255, 0.15);
+            border-radius: 20px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+        }
+
+        .badge-plan { background: rgba(0, 212, 170, 0.15); color: var(--plan); border-color: rgba(0, 212, 170, 0.3); }
+        .badge-do { background: rgba(255, 170, 51, 0.15); color: var(--do); border-color: rgba(255, 170, 51, 0.3); }
+        .badge-check { background: rgba(156, 136, 255, 0.15); color: var(--check); border-color: rgba(156, 136, 255, 0.3); }
+        .badge-act { background: rgba(255, 77, 109, 0.15); color: var(--act); border-color: rgba(255, 77, 109, 0.3); }
+
+        /* Grid de arquitectura */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .arch-component {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .arch-component:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .arch-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--card-bg-solid);
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 6px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Progreso PDCA */
+        .pdca-progress {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .pdca-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25%;
+        }
+        
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step-circle.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="pdca-logo">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h1>Lean PDCA Framework</h1>
+                <p class="subtitle">Metodología de mejora continua para optimizar procesos, eliminar desperdicios y aumentar la eficiencia en organizaciones de cualquier tamaño</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-chart-line"></i> Planificar → Ejecutar → Verificar → Actuar para la excelencia operativa
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el PDCA?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="pdca-highlight">PDCA</span> (Plan-Do-Check-Act) es un ciclo iterativo de gestión para la mejora continua de procesos y productos. También conocido como <span class="highlight">Círculo de Deming</span> o Ciclo de Shewhart.</p>
+                    <p>Esta metodología proporciona un enfoque simple y efectivo para resolver problemas, implementar cambios y estandarizar procesos en cualquier tipo de organización.</p>
+                    
+                    <div class="pdca-cycle">
+                        <div class="cycle-line spin-animation"></div>
+                        <div class="pdca-step plan" data-step="plan">
+                            <i class="fas fa-clipboard-list fa-2x"></i>
+                            <span>PLAN</span>
+                        </div>
+                        <div class="pdca-step do" data-step="do">
+                            <i class="fas fa-play-circle fa-2x"></i>
+                            <span>DO</span>
+                        </div>
+                        <div class="pdca-step check" data-step="check">
+                            <i class="fas fa-chart-bar fa-2x"></i>
+                            <span>CHECK</span>
+                        </div>
+                        <div class="pdca-step act" data-step="act">
+                            <i class="fas fa-cogs fa-2x"></i>
+                            <span>ACT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="code-container">
+                        <span class="code-comment">// Implementación básica del ciclo PDCA</span><br>
+                        <span class="code-keyword">function</span> <span class="code-function">PDCA_Cycle</span>() {<br>
+                        &nbsp;&nbsp;<span class="code-keyword">while</span> (<span class="code-string">true</span>) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">Plan</span>(); <span class="code-comment">// Establecer objetivos y plan de acción</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">Do</span>(); <span class="code-comment">// Implementar el plan a pequeña escala</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">Check</span>(); <span class="code-comment">// Analizar resultados y comparar con expectativas</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">Act</span>(); <span class="code-comment">// Estandarizar o ajustar para mejora continua</span><br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="card-title">Beneficios del PDCA</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list">
+                        <li>Reducción de desperdicios y costos operativos</li>
+                        <li>Mejora continua de la calidad de productos/servicios</li>
+                        <li>Mayor satisfacción del cliente</li>
+                        <li>Incremento de la productividad y eficiencia</li>
+                        <li>Empoderamiento y desarrollo del personal</li>
+                        <li>Resolución sistemática de problemas</li>
+                        <li>Adaptabilidad rápida a cambios del mercado</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">30-70%</div>
+                            <div class="stat-label">Reducción de desperdicios</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">25%+</div>
+                            <div class="stat-label">Aumento productividad</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">95%+</div>
+                            <div class="stat-label">Satisfacción cliente</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">∞</div>
+                            <div class="stat-label">Ciclos de mejora</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución del PDCA</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1920</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1920-1930</div>
+                            <h3 class="timeline-title">Orígenes con Walter Shewhart</h3>
+                            <p>Walter Shewhart introduce el concepto de control estadístico de procesos en Bell Labs, sentando las bases para el ciclo PDSA (Plan-Do-Study-Act).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950</div>
+                            <h3 class="timeline-title">Popularización por Deming</h3>
+                            <p>W. Edwards Deming difunde el ciclo PDCA en Japón durante la posguerra, contribuyendo al milagro económico japonés y al surgimiento del Toyota Production System.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970-1980</div>
+                            <h3 class="timeline-title">Integración en TQM y Lean</h3>
+                            <p>El PDCA se integra en el Total Quality Management (TQM) y metodologías Lean Manufacturing como herramienta fundamental para kaizen (mejora continua).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1990</div>
+                            <h3 class="timeline-title">Expansión a servicios y TI</h3>
+                            <p>El ciclo PDCA se adapta más allá de la manufactura, aplicándose en servicios, salud, educación y tecnología de la información.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-2010</div>
+                            <h3 class="timeline-title">Digitalización y Agile</h3>
+                            <p>El PDCA se integra con metodologías ágiles como Scrum y Kanban, y se digitaliza con herramientas de gestión de procesos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">PDCA 4.0 y Transformación Digital</h3>
+                            <p>El ciclo PDCA evoluciona con inteligencia artificial, análisis de datos en tiempo real y automatización para la Industria 4.0 y transformación digital.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="card-title">Componentes del PDCA</h2>
+            </div>
+            <div class="card-content">
+                <div class="architecture-grid">
+                    <div class="arch-component">
+                        <div class="arch-icon" style="color: var(--plan);">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>PLAN</h3>
+                        <p>Identificar problemas, establecer objetivos y desarrollar planes de acción.</p>
+                        <div class="component-badge badge-plan">Objetivos SMART</div>
+                        <div class="component-badge badge-plan">5 Porqués</div>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon" style="color: var(--do);">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <h3>DO</h3>
+                        <p>Implementar el plan a pequeña escala para probar su efectividad.</p>
+                        <div class="component-badge badge-do">Piloto</div>
+                        <div class="component-badge badge-do">Implementación</div>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon" style="color: var(--check);">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>CHECK</h3>
+                        <p>Evaluar resultados, analizar datos y comparar con objetivos.</p>
+                        <div class="component-badge badge-check">KPI</div>
+                        <div class="component-badge badge-check">Análisis</div>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon" style="color: var(--act);">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>ACT</h3>
+                        <p>Estandarizar soluciones exitosas o ajustar para reiniciar el ciclo.</p>
+                        <div class="component-badge badge-act">Estandarizar</div>
+                        <div class="component-badge badge-act">Ajustar</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="card-title">Casos de Uso del PDCA</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateBtn">
+                            <i class="fas fa-play-circle"></i> Simular Ciclo PDCA
+                        </button>
+                        <button class="btn btn-secondary" id="viewDetailsBtn">
+                            <i class="fas fa-info-circle"></i> Ver Metodología Detallada
+                        </button>
+                        <button class="btn btn-secondary" id="compareBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar con Otras Metodologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Lean PDCA Framework - Metodología de Mejora Continua para la Excelencia Operativa</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-sync-alt"></i> Planificar → Ejecutar → Verificar → Actuar | Tema oscuro premium para metodologías ágiles
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Basado en los principios de Deming y Shewhart | Integrado con Lean, Six Sigma y Agile | Aplicable a cualquier industria
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para metodología detallada -->
+    <div class="modal" id="techModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-crosshairs"></i> Metodología PDCA Detallada
+            </h2>
+            <div class="modal-body">
+                <div class="pdca-progress">
+                    <div class="progress-step">
+                        <div class="step-circle" style="background: var(--plan-gradient);">P</div>
+                        <span style="font-weight: 600; color: var(--plan);">PLAN</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle" style="background: var(--do-gradient);">D</div>
+                        <span style="font-weight: 600; color: var(--do);">DO</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle" style="background: var(--check-gradient);">C</div>
+                        <span style="font-weight: 600; color: var(--check);">CHECK</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle" style="background: var(--act-gradient);">A</div>
+                        <span style="font-weight: 600; color: var(--act);">ACT</span>
+                    </div>
+                </div>
+                
+                <p><strong>Fase PLAN (Planificar):</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Identificar el problema o área de mejora</li>
+                    <li>Recopilar datos relevantes</li>
+                    <li>Analizar causas raíz (5 Porqués, Diagrama de Ishikawa)</li>
+                    <li>Establecer objetivos SMART</li>
+                    <li>Desarrollar plan de acción con responsables y plazos</li>
+                    <li>Definir métricas de éxito (KPIs)</li>
+                </ul>
+                
+                <p><strong>Fase DO (Ejecutar):</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Implementar el plan a pequeña escala (piloto)</li>
+                    <li>Capacitar al personal involucrado</li>
+                    <li>Documentar el proceso</li>
+                    <li>Recopilar datos durante la implementación</li>
+                    <li>Ajustar según necesidad durante la ejecución</li>
+                    <li>Comunicar cambios y avances</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment">// Ejemplo: PDCA para reducción de tiempos de entrega</span><br>
+                    <span class="code-keyword">Problema</span>: Tiempo de entrega promedio = 7 días (objetivo: 3 días)<br>
+                    <span class="code-keyword">PLAN</span>: Mapear proceso actual, identificar cuellos de botella<br>
+                    <span class="code-keyword">DO</span>: Implementar sistema Kanban en área crítica<br>
+                    <span class="code-keyword">CHECK</span>: Medir nuevo tiempo de entrega = 4.5 días<br>
+                    <span class="code-keyword">ACT</span>: Estandarizar Kanban, ajustar para llegar a 3 días<br>
+                    <span class="code-comment">// Resultado: 35.7% de mejora en primera iteración</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> PDCA vs Otras Metodologías de Mejora
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-sync-alt"></i> PDCA</h3>
+                        <ul class="feature-list">
+                            <li>Ciclo continuo de mejora</li>
+                            <li>Simple y fácil de entender</li>
+                            <li>Aplicable a cualquier industria</li>
+                            <li>Enfoque en datos y hechos</li>
+                            <li>Iterativo y adaptable</li>
+                            <li>Bajo costo de implementación</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #ff6b6b; margin-bottom: 1rem;"><i class="fas fa-chart-pie"></i> Six Sigma</h3>
+                        <ul class="feature-list">
+                            <li>Enfoque estadístico avanzado</li>
+                            <li>Requiere capacitación especializada</li>
+                            <li>Excelente para reducir variación</li>
+                            <li>Estructura DMAIC definida</li>
+                            <li>Mayor inversión inicial</li>
+                            <li>Mejor para problemas complejos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #22c55e; margin-bottom: 1rem;"><i class="fas fa-leaf"></i> Lean</h3>
+                        <ul class="feature-list">
+                            <li>Enfoque en eliminar desperdicios</li>
+                            <li>Creación de flujo continuo</li>
+                            <li>Herramientas específicas (VSM, 5S)</li>
+                            <li>Cultural y transformacional</li>
+                            <li>PDCA como herramienta clave</li>
+                            <li>Excelente para manufactura</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <span class="code-comment"># Integración de metodologías</span><br>
+                    <span class="code-string">"PDCA + Lean = Kaizen (Mejora Continua)"</span><br>
+                    <span class="code-string">"PDCA + Six Sigma = DMAIC (Definir-Medir-Analizar-Mejorar-Controlar)"</span><br>
+                    <span class="code-string">"PDCA + Agile = Ciclos de sprint con retrospectivas"</span><br>
+                    <span class="code-comment"># El PDCA es la base sobre la que se construyen otras metodologías</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">80%</div>
+                        <div class="stat-label">Organizaciones que usan PDCA</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3-6x</div>
+                        <div class="stat-label">ROI típico</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuración inicial
+            const useCasesData = [
+                {
+                    icon: 'fa-industry',
+                    title: 'Manufactura',
+                    description: 'Reducción de defectos, optimización de líneas de producción y mejora de OEE (Overall Equipment Effectiveness).',
+                    color: '#00a8ff'
+                },
+                {
+                    icon: 'fa-stethoscope',
+                    title: 'Salud',
+                    description: 'Reducción de tiempos de espera, mejora de seguridad del paciente y optimización de procesos hospitalarios.',
+                    color: '#ff4d6d'
+                },
+                {
+                    icon: 'fa-code',
+                    title: 'Desarrollo de Software',
+                    description: 'Ciclos de mejora continua en DevOps, reducción de bugs y mejora de la experiencia de usuario.',
+                    color: '#9c88ff'
+                },
+                {
+                    icon: 'fa-graduation-cap',
+                    title: 'Educación',
+                    description: 'Mejora de métodos de enseñanza, evaluación continua y personalización del aprendizaje.',
+                    color: '#00d4aa'
+                },
+                {
+                    icon: 'fa-shopping-cart',
+                    title: 'Retail',
+                    description: 'Optimización de inventarios, mejora de experiencia del cliente y reducción de costos operativos.',
+                    color: '#ffaa33'
+                },
+                {
+                    icon: 'fa-handshake',
+                    title: 'Servicios',
+                    description: 'Mejora de satisfacción del cliente, optimización de procesos de servicio y reducción de tiempos de respuesta.',
+                    color: '#8b5cf6'
+                }
+            ];
+
+            // Inicializar componentes
+            initParticles();
+            initUseCases();
+            initEventListeners();
+            initAnimations();
+            initTimeline();
+            initPDCAInteractions();
+
+            // Función para inicializar partículas
+            function initParticles() {
+                const canvas = document.getElementById('particles-canvas');
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const particleCount = 120;
+                
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            size: Math.random() * 4 + 1,
+                            speedX: (Math.random() - 0.5) * 0.8,
+                            speedY: (Math.random() - 0.5) * 0.8,
+                            color: i % 4 === 0 ? `rgba(0, 168, 255, ${Math.random() * 0.3 + 0.1})` : 
+                                   i % 4 === 1 ? `rgba(156, 136, 255, ${Math.random() * 0.3 + 0.1})` :
+                                   i % 4 === 2 ? `rgba(0, 212, 170, ${Math.random() * 0.3 + 0.1})` :
+                                   `rgba(255, 255, 255, ${Math.random() * 0.1 + 0.05})`
+                        });
+                    }
+                }
+                
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Fondo sutil
+                    ctx.fillStyle = 'rgba(10, 15, 26, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach(particle => {
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+                        
+                        if (particle.x < 0 || particle.x > canvas.width) particle.speedX = -particle.speedX;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.speedY = -particle.speedY;
+                        
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        
+                        // Efecto de brillo
+                        const gradient = ctx.createRadialGradient(
+                            particle.x, particle.y, 0,
+                            particle.x, particle.y, particle.size * 2
+                        );
+                        gradient.addColorStop(0, particle.color);
+                        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+                    });
+                    
+                    requestAnimationFrame(animateParticles);
+                }
+                
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    createParticles();
+                });
+                
+                resizeCanvas();
+                createParticles();
+                animateParticles();
+            }
+
+            // Función para inicializar casos de uso
+            function initUseCases() {
+                const container = document.getElementById('useCasesContainer');
+                container.innerHTML = '';
+                
+                const grid = document.createElement('div');
+                grid.className = 'main-grid';
+                grid.style.marginTop = '1.5rem';
+                
+                useCasesData.forEach(useCase => {
+                    const card = document.createElement('div');
+                    card.className = 'card use-case-card';
+                    card.style.cursor = 'pointer';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.innerHTML = `
+                        <div class="card-header" style="border-bottom: none; margin-bottom: 1rem;">
+                            <div class="card-icon" style="background: ${useCase.color};">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <h3 class="card-title" style="font-size: 1.5rem;">${useCase.title}</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>${useCase.description}</p>
+                            <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--accent-light);">
+                                <i class="fas fa-arrow-right"></i> Click para ver implementación PDCA
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => showUseCaseDetail(useCase));
+                    grid.appendChild(card);
+                });
+                
+                container.appendChild(grid);
+                
+                // Animar entrada de tarjetas
+                setTimeout(() => {
+                    document.querySelectorAll('.use-case-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                            card.style.transition = 'opacity 0.6s, transform 0.6s';
+                        }, index * 100);
+                    });
+                }, 300);
+            }
+
+            // Función para inicializar timeline
+            function initTimeline() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                timelineItems.forEach(item => observer.observe(item));
+            }
+
+            // Función para interacciones PDCA
+            function initPDCAInteractions() {
+                const pdcaSteps = document.querySelectorAll('.pdca-step');
+                const progressSteps = document.querySelectorAll('.step-circle');
+                
+                pdcaSteps.forEach(step => {
+                    step.addEventListener('click', function() {
+                        const stepType = this.dataset.step;
+                        showPDCADetail(stepType);
+                    });
+                    
+                    step.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.2)';
+                    });
+                    
+                    step.addEventListener('mouseleave', function() {
+                        if (!this.classList.contains('active')) {
+                            this.style.transform = '';
+                        }
+                    });
+                });
+                
+                // Activar progreso secuencial
+                let currentStep = 0;
+                setInterval(() => {
+                    progressSteps.forEach(step => step.classList.remove('active'));
+                    progressSteps[currentStep].classList.add('active');
+                    currentStep = (currentStep + 1) % progressSteps.length;
+                }, 1500);
+            }
+
+            // Función para inicializar event listeners
+            function initEventListeners() {
+                // Botón de simulación
+                const simulateBtn = document.getElementById('simulateBtn');
+                simulateBtn.addEventListener('click', simulatePDCACycle);
+                
+                // Botón de detalles técnicos
+                const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+                viewDetailsBtn.addEventListener('click', () => {
+                    document.getElementById('techModal').classList.add('active');
+                });
+                
+                // Botón de comparación
+                const compareBtn = document.getElementById('compareBtn');
+                compareBtn.addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.add('active');
+                });
+                
+                // Cerrar modales
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    document.getElementById('techModal').classList.remove('active');
+                });
+                
+                document.getElementById('closeCompareModal').addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.remove('active');
+                });
+                
+                // Cerrar modales al hacer clic fuera
+                document.getElementById('techModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'techModal') {
+                        document.getElementById('techModal').classList.remove('active');
+                    }
+                });
+                
+                document.getElementById('compareModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'compareModal') {
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+                
+                // Cerrar con Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        document.getElementById('techModal').classList.remove('active');
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+            }
+
+            // Función para inicializar animaciones
+            function initAnimations() {
+                // Animación de aparición para elementos
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('slide-in');
+                        }
+                    });
+                }, observerOptions);
+                
+                // Aplicar animación a elementos principales
+                document.querySelectorAll('.card').forEach(el => {
+                    if (!el.classList.contains('use-case-card')) {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(30px)';
+                        observer.observe(el);
+                    }
+                });
+            }
+
+            // Función para simulación de ciclo PDCA
+            function simulatePDCACycle() {
+                const btn = document.getElementById('simulateBtn');
+                const originalHTML = btn.innerHTML;
+                const originalClass = btn.className;
+                
+                // Cambiar estado del botón
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ejecutando ciclo PDCA...';
+                btn.className = 'btn pulse-animation';
+                btn.disabled = true;
+                
+                // Mostrar progreso
+                const steps = [
+                    "Fase PLAN: Identificando problema y estableciendo objetivos...",
+                    "Fase PLAN: Analizando causas raíz...",
+                    "Fase PLAN: Desarrollando plan de acción...",
+                    "Fase DO: Implementando solución piloto...",
+                    "Fase DO: Recopilando datos de implementación...",
+                    "Fase CHECK: Analizando resultados vs objetivos...",
+                    "Fase CHECK: Evaluando métricas de éxito...",
+                    "Fase ACT: Estandarizando solución exitosa...",
+                    "Fase ACT: Iniciando nuevo ciclo de mejora..."
+                ];
+                
+                let step = 0;
+                const progressInterval = setInterval(() => {
+                    if (step < steps.length) {
+                        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${steps[step]}`;
+                        step++;
+                    }
+                }, 600);
+                
+                // Simular ciclo completo
+                setTimeout(() => {
+                    clearInterval(progressInterval);
+                    
+                    // Mostrar resultados
+                    showPDCAResults();
+                    
+                    // Restaurar botón
+                    btn.innerHTML = originalHTML;
+                    btn.className = originalClass;
+                    btn.disabled = false;
+                    
+                    // Efecto visual en toda la página
+                    document.querySelectorAll('.pdca-step').forEach((step, index) => {
+                        setTimeout(() => {
+                            step.style.boxShadow = '0 0 30px rgba(0, 168, 255, 0.7)';
+                            step.style.transform = 'scale(1.3)';
+                            
+                            setTimeout(() => {
+                                step.style.boxShadow = '';
+                                step.style.transform = '';
+                            }, 1000);
+                        }, index * 300);
+                    });
+                }, 5500);
+            }
+
+            // Función para mostrar resultados del ciclo PDCA
+            function showPDCAResults() {
+                const results = [
+                    { type: 'Problemas Resueltos', count: '87%', color: '#00d4aa', icon: 'fa-check-circle' },
+                    { type: 'Mejora Eficiencia', count: '42%', color: '#00a8ff', icon: 'fa-chart-line' },
+                    { type: 'Reducción Costos', count: '31%', color: '#9c88ff', icon: 'fa-dollar-sign' },
+                    { type: 'Satisfacción', count: '94%', color: '#ffaa33', icon: 'fa-smile' }
+                ];
+                
+                // Crear modal de resultados
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeResultsModal">&times;</button>
+                        <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                            <i class="fas fa-tachometer-alt"></i> Resultados del Ciclo PDCA
+                        </h2>
+                        <div style="margin-bottom: 1.5rem;">
+                            <p>Ciclo PDCA completado exitosamente. Métricas de mejora obtenidas:</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
+                                <i class="fas fa-clock"></i> Duración del ciclo: 4 semanas | Iteraciones: 3 | Área: Procesos operativos
+                            </p>
+                        </div>
+                        <div class="stats-grid" style="margin: 2rem 0;">
+                            ${results.map(result => `
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: ${result.color};">
+                                        <i class="fas ${result.icon}"></i>
+                                    </div>
+                                    <div class="stat-value" style="background: linear-gradient(90deg, ${result.color}, ${result.color}99); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${result.count}</div>
+                                    <div class="stat-label">${result.type}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="code-container" style="margin: 1.5rem 0;">
+                            <span class="code-comment">// Resumen del ciclo PDCA:</span><br>
+                            <span class="code-keyword">Problema inicial</span>: Tiempo de procesamiento de pedidos = 48 horas<br>
+                            <span class="code-keyword">Objetivo</span>: Reducir a 24 horas (50% de mejora)<br>
+                            <span class="code-keyword">Solución implementada</span>: Sistema Kanban digital + capacitación equipo<br>
+                            <span class="code-keyword">Resultado</span>: Tiempo de procesamiento = 28 horas (42% de mejora)<br>
+                            <span class="code-keyword">Acción</span>: Estandarizar sistema Kanban, iniciar nuevo ciclo para llegar a 24 horas<br>
+                            <span class="code-comment">// ROI estimado: 3.2x | Tiempo de recuperación: 2.5 meses</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <button class="btn" id="exportReportBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-download"></i> Exportar Reporte PDCA
+                            </button>
+                            <button class="btn btn-secondary" id="viewDashboardBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-chart-bar"></i> Ver Dashboard de Métricas
+                            </button>
+                            <button class="btn btn-secondary" id="scheduleAuditBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-calendar-alt"></i> Programar Próximo Ciclo
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners para el modal de resultados
+                document.getElementById('closeResultsModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('exportReportBtn').addEventListener('click', () => {
+                    alert('Reporte PDCA generado exitosamente (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('viewDashboardBtn').addEventListener('click', () => {
+                    alert('Redirigiendo al dashboard de métricas PDCA (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('scheduleAuditBtn').addEventListener('click', () => {
+                    alert('Próximo ciclo PDCA programado para ejecutarse en 4 semanas (simulación)');
+                    modal.remove();
+                });
+            }
+
+            // Función para mostrar detalle de fase PDCA
+            function showPDCADetail(step) {
+                const stepDetails = {
+                    plan: {
+                        title: "Fase PLAN",
+                        color: "#00d4aa",
+                        icon: "fa-clipboard-list",
+                        description: "Planificar: Establecer objetivos y desarrollar plan de acción",
+                        activities: [
+                            "Identificar problema o área de mejora",
+                            "Recopilar datos relevantes",
+                            "Analizar causas raíz (5 Porqués)",
+                            "Establecer objetivos SMART",
+                            "Desarrollar plan de acción",
+                            "Definir métricas de éxito (KPIs)"
+                        ],
+                        tools: ["Diagrama de Ishikawa", "5 Porqués", "SMART", "Gráfico de Pareto", "Análisis SWOT"]
+                    },
+                    do: {
+                        title: "Fase DO",
+                        color: "#ffaa33",
+                        icon: "fa-play-circle",
+                        description: "Ejecutar: Implementar el plan a pequeña escala",
+                        activities: [
+                            "Implementar solución piloto",
+                            "Capacitar al personal involucrado",
+                            "Documentar el proceso",
+                            "Recopilar datos durante implementación",
+                            "Ajustar según necesidad",
+                            "Comunicar cambios y avances"
+                        ],
+                        tools: ["Plan de implementación", "Capacitación", "Documentación", "Comunicación", "Seguimiento"]
+                    },
+                    check: {
+                        title: "Fase CHECK",
+                        color: "#9c88ff",
+                        icon: "fa-chart-bar",
+                        description: "Verificar: Evaluar resultados y analizar datos",
+                        activities: [
+                            "Evaluar resultados obtenidos",
+                            "Comparar con objetivos establecidos",
+                            "Analizar datos recopilados",
+                            "Identificar desviaciones",
+                            "Documentar lecciones aprendidas",
+                            "Validar efectividad de la solución"
+                        ],
+                        tools: ["Análisis estadístico", "Gráficos de control", "Comparativas", "KPIs", "Informes"]
+                    },
+                    act: {
+                        title: "Fase ACT",
+                        color: "#ff4d6d",
+                        icon: "fa-cogs",
+                        description: "Actuar: Estandarizar o ajustar para mejora continua",
+                        activities: [
+                            "Estandarizar solución exitosa",
+                            "Ajustar plan para mejorar resultados",
+                            "Documentar procesos estandarizados",
+                            "Capacitar en nuevo estándar",
+                            "Comunicar cambios a toda la organización",
+                            "Iniciar nuevo ciclo PDCA"
+                        ],
+                        tools: ["Estandarización", "Documentación", "Capacitación", "Comunicación", "Planificación siguiente ciclo"]
+                    }
+                };
+                
+                const detail = stepDetails[step];
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeDetailModal">&times;</button>
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div class="card-icon" style="background: ${detail.color}; margin-right: 1rem;">
+                                <i class="fas ${detail.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 style="color: ${detail.color};">${detail.title}</h2>
+                                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${detail.description}</p>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-tasks"></i> Actividades principales:
+                                </h4>
+                                <ul class="feature-list">
+                                    ${detail.activities.map(activity => `<li>${activity}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-tools"></i> Herramientas recomendadas:
+                                </h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    ${detail.tools.map(tool => `<div class="component-badge" style="background: ${detail.color}20; color: ${detail.color}; border-color: ${detail.color}40;">${tool}</div>`).join('')}
+                                </div>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                                <button class="btn" id="configureBtn" style="background: ${detail.color}; min-width: 200px;">
+                                    <i class="fas fa-sliders-h"></i> Configurar ${detail.title}
+                                </button>
+                                <button class="btn btn-secondary" id="runStepBtn" style="min-width: 200px;">
+                                    <i class="fas fa-play"></i> Simular Esta Fase
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                document.getElementById('closeDetailModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('configureBtn').addEventListener('click', () => {
+                    alert(`Configurando fase: ${detail.title}`);
+                    modal.remove();
+                });
+                
+                document.getElementById('runStepBtn').addEventListener('click', () => {
+                    alert(`Ejecutando fase: ${detail.title}`);
+                    modal.remove();
+                    simulatePDCACycle();
+                });
+            }
+
+            // Función para mostrar detalle de caso de uso
+            function showUseCaseDetail(useCase) {
+                const implementations = {
+                    'Manufactura': [
+                        "Reducción de tiempos de setup (SMED)",
+                        "Implementación de 5S y gestión visual",
+                        "Mejora de mantenimiento productivo total (TPM)",
+                        "Reducción de defectos con Poka-Yoke"
+                    ],
+                    'Salud': [
+                        "Reducción de tiempos de espera en urgencias",
+                        "Mejora de procesos de medicación",
+                        "Optimización de limpieza y desinfección",
+                        "Reducción de infecciones nosocomiales"
+                    ],
+                    'Desarrollo de Software': [
+                        "Ciclos de retroalimentación con usuarios",
+                        "Mejora continua de DevOps pipeline",
+                        "Reducción de bugs en producción",
+                        "Optimización de tiempos de carga"
+                    ],
+                    'Educación': [
+                        "Mejora de métodos de evaluación",
+                        "Personalización del aprendizaje",
+                        "Optimización de recursos educativos",
+                        "Reducción de deserción estudiantil"
+                    ],
+                    'Retail': [
+                        "Optimización de gestión de inventarios",
+                        "Mejora de experiencia en tienda",
+                        "Reducción de mermas y desperdicios",
+                        "Optimización de procesos de compra"
+                    ],
+                    'Servicios': [
+                        "Mejora de tiempos de respuesta",
+                        "Optimización de procesos de servicio",
+                        "Reducción de reclamos y quejas",
+                        "Mejora de satisfacción del cliente"
+                    ]
+                };
+                
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeDetailModal">&times;</button>
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div class="card-icon" style="background: ${useCase.color}; margin-right: 1rem;">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 style="color: ${useCase.color};">${useCase.title}</h2>
+                                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${useCase.description}</p>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-search"></i> Implementaciones PDCA típicas:
+                                </h4>
+                                <ul class="feature-list">
+                                    ${implementations[useCase.title]?.map(impl => `<li>${impl}</li>`).join('') || '<li>Implementaciones generales de mejora continua</li>'}
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-chart-line"></i> Métricas clave para ${useCase.title}:
+                                </h4>
+                                <ul class="feature-list">
+                                    <li>Tiempo de ciclo (Cycle Time)</li>
+                                    <li>Tasa de defectos/errores</li>
+                                    <li>Satisfacción del cliente/usuario</li>
+                                    <li>Eficiencia operativa</li>
+                                    <li>ROI de mejoras implementadas</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                                <button class="btn" id="configureBtn" style="background: ${useCase.color}; min-width: 200px;">
+                                    <i class="fas fa-sliders-h"></i> Configurar PDCA para ${useCase.title}
+                                </button>
+                                <button class="btn btn-secondary" id="runPDCABtn" style="min-width: 200px;">
+                                    <i class="fas fa-play"></i> Simular Ciclo PDCA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                document.getElementById('closeDetailModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('configureBtn').addEventListener('click', () => {
+                    alert(`Configurando PDCA para: ${useCase.title}`);
+                    modal.remove();
+                });
+                
+                document.getElementById('runPDCABtn').addEventListener('click', () => {
+                    alert(`Iniciando ciclo PDCA para: ${useCase.title}`);
+                    modal.remove();
+                    simulatePDCACycle();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
