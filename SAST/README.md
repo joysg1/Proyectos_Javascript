@@ -10,3 +10,25 @@
 Dashboard interactivo y visual para análisis de seguridad estática en aplicaciones
 
 </div>
+
+🌟 Características Principales
+
+    Tema oscuro profesional con efectos glassmorphism
+
+    Simulador de análisis SAST interactivo con barra de progreso
+
+    Timeline histórica desde 1990 hasta la actualidad
+
+    6 casos de uso con modales detallados
+
+    Código vulnerable resaltado con sintaxis colorida
+
+    Efectos de partículas animadas en el fondo
+
+    Totalmente responsive para móviles y escritorio
+
+    Estadísticas visuales de análisis de seguridad
+
+🚀 Uso Rápido
+
+Descarga el archivo HTML único y ábrelo en cualquier navegador moderno. Incluye Font Awesome, Google Fonts y todo el CSS/JS embebido. Simula escaneos SAST, explora casos de uso y sigue la evolución histórica.
