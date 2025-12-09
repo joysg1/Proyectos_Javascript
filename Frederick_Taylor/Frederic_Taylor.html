@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frederick Taylor - Padre de la Administración Científica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        :root {
+            --primary: #0a0f1a;
+            --secondary: #1a2332;
+            --accent: #c9a959;
+            --accent-light: #e0c98c;
+            --accent-dark: #b8942e;
+            --accent-gradient: linear-gradient(135deg, #c9a959 0%, #8b6b2c 100%);
+            --text-primary: #f0f6ff;
+            --text-secondary: #b0c4de;
+            --text-muted: #7a8fb9;
+            --success: #00cc88;
+            --warning: #ffaa33;
+            --danger: #ff4d6d;
+            --info: #00b4d8;
+            --border: #2a3a5a;
+            --border-light: #3a4a6a;
+            --card-bg: rgba(26, 35, 50, 0.8);
+            --card-bg-solid: #1a2332;
+            --glass-bg: rgba(10, 15, 26, 0.92);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --shadow-accent: rgba(201, 169, 89, 0.3);
+            --gradient-bg: linear-gradient(135deg, #0a0f1a 0%, #0d1b2a 50%, #1a1b3a 100%);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(201, 169, 89, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(139, 107, 44, 0.08) 0%, transparent 25%),
+                var(--gradient-bg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header mejorado */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0.9;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: rgba(201, 169, 89, 0.12);
+            border: 1px solid rgba(201, 169, 89, 0.4);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(201, 169, 89, 0.1);
+        }
+
+        /* Main grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Tarjetas mejoradas */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px var(--shadow-accent);
+        }
+
+        .card:hover::before {
+            opacity: 0.08;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 18px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px var(--shadow-accent);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Listas */
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.9rem 0;
+            position: relative;
+            padding-left: 2.2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Código */
+        .code-container {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            position: relative;
+            border-left: 4px solid var(--accent);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-container::before {
+            content: "Cita de Taylor";
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--primary);
+            padding: 0 12px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .code-keyword {
+            color: #ff79c6;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        .code-string {
+            color: #f1fa8c;
+        }
+
+        .code-comment {
+            color: #6272a4;
+            font-style: italic;
+        }
+
+        .code-danger {
+            background: rgba(239, 68, 68, 0.15);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--danger);
+        }
+
+        /* Timeline mejorada */
+        .timeline-section {
+            margin: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent-light), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .timeline-item {
+            margin-bottom: 3.5rem;
+            position: relative;
+            width: 50%;
+            padding: 0 50px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2.2rem;
+            position: relative;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(201, 169, 89, 0.25);
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(201, 169, 89, 0.15);
+            border-radius: 24px;
+            border: 1px solid rgba(201, 169, 89, 0.4);
+            box-shadow: 0 5px 15px rgba(201, 169, 89, 0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            top: 24px;
+            z-index: 1;
+            box-shadow: 0 0 0 8px rgba(201, 169, 89, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -16px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -16px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(201, 169, 89, 0.2);
+        }
+
+        .stat-value {
+            font-size: 3.8rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Botones */
+        .btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.3rem 2.8rem;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 8px 25px var(--shadow-accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px var(--shadow-accent);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent-light);
+            box-shadow: 0 5px 20px rgba(201, 169, 89, 0.25);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(201, 169, 89, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3.5rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 100px !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-marker {
+                left: 26px !important;
+                right: auto !important;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+
+            .card-title {
+                font-size: 1.7rem;
+            }
+
+            .btn {
+                padding: 1.1rem 2.2rem;
+                font-size: 1.1rem;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1.8rem;
+            }
+
+            .timeline-item {
+                padding: 0 0 0 80px !important;
+            }
+
+            .timeline-marker {
+                left: 20px !important;
+            }
+
+            .stat-value {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 25px rgba(201, 169, 89, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(201, 169, 89, 0.9); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .glow-animation {
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 18, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 750px;
+            padding: 3.5rem;
+            position: relative;
+            transform: translateY(40px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 8px;
+            border: 3px solid var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+
+        /* Utilidades */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(201, 169, 89, 0.3);
+        }
+
+        .taylor-highlight {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* Efectos de partículas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Badge para componentes */
+        .component-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(201, 169, 89, 0.15);
+            border-radius: 20px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(201, 169, 89, 0.3);
+        }
+
+        /* Grid de principios */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .principle-component {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .principle-component:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .principle-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Retrato de Taylor */
+        .taylor-portrait {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(201, 169, 89, 0.4);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="taylor-portrait float-animation">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h1>Frederick Winslow Taylor</h1>
+                <p class="subtitle">Padre de la Administración Científica y pionero en la optimización de procesos productivos. Ingeniero mecánico estadounidense cuyos principios transformaron la industria moderna.</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-lightbulb"></i> "Lo que se mide, se mejora" - El legado de la eficiencia industrial
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="card-title">¿Quién fue Frederick Taylor?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="taylor-highlight">Frederick Winslow Taylor</span> (1856-1915) fue un ingeniero mecánico estadounidense considerado el <span class="highlight">padre de la administración científica</span>. Su trabajo sentó las bases de la organización del trabajo moderno y la optimización de procesos industriales.</p>
+                    <p>Taylor revolucionó la industria con su método científico para mejorar la productividad, estudiando los movimientos y tiempos de los trabajadores para eliminar movimientos innecesarios y establecer estándares de trabajo óptimos.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Principio fundamental de Taylor</span><br>
+                        <span class="code-string">"La administración científica consiste en una división bien definida de responsabilidades entre la dirección y los trabajadores, y en la aplicación de métodos científicos para determinar la forma más eficiente de realizar cualquier tarea."</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="card-title">Principios de la Administración Científica</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list">
+                        <li>Estudio científico del trabajo para determinar el método más eficiente</li>
+                        <li>Selección científica y entrenamiento de trabajadores</li>
+                        <li>Cooperación entre dirección y trabajadores</li>
+                        <li>División equitativa del trabajo y responsabilidades</li>
+                        <li>Sistema de incentivos salariales por productividad</li>
+                        <li>Estandarización de herramientas, equipos y métodos</li>
+                        <li>Supervisión funcional con especialistas por área</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">40%</div>
+                            <div class="stat-label">Aumento productividad</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">300%</div>
+                            <div class="stat-label">Salarios aumentaron</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">70%</div>
+                            <div class="stat-label">Reducción de tiempos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100+</div>
+                            <div class="stat-label">Industrias influenciadas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución del Pensamiento Taylorista</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1856</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1856</div>
+                            <h3 class="timeline-title">Nacimiento de Taylor</h3>
+                            <p>Frederick Winslow Taylor nace en Germantown, Pennsylvania, en una familia acomodada. Su educación y curiosidad temprana por la eficiencia marcaron su futuro.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1878</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1878</div>
+                            <h3 class="timeline-title">Ingresa a Midvale Steel Works</h3>
+                            <p>Taylor comienza como obrero en Midvale Steel Works, ascendiendo rápidamente a ingeniero jefe. Aquí realiza sus primeros estudios de tiempos y movimientos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1881</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1881</div>
+                            <h3 class="timeline-title">Primeras observaciones científicas</h3>
+                            <p>Taylor comienza sus primeros estudios sistemáticos de tiempos de trabajo, midiendo con cronómetro cada operación para eliminar movimientos innecesarios.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1903</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1903</div>
+                            <h3 class="timeline-title">Publicación de "Shop Management"</h3>
+                            <p>Taylor publica su primer libro importante sobre administración científica, estableciendo los principios fundamentales de su sistema.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1911</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1911</div>
+                            <h3 class="timeline-title">"The Principles of Scientific Management"</h3>
+                            <p>Publicación de su obra maestra que difunde mundialmente sus ideas. El libro se convierte en referente obligado de la administración industrial.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1915</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1915-Presente</div>
+                            <h3 class="timeline-title">Legado y evolución</h3>
+                            <p>Taylor fallece en 1915, pero sus ideas influyen en Henry Ford, la producción en masa, y evolucionan hacia el toyotismo y la mejora continua moderna.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="card-title">Principios Fundamentales de Taylor</h2>
+            </div>
+            <div class="card-content">
+                <div class="principles-grid">
+                    <div class="principle-component">
+                        <div class="principle-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Estudio de Tiempos</h3>
+                        <p>Determinación científica del tiempo óptimo para realizar cada tarea mediante observación y medición sistemática.</p>
+                        <div class="component-badge">Cronometraje</div>
+                        <div class="component-badge">Optimización</div>
+                    </div>
+                    <div class="principle-component">
+                        <div class="principle-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Capacitación Científica</h3>
+                        <p>Selección y entrenamiento metódico de trabajadores según sus capacidades para tareas específicas.</p>
+                        <div class="component-badge">Entrenamiento</div>
+                        <div class="component-badge">Especialización</div>
+                    </div>
+                    <div class="principle-component">
+                        <div class="principle-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Cooperación</h3>
+                        <p>Colaboración estrecha entre dirección y trabajadores para aplicar métodos científicos al trabajo.</p>
+                        <div class="component-badge">Colaboración</div>
+                        <div class="component-badge">Dirección</div>
+                    </div>
+                    <div class="principle-component">
+                        <div class="principle-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>División del Trabajo</h3>
+                        <p>Separación clara entre planeación (gerencia) y ejecución (trabajadores) para mayor eficiencia.</p>
+                        <div class="component-badge">Organización</div>
+                        <div class="component-badge">Roles</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Aplicaciones del Taylorismo</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateBtn">
+                            <i class="fas fa-play-circle"></i> Simular Aplicación Taylorista
+                        </button>
+                        <button class="btn btn-secondary" id="viewDetailsBtn">
+                            <i class="fas fa-info-circle"></i> Ver Detalles Técnicos
+                        </button>
+                        <button class="btn btn-secondary" id="compareBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar con Métodos Modernos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Frederick Winslow Taylor - Padre de la Administración Científica</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-industry"></i> Eficiencia Industrial | Estudio de Tiempos y Movimientos | Organización Científica del Trabajo
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Fundador de la Ingeniería Industrial | Influencia en Fordismo y Producción en Masa | Precursor de la Mejora Continua
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles técnicos -->
+    <div class="modal" id="techModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-crosshairs"></i> Métodos Técnicos de Taylor
+            </h2>
+            <div class="modal-body">
+                <p><strong>Herramientas de estudio del trabajo:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li><span class="highlight">Cronometraje</span> - Medición precisa del tiempo para cada operación</li>
+                    <li><span class="highlight">Análisis de Movimientos</span> - Estudio de Therbligs (elementos básicos del movimiento)</li>
+                    <li><span class="highlight">Estandarización</span> - Definición del "método único y mejor" para cada tarea</li>
+                    <li><span class="highlight">Sistema de Incentivos</span> - Pago diferencial por pieza para motivar productividad</li>
+                    <li><span class="highlight">Supervisión Funcional</span> - Especialistas supervisando áreas específicas</li>
+                    <li><span class="highlight">Planificación Centralizada</span> - Departamento de planeación separado de ejecución</li>
+                </ul>
+                
+                <p><strong>Experimentos más famosos:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Estudio de la pala en Bethlehem Steel (tamaño óptimo: 21 libras)</li>
+                    <li>Experimentos con corte de metales en Midvale Steel</li>
+                    <li>Optimización del manejo de lingotes de hierro (de 12.5 a 47.5 ton/día)</li>
+                    <li>Estandarización de herramientas y equipos</li>
+                    <li>Desarrollo de reglas de cálculo para operaciones de corte</li>
+                    <li>Implementación de tarjetas de instrucción para trabajadores</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Principio de selección científica de Taylor</span><br>
+                    <span class="code-string">"En lugar de buscar hombres excepcionales, debemos diseñar el sistema de trabajo para que pueda ser realizado eficientemente por hombres comunes, seleccionados científicamente y entrenados adecuadamente para cada tarea específica."</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Taylorismo vs Métodos Modernos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-industry"></i> Taylorismo (Clásico)</h3>
+                        <ul class="feature-list">
+                            <li>Énfasis en eficiencia y productividad</li>
+                            <li>División estricta entre planeación y ejecución</li>
+                            <li>Estudio científico de tiempos y movimientos</li>
+                            <li>Estandarización extrema de métodos</li>
+                            <li>Supervisión jerárquica y funcional</li>
+                            <li>Incentivos económicos por productividad</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #00cc88; margin-bottom: 1rem;"><i class="fas fa-chart-line"></i> Métodos Modernos</h3>
+                        <ul class="feature-list">
+                            <li>Énfasis en calidad y mejora continua</li>
+                            <li>Participación de trabajadores en mejoras</li>
+                            <li>Enfoque en procesos y valor agregado</li>
+                            <li>Flexibilidad y adaptabilidad</li>
+                            <li>Trabajo en equipo y empowerment</li>
+                            <li>Calidad total y satisfacción del cliente</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <span class="code-comment"># Evolución del pensamiento administrativo</span><br>
+                    <span class="code-string">"Taylor sentó las bases científicas, pero el management moderno integra sus principios con enfoques humanistas y sistémicos."</span><br>
+                    <span class="code-comment"># Toyota Production System y Lean Manufacturing heredan principios tayloristas adaptados</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">4x</div>
+                        <div class="stat-label">Aumento productividad histórica</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Base científica del trabajo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuración inicial
+            const useCasesData = [
+                {
+                    icon: 'fa-industry',
+                    title: 'Producción en Masa',
+                    description: 'Aplicación en líneas de ensamblaje de Ford, estandarización de operaciones y especialización del trabajo.',
+                    color: '#c9a959'
+                },
+                {
+                    icon: 'fa-warehouse',
+                    title: 'Gestión de Inventarios',
+                    description: 'Control científico de materiales, reducción de desperdicios y optimización del flujo de producción.',
+                    color: '#0066cc'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Estandarización de Herramientas',
+                    description: 'Diseño óptimo de herramientas y equipos para cada tarea específica, reduciendo fatiga y aumentando eficiencia.',
+                    color: '#ffaa33'
+                },
+                {
+                    icon: 'fa-user-cog',
+                    title: 'Capacitación Especializada',
+                    description: 'Entrenamiento metódico de trabajadores según aptitudes, creando especialistas en operaciones específicas.',
+                    color: '#22c55e'
+                },
+                {
+                    icon: 'fa-chart-bar',
+                    title: 'Sistemas de Incentivos',
+                    description: 'Pago diferencial por pieza que recompensa la productividad, aumentando motivación y resultados.',
+                    color: '#ff4d6d'
+                },
+                {
+                    icon: 'fa-clipboard-check',
+                    title: 'Control de Calidad',
+                    description: 'Inspección sistemática y estandarización de procesos para garantizar calidad uniforme en producción.',
+                    color: '#8b5cf6'
+                }
+            ];
+
+            // Inicializar componentes
+            initParticles();
+            initUseCases();
+            initEventListeners();
+            initAnimations();
+            initTimeline();
+
+            // Función para inicializar partículas
+            function initParticles() {
+                const canvas = document.getElementById('particles-canvas');
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const particleCount = 120;
+                
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            size: Math.random() * 4 + 1,
+                            speedX: (Math.random() - 0.5) * 0.8,
+                            speedY: (Math.random() - 0.5) * 0.8,
+                            color: i % 3 === 0 ? `rgba(201, 169, 89, ${Math.random() * 0.3 + 0.1})` : 
+                                   i % 3 === 1 ? `rgba(139, 107, 44, ${Math.random() * 0.3 + 0.1})` :
+                                   `rgba(255, 255, 255, ${Math.random() * 0.1 + 0.05})`
+                        });
+                    }
+                }
+                
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Fondo sutil
+                    ctx.fillStyle = 'rgba(10, 15, 26, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach(particle => {
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+                        
+                        if (particle.x < 0 || particle.x > canvas.width) particle.speedX = -particle.speedX;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.speedY = -particle.speedY;
+                        
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        
+                        // Efecto de brillo
+                        const gradient = ctx.createRadialGradient(
+                            particle.x, particle.y, 0,
+                            particle.x, particle.y, particle.size * 2
+                        );
+                        gradient.addColorStop(0, particle.color);
+                        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+                    });
+                    
+                    requestAnimationFrame(animateParticles);
+                }
+                
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    createParticles();
+                });
+                
+                resizeCanvas();
+                createParticles();
+                animateParticles();
+            }
+
+            // Función para inicializar casos de uso
+            function initUseCases() {
+                const container = document.getElementById('useCasesContainer');
+                container.innerHTML = '';
+                
+                const grid = document.createElement('div');
+                grid.className = 'main-grid';
+                grid.style.marginTop = '1.5rem';
+                
+                useCasesData.forEach(useCase => {
+                    const card = document.createElement('div');
+                    card.className = 'card use-case-card';
+                    card.style.cursor = 'pointer';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.innerHTML = `
+                        <div class="card-header" style="border-bottom: none; margin-bottom: 1rem;">
+                            <div class="card-icon" style="background: ${useCase.color};">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <h3 class="card-title" style="font-size: 1.5rem;">${useCase.title}</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>${useCase.description}</p>
+                            <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--accent-light);">
+                                <i class="fas fa-arrow-right"></i> Click para ver implementación
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => showUseCaseDetail(useCase));
+                    grid.appendChild(card);
+                });
+                
+                container.appendChild(grid);
+                
+                // Animar entrada de tarjetas
+                setTimeout(() => {
+                    document.querySelectorAll('.use-case-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                            card.style.transition = 'opacity 0.6s, transform 0.6s';
+                        }, index * 100);
+                    });
+                }, 300);
+            }
+
+            // Función para inicializar timeline
+            function initTimeline() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                timelineItems.forEach(item => observer.observe(item));
+            }
+
+            // Función para inicializar event listeners
+            function initEventListeners() {
+                // Botón de simulación
+                const simulateBtn = document.getElementById('simulateBtn');
+                simulateBtn.addEventListener('click', simulateTaylorApplication);
+                
+                // Botón de detalles técnicos
+                const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+                viewDetailsBtn.addEventListener('click', () => {
+                    document.getElementById('techModal').classList.add('active');
+                });
+                
+                // Botón de comparación
+                const compareBtn = document.getElementById('compareBtn');
+                compareBtn.addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.add('active');
+                });
+                
+                // Cerrar modales
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    document.getElementById('techModal').classList.remove('active');
+                });
+                
+                document.getElementById('closeCompareModal').addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.remove('active');
+                });
+                
+                // Cerrar modales al hacer clic fuera
+                document.getElementById('techModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'techModal') {
+                        document.getElementById('techModal').classList.remove('active');
+                    }
+                });
+                
+                document.getElementById('compareModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'compareModal') {
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+                
+                // Cerrar con Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        document.getElementById('techModal').classList.remove('active');
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+            }
+
+            // Función para inicializar animaciones
+            function initAnimations() {
+                // Animación de aparición para elementos
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('slide-in');
+                        }
+                    });
+                }, observerOptions);
+                
+                // Aplicar animación a elementos principales
+                document.querySelectorAll('.card').forEach(el => {
+                    if (!el.classList.contains('use-case-card')) {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(30px)';
+                        observer.observe(el);
+                    }
+                });
+            }
+
+            // Función para simulación de aplicación Taylorista
+            function simulateTaylorApplication() {
+                const btn = document.getElementById('simulateBtn');
+                const originalHTML = btn.innerHTML;
+                const originalClass = btn.className;
+                
+                // Cambiar estado del botón
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Aplicando principios Tayloristas...';
+                btn.className = 'btn pulse-animation';
+                btn.disabled = true;
+                
+                // Mostrar progreso
+                const steps = [
+                    "Estudiando tiempos y movimientos...",
+                    "Analizando operaciones actuales...",
+                    "Diseñando método óptimo de trabajo...",
+                    "Estandarizando herramientas y procesos...",
+                    "Seleccionando y capacitando trabajadores...",
+                    "Implementando sistema de incentivos...",
+                    "Calculando ganancias de productividad..."
+                ];
+                
+                let step = 0;
+                const progressInterval = setInterval(() => {
+                    if (step < steps.length) {
+                        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${steps[step]}`;
+                        step++;
+                    }
+                }, 500);
+                
+                // Simular aplicación completa
+                setTimeout(() => {
+                    clearInterval(progressInterval);
+                    
+                    // Mostrar resultados
+                    showApplicationResults();
+                    
+                    // Restaurar botón
+                    btn.innerHTML = originalHTML;
+                    btn.className = originalClass;
+                    btn.disabled = false;
+                    
+                    // Efecto visual en toda la página
+                    document.querySelectorAll('.card').forEach(card => {
+                        card.style.borderColor = 'var(--success)';
+                        card.style.boxShadow = '0 0 40px rgba(0, 204, 136, 0.4)';
+                        
+                        setTimeout(() => {
+                            card.style.borderColor = '';
+                            card.style.boxShadow = '';
+                        }, 3000);
+                    });
+                }, 3500);
+            }
+
+            // Función para mostrar resultados de la aplicación
+            function showApplicationResults() {
+                const results = [
+                    { type: 'Productividad', count: '+62%', color: '#c9a959', icon: 'fa-chart-line' },
+                    { type: 'Reducción Tiempos', count: '-48%', color: '#ff4d6d', icon: 'fa-clock' },
+                    { type: 'Aumento Salarios', count: '+25%', color: '#0066cc', icon: 'fa-dollar-sign' },
+                    { type: 'Eficiencia', count: '87%', color: '#22c55e', icon: 'fa-cogs' }
+                ];
+                
+                // Crear modal de resultados
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeResultsModal">&times;</button>
+                        <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                            <i class="fas fa-tachometer-alt"></i> Resultados de la Aplicación Taylorista
+                        </h2>
+                        <div style="margin-bottom: 1.5rem;">
+                            <p>Simulación de aplicación de principios científicos completada exitosamente. Impacto en la operación:</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
+                                <i class="fas fa-clock"></i> Período de estudio: 3 meses | Operarios analizados: 45 | Procesos optimizados: 12
+                            </p>
+                        </div>
+                        <div class="stats-grid" style="margin: 2rem 0;">
+                            ${results.map(result => `
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: ${result.color};">
+                                        <i class="fas ${result.icon}"></i>
+                                    </div>
+                                    <div class="stat-value" style="background: linear-gradient(90deg, ${result.color}, ${result.color}99); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${result.count}</div>
+                                    <div class="stat-label">${result.type}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="code-container" style="margin: 1.5rem 0;">
+                            <span class="code-comment">// Hallazgos principales del estudio:</span><br>
+                            <span class="code-keyword">1.</span> <span style="color: #c9a959;">[OPTIMIZACIÓN]</span> Operación de paletizado reducida de 42 a 22 segundos por unidad<br>
+                            <span class="code-keyword">2.</span> <span style="color: #c9a959;">[ESTANDARIZACIÓN]</span> 3 métodos diferentes unificados en 1 procedimiento óptimo<br>
+                            <span class="code-keyword">3.</span> <span style="color: #c9a959;">[CAPACITACIÓN]</span> 12 trabajadores re-entrenados según aptitudes específicas<br>
+                            <span class="code-comment">// Recomendación: Implementar sistema de incentivos diferencial por productividad</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <button class="btn" id="exportReportBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-download"></i> Exportar Reporte de Estudio
+                            </button>
+                            <button class="btn btn-secondary" id="viewDashboardBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-chart-bar"></i> Ver Análisis Detallado
+                            </button>
+                            <button class="btn btn-secondary" id="scheduleAuditBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-calendar-alt"></i> Programar Nueva Auditoría
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners para el modal de resultados
+                document.getElementById('closeResultsModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('exportReportBtn').addEventListener('click', () => {
+                    alert('Reporte de estudio de tiempos y movimientos generado exitosamente (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('viewDashboardBtn').addEventListener('click', () => {
+                    alert('Mostrando análisis detallado de productividad y eficiencia (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('scheduleAuditBtn').addEventListener('click', () => {
+                    alert('Nueva auditoría de procesos programada para ejecutarse en 30 días (simulación)');
+                    modal.remove();
+                });
+            }
+
+            // Función para mostrar detalle de caso de uso
+            function showUseCaseDetail(useCase) {
+                const applications = {
+                    'Producción en Masa': ['Líneas de ensamblaje Ford', 'Estandarización de operaciones', 'Especialización del trabajo', 'Flujo continuo'],
+                    'Gestión de Inventarios': ['Control científico de materiales', 'Reducción de desperdicios', 'Optimización de flujo', 'Punto de reorden'],
+                    'Estandarización de Herramientas': ['Diseño ergonómico', 'Herramientas especializadas', 'Reducción de fatiga', 'Aumento de precisión'],
+                    'Capacitación Especializada': ['Análisis de aptitudes', 'Entrenamiento metódico', 'Especialización por tarea', 'Evaluación continua'],
+                    'Sistemas de Incentivos': ['Pago diferencial por pieza', 'Bonos por productividad', 'Escalas progresivas', 'Reconocimiento por eficiencia'],
+                    'Control de Calidad': ['Inspección sistemática', 'Estándares de calidad', 'Procedimientos de verificación', 'Retroalimentación continua']
+                };
+                
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeDetailModal">&times;</button>
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div class="card-icon" style="background: ${useCase.color}; margin-right: 1rem;">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 style="color: ${useCase.color};">${useCase.title}</h2>
+                                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${useCase.description}</p>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-search"></i> Aplicaciones principales:
+                                </h4>
+                                <ul class="feature-list">
+                                    ${applications[useCase.title]?.map(app => `<li>${app}</li>`).join('') || '<li>Aplicaciones generales de administración científica</li>'}
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-cogs"></i> Implementación Taylorista:
+                                </h4>
+                                <ul class="feature-list">
+                                    <li>Estudio de tiempos: Requerido</li>
+                                    <li>Análisis de movimientos: Esencial</li>
+                                    <li>Estandarización: Obligatoria</li>
+                                    <li>Capacitación especializada: Necesaria</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                                <button class="btn" id="configureBtn" style="background: ${useCase.color}; min-width: 200px;">
+                                    <i class="fas fa-sliders-h"></i> Configurar Aplicación
+                                </button>
+                                <button class="btn btn-secondary" id="runStudyBtn" style="min-width: 200px;">
+                                    <i class="fas fa-play"></i> Simular Estudio de Tiempos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                document.getElementById('closeDetailModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('configureBtn').addEventListener('click', () => {
+                    alert(`Configurando aplicación Taylorista para: ${useCase.title}`);
+                    modal.remove();
+                });
+                
+                document.getElementById('runStudyBtn').addEventListener('click', () => {
+                    alert(`Iniciando estudio de tiempos para: ${useCase.title}`);
+                    modal.remove();
+                    simulateTaylorApplication();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
