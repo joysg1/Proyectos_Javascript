@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orígenes de la Materia Oscura - El Misterio Cósmico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_materia_oscura.css">
+</head>
+<body>
+    <!-- Canvas para partículas cósmicas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="cosmos-logo">
+                    <i class="fas fa-star-and-crescent"></i>
+                </div>
+                <h1>Orígenes de la Materia Oscura</h1>
+                <p class="subtitle">Explorando el misterio cósmico que constituye el 85% del universo y desafía nuestra comprensión de la física</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-atom"></i> El enigma que moldea la estructura del cosmos desde el Big Bang
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-question-circle"></i> 85% del universo es materia invisible que no podemos detectar directamente
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-universe"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es la Materia Oscura?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="cosmic-highlight">La Materia Oscura</span> es una forma hipotética de materia que <span class="highlight">no emite, absorbe ni refleja radiación electromagnética</span>, lo que la hace invisible a nuestros telescopios, pero cuya existencia inferimos por sus efectos gravitacionales.</p>
+                    <p>Este componente misterioso del universo constituye aproximadamente <span class="highlight">el 27% de la densidad total del universo</span>, mientras que la materia ordinaria (átomos) constituye solo el 5%. El resto es energía oscura.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Composición del Universo (Modelo ΛCDM)</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Energía Oscura</span> - 68% | Acelera la expansión del universo<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Materia Oscura</span> - 27% | Estructura cósmica, gravedad<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Materia Bariónica</span> - 5% | Estrellas, planetas, galaxias visibles<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Radiación</span> - 0.005% | Fotones, neutrinos<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Neutrinos</span> - 0.005% | Partículas casi sin masa
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-weight-hanging"></i> Evidencia Gravitacional
+                            </div>
+                            <p>Curvas de rotación galáctica que no pueden explicarse solo con materia visible. Las estrellas en las galaxias espirales giran demasiado rápido en sus bordes externos.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-crosshairs"></i> Lentes Gravitacionales
+                            </div>
+                            <p>La materia oscura curva la luz de objetos distantes más de lo que puede explicarse por la materia visible, creando efectos de lente gravitacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Teorías sobre su Origen</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>WIMPs</strong> (Partículas Masivas de Interacción Débil): Partículas supersimétricas que interactúan solo gravitacionalmente</li>
+                        <li><strong>Axiones</strong>: Partículas hipotéticas propuestas para resolver el problema de CP fuerte</li>
+                        <li><strong>MACHOs</strong> (Objetos Compactos Masivos del Halo): Agujeros negros primordiales, enanas marrones</li>
+                        <li><strong>Neutrinos Estériles</strong>: Neutrinos que no interactúan mediante la fuerza débil</li>
+                        <li><strong>Teorías Modificadas de la Gravedad</strong>: MOND (Dinámica Newtoniana Modificada)</li>
+                        <li><strong>Partículas de Kaluza-Klein</strong>: Derivadas de teorías de dimensiones extra</li>
+                        <li><strong>Materia Oscura Primordial</strong>: Formada en los primeros instantes después del Big Bang</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">Materia invisible</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">27%</div>
+                            <div class="stat-label">Densidad del universo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1933</div>
+                            <div class="stat-label">Primera evidencia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">5x</div>
+                            <div class="stat-label">Más que materia visible</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia del Descubrimiento</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1933</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1933</div>
+                            <h3 class="timeline-title">Fritz Zwicky y el Cúmulo de Coma</h3>
+                            <p>Zwicky calcula la masa del Cúmulo de Coma usando el teorema del virial y encuentra que necesita 400 veces más masa de la visible para mantenerlo unido. Acuña el término "materia oscura" (dunkle Materie).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970</div>
+                            <h3 class="timeline-title">Vera Rubin y las curvas de rotación</h3>
+                            <p>Vera Rubin y Kent Ford miden las curvas de rotación de galaxias espirales, mostrando que las estrellas en los bordes giran tan rápido como las cercanas al centro, contradiciendo las predicciones newtonianas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1980</div>
+                            <h3 class="timeline-title">Formación de estructuras cósmicas</h3>
+                            <p>Simulaciones por computadora muestran que sin materia oscura, el universo no habría tenido tiempo suficiente para formar las estructuras a gran escala que observamos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1992</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1992</div>
+                            <h3 class="timeline-title">COBE y fluctuaciones CMB</h3>
+                            <p>El satélite COBE detecta fluctuaciones en el fondo cósmico de microondas que requieren materia oscura fría para explicar la formación de estructuras.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2006</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2006</div>
+                            <h3 class="timeline-title">Bullet Cluster: evidencia directa</h3>
+                            <p>Observaciones del Cúmulo Bala muestran la separación entre materia visible (gas caliente) y materia oscura, proporcionando evidencia directa de su existencia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Búsqueda directa y nuevas teorías</h3>
+                            <p>Experimentos como LUX, XENON, PandaX buscan WIMPs. Teorías como materia oscura "fuzzy" (axiones ultraligeros) y materia oscura interactuante ganan atención.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Métodos de Detección</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-vials"></i>
+                        </div>
+                        <h3>Detección Directa</h3>
+                        <p>Búsqueda de interacciones de partículas de materia oscura con núcleos atómicos en detectores subterráneos.</p>
+                        <div class="component-badge">XENONnT</div>
+                        <div class="component-badge">LUX-ZEPLIN</div>
+                        <div class="component-badge">PandaX</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h3>Detección Indirecta</h3>
+                        <p>Búsqueda de productos de aniquilación o desintegración de materia oscura (rayos gamma, neutrinos, antimateria).</p>
+                        <div class="component-badge">Fermi-LAT</div>
+                        <div class="component-badge">IceCube</div>
+                        <div class="component-badge">AMS-02</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3>Producción en Colisionadores</h3>
+                        <p>Creación de partículas de materia oscura en aceleradores de partículas como el LHC.</p>
+                        <div class="component-badge">LHC</div>
+                        <div class="component-badge">ATLAS</div>
+                        <div class="component-badge">CMS</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Observaciones Astronómicas</h3>
+                        <p>Estudio de efectos gravitacionales en galaxias, cúmulos y lentes gravitacionales.</p>
+                        <div class="component-badge">Hubble</div>
+                        <div class="component-badge">Euclid</div>
+                        <div class="component-badge">JWST</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Confianza en la existencia de materia oscura</span>
+                        <span>99.99%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 99.99%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Porcentaje del universo comprendido</span>
+                        <span>5%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 5%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-satellite-dish"></i>
+                </div>
+                <h2 class="card-title">Experimentos y Observaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los experimentos se generarán con JavaScript -->
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Curvas de Rotación Galáctica
+                    </div>
+                    <p>Simula cómo la materia oscura afecta la rotación de las estrellas en una galaxia espiral:</p>
+                    
+                    <div id="rotationSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Materia Oscura en Halo:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="darkMatterSlider" min="0" max="100" value="85" style="flex: 1;">
+                                    <span id="darkMatterValue" style="min-width: 50px;">85%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>0% (Solo materia visible)</span>
+                                    <span>100% (Halo masivo)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Galaxia:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="galaxy-type-btn active" data-type="spiral">Espiral</button>
+                                    <button class="galaxy-type-btn" data-type="elliptical">Elíptica</button>
+                                    <button class="galaxy-type-btn" data-type="dwarf">Enana</button>
+                                    <button class="galaxy-type-btn" data-type="lenticular">Lenticular</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Simulación:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Radio Galáctico</span>
+                                            <span id="radiusValue">50 kpc</span>
+                                        </div>
+                                        <input type="range" id="radiusSlider" min="10" max="100" value="50" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Masa Visible</span>
+                                            <span id="massValue">10¹¹ M☉</span>
+                                        </div>
+                                        <input type="range" id="massSlider" min="9" max="12" value="11" step="0.1" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="rotationCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">La curva de rotación observada (roja) solo puede explicarse con materia oscura (área sombreada)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateUniverseBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Cósmica
+                        </button>
+                        <button class="btn btn-secondary" id="viewTheoriesBtn">
+                            <i class="fas fa-brain"></i> Explorar Teorías
+                        </button>
+                        <button class="btn btn-error" id="compareTheoriesBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Teorías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Orígenes de la Materia Oscura - El Mayor Misterio de la Cosmología Moderna</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-star-and-crescent"></i> 85% de la materia del universo | Evidencia gravitacional | Misterio sin resolver
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Explorando desde Zwicky (1933) hasta los experimentos actuales | ΛCDM | WIMPs, axiones y más | El futuro de la cosmología
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para teorías -->
+    <div class="modal" id="theoriesModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-brain"></i> Teorías sobre la Naturaleza de la Materia Oscura
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-atom"></i> Partículas de Materia Oscura</h3>
+                        <ul class="theory-list">
+                            <li><strong>WIMPs</strong>: Partículas supersimétricas, masivas, interactúan débilmente. Masas: 10 GeV - 10 TeV</li>
+                            <li><strong>Axiones</strong>: Propuestas para resolver problema CP fuerte. Masas: 10⁻⁶ - 10⁻³ eV</li>
+                            <li><strong>Neutrinos Estériles</strong>: No interactúan débilmente. Masas: keV</li>
+                            <li><strong>SIMPs</strong>: Partículas de interacción fuerte</li>
+                            <li><strong>Fuzzy Dark Matter</strong>: Axiones ultraligeros (10⁻²² eV), comportamiento cuántico</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-project-diagram"></i> Teorías Alternativas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>MOND</strong>: Dinámica Newtoniana Modificada - Cambia gravedad a bajas aceleraciones</li>
+                            <li><strong>TeVeS</strong>: Tensor-Vector-Escalar - Extensión relativista de MOND</li>
+                            <li><strong>Emergent Gravity</strong>: Gravedad como fenómeno emergente de entropía</li>
+                            <li><strong>Gravedad Cuántica de Lazos</strong>: Modificaciones a escalas cosmológicas</li>
+                            <li><strong>Agujeros Negros Primordiales</strong>: Formados en el universo temprano</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Características de la Materia Oscura Fría (Modelo ΛCDM)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Sin interacción electromagnética</span> - Invisible a telescopios<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Interacción gravitacional</span> - Moldea estructura cósmica<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Movimiento no relativista</span> - "Fría" (bajas velocidades)<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Estable</span> - No decae en escalas cosmológicas<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Abundancia cósmica</span> - Ω<sub>DM</sub> ≈ 0.27<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">No bariónica</span> - No compuesta de quarks
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Materia Oscura vs. Teorías Modificadas de Gravedad
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Materia Oscura ΛCDM</h3>
+                        <ul class="theory-list">
+                            <li>Explica curvas de rotación galáctica</li>
+                            <li>Predice estructura cósmica observada</li>
+                            <li>Consistente con lentes gravitacionales</li>
+                            <li>Explica separación en Cúmulo Bala</li>
+                            <li>Predice espectro de potencia CMB</li>
+                            <li>Consistente con nucleosíntesis primordial</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> MOND/Teorías Modificadas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Explica curvas de rotación sin materia oscura</li>
+                            <li>Problemas con cúmulos de galaxias</li>
+                            <li>No explica Cúmulo Bala satisfactoriamente</li>
+                            <li>Dificultades con cosmología</li>
+                            <li>Varias formulaciones incompletas</li>
+                            <li>No explica toda la evidencia acumulada</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Evidencia clave a favor de la Materia Oscura</span><br>
+                    <span class="code-string">"Cúmulo Bala: Separación entre gas (rayos X) y masa total (lentes)"</span><br>
+                    <span class="code-string">"CMB: Picos acústicos requieren Ω<sub>DM</sub> ≈ 0.27"</span><br>
+                    <span class="code-string">"Estructura cósmica: Sin materia oscura, no hay tiempo para formar galaxias"</span><br>
+                    <span class="code-comment"># Consenso científico actual: Materia Oscura existe, pero naturaleza desconocida</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">99.99%</div>
+                        <div class="stat-label">Consenso existencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Materia total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">27%</div>
+                        <div class="stat-label">Densidad cósmica</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Detecciones directas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="materia_oscura.js"></script>
+</body>
+</html>
