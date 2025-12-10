@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poka Yoke - Sistema de Prevención de Errores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        :root {
+            --primary: #0a0f1a;
+            --secondary: #1a2332;
+            --accent: #4cc9f0;
+            --accent-light: #72d6f7;
+            --accent-dark: #2b9bc2;
+            --accent-gradient: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            --accent-secondary: #f72585;
+            --accent-secondary-light: #ff5da2;
+            --accent-secondary-gradient: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
+            --text-primary: #f0f6ff;
+            --text-secondary: #b0c4de;
+            --text-muted: #7a8fb9;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --info: #38bdf8;
+            --border: #2a3a5a;
+            --border-light: #3a4a6a;
+            --card-bg: rgba(26, 35, 50, 0.8);
+            --card-bg-solid: #1a2332;
+            --glass-bg: rgba(10, 15, 26, 0.92);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --shadow-accent: rgba(76, 201, 240, 0.3);
+            --shadow-secondary: rgba(247, 37, 133, 0.3);
+            --gradient-bg: linear-gradient(135deg, #0a0f1a 0%, #0d1b2a 50%, #1a1b3a 100%);
+            --gradient-error: linear-gradient(135deg, #0a0f1a 0%, #1a0d1f 50%, #2a0a1a 100%);
+            --gradient-success: linear-gradient(135deg, #0a0f1a 0%, #0d1f1a 50%, #0a1a2a 100%);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(76, 201, 240, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.08) 0%, transparent 25%),
+                var(--gradient-bg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header mejorado */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0.9;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: rgba(76, 201, 240, 0.12);
+            border: 1px solid rgba(76, 201, 240, 0.4);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.1);
+        }
+
+        .tagline-secondary {
+            background: rgba(247, 37, 133, 0.12);
+            border: 1px solid rgba(247, 37, 133, 0.4);
+            color: var(--accent-secondary-light);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.1);
+        }
+
+        /* Logo Poka Yoke */
+        .poka-yoke-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* Main grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Tarjetas mejoradas */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px var(--shadow-accent);
+        }
+
+        .card:hover::before {
+            opacity: 0.08;
+        }
+
+        .card-secondary {
+            border: 1px solid rgba(247, 37, 133, 0.3);
+        }
+
+        .card-secondary:hover {
+            border-color: var(--accent-secondary);
+            box-shadow: 0 25px 50px var(--shadow-secondary);
+        }
+
+        .card-secondary::before {
+            background: var(--accent-secondary-gradient);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 18px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px var(--shadow-accent);
+            flex-shrink: 0;
+        }
+
+        .card-icon-secondary {
+            background: var(--accent-secondary-gradient);
+            box-shadow: 0 10px 25px var(--shadow-secondary);
+        }
+
+        .card-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Listas */
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.9rem 0;
+            position: relative;
+            padding-left: 2.2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .feature-list-secondary li::before {
+            color: var(--accent-secondary);
+        }
+
+        /* Código */
+        .code-container {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            position: relative;
+            border-left: 4px solid var(--accent);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-container-secondary {
+            border-left: 4px solid var(--accent-secondary);
+        }
+
+        .code-container::before {
+            content: "Ejemplo de Poka Yoke";
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--primary);
+            padding: 0 12px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .code-container-secondary::before {
+            color: var(--accent-secondary-light);
+        }
+
+        .code-keyword {
+            color: #ff79c6;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        .code-string {
+            color: #f1fa8c;
+        }
+
+        .code-comment {
+            color: #6272a4;
+            font-style: italic;
+        }
+
+        .code-danger {
+            background: rgba(239, 68, 68, 0.15);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--danger);
+        }
+
+        /* Timeline mejorada */
+        .timeline-section {
+            margin: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent-light), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .timeline-item {
+            margin-bottom: 3.5rem;
+            position: relative;
+            width: 50%;
+            padding: 0 50px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2.2rem;
+            position: relative;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(76, 201, 240, 0.25);
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(76, 201, 240, 0.15);
+            border-radius: 24px;
+            border: 1px solid rgba(76, 201, 240, 0.4);
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            top: 24px;
+            z-index: 1;
+            box-shadow: 0 0 0 8px rgba(76, 201, 240, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -16px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -16px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(76, 201, 240, 0.2);
+        }
+
+        .stat-value {
+            font-size: 3.8rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Botones */
+        .btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.3rem 2.8rem;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 8px 25px var(--shadow-accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px var(--shadow-accent);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent-light);
+            box-shadow: 0 5px 20px rgba(76, 201, 240, 0.25);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(76, 201, 240, 0.1);
+        }
+
+        .btn-error {
+            background: var(--accent-secondary-gradient);
+            box-shadow: 0 8px 25px var(--shadow-secondary);
+        }
+
+        .btn-error:hover {
+            box-shadow: 0 15px 35px var(--shadow-secondary);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3.5rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 100px !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-marker {
+                left: 26px !important;
+                right: auto !important;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+
+            .card-title {
+                font-size: 1.7rem;
+            }
+
+            .btn {
+                padding: 1.1rem 2.2rem;
+                font-size: 1.1rem;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1.8rem;
+            }
+
+            .timeline-item {
+                padding: 0 0 0 80px !important;
+            }
+
+            .timeline-marker {
+                left: 20px !important;
+            }
+
+            .stat-value {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        @keyframes pulse-error {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); box-shadow: 0 0 30px rgba(247, 37, 133, 0.6); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 25px rgba(76, 201, 240, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(76, 201, 240, 0.9); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes errorFlash {
+            0%, 100% { background: var(--card-bg); }
+            50% { background: rgba(247, 37, 133, 0.1); }
+        }
+
+        @keyframes successFlash {
+            0%, 100% { background: var(--card-bg); }
+            50% { background: rgba(76, 201, 240, 0.1); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .pulse-error-animation {
+            animation: pulse-error 2s ease-in-out infinite;
+        }
+
+        .glow-animation {
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .error-flash {
+            animation: errorFlash 0.5s ease-in-out;
+        }
+
+        .success-flash {
+            animation: successFlash 0.5s ease-in-out;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 18, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 750px;
+            padding: 3.5rem;
+            position: relative;
+            transform: translateY(40px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 8px;
+            border: 3px solid var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+
+        /* Utilidades */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(76, 201, 240, 0.3);
+        }
+
+        .highlight-secondary {
+            color: var(--accent-secondary-light);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(247, 37, 133, 0.3);
+        }
+
+        .poka-yoke-highlight {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .error-highlight {
+            color: var(--accent-secondary);
+            font-weight: 800;
+        }
+
+        /* Efectos de partículas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Badge para componentes */
+        .component-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(76, 201, 240, 0.15);
+            border-radius: 20px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(76, 201, 240, 0.3);
+        }
+
+        .component-badge-secondary {
+            background: rgba(247, 37, 133, 0.15);
+            color: var(--accent-secondary-light);
+            border: 1px solid rgba(247, 37, 133, 0.3);
+        }
+
+        /* Grid de tipos */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .type-component {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .type-component:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .type-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Sistema de clasificación de errores */
+        .error-classification {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .error-category {
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border-left: 4px solid var(--accent);
+        }
+
+        .error-category.error {
+            border-left-color: var(--accent-secondary);
+            background: rgba(247, 37, 133, 0.05);
+        }
+
+        .error-category .category-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-light);
+        }
+
+        .error-category.error .category-title {
+            color: var(--accent-secondary-light);
+        }
+
+        /* Barras de progreso */
+        .progress-container {
+            margin: 1.5rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 5px;
+            transition: width 1s ease-out;
+        }
+
+        .progress-fill.error {
+            background: var(--accent-secondary-gradient);
+        }
+
+        /* Ejemplos interactivos */
+        .interactive-example {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(30, 41, 59, 0.3);
+        }
+
+        .example-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .example-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(10, 15, 26, 0.5);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .example-result.success {
+            border: 2px solid var(--success);
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .example-result.error {
+            border: 2px solid var(--accent-secondary);
+            background: rgba(247, 37, 133, 0.1);
+        }
+
+        .example-result .result-text {
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="poka-yoke-logo">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <h1>Poka Yoke</h1>
+                <p class="subtitle">Sistema de prevención de errores que garantiza procesos libres de fallos mediante mecanismos simples y efectivos</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-bolt"></i> Prevención de errores en manufactura, software y procesos empresariales
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-exclamation-triangle"></i> Cero defectos mediante diseño a prueba de errores
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es Poka Yoke?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="poka-yoke-highlight">Poka Yoke</span> (en japonés: ポカヨケ, "a prueba de errores") es un sistema de <span class="highlight">prevención de errores</span> desarrollado por Shigeo Shingo como parte del Sistema de Producción Toyota.</p>
+                    <p>El concepto se basa en implementar mecanismos simples que <span class="highlight">previenen, detectan o eliminan errores</span> en procesos de manufactura, software y servicios, asegurando calidad desde el origen.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Principios fundamentales de Poka Yoke</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Prevención</span> - Diseñar procesos que hagan imposible cometer errores<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Detección</span> - Identificar errores inmediatamente cuando ocurren<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Corrección</span> - Facilitar acciones correctivas simples y rápidas<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Simplicidad</span> - Soluciones económicas y fáciles de implementar<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Proactividad</span> - Anticipar posibles fallos antes de que ocurran
+                    </div>
+
+                    <div class="error-classification">
+                        <div class="error-category">
+                            <div class="category-title">
+                                <i class="fas fa-check-circle"></i> Poka Yoke de Prevención
+                            </div>
+                            <p>Evita que el error ocurra. Ejemplo: Conector USB que solo puede insertarse en una orientación.</p>
+                        </div>
+                        <div class="error-category error">
+                            <div class="category-title">
+                                <i class="fas fa-exclamation-circle"></i> Poka Yoke de Detección
+                            </div>
+                            <p>Identifica errores inmediatamente después de que ocurren. Ejemplo: Alarma cuando falta un componente en un ensamblaje.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="card-title">Beneficios Clave</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list feature-list-secondary">
+                        <li>Reducción de defectos hasta en un 99%</li>
+                        <li>Eliminación de inspecciones costosas</li>
+                        <li>Aumento de productividad y eficiencia</li>
+                        <li>Reducción de tiempos de entrenamiento</li>
+                        <li>Mejora continua de procesos</li>
+                        <li>Cultura de calidad preventiva</li>
+                        <li>Retorno de inversión rápido</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">99%</div>
+                            <div class="stat-label">Reducción de defectos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">50%</div>
+                            <div class="stat-label">Menos inspecciones</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">30%</div>
+                            <div class="stat-label">Aumento productividad</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Calidad garantizada</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución del Poka Yoke</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1961</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1961</div>
+                            <h3 class="timeline-title">Orígenes en Toyota</h3>
+                            <p>Shigeo Shingo desarrolla el concepto inicial como "Baka Yoke" (a prueba de tontos), luego renombrado a Poka Yoke para ser más respetuoso.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970</div>
+                            <h3 class="timeline-title">Expansión en manufactura</h3>
+                            <p>Poka Yoke se implementa masivamente en la industria automotriz japonesa, demostrando reducciones dramáticas en defectos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1980</div>
+                            <h3 class="timeline-title">Adopción global</h3>
+                            <p>El concepto se expande a Europa y Estados Unidos como parte del movimiento Lean Manufacturing y Six Sigma.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1990</div>
+                            <h3 class="timeline-title">Aplicación en servicios</h3>
+                            <p>Poka Yoke se adapta a procesos administrativos, servicios financieros, hospitales y logística.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000</div>
+                            <h3 class="timeline-title">Era digital y software</h3>
+                            <p>Principios de Poka Yoke se aplican en diseño de software, interfaces de usuario y desarrollo web.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Poka Yoke 4.0</h3>
+                            <p>Integración con IoT, inteligencia artificial y automatización para sistemas de prevención de errores predictivos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="card-title">Tipos de Mecanismos Poka Yoke</h2>
+            </div>
+            <div class="card-content">
+                <div class="types-grid">
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h3>Prevención Física</h3>
+                        <p>Diseños que imposibilitan errores mediante restricciones físicas.</p>
+                        <div class="component-badge">Restricción</div>
+                        <div class="component-badge">Guía</div>
+                        <div class="component-badge">Forma</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Detección y Alerta</h3>
+                        <p>Sistemas que alertan inmediatamente cuando se detecta un error.</p>
+                        <div class="component-badge">Sensor</div>
+                        <div class="component-badge">Alarma</div>
+                        <div class="component-badge">Indicador</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Información y Feedback</h3>
+                        <p>Provisión de información clara que previene interpretaciones erróneas.</p>
+                        <div class="component-badge">Color</div>
+                        <div class="component-badge">Etiqueta</div>
+                        <div class="component-badge">Instrucción</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Automatización</h3>
+                        <p>Mecanismos que realizan acciones automáticas para prevenir errores humanos.</p>
+                        <div class="component-badge">Auto-corrección</div>
+                        <div class="component-badge">Secuencia</div>
+                        <div class="component-badge">Verificación</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Efectividad de mecanismos Poka Yoke</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reducción de errores humanos</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="card-title">Casos de Uso de Poka Yoke</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <!-- Ejemplo interactivo -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Demostración Interactiva: Formulario a prueba de errores
+                    </div>
+                    <p>Simula cómo Poka Yoke previene errores en formularios web:</p>
+                    
+                    <div id="formExample">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Correo electrónico:</label>
+                                <input type="email" id="emailInput" placeholder="ejemplo@dominio.com" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                <div id="emailError" style="color: var(--accent-secondary); font-size: 0.9rem; margin-top: 0.3rem; display: none;">
+                                    <i class="fas fa-exclamation-circle"></i> Formato de correo inválido
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Confirmar contraseña:</label>
+                                <input type="password" id="passwordInput" placeholder="Contraseña" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                <input type="password" id="confirmPasswordInput" placeholder="Confirmar contraseña" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary); margin-top: 0.5rem;">
+                                <div id="passwordError" style="color: var(--accent-secondary); font-size: 0.9rem; margin-top: 0.3rem; display: none;">
+                                    <i class="fas fa-exclamation-circle"></i> Las contraseñas no coinciden
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Términos y condiciones:</label>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" id="termsCheckbox">
+                                    <span>Acepto los términos y condiciones</span>
+                                </div>
+                                <div id="termsError" style="color: var(--accent-secondary); font-size: 0.9rem; margin-top: 0.3rem; display: none;">
+                                    <i class="fas fa-exclamation-circle"></i> Debe aceptar los términos y condiciones
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-result" id="formResult">
+                            <div class="result-text">Complete el formulario correctamente para ver el resultado</div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="submitFormBtn">
+                                <i class="fas fa-paper-plane"></i> Enviar Formulario
+                            </button>
+                            <button class="btn btn-secondary" id="resetFormBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="autoFillCorrectBtn">
+                                <i class="fas fa-magic"></i> Autocompletar Correcto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateBtn">
+                            <i class="fas fa-play-circle"></i> Simular Proceso con Poka Yoke
+                        </button>
+                        <button class="btn btn-secondary" id="viewDetailsBtn">
+                            <i class="fas fa-info-circle"></i> Ver Métodos de Implementación
+                        </button>
+                        <button class="btn btn-error" id="compareBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Con/Sin Poka Yoke
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Poka Yoke - Sistema de Prevención de Errores | Cero Defectos Mediante Diseño</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-shield-check"></i> Prevención de errores | Detección inmediata | Calidad garantizada desde el origen
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Basado en los principios de Shigeo Shingo | Integrado en Lean Manufacturing y Six Sigma | Aplicable en manufactura, software y servicios
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para métodos de implementación -->
+    <div class="modal" id="techModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-tools"></i> Métodos de Implementación Poka Yoke
+            </h2>
+            <div class="modal-body">
+                <p><strong>Proceso de implementación en 5 pasos:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li><span class="highlight">Identificación</span> - Analizar procesos y mapear posibles errores</li>
+                    <li><span class="highlight">Priorización</span> - Evaluar frecuencia e impacto de cada error</li>
+                    <li><span class="highlight">Diseño</span> - Crear mecanismos simples para prevenir/detectar</li>
+                    <li><span class="highlight">Implementación</span> - Instalar y probar las soluciones</li>
+                    <li><span class="highlight">Monitoreo</span> - Medir efectividad y mejorar continuamente</li>
+                </ul>
+                
+                <p><strong>Herramientas y técnicas:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Análisis de Modo y Efecto de Fallas (FMEA)</li>
+                    <li>Diagramas de flujo de procesos</li>
+                    <li>5 Porqués (5 Whys) para análisis de causa raíz</li>
+                    <li>Mapeo de flujo de valor (Value Stream Mapping)</li>
+                    <li>Observación Gemba (en el lugar de trabajo)</li>
+                    <li>Brainstorming con equipos multidisciplinarios</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Ejemplo: Implementación Poka Yoke en línea de ensamblaje</span><br>
+                    <span class="code-keyword">Problema:</span> Operarios olvidan colocar tornillos en producto final<br>
+                    <span class="code-keyword">Solución Poka Yoke:</span> Estación con sensores de peso<br>
+                    <span class="code-keyword">Implementación:</span> <br>
+                    &nbsp;&nbsp;1. Instalar báscula en estación de ensamblaje final<br>
+                    &nbsp;&nbsp;2. Programar peso mínimo requerido (producto + tornillos)<br>
+                    &nbsp;&nbsp;3. Conectar alarma que suena si peso es insuficiente<br>
+                    &nbsp;&nbsp;4. Bloquear banda transportadora hasta que se corrija<br>
+                    <span class="code-keyword">Resultado:</span> Defectos por tornillos faltantes eliminados al 100%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Procesos Con/Sin Poka Yoke
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Con Poka Yoke</h3>
+                        <ul class="feature-list">
+                            <li>Defectos casi eliminados (99% reducción)</li>
+                            <li>Inspecciones reducidas o eliminadas</li>
+                            <li>Retrabajo mínimo o inexistente</li>
+                            <li>Operarios empoderados y confiados</li>
+                            <li>Procesos estandarizados y estables</li>
+                            <li>Cultura de calidad preventiva</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Sin Poka Yoke</h3>
+                        <ul class="feature-list feature-list-secondary">
+                            <li>Defectos frecuentes y costosos</li>
+                            <li>Inspecciones 100% requeridas</li>
+                            <li>Alto nivel de retrabajo y desperdicio</li>
+                            <li>Operarios estresados por errores</li>
+                            <li>Procesos variables e inestables</li>
+                            <li>Cultura reactiva de corrección</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Datos comparativos en industria automotriz</span><br>
+                    <span class="code-string">"Procesos con Poka Yoke: 0.1% defectos vs 3% sin Poka Yoke"</span><br>
+                    <span class="code-comment"># ROI típico en menos de 6 meses | Reducción de costos de calidad del 40-60%</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">99%</div>
+                        <div class="stat-label">Menos defectos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">60%</div>
+                        <div class="stat-label">Menos costos calidad</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Satisfacción cliente</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Más productividad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuración inicial
+            const useCasesData = [
+                {
+                    icon: 'fa-industry',
+                    title: 'Manufactura',
+                    description: 'Fijadores que solo permiten ensamblaje correcto, sensores que detectan componentes faltantes.',
+                    color: '#4cc9f0',
+                    examples: ['Guías físicas', 'Sensores de presencia', 'Verificación automática']
+                },
+                {
+                    icon: 'fa-code',
+                    title: 'Desarrollo de Software',
+                    description: 'Validación en tiempo real, confirmación antes de acciones críticas, autocompletado inteligente.',
+                    color: '#4361ee',
+                    examples: ['Validación de formularios', 'Confirmación de eliminación', 'Sugerencias en tiempo real']
+                },
+                {
+                    icon: 'fa-hospital',
+                    title: 'Salud',
+                    description: 'Conectores únicos para medicamentos, alarmas por dosis incorrectas, checklists pre-procedimiento.',
+                    color: '#f72585',
+                    examples: ['Conectores específicos', 'Alarmas de dosis', 'Listas de verificación']
+                },
+                {
+                    icon: 'fa-plane',
+                    title: 'Aviación',
+                    description: 'Checklists pre-vuelo, sistemas que previenen configuraciones peligrosas, alertas de proximidad.',
+                    color: '#7209b7',
+                    examples: ['Checklists obligatorios', 'Prevención de configuraciones erróneas', 'Sistemas de alerta']
+                },
+                {
+                    icon: 'fa-credit-card',
+                    title: 'Finanzas',
+                    description: 'Verificación de doble entrada, límites de transacción, confirmación de transferencias grandes.',
+                    color: '#4ade80',
+                    examples: ['Doble verificación', 'Límites automáticos', 'Confirmación para montos altos']
+                },
+                {
+                    icon: 'fa-shipping-fast',
+                    title: 'Logística',
+                    description: 'Escaneo obligatorio, sistemas que previenen envíos incompletos, rutas optimizadas automáticamente.',
+                    color: '#fbbf24',
+                    examples: ['Escaneo de códigos de barras', 'Verificación de peso', 'Optimización de rutas']
+                }
+            ];
+
+            // Inicializar componentes
+            initParticles();
+            initUseCases();
+            initEventListeners();
+            initAnimations();
+            initTimeline();
+            initInteractiveForm();
+
+            // Función para inicializar partículas
+            function initParticles() {
+                const canvas = document.getElementById('particles-canvas');
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const particleCount = 120;
+                
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            size: Math.random() * 4 + 1,
+                            speedX: (Math.random() - 0.5) * 0.8,
+                            speedY: (Math.random() - 0.5) * 0.8,
+                            color: i % 3 === 0 ? `rgba(76, 201, 240, ${Math.random() * 0.3 + 0.1})` : 
+                                   i % 3 === 1 ? `rgba(247, 37, 133, ${Math.random() * 0.3 + 0.1})` :
+                                   `rgba(255, 255, 255, ${Math.random() * 0.1 + 0.05})`
+                        });
+                    }
+                }
+                
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Fondo sutil
+                    ctx.fillStyle = 'rgba(10, 15, 26, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach(particle => {
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+                        
+                        if (particle.x < 0 || particle.x > canvas.width) particle.speedX = -particle.speedX;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.speedY = -particle.speedY;
+                        
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        
+                        // Efecto de brillo
+                        const gradient = ctx.createRadialGradient(
+                            particle.x, particle.y, 0,
+                            particle.x, particle.y, particle.size * 2
+                        );
+                        gradient.addColorStop(0, particle.color);
+                        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+                    });
+                    
+                    requestAnimationFrame(animateParticles);
+                }
+                
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    createParticles();
+                });
+                
+                resizeCanvas();
+                createParticles();
+                animateParticles();
+            }
+
+            // Función para inicializar casos de uso
+            function initUseCases() {
+                const container = document.getElementById('useCasesContainer');
+                container.innerHTML = '';
+                
+                const grid = document.createElement('div');
+                grid.className = 'main-grid';
+                grid.style.marginTop = '1.5rem';
+                
+                useCasesData.forEach(useCase => {
+                    const card = document.createElement('div');
+                    card.className = 'card use-case-card';
+                    card.style.cursor = 'pointer';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.innerHTML = `
+                        <div class="card-header" style="border-bottom: none; margin-bottom: 1rem;">
+                            <div class="card-icon" style="background: ${useCase.color};">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <h3 class="card-title" style="font-size: 1.5rem;">${useCase.title}</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>${useCase.description}</p>
+                            <div style="margin-top: 1rem;">
+                                ${useCase.examples.map(example => `
+                                    <div class="component-badge" style="background: ${useCase.color}20; color: ${useCase.color}; border-color: ${useCase.color}40;">${example}</div>
+                                `).join('')}
+                            </div>
+                            <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--accent-light);">
+                                <i class="fas fa-arrow-right"></i> Click para ver ejemplos detallados
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => showUseCaseDetail(useCase));
+                    grid.appendChild(card);
+                });
+                
+                container.appendChild(grid);
+                
+                // Animar entrada de tarjetas
+                setTimeout(() => {
+                    document.querySelectorAll('.use-case-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                            card.style.transition = 'opacity 0.6s, transform 0.6s';
+                        }, index * 100);
+                    });
+                }, 300);
+            }
+
+            // Función para inicializar timeline
+            function initTimeline() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                timelineItems.forEach(item => observer.observe(item));
+            }
+
+            // Función para inicializar formulario interactivo
+            function initInteractiveForm() {
+                const emailInput = document.getElementById('emailInput');
+                const passwordInput = document.getElementById('passwordInput');
+                const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+                const termsCheckbox = document.getElementById('termsCheckbox');
+                const submitBtn = document.getElementById('submitFormBtn');
+                const resetBtn = document.getElementById('resetFormBtn');
+                const autoFillBtn = document.getElementById('autoFillCorrectBtn');
+                
+                // Validar email en tiempo real
+                emailInput.addEventListener('input', function() {
+                    const emailError = document.getElementById('emailError');
+                    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+                    
+                    if (this.value && !isValid) {
+                        emailError.style.display = 'block';
+                        this.style.borderColor = 'var(--accent-secondary)';
+                    } else {
+                        emailError.style.display = 'none';
+                        this.style.borderColor = this.value && isValid ? 'var(--success)' : 'var(--border)';
+                    }
+                });
+                
+                // Validar contraseñas en tiempo real
+                confirmPasswordInput.addEventListener('input', function() {
+                    const passwordError = document.getElementById('passwordError');
+                    const passwordsMatch = passwordInput.value === this.value;
+                    
+                    if (this.value && !passwordsMatch) {
+                        passwordError.style.display = 'block';
+                        this.style.borderColor = 'var(--accent-secondary)';
+                        passwordInput.style.borderColor = 'var(--accent-secondary)';
+                    } else {
+                        passwordError.style.display = 'none';
+                        this.style.borderColor = this.value && passwordsMatch ? 'var(--success)' : 'var(--border)';
+                        passwordInput.style.borderColor = this.value && passwordsMatch ? 'var(--success)' : 'var(--border)';
+                    }
+                });
+                
+                // Enviar formulario
+                submitBtn.addEventListener('click', function() {
+                    let isValid = true;
+                    
+                    // Validar email
+                    const emailError = document.getElementById('emailError');
+                    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+                    if (!emailValid) {
+                        emailError.style.display = 'block';
+                        emailInput.style.borderColor = 'var(--accent-secondary)';
+                        isValid = false;
+                    }
+                    
+                    // Validar contraseñas
+                    const passwordError = document.getElementById('passwordError');
+                    const passwordsMatch = passwordInput.value && passwordInput.value === confirmPasswordInput.value;
+                    if (!passwordsMatch) {
+                        passwordError.style.display = 'block';
+                        passwordInput.style.borderColor = 'var(--accent-secondary)';
+                        confirmPasswordInput.style.borderColor = 'var(--accent-secondary)';
+                        isValid = false;
+                    }
+                    
+                    // Validar términos
+                    const termsError = document.getElementById('termsError');
+                    if (!termsCheckbox.checked) {
+                        termsError.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        termsError.style.display = 'none';
+                    }
+                    
+                    // Mostrar resultado
+                    const formResult = document.getElementById('formResult');
+                    if (isValid) {
+                        formResult.className = 'example-result success';
+                        formResult.innerHTML = `
+                            <div class="result-text">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>
+                                ¡Formulario enviado correctamente! Poka Yoke ha prevenido todos los errores.
+                            </div>
+                        `;
+                        formResult.classList.add('success-flash');
+                    } else {
+                        formResult.className = 'example-result error';
+                        formResult.innerHTML = `
+                            <div class="result-text">
+                                <i class="fas fa-exclamation-circle" style="color: var(--accent-secondary); margin-right: 0.5rem;"></i>
+                                Error en el formulario. Mecanismos Poka Yoke han detectado y prevenido el envío incorrecto.
+                            </div>
+                        `;
+                        formResult.classList.add('error-flash');
+                    }
+                    
+                    // Remover animación después de que termine
+                    setTimeout(() => {
+                        formResult.classList.remove('success-flash', 'error-flash');
+                    }, 500);
+                });
+                
+                // Reiniciar formulario
+                resetBtn.addEventListener('click', function() {
+                    emailInput.value = '';
+                    passwordInput.value = '';
+                    confirmPasswordInput.value = '';
+                    termsCheckbox.checked = false;
+                    
+                    // Resetear estilos
+                    [emailInput, passwordInput, confirmPasswordInput].forEach(input => {
+                        input.style.borderColor = 'var(--border)';
+                    });
+                    
+                    // Ocultar errores
+                    document.getElementById('emailError').style.display = 'none';
+                    document.getElementById('passwordError').style.display = 'none';
+                    document.getElementById('termsError').style.display = 'none';
+                    
+                    // Resetear resultado
+                    const formResult = document.getElementById('formResult');
+                    formResult.className = 'example-result';
+                    formResult.innerHTML = '<div class="result-text">Complete el formulario correctamente para ver el resultado</div>';
+                });
+                
+                // Autocompletar correctamente
+                autoFillBtn.addEventListener('click', function() {
+                    emailInput.value = 'usuario@ejemplo.com';
+                    passwordInput.value = 'Password123';
+                    confirmPasswordInput.value = 'Password123';
+                    termsCheckbox.checked = true;
+                    
+                    // Actualizar estilos
+                    emailInput.style.borderColor = 'var(--success)';
+                    passwordInput.style.borderColor = 'var(--success)';
+                    confirmPasswordInput.style.borderColor = 'var(--success)';
+                    
+                    // Ocultar errores
+                    document.getElementById('emailError').style.display = 'none';
+                    document.getElementById('passwordError').style.display = 'none';
+                    document.getElementById('termsError').style.display = 'none';
+                    
+                    // Mostrar mensaje
+                    const formResult = document.getElementById('formResult');
+                    formResult.className = 'example-result';
+                    formResult.innerHTML = `
+                        <div class="result-text">
+                            <i class="fas fa-info-circle" style="color: var(--accent-light); margin-right: 0.5rem;"></i>
+                            Formulario autocompletado correctamente. Ahora puede hacer clic en "Enviar Formulario"
+                        </div>
+                    `;
+                });
+            }
+
+            // Función para inicializar event listeners
+            function initEventListeners() {
+                // Botón de simulación
+                const simulateBtn = document.getElementById('simulateBtn');
+                simulateBtn.addEventListener('click', simulatePokaYokeProcess);
+                
+                // Botón de detalles técnicos
+                const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+                viewDetailsBtn.addEventListener('click', () => {
+                    document.getElementById('techModal').classList.add('active');
+                });
+                
+                // Botón de comparación
+                const compareBtn = document.getElementById('compareBtn');
+                compareBtn.addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.add('active');
+                });
+                
+                // Cerrar modales
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    document.getElementById('techModal').classList.remove('active');
+                });
+                
+                document.getElementById('closeCompareModal').addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.remove('active');
+                });
+                
+                // Cerrar modales al hacer clic fuera
+                document.getElementById('techModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'techModal') {
+                        document.getElementById('techModal').classList.remove('active');
+                    }
+                });
+                
+                document.getElementById('compareModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'compareModal') {
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+                
+                // Cerrar con Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        document.getElementById('techModal').classList.remove('active');
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+            }
+
+            // Función para inicializar animaciones
+            function initAnimations() {
+                // Animación de aparición para elementos
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('slide-in');
+                        }
+                    });
+                }, observerOptions);
+                
+                // Aplicar animación a elementos principales
+                document.querySelectorAll('.card').forEach(el => {
+                    if (!el.classList.contains('use-case-card')) {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(30px)';
+                        observer.observe(el);
+                    }
+                });
+            }
+
+            // Función para simulación de proceso con Poka Yoke
+            function simulatePokaYokeProcess() {
+                const btn = document.getElementById('simulateBtn');
+                const originalHTML = btn.innerHTML;
+                const originalClass = btn.className;
+                
+                // Cambiar estado del botón
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Simulando proceso con Poka Yoke...';
+                btn.className = 'btn pulse-animation';
+                btn.disabled = true;
+                
+                // Mostrar progreso
+                const steps = [
+                    "Analizando proceso actual...",
+                    "Identificando posibles errores...",
+                    "Diseñando mecanismos Poka Yoke...",
+                    "Implementando soluciones...",
+                    "Probando efectividad...",
+                    "Monitoreando resultados...",
+                    "Proceso optimizado con éxito!"
+                ];
+                
+                let step = 0;
+                const progressInterval = setInterval(() => {
+                    if (step < steps.length) {
+                        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${steps[step]}`;
+                        step++;
+                    }
+                }, 600);
+                
+                // Simular proceso completo
+                setTimeout(() => {
+                    clearInterval(progressInterval);
+                    
+                    // Mostrar resultados
+                    showProcessResults();
+                    
+                    // Restaurar botón
+                    btn.innerHTML = originalHTML;
+                    btn.className = originalClass;
+                    btn.disabled = false;
+                    
+                    // Efecto visual en toda la página
+                    document.querySelectorAll('.card').forEach(card => {
+                        card.style.borderColor = 'var(--success)';
+                        card.style.boxShadow = '0 0 40px rgba(74, 222, 128, 0.4)';
+                        
+                        setTimeout(() => {
+                            card.style.borderColor = '';
+                            card.style.boxShadow = '';
+                        }, 3000);
+                    });
+                }, 4200);
+            }
+
+            // Función para mostrar resultados del proceso
+            function showProcessResults() {
+                const results = [
+                    { type: 'Errores Previstos', count: '24', color: '#f72585', icon: 'fa-exclamation-triangle' },
+                    { type: 'Errores Eliminados', count: '23', color: '#4cc9f0', icon: 'fa-ban' },
+                    { type: 'Reducción Defectos', count: '96%', color: '#4ade80', icon: 'fa-chart-line' },
+                    { type: 'ROI Estimado', count: '240%', color: '#7209b7', icon: 'fa-dollar-sign' }
+                ];
+                
+                // Crear modal de resultados
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeResultsModal">&times;</button>
+                        <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                            <i class="fas fa-chart-bar"></i> Resultados de Implementación Poka Yoke
+                        </h2>
+                        <div style="margin-bottom: 1.5rem;">
+                            <p>Simulación de implementación completada exitosamente. Impacto en el proceso:</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
+                                <i class="fas fa-clock"></i> Período de análisis: 30 días | Proceso analizado: Línea de ensamblaje automotriz
+                            </p>
+                        </div>
+                        <div class="stats-grid" style="margin: 2rem 0;">
+                            ${results.map(result => `
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: ${result.color};">
+                                        <i class="fas ${result.icon}"></i>
+                                    </div>
+                                    <div class="stat-value" style="background: linear-gradient(90deg, ${result.color}, ${result.color}99); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${result.count}</div>
+                                    <div class="stat-label">${result.type}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="code-container" style="margin: 1.5rem 0;">
+                            <span class="code-comment">// Mecanismos Poka Yoke implementados:</span><br>
+                            <span class="code-keyword">1.</span> <span style="color: #4cc9f0;">[PREVENCIÓN]</span> Guías físicas que solo permiten ensamblaje correcto<br>
+                            <span class="code-keyword">2.</span> <span style="color: #4cc9f0;">[DETECCIÓN]</span> Sensores que verifican presencia de todos los componentes<br>
+                            <span class="code-keyword">3.</span> <span style="color: #4cc9f0;">[ALERTA]</span> Sistema luminoso que indica paso completado correctamente<br>
+                            <span class="code-comment">// Beneficio: Reducción de costos por retrabajo de $12,000/mes a $480/mes</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Efectividad de mecanismos Poka Yoke</span>
+                                <span>96%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 96%;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <button class="btn" id="exportReportBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-download"></i> Exportar Reporte de Implementación
+                            </button>
+                            <button class="btn btn-secondary" id="viewDashboardBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-project-diagram"></i> Ver Diagrama de Proceso
+                            </button>
+                            <button class="btn btn-error" id="costAnalysisBtn" style="flex: 1; min-width: 200px;">
+                                <i class="fas fa-calculator"></i> Análisis de Costo-Beneficio
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners para el modal de resultados
+                document.getElementById('closeResultsModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('exportReportBtn').addEventListener('click', () => {
+                    alert('Reporte de implementación Poka Yoke generado exitosamente (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('viewDashboardBtn').addEventListener('click', () => {
+                    alert('Mostrando diagrama de proceso optimizado (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('costAnalysisBtn').addEventListener('click', () => {
+                    alert('Análisis de costo-beneficio: ROI 240% en 6 meses, payback en 2.5 meses (simulación)');
+                    modal.remove();
+                });
+            }
+
+            // Función para mostrar detalle de caso de uso
+            function showUseCaseDetail(useCase) {
+                const examples = {
+                    'Manufactura': [
+                        "Guía física que solo permite ensamblaje en orientación correcta",
+                        "Sensor de peso que detecta componentes faltantes",
+                        "Interruptor que evita operación sin todos los componentes instalados",
+                        "Código de color para componentes similares pero diferentes"
+                    ],
+                    'Desarrollo de Software': [
+                        "Validación de formularios en tiempo real",
+                        "Confirmación antes de acciones irreversibles (eliminar, desactivar)",
+                        "Autocompletado que sugiere opciones válidas",
+                        "Mensajes de error específicos y sugerencias de corrección"
+                    ],
+                    'Salud': [
+                        "Conectores únicos para diferentes tipos de medicamentos",
+                        "Sistemas de dosificación que alertan por dosis peligrosas",
+                        "Checklists pre-quirúrgicos obligatorios",
+                        "Códigos de barras que verifican paciente y medicamento"
+                    ],
+                    'Aviación': [
+                        "Checklists electrónicos que no permiten omitir pasos",
+                        "Sistemas que previenen configuraciones peligrosas (flaps, tren)",
+                        "Alertas de proximidad al terreno (TAWS)",
+                        "Verificación cruzada entre piloto y copiloto"
+                    ],
+                    'Finanzas': [
+                        "Doble verificación para transacciones grandes",
+                        "Límites automáticos según perfil de riesgo",
+                        "Confirmación por segundo factor de autenticación",
+                        "Alertas por patrones de actividad inusual"
+                    ],
+                    'Logística': [
+                        "Escaneo obligatorio antes de mover paquetes",
+                        "Sistemas que previenen envíos incompletos",
+                        "Verificación automática de direcciones",
+                        "Rutas optimizadas que evitan errores de navegación"
+                    ]
+                };
+                
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeDetailModal">&times;</button>
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div class="card-icon" style="background: ${useCase.color}; margin-right: 1rem;">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 style="color: ${useCase.color};">${useCase.title}</h2>
+                                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${useCase.description}</p>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="margin-bottom: 0.8rem; color: ${useCase.color};">
+                                    <i class="fas fa-lightbulb"></i> Ejemplos específicos:
+                                </h4>
+                                <ul class="feature-list">
+                                    ${examples[useCase.title]?.map(example => `<li>${example}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px;">
+                                <h4 style="margin-bottom: 0.8rem; color: ${useCase.color};">
+                                    <i class="fas fa-cogs"></i> Métricas de impacto:
+                                </h4>
+                                <ul class="feature-list">
+                                    <li>Reducción de errores: 90-99%</li>
+                                    <li>ROI típico: 200-400%</li>
+                                    <li>Tiempo de implementación: 2-8 semanas</li>
+                                    <li>Costo de implementación: Bajo a moderado</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                                <button class="btn" id="configureBtn" style="background: ${useCase.color}; min-width: 200px;">
+                                    <i class="fas fa-sliders-h"></i> Diseñar Solución
+                                </button>
+                                <button class="btn btn-secondary" id="runSimulationBtn" style="min-width: 200px;">
+                                    <i class="fas fa-play"></i> Simular Implementación
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                document.getElementById('closeDetailModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('configureBtn').addEventListener('click', () => {
+                    alert(`Diseñando solución Poka Yoke para: ${useCase.title}`);
+                    modal.remove();
+                });
+                
+                document.getElementById('runSimulationBtn').addEventListener('click', () => {
+                    alert(`Simulando implementación en: ${useCase.title}`);
+                    modal.remove();
+                    simulatePokaYokeProcess();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
