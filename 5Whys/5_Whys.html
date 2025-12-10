@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Whys - Análisis de Causa Raíz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --accent-dark: #059669;
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --border: #334155;
+            --border-light: #475569;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-bg-solid: #1e293b;
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --shadow: rgba(0, 0, 0, 0.5);
+            --shadow-accent: rgba(16, 185, 129, 0.25);
+            --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #064e3b 100%);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 5% 15%, rgba(16, 185, 129, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 95% 85%, rgba(59, 130, 246, 0.1) 0%, transparent 25%),
+                var(--gradient-bg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--accent-gradient);
+            opacity: 0.8;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px var(--shadow-accent);
+        }
+
+        .card:hover::before {
+            opacity: 0.05;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 20px var(--shadow-accent);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Listas */
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .feature-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* 5 Whys Flow */
+        .why-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .why-step {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .why-step:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .why-step-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .why-step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .why-step-content {
+            color: var(--text-secondary);
+            padding-left: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .connector {
+            width: 4px;
+            height: 30px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Código */
+        .code-container {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+
+        .code-container::before {
+            content: "Ejemplo 5 Whys";
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--primary);
+            padding: 0 12px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .code-keyword {
+            color: #ff79c6;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        .code-string {
+            color: #f1fa8c;
+        }
+
+        .code-comment {
+            color: #6272a4;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent-light), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .timeline-item {
+            margin-bottom: 3.5rem;
+            position: relative;
+            width: 50%;
+            padding: 0 50px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 24px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            top: 24px;
+            z-index: 1;
+            box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -14px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -14px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Botones */
+        .btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 6px 20px var(--shadow-accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px var(--shadow-accent);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent-light);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 100px !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-marker {
+                left: 26px !important;
+                right: auto !important;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .timeline-item {
+                padding: 0 0 0 80px !important;
+            }
+
+            .timeline-marker {
+                left: 20px !important;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.8); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .glow-animation {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 6px;
+            border: 2px solid var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+
+        /* Utilidades */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+
+        /* Efectos de partículas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Interactive 5 Whys Diagram */
+        .why-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+            gap: 1rem;
+        }
+
+        .why-node {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 3px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .why-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .why-node-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .why-node-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .why-arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-question-circle"></i> 5 Whys</h1>
+                <p class="subtitle">Análisis de Causa Raíz - Técnica sistemática para identificar las causas fundamentales de problemas</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-search"></i> Descubre la causa raíz preguntando "¿Por qué?" cinco veces
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Método 5 Whys?</h2>
+                </div>
+                <div class="card-content">
+                    <p>El método <span class="highlight">5 Whys</span> es una técnica de análisis de causa raíz desarrollada por Sakichi Toyoda y utilizada en el Sistema de Producción de Toyota. Se basa en hacer la pregunta <span class="highlight">"¿Por qué?"</span> repetidamente (generalmente cinco veces) para llegar a la causa fundamental de un problema.</p>
+                    <p>Esta técnica ayuda a evitar soluciones superficiales y abordar las <span class="highlight">causas raíz</span> reales que generan los problemas recurrentes.</p>
+                    
+                    <div class="why-diagram">
+                        <div class="why-node" data-why="1">
+                            <div class="why-node-number">1</div>
+                            <div class="why-node-label">Problema</div>
+                        </div>
+                        <div class="why-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="why-node" data-why="2">
+                            <div class="why-node-number">2</div>
+                            <div class="why-node-label">¿Por qué?</div>
+                        </div>
+                        <div class="why-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="why-node" data-why="3">
+                            <div class="why-node-number">3</div>
+                            <div class="why-node-label">¿Por qué?</div>
+                        </div>
+                        <div class="why-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="why-node" data-why="4">
+                            <div class="why-node-number">4</div>
+                            <div class="why-node-label">¿Por qué?</div>
+                        </div>
+                        <div class="why-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="why-node" data-why="5">
+                            <div class="why-node-number">5</div>
+                            <div class="why-node-label">Causa Raíz</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="card-title">Ventajas Principales</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list">
+                        <li>Simple y fácil de implementar</li>
+                        <li>No requiere herramientas especializadas</li>
+                        <li>Identifica causas fundamentales, no síntomas</li>
+                        <li>Promueve el pensamiento crítico y sistemático</li>
+                        <li>Prevención de problemas recurrentes</li>
+                        <li>Aplicable en cualquier industria o contexto</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">80%</div>
+                            <div class="stat-label">Problemas resueltos permanentemente</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">5x</div>
+                            <div class="stat-label">Más efectivo que soluciones rápidas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h2 class="card-title">Ejemplo Práctico de 5 Whys</h2>
+            </div>
+            <div class="card-content">
+                <div class="why-flow">
+                    <div class="why-step" data-step="1">
+                        <div class="why-step-number">1</div>
+                        <div class="why-step-title">Problema Inicial</div>
+                        <div class="why-step-content">La máquina de producción se detuvo inesperadamente.</div>
+                    </div>
+                    <div class="connector"></div>
+                    
+                    <div class="why-step" data-step="2">
+                        <div class="why-step-number">2</div>
+                        <div class="why-step-title">¿Por qué se detuvo la máquina?</div>
+                        <div class="why-step-content">Se sobrecargó y el fusible se quemó.</div>
+                    </div>
+                    <div class="connector"></div>
+                    
+                    <div class="why-step" data-step="3">
+                        <div class="why-step-number">3</div>
+                        <div class="why-step-title">¿Por qué se sobrecargó?</div>
+                        <div class="why-step-content">El cojinete no estaba lubricado adecuadamente.</div>
+                    </div>
+                    <div class="connector"></div>
+                    
+                    <div class="why-step" data-step="4">
+                        <div class="why-step-number">4</div>
+                        <div class="why-step-title">¿Por qué no estaba lubricado?</div>
+                        <div class="why-step-content">La bomba de lubricación no estaba bombeando suficiente aceite.</div>
+                    </div>
+                    <div class="connector"></div>
+                    
+                    <div class="why-step" data-step="5">
+                        <div class="why-step-number">5</div>
+                        <div class="why-step-title">¿Por qué no bombeaba suficiente aceite?</div>
+                        <div class="why-step-content">El eje de la bomba estaba desgastado y haciendo ruido.</div>
+                    </div>
+                    <div class="connector"></div>
+                    
+                    <div class="why-step" data-step="6" style="border-color: var(--success); background: rgba(34, 197, 94, 0.05);">
+                        <div class="why-step-number"><i class="fas fa-bullseye"></i></div>
+                        <div class="why-step-title" style="color: var(--success);">Causa Raíz Identificada</div>
+                        <div class="why-step-content" style="color: var(--text-primary);">Falta de mantenimiento preventivo: el eje de la bomba no fue inspeccionado y reemplazado proactivamente.</div>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <span class="code-comment">// Proceso 5 Whys simplificado en pseudocódigo</span><br>
+                    <span class="code-keyword">function</span> <span class="code-function">findRootCause</span>(problem) {<br>
+                    &nbsp;&nbsp;<span class="code-keyword">let</span> currentCause = problem;<br>
+                    &nbsp;&nbsp;<span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = 0; i < 5; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;currentCause = <span class="code-function">askWhy</span>(currentCause);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">console.log</span>(<span class="code-string">`Why ${i+1}: ${currentCause}`</span>);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Causa raíz identificada: "</span> + currentCause;<br>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución del Método 5 Whys</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1930</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1930s</div>
+                            <h3 class="timeline-title">Orígenes en Toyota</h3>
+                            <p>Sakichi Toyoda desarrolla el concepto como parte del Sistema de Producción de Toyota, enfocado en la mejora continua y resolución de problemas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950s</div>
+                            <h3 class="timeline-title">Formalización del Método</h3>
+                            <p>Taiichi Ohno, ejecutivo de Toyota, populariza y formaliza la técnica como parte del pensamiento lean y la metodología de resolución de problemas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1980s</div>
+                            <h3 class="timeline-title">Expansión a Occidente</h3>
+                            <p>La técnica se introduce en Estados Unidos y Europa como parte de las metodologías de calidad total y mejora de procesos empresariales.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000s</div>
+                            <h3 class="timeline-title">Integración con Seis Sigma</h3>
+                            <p>5 Whys se incorpora formalmente a la metodología Seis Sigma como herramienta clave en la fase de análisis de proyectos DMAIC.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2010s</div>
+                            <h3 class="timeline-title">Adopción en Tecnología y Startups</h3>
+                            <p>El método se adapta para análisis de fallos en software, DevOps, y gestión de productos digitales, integrado en retrospectivas ágiles.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2023</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Herramientas Digitales y Colaborativas</h3>
+                            <p>Plataformas digitales, tableros colaborativos y herramientas de análisis de datos integran 5 Whys para equipos distribuidos y análisis avanzado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="card-title">Casos de Uso del Método 5 Whys</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-2">
+                    <button class="btn glow-animation" id="simulateBtn">
+                        <i class="fas fa-play-circle"></i> Realizar Análisis 5 Whys
+                    </button>
+                    <button class="btn btn-secondary" id="viewDetailsBtn" style="margin-left: 1rem;">
+                        <i class="fas fa-info-circle"></i> Mejores Prácticas
+                    </button>
+                    <button class="btn btn-secondary" id="compareBtn" style="margin-left: 1rem;">
+                        <i class="fas fa-balance-scale"></i> 5 Whys vs Fishbone
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>5 Whys - Análisis de Causa Raíz | Portal Interactivo</p>
+            <p style="margin-top: 0.8rem; font-size: 0.95rem; color: var(--text-muted);">
+                <i class="fas fa-question-circle"></i> Técnica desarrollada por Sakichi Toyoda | Metodología de mejora continua
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para mejores prácticas -->
+    <div class="modal" id="techModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-graduation-cap"></i> Mejores Prácticas para 5 Whys
+            </h2>
+            <div class="modal-body">
+                <p><strong>Para implementar efectivamente el método 5 Whys:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Involucra a personas que conocen el proceso</li>
+                    <li>Define claramente el problema inicial</li>
+                    <li>Pregunta "¿por qué?" hasta llegar a la causa raíz</li>
+                    <li>Busca causas, no culpables</li>
+                    <li>Documenta cada respuesta y análisis</li>
+                    <li>Verifica que la causa raíz sea controlable</li>
+                </ul>
+                
+                <p><strong>Errores comunes a evitar:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Detenerse antes de llegar a la causa raíz</li>
+                    <li>Saltar a conclusiones sin suficiente análisis</li>
+                    <li>Enfocarse en síntomas en lugar de causas</li>
+                    <li>Buscar culpables en lugar de causas del sistema</li>
+                    <li>No validar las respuestas con datos</li>
+                    <li>No implementar soluciones para la causa raíz</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment">// Ejemplo de implementación estructurada</span><br>
+                    1. <span class="code-keyword">Definir</span> el problema específicamente<br>
+                    2. <span class="code-keyword">Formar</span> equipo multifuncional<br>
+                    3. <span class="code-keyword">Preguntar</span> "¿Por qué?" 5 veces<br>
+                    4. <span class="code-keyword">Validar</span> cada respuesta con datos<br>
+                    5. <span class="code-keyword">Identificar</span> causa raíz accionable<br>
+                    6. <span class="code-keyword">Implementar</span> solución correctiva<br>
+                    7. <span class="code-keyword">Monitorear</span> resultados y ajustar
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación 5 Whys vs Fishbone -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> 5 Whys vs Diagrama de Ishikawa (Fishbone)
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-question-circle"></i> 5 Whys</h3>
+                        <ul class="feature-list">
+                            <li>Enfoque lineal y secuencial</li>
+                            <li>Simple y rápido de aplicar</li>
+                            <li>Ideal para problemas simples o moderados</li>
+                            <li>Requiere menos preparación</li>
+                            <li>Mejor para análisis inicial</li>
+                            <li>Menos visual, más conversacional</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #8b5cf6; margin-bottom: 1rem;"><i class="fas fa-fish"></i> Diagrama Fishbone</h3>
+                        <ul class="feature-list">
+                            <li>Enfoque visual y estructural</li>
+                            <li>Categoriza causas en áreas</li>
+                            <li>Ideal para problemas complejos</li>
+                            <li>Requiere más tiempo y preparación</li>
+                            <li>Mejor para análisis profundo</li>
+                            <li>Visualiza relaciones entre causas</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <span class="code-comment">// Enfoque recomendado: Combinar ambas técnicas</span><br>
+                    <span class="code-string">"Usar 5 Whys para análisis inicial rápido, luego Fishbone para problemas complejos"</span><br>
+                    <span class="code-comment">// 5 Whys identifica la cadena causal, Fishbone explora categorías de causas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuración inicial
+            const useCasesData = [
+                {
+                    icon: 'fa-industry',
+                    title: 'Manufactura y Producción',
+                    description: 'Análisis de fallos en máquinas, defectos de calidad, tiempos de inactividad y problemas de proceso.',
+                    color: '#10b981'
+                },
+                {
+                    icon: 'fa-laptop-code',
+                    title: 'Desarrollo de Software',
+                    description: 'Análisis de bugs, fallos en producción, problemas de rendimiento y errores de integración.',
+                    color: '#3b82f6'
+                },
+                {
+                    icon: 'fa-user-md',
+                    title: 'Salud y Hospitales',
+                    description: 'Investigación de incidentes de seguridad del paciente, errores médicos y problemas de procesos clínicos.',
+                    color: '#ef4444'
+                },
+                {
+                    icon: 'fa-chart-line',
+                    title: 'Negocios y Gestión',
+                    description: 'Análisis de problemas de ventas, satisfacción del cliente, procesos ineficientes y brechas de comunicación.',
+                    color: '#f59e0b'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Mantenimiento y Operaciones',
+                    description: 'Investigación de fallos de equipos, problemas de seguridad, incumplimientos y daños de activos.',
+                    color: '#8b5cf6'
+                },
+                {
+                    icon: 'fa-users',
+                    title: 'Recursos Humanos',
+                    description: 'Análisis de rotación de personal, conflictos, bajo rendimiento y problemas de cultura organizacional.',
+                    color: '#06b6d4'
+                }
+            ];
+
+            const whyExamples = [
+                {
+                    problem: "El cliente devolvió el producto",
+                    whys: [
+                        "Porque estaba defectuoso",
+                        "Porque el control de calidad no lo detectó",
+                        "Porque el inspector estaba sobrecargado",
+                        "Porque hay escasez de personal",
+                        "Porque no se anticipó el aumento de producción"
+                    ],
+                    rootCause: "Falta de planificación de recursos para picos de producción"
+                },
+                {
+                    problem: "El sitio web se cayó durante ventas especiales",
+                    whys: [
+                        "Porque el servidor no soportó la carga",
+                        "Porque no se escaló la infraestructura",
+                        "Porque no se anticipó el tráfico",
+                        "Porque los datos históricos no fueron analizados",
+                        "Porque no hay proceso de pronóstico de demanda"
+                    ],
+                    rootCause: "Falta de proceso sistemático de pronóstico y escalado"
+                }
+            ];
+
+            // Inicializar componentes
+            initParticles();
+            initUseCases();
+            initEventListeners();
+            initAnimations();
+            initTimeline();
+            initWhyNodes();
+
+            // Función para inicializar partículas
+            function initParticles() {
+                const canvas = document.getElementById('particles-canvas');
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const particleCount = 80;
+                
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            size: Math.random() * 3 + 1,
+                            speedX: (Math.random() - 0.5) * 0.5,
+                            speedY: (Math.random() - 0.5) * 0.5,
+                            color: `rgba(16, 185, 129, ${Math.random() * 0.4 + 0.1})`
+                        });
+                    }
+                }
+                
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach(particle => {
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+                        
+                        if (particle.x < 0 || particle.x > canvas.width) particle.speedX = -particle.speedX;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.speedY = -particle.speedY;
+                        
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        ctx.fillStyle = particle.color;
+                        ctx.fill();
+                    });
+                    
+                    requestAnimationFrame(animateParticles);
+                }
+                
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    createParticles();
+                });
+                
+                resizeCanvas();
+                createParticles();
+                animateParticles();
+            }
+
+            // Función para inicializar nodos 5 Whys
+            function initWhyNodes() {
+                document.querySelectorAll('.why-node').forEach(node => {
+                    node.addEventListener('click', function() {
+                        const whyNum = this.getAttribute('data-why');
+                        const whyData = [
+                            "Problema inicial identificado",
+                            "Primera causa identificada",
+                            "Segunda causa identificada", 
+                            "Tercera causa identificada",
+                            "Cuarta causa identificada",
+                            "Causa raíz encontrada"
+                        ];
+                        
+                        alert(`Nivel ${whyNum} del análisis 5 Whys:\n${whyData[whyNum-1]}`);
+                    });
+                });
+                
+                document.querySelectorAll('.why-step').forEach(step => {
+                    step.addEventListener('click', function() {
+                        const stepNum = this.getAttribute('data-step');
+                        const stepData = {
+                            "1": "Problema inicial: Punto de partida del análisis",
+                            "2": "Primer '¿Por qué?': Identificación de causa superficial",
+                            "3": "Segundo '¿Por qué?': Profundización en la cadena causal",
+                            "4": "Tercer '¿Por qué?': Acercándose a causas sistémicas",
+                            "5": "Cuarto '¿Por qué?': Identificación de causas fundamentales",
+                            "6": "Causa raíz: El origen real del problema, donde se debe intervenir"
+                        };
+                        
+                        if (stepData[stepNum]) {
+                            alert(`Paso ${stepNum}: ${stepData[stepNum]}`);
+                        }
+                    });
+                });
+            }
+
+            // Función para inicializar casos de uso
+            function initUseCases() {
+                const container = document.getElementById('useCasesContainer');
+                container.innerHTML = '';
+                
+                const grid = document.createElement('div');
+                grid.className = 'main-grid';
+                grid.style.marginTop = '1.5rem';
+                
+                useCasesData.forEach(useCase => {
+                    const card = document.createElement('div');
+                    card.className = 'card use-case-card';
+                    card.style.cursor = 'pointer';
+                    card.innerHTML = `
+                        <div class="card-header" style="border-bottom: none; margin-bottom: 1rem;">
+                            <div class="card-icon" style="background: ${useCase.color};">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <h3 class="card-title" style="font-size: 1.4rem;">${useCase.title}</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>${useCase.description}</p>
+                            <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--accent-light);">
+                                <i class="fas fa-arrow-right"></i> Click para ejemplo de análisis
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => showUseCaseDetail(useCase));
+                    grid.appendChild(card);
+                });
+                
+                container.appendChild(grid);
+            }
+
+            // Función para inicializar timeline
+            function initTimeline() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                timelineItems.forEach(item => observer.observe(item));
+            }
+
+            // Función para inicializar event listeners
+            function initEventListeners() {
+                // Botón de simulación
+                const simulateBtn = document.getElementById('simulateBtn');
+                simulateBtn.addEventListener('click', simulate5WhysAnalysis);
+                
+                // Botón de detalles técnicos
+                const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+                viewDetailsBtn.addEventListener('click', () => {
+                    document.getElementById('techModal').classList.add('active');
+                });
+                
+                // Botón de comparación
+                const compareBtn = document.getElementById('compareBtn');
+                compareBtn.addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.add('active');
+                });
+                
+                // Cerrar modales
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    document.getElementById('techModal').classList.remove('active');
+                });
+                
+                document.getElementById('closeCompareModal').addEventListener('click', () => {
+                    document.getElementById('compareModal').classList.remove('active');
+                });
+                
+                // Cerrar modales al hacer clic fuera
+                document.getElementById('techModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'techModal') {
+                        document.getElementById('techModal').classList.remove('active');
+                    }
+                });
+                
+                document.getElementById('compareModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'compareModal') {
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+                
+                // Cerrar con Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        document.getElementById('techModal').classList.remove('active');
+                        document.getElementById('compareModal').classList.remove('active');
+                    }
+                });
+            }
+
+            // Función para inicializar animaciones
+            function initAnimations() {
+                // Animación de aparición para elementos
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+                
+                // Aplicar animación a elementos
+                document.querySelectorAll('.card').forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 0.6s, transform 0.6s';
+                    observer.observe(el);
+                });
+            }
+
+            // Función para simulación de análisis 5 Whys
+            function simulate5WhysAnalysis() {
+                const btn = document.getElementById('simulateBtn');
+                const originalHTML = btn.innerHTML;
+                const originalClass = btn.className;
+                
+                // Cambiar estado del botón
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Realizando análisis...';
+                btn.className = 'btn pulse-animation';
+                btn.disabled = true;
+                
+                // Mostrar progreso
+                const steps = [
+                    "Definiendo el problema...",
+                    "Analizando primera causa...",
+                    "Preguntando segundo '¿Por qué?'...",
+                    "Profundizando en tercera causa...",
+                    "Identificando causa raíz...",
+                    "Validando análisis...",
+                    "Generando recomendaciones..."
+                ];
+                
+                let step = 0;
+                const progressInterval = setInterval(() => {
+                    if (step < steps.length) {
+                        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${steps[step]}`;
+                        step++;
+                    }
+                }, 400);
+                
+                // Simular análisis completo
+                setTimeout(() => {
+                    clearInterval(progressInterval);
+                    
+                    // Mostrar resultados
+                    showAnalysisResults();
+                    
+                    // Restaurar botón
+                    btn.innerHTML = originalHTML;
+                    btn.className = originalClass;
+                    btn.disabled = false;
+                    
+                    // Efecto visual
+                    document.querySelectorAll('.why-step').forEach(step => {
+                        step.style.borderColor = 'var(--success)';
+                        step.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.4)';
+                        
+                        setTimeout(() => {
+                            step.style.borderColor = '';
+                            step.style.boxShadow = '';
+                        }, 2500);
+                    });
+                }, 3000);
+            }
+
+            // Función para mostrar resultados del análisis
+            function showAnalysisResults() {
+                // Seleccionar un ejemplo aleatorio
+                const example = whyExamples[Math.floor(Math.random() * whyExamples.length)];
+                
+                // Crear modal de resultados
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeResultsModal">&times;</button>
+                        <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                            <i class="fas fa-file-contract"></i> Resultados del Análisis 5 Whys
+                        </h2>
+                        <div style="margin-bottom: 1.5rem;">
+                            <p style="font-weight: 700; color: var(--accent-light); margin-bottom: 1rem;">
+                                <i class="fas fa-exclamation-triangle"></i> Problema inicial:
+                            </p>
+                            <p style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 12px; border-left: 4px solid var(--accent);">
+                                ${example.problem}
+                            </p>
+                        </div>
+                        
+                        <div class="why-flow" style="margin: 2rem 0;">
+                            ${example.whys.map((why, index) => `
+                                <div class="why-step">
+                                    <div class="why-step-number">${index + 1}</div>
+                                    <div class="why-step-title">¿Por qué? #${index + 1}</div>
+                                    <div class="why-step-content">${why}</div>
+                                </div>
+                                ${index < example.whys.length - 1 ? '<div class="connector"></div>' : ''}
+                            `).join('')}
+                        </div>
+                        
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 16px; border: 2px solid var(--success);">
+                            <h4 style="color: var(--success); margin-bottom: 1rem;">
+                                <i class="fas fa-bullseye"></i> Causa Raíz Identificada:
+                            </h4>
+                            <p style="color: var(--text-primary); font-size: 1.2rem; font-weight: 700;">
+                                ${example.rootCause}
+                            </p>
+                        </div>
+                        
+                        <div class="code-container" style="margin: 1.5rem 0;">
+                            <span class="code-comment">// Acciones correctivas recomendadas:</span><br>
+                            <span class="code-keyword">1.</span> Implementar proceso para prevenir recurrencia<br>
+                            <span class="code-keyword">2.</span> Asignar responsable y fecha límite<br>
+                            <span class="code-keyword">3.</span> Establecer indicadores de seguimiento<br>
+                            <span class="code-keyword">4.</span> Documentar lecciones aprendidas<br>
+                            <span class="code-keyword">5.</span> Revisar procesos relacionados
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                            <button class="btn" id="exportReportBtn" style="flex: 1;">
+                                <i class="fas fa-download"></i> Exportar Análisis
+                            </button>
+                            <button class="btn btn-secondary" id="newAnalysisBtn" style="flex: 1;">
+                                <i class="fas fa-plus-circle"></i> Nuevo Análisis
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners para el modal de resultados
+                document.getElementById('closeResultsModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('exportReportBtn').addEventListener('click', () => {
+                    alert('Análisis exportado exitosamente (simulación)');
+                    modal.remove();
+                });
+                
+                document.getElementById('newAnalysisBtn').addEventListener('click', () => {
+                    modal.remove();
+                    simulate5WhysAnalysis();
+                });
+            }
+
+            // Función para mostrar detalle de caso de uso
+            function showUseCaseDetail(useCase) {
+                const examples = {
+                    'Manufactura y Producción': {
+                        problem: "Producto defectuoso en línea de producción",
+                        rootCause: "Falta de capacitación en nuevo procedimiento de inspección",
+                        whys: [
+                            "Porque no pasó el control de calidad",
+                            "Porque el operador no detectó la falla",
+                            "Porque no estaba familiarizado con el nuevo estándar",
+                            "Porque no recibió capacitación adecuada",
+                            "Porque el plan de capacitación no fue actualizado"
+                        ]
+                    },
+                    'Desarrollo de Software': {
+                        problem: "Bug crítico en producción después del despliegue",
+                        rootCause: "Pruebas de integración incompletas por presión de tiempo",
+                        whys: [
+                            "Porque no fue detectado en pruebas",
+                            "Porque las pruebas de integración no lo cubrieron",
+                            "Porque se acortó el tiempo de pruebas",
+                            "Porque había presión por lanzar rápido",
+                            "Porque no se priorizó adecuadamente la calidad"
+                        ]
+                    },
+                    'Salud y Hospitales': {
+                        problem: "Error en administración de medicamento",
+                        rootCause: "Proceso de verificación no estandarizado entre turnos",
+                        whys: [
+                            "Porque el paciente recibió dosis incorrecta",
+                            "Porque la enfermera no verificó adecuadamente",
+                            "Porque el procedimiento de verificación no fue seguido",
+                            "Porque hay variaciones entre turnos",
+                            "Porque no hay protocolo estandarizado de verificación"
+                        ]
+                    }
+                };
+                
+                const example = examples[useCase.title] || {
+                    problem: "Problema específico del área",
+                    rootCause: "Causa raíz identificada",
+                    whys: [
+                        "Primera causa identificada",
+                        "Segunda causa en la cadena",
+                        "Tercera causa más profunda",
+                        "Cuarta causa acercándose a raíz",
+                        "Quinta causa: origen real"
+                    ]
+                };
+                
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeDetailModal">&times;</button>
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div class="card-icon" style="background: ${useCase.color}; margin-right: 1rem;">
+                                <i class="fas ${useCase.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 style="color: ${useCase.color};">${useCase.title}</h2>
+                                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${useCase.description}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-exclamation-triangle"></i> Ejemplo de aplicación:
+                                </h4>
+                                <div style="background: rgba(16, 185, 129, 0.1); padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem;">
+                                    <strong>Problema:</strong> ${example.problem}
+                                </div>
+                                
+                                <div style="margin: 1.5rem 0;">
+                                    <h5 style="color: var(--accent-light); margin-bottom: 0.8rem;">Proceso 5 Whys:</h5>
+                                    ${example.whys.map((why, index) => `
+                                        <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
+                                            <div style="width: 30px; height: 30px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: 700;">${index + 1}</div>
+                                            <div style="flex: 1;">${why}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                <div style="padding: 1.2rem; background: rgba(34, 197, 94, 0.1); border-radius: 12px; border-left: 4px solid var(--success);">
+                                    <strong>Causa Raíz:</strong> ${example.rootCause}
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">
+                                    <i class="fas fa-lightbulb"></i> Recomendaciones para esta área:
+                                </h4>
+                                <ul class="feature-list">
+                                    <li>Involucrar a personal de primera línea en el análisis</li>
+                                    <li>Documentar casos para referencia futura</li>
+                                    <li>Implementar soluciones sistémicas, no parches</li>
+                                    <li>Monitorear indicadores relacionados</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                                <button class="btn" id="runAnalysisBtn" style="background: ${useCase.color};">
+                                    <i class="fas fa-play"></i> Ejecutar Análisis
+                                </button>
+                                <button class="btn btn-secondary" id="saveTemplateBtn">
+                                    <i class="fas fa-save"></i> Guardar Plantilla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                document.getElementById('closeDetailModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+                
+                document.getElementById('runAnalysisBtn').addEventListener('click', () => {
+                    modal.remove();
+                    simulate5WhysAnalysis();
+                });
+                
+                document.getElementById('saveTemplateBtn').addEventListener('click', () => {
+                    alert(`Plantilla guardada para: ${useCase.title}`);
+                    modal.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
