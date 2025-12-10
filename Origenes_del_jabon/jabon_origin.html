@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen del Jabón - Historia y Evolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Canvas para efectos visuales -->
+    <canvas id="bubbles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="jabon-logo">
+                    <i class="fas fa-soap"></i>
+                </div>
+                <h1>Origen del Jabón</h1>
+                <p class="subtitle">Un viaje a través de la historia de la limpieza humana: desde la antigua Mesopotamia hasta la revolución química moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> 5000 años de evolución en la búsqueda de la limpieza y la higiene
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-flask"></i> De la ceniza y la grasa animal a la química sofisticada
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Jabón?</h2>
+                </div>
+                <div class="card-content">
+                    <p>El <span class="jabon-highlight">jabón</span> es una sustancia sólida, líquida o en polvo utilizada para <span class="highlight">lavar y limpiar</span>, formada por la reacción química entre un álcali (como la sosa o la potasa) y un ácido graso.</p>
+                    <p>Este proceso, conocido como <span class="highlight">saponificación</span>, transforma grasas animales o vegetales en sales de ácidos grasos, creando una molécula con propiedades limpiadoras únicas.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Fórmula química básica de la saponificación</span><br>
+                        <span class="code-keyword">Grasa</span> + <span class="highlight">Hidróxido de sodio</span> → <span class="code-function">Jabón</span> + <span class="code-string">Glicerina</span><br><br>
+                        <span class="code-comment"># Proceso tradicional:</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Selección</span> - Grasas animales (sebo) o aceites vegetales<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Preparación</span> - Mezcla con lejía (hidróxido)<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Saponificación</span> - Reacción química controlada<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Curado</span> - Secado y endurecimiento (4-6 semanas)<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Moldeado</span> - Formas y fragancias personalizadas
+                    </div>
+
+                    <div class="error-classification">
+                        <div class="error-category">
+                            <div class="category-title">
+                                <i class="fas fa-water"></i> Jabón Natural Tradicional
+                            </div>
+                            <p>Fabricado con ingredientes naturales, sin aditivos químicos. Ejemplo: Jabón de Marsella, jabón de Alepo.</p>
+                        </div>
+                        <div class="error-category error">
+                            <div class="category-title">
+                                <i class="fas fa-industry"></i> Jabón Industrial Moderno
+                            </div>
+                            <p>Producido en masa con procesos químicos avanzados, con aditivos para propiedades específicas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Cronología Histórica</h2>
+                </div>
+                <div class="card-content">
+                    <div class="timeline-mini">
+                        <div class="timeline-mini-item">
+                            <div class="timeline-mini-year">2800 a.C.</div>
+                            <div class="timeline-mini-content">Mesopotamia - Primeras evidencias</div>
+                        </div>
+                        <div class="timeline-mini-item">
+                            <div class="timeline-mini-year">1500 a.C.</div>
+                            <div class="timeline-mini-content">Egipto - Mezclas de ceniza y aceites</div>
+                        </div>
+                        <div class="timeline-mini-item">
+                            <div class="timeline-mini-year">600 a.C.</div>
+                            <div class="timeline-mini-content">Fenicios - Comercio de jabón</div>
+                        </div>
+                        <div class="timeline-mini-item">
+                            <div class="timeline-mini-year">300 d.C.</div>
+                            <div class="timeline-mini-content">Roma Galia - Jabón duro documentado</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">5000</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">300</div>
+                            <div class="stat-label">Tipos diferentes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">Uso mundial</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1.5M</div>
+                            <div class="stat-label">Toneladas anuales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución Histórica del Jabón</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2800 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2800 a.C.</div>
+                            <h3 class="timeline-title">Orígenes en Mesopotamia</h3>
+                            <p>Los primeros registros de una sustancia similar al jabón se encuentran en tablillas de arcilla babilónicas. Mezclaban agua, aceite y ceniza de madera.</p>
+                            <div class="component-badge">Ceniza</div>
+                            <div class="component-badge">Aceite</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1500 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1500 a.C.</div>
+                            <h3 class="timeline-title">Egipto Antiguo</h3>
+                            <p>Documentos egipcios describen mezclas de aceites animales y vegetales con sales alcalinas para tratar enfermedades de la piel y lavar ropa.</p>
+                            <div class="component-badge">Sal alcalina</div>
+                            <div class="component-badge">Aceite vegetal</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">600 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">600 a.C.</div>
+                            <h3 class="timeline-title">Fenicios y Galos</h3>
+                            <p>Fenicios producían jabón con aceite de oliva y ceniza de algas marinas. Galos creaban un jabón duro con grasa de cabra y ceniza de haya.</p>
+                            <div class="component-badge">Aceite de oliva</div>
+                            <div class="component-badge">Ceniza de haya</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">300 d.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">300 d.C.</div>
+                            <h3 class="timeline-title">Imperio Romano</h3>
+                            <p>Plinio el Viejo describe el jabón galo como un invento para teñir el cabello. Los romanos usaban principalmente aceite y arena para limpieza.</p>
+                            <div class="component-badge">Grasa animal</div>
+                            <div class="component-badge">Lejía</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">800 d.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">800 d.C.</div>
+                            <h3 class="timeline-title">Edad Media Europea</h3>
+                            <p>Producción limitada principalmente por monjes y boticarios. Jabón de Marsella comienza a ganar reputación por su calidad.</p>
+                            <div class="component-badge">Aceite de oliva</div>
+                            <div class="component-badge">Ceniza marina</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1791</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1791</div>
+                            <h3 class="timeline-title">Revolución Química</h3>
+                            <p>Nicolas Leblanc inventa un proceso para producir sosa cáustica a partir de sal común, abaratando y masificando la producción de jabón.</p>
+                            <div class="component-badge">Sosa cáustica</div>
+                            <div class="component-badge">Producción masiva</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <h2 class="card-title">Tipos Tradicionales de Jabón</h2>
+            </div>
+            <div class="card-content">
+                <div class="types-grid">
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Jabón de Alepo</h3>
+                        <p>El jabón más antiguo del mundo, fabricado en Siria desde hace 2000 años con aceite de oliva y laurel.</p>
+                        <div class="component-badge">Aceite de oliva</div>
+                        <div class="component-badge">Aceite de laurel</div>
+                        <div class="component-badge">Curado 9 meses</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h3>Jabón de Marsella</h3>
+                        <p>Famoso jabón francés fabricado desde el siglo XIV con al menos 72% de aceite vegetal (normalmente oliva).</p>
+                        <div class="component-badge">Aceite vegetal</div>
+                        <div class="component-badge">Ceniza marina</div>
+                        <div class="component-badge">Cuadrado verde</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-cow"></i>
+                        </div>
+                        <h3>Jabón de Castilla</h3>
+                        <p>Originario de España, hecho exclusivamente con aceite de oliva, agua y sosa cáustica. Suave y biodegradable.</p>
+                        <div class="component-badge">100% oliva</div>
+                        <div class="component-badge">Biodegradable</div>
+                        <div class="component-badge">Hipoaalergénico</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Jabón Nabulsi</h3>
+                        <p>Jabón palestino tradicional hecho con aceite de oliva local, agua y sosa cáustica, con propiedades medicinales.</p>
+                        <div class="component-badge">Aceite local</div>
+                        <div class="component-badge">Medicinal</div>
+                        <div class="component-badge">Tradicional</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Popularidad mundial del jabón natural</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Crecimiento mercado jabón artesanal</span>
+                        <span>22% anual</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h2 class="card-title">Cultura del Jabón en el Mundo</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <!-- Demostración interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulador de Saponificación
+                    </div>
+                    <p>Experimenta el proceso químico de creación de jabón:</p>
+                    
+                    <div id="saponificationSimulator">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de grasa:</label>
+                                <select id="fatType" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                    <option value="olive">Aceite de oliva</option>
+                                    <option value="coconut">Aceite de coco</option>
+                                    <option value="shea">Manteca de karité</option>
+                                    <option value="tallow">Sebo animal</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Álcali:</label>
+                                <div style="display: flex; gap: 1rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="alkali" value="sodium" checked>
+                                        <span>Hidróxido de sodio (jabón duro)</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="alkali" value="potassium">
+                                        <span>Hidróxido de potasio (jabón líquido)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tiempo de curado (semanas):</label>
+                                <input type="range" id="cureTime" min="1" max="12" value="6" style="width: 100%;">
+                                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                                    <span>1 semana</span>
+                                    <span id="cureTimeValue">6 semanas</span>
+                                    <span>12 semanas</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-result" id="simulationResult">
+                            <div class="result-text">Configura los parámetros para simular la creación de jabón</div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="startSimulationBtn">
+                                <i class="fas fa-play"></i> Iniciar Saponificación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="autoRecipeBtn">
+                                <i class="fas fa-magic"></i> Receta Tradicional
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="timelineJourneyBtn">
+                            <i class="fas fa-map-marked-alt"></i> Recorrido Histórico Interactivo
+                        </button>
+                        <button class="btn btn-secondary" id="viewChemistryBtn">
+                            <i class="fas fa-atom"></i> Ver Química del Jabón
+                        </button>
+                        <button class="btn btn-error" id="compareSoapsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Jabones
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Origen del Jabón - Historia y Evolución de la Limpieza Humana</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-soap"></i> 5000 años de historia | De la ceniza a la química moderna | Cultura y tradición en cada burbuja
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Basado en investigaciones históricas y antropológicas | Desde Mesopotamia hasta la revolución industrial
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para química del jabón -->
+    <div class="modal" id="chemistryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeChemistryModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-atom"></i> Química de la Saponificación
+            </h2>
+            <div class="modal-body">
+                <p><strong>Proceso químico fundamental:</strong></p>
+                <div class="code-container" style="margin: 1rem 0;">
+                    <span class="code-comment"># Ecuación general de la saponificación</span><br>
+                    <span class="code-keyword">Triglicérido</span> (grasa) + 3<span class="code-function">NaOH</span> → 3<span class="code-string">Jabón</span> + <span class="code-comment">Glicerol</span><br><br>
+                    <span class="code-comment"># Donde:</span><br>
+                    - <span class="code-keyword">Triglicérido</span>: Molécula de grasa (ej: aceite de oliva)<br>
+                    - <span class="code-function">NaOH</span>: Hidróxido de sodio (sosa cáustica)<br>
+                    - <span class="code-string">Jabón</span>: Sal de ácido graso (ej: oleato de sodio)<br>
+                    - <span class="code-comment">Glicerol</span>: Glicerina, subproducto valioso
+                </div>
+                
+                <p><strong>Estructura molecular del jabón:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li><span class="highlight">Cabeza hidrofílica</span> - Atrae agua (parte polar)</li>
+                    <li><span class="highlight">Cola hidrofóbica</span> - Atrae grasa (parte no polar)</li>
+                    <li><span class="highlight">Micelas</span> - Estructuras esféricas que atrapan la suciedad</li>
+                    <li><span class="highlight">Emulsión</span> - Suspensión de grasa en agua</li>
+                </ul>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h4>Jabón Duro</h4>
+                        <p>Con hidróxido de sodio. Ideal para barras sólidas.</p>
+                        <div class="component-badge">NaOH</div>
+                        <div class="component-badge">Sólido</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-tint-slash"></i>
+                        </div>
+                        <h4>Jabón Líquido</h4>
+                        <p>Con hidróxido de potasio. Produce jabón líquido.</p>
+                        <div class="component-badge">KOH</div>
+                        <div class="component-badge">Líquido</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de jabones -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Jabón Natural vs. Industrial
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-leaf"></i> Jabón Natural Tradicional</h3>
+                        <ul class="feature-list">
+                            <li>Ingredientes naturales y biodegradables</li>
+                            <li>Proceso lento de curado (4-12 semanas)</li>
+                            <li>Contiene glicerina natural humectante</li>
+                            <li>PH más cercano al de la piel</li>
+                            <li>Sin conservantes ni químicos agresivos</li>
+                            <li>Biodegradable y ecológico</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-industry"></i> Jabón Industrial Moderno</h3>
+                        <ul class="feature-list feature-list-secondary">
+                            <li>Producción masiva y rápida</li>
+                            <li>Aditivos químicos para espuma y aroma</li>
+                            <li>Glicerina extraída para otros usos</li>
+                            <li>PH más alcalino (puede irritar piel sensible)</li>
+                            <li>Conservantes para larga vida útil</li>
+                            <li>Mayor impacto ambiental</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Impacto histórico: Revolución de la higiene</span><br>
+                    <span class="code-string">"Antes del jabón industrial (1850): Esperanza de vida ~40 años"</span><br>
+                    <span class="code-string">"Después del jabón industrial (1900): Esperanza de vida ~55 años"</span><br>
+                    <span class="code-comment"># Reducción drástica de enfermedades infecciosas gracias a la higiene</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Menos infecciones</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99%</div>
+                        <div class="stat-label">Elimina bacterias</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Aumento vida útil</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">5000</div>
+                        <div class="stat-label">Años de evolución</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jabon_script.js"></script>
+</body>
+</html>
