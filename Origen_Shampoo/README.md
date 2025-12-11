@@ -5,7 +5,7 @@
 ## Características ✨
 
 ## Línea de tiempo animada · Simulador de formulaciones históricas · Comparación cultural · Efectos visuales con partículas · Diseño oscuro moderno
-Cómo usar 🚀
+## Cómo usar 🚀
 
 ## Abre shampoo-history.html en cualquier navegador. Explora la historia, simula formulaciones y compara métodos de diferentes culturas.
 
