@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen del Shampoo - Historia y Evolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="shampoo-styles.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧴</text></svg>">
+</head>
+<body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="shampoo-logo">
+                    <i class="fas fa-pump-soap"></i>
+                </div>
+                <h1>Origen del Shampoo</h1>
+                <p class="subtitle">Un viaje fascinante a través de la historia, desde los primeros limpiadores capilares hasta las fórmulas científicas modernas</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> 4,000 años de evolución en el cuidado del cabello
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-flask"></i> De hierbas naturales a la química moderna
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Shampoo?</h2>
+                </div>
+                <div class="card-content">
+                    <p>El <span class="shampoo-highlight">shampoo</span> (del hindi "chāmpo", que significa masajear) es un producto para la <span class="highlight">limpieza del cabello</span> que elimina la suciedad, el sebo, los contaminantes y los residuos de otros productos capilares.</p>
+                    <p>A lo largo de la historia, ha evolucionado desde simples <span class="highlight">infusiones de hierbas</span> hasta complejas fórmulas científicas con ingredientes activos específicos para cada tipo de cabello.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Composición básica del shampoo moderno</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Tensioactivos</span> - Limpian eliminando grasa y suciedad (15-25%)<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Espesantes</span> - Dan la textura adecuada al producto (1-3%)<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Acondicionadores</span> - Suavizan y desenredan (1-4%)<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Conservantes</span> - Previenen el crecimiento bacteriano (0.5-1%)<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Fragancias y colorantes</span> - Mejoran la experiencia sensorial (0.5-1%)
+                    </div>
+
+                    <div class="ingredient-classification">
+                        <div class="ingredient-category">
+                            <div class="category-title">
+                                <i class="fas fa-leaf"></i> Ingredientes Tradicionales
+                            </div>
+                            <p>Hierbas, aceites esenciales y extractos naturales usados durante milenios. Ejemplo: Reetha (fruto del árbol del jabón), Amla, Henna.</p>
+                        </div>
+                        <div class="ingredient-category modern">
+                            <div class="category-title">
+                                <i class="fas fa-atom"></i> Ingredientes Modernos
+                            </div>
+                            <p>Compuestos químicos sintetizados en laboratorio. Ejemplo: Sodium Laureth Sulfate, Siliconas, Panthenol, Keratina hidrolizada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">Evolución del Mercado</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list feature-list-secondary">
+                        <li>Mercado global valuado en $45 billones (2024)</li>
+                        <li>Crecimiento anual promedio del 3.8%</li>
+                        <li>Más de 5,000 fórmulas diferentes disponibles</li>
+                        <li>Tendencia hacia productos naturales y orgánicos</li>
+                        <li>Personalización según tipo de cabello y necesidades</li>
+                        <li>Innovación en ingredientes activos</li>
+                        <li>Expansión de líneas especializadas</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">$45B</div>
+                            <div class="stat-label">Mercado Global</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1940</div>
+                            <div class="stat-label">Primer shampoo líquido comercial</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1930</div>
+                            <div class="stat-label">Primer shampoo con pH balanceado</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2000+</div>
+                            <div class="stat-label">Marcas actuales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Línea de Tiempo Histórica</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000 a.C.</div>
+                            <h3 class="timeline-title">Orígenes en la India Antigua</h3>
+                            <p>Primeros registros del uso de frutos del árbol Reetha (Sapindus mukorossi) mezclados con hierbas para lavar el cabello. La palabra "shampoo" proviene del hindi "chāmpo" (masajear).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1500</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVI</div>
+                            <h3 class="timeline-title">Llegada a Europa</h3>
+                            <p>Comerciantes británicos llevan la práctica del "chāmpo" a Europa. Inicialmente se usaban jabones sólidos alcalinos que dañaban el cabello.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1814</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1814</div>
+                            <h3 class="timeline-title">Primer Salón de "Shampooing"</h3>
+                            <p>Sake Dean Mahomed abre en Brighton, Inglaterra, el primer salón de "shampooing" terapéutico, combinando masaje indio con limpieza capilar.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1927</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1927</div>
+                            <h3 class="timeline-title">Nacimiento del Shampoo Moderno</h3>
+                            <p>Hans Schwarzkopf desarrolla en Alemania el primer shampoo líquido en polvo, marcando el inicio de la industria moderna del cuidado capilar.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1930</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1930</div>
+                            <h3 class="timeline-title">pH Balanceado</h3>
+                            <p>John H. Breck introduce el primer shampoo con pH balanceado científicamente formulado, revolucionando la seguridad del producto.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970-1980</div>
+                            <h3 class="timeline-title">Especialización</h3>
+                            <p>Aparecen los primeros shampoos especializados: para cabello graso, seco, con caspa, teñido. Procter & Gamble lanza Head & Shoulders (1961) y Pantene (1970).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-Presente</div>
+                            <h3 class="timeline-title">Innovación Científica</h3>
+                            <p>Shampoos sin sulfatos, con keratina, siliconas, ingredientes orgánicos, fórmulas veganas y personalización basada en ADN.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <h2 class="card-title">Ingredientes Clave en la Historia</h2>
+            </div>
+            <div class="card-content">
+                <div class="types-grid">
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Ingredientes Ancestrales</h3>
+                        <p>Plantas y minerales usados por civilizaciones antiguas para limpieza capilar.</p>
+                        <div class="component-badge">Reetha</div>
+                        <div class="component-badge">Amla</div>
+                        <div class="component-badge">Shikakai</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3>Primeras Fórmulas Químicas</h3>
+                        <p>Compuestos desarrollados en los siglos XIX y XX para mejorar la limpieza.</p>
+                        <div class="component-badge">Jabón potásico</div>
+                        <div class="component-badge">Sulfatos</div>
+                        <div class="component-badge">Glicerina</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3>Ingredientes Modernos</h3>
+                        <p>Compuestos desarrollados científicamente para necesidades específicas.</p>
+                        <div class="component-badge">Panthenol</div>
+                        <div class="component-badge">Keratina</div>
+                        <div class="component-badge">Biotina</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Tendencias Actuales</h3>
+                        <p>Ingredientes sostenibles, orgánicos y de origen responsable.</p>
+                        <div class="component-badge">Orgánico</div>
+                        <div class="component-badge">Vegano</div>
+                        <div class="component-badge">Cruelty-free</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Efectividad de limpieza (vs. métodos tradicionales)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reducción de daño capilar (fórmulas modernas)</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill modern" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h2 class="card-title">Shampoo en Diferentes Culturas</h2>
+            </div>
+            <div class="card-content">
+                <div class="culture-cases-container" id="cultureCasesContainer">
+                    <!-- Los casos culturales se generarán con JavaScript -->
+                </div>
+                
+                <!-- Simulador de formulación -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulador de Formulación Histórica
+                    </div>
+                    <p>Experimenta cómo se formulaba el shampoo en diferentes épocas:</p>
+                    
+                    <div id="formulationSimulator">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Período histórico:</label>
+                                <select id="eraSelect" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                    <option value="ancient">Antigüedad (2000 a.C. - 500 d.C.)</option>
+                                    <option value="middle">Edad Media (500 - 1500)</option>
+                                    <option value="colonial">Era Colonial (1500 - 1800)</option>
+                                    <option value="industrial">Revolución Industrial (1800 - 1900)</option>
+                                    <option value="modern">Era Moderna (1900 - 2000)</option>
+                                    <option value="contemporary">Contemporáneo (2000 - Presente)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de cabello:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="hairType" value="normal" checked> Normal
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="hairType" value="oily"> Graso
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="hairType" value="dry"> Seco
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="hairType" value="dyed"> Teñido
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Ingredientes disponibles:</label>
+                                <div id="ingredientsList" style="padding: 1rem; background: rgba(10, 15, 26, 0.3); border-radius: 8px; min-height: 80px;">
+                                    Selecciona un período para ver los ingredientes disponibles
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-result" id="formulationResult">
+                            <div class="result-text">Selecciona un período y tipo de cabello para formular tu shampoo histórico</div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="formulateBtn">
+                                <i class="fas fa-mortar-pestle"></i> Crear Formulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulatorBtn">
+                                <i class="fas fa-redo"></i> Reiniciar Simulador
+                            </button>
+                            <button class="btn" id="autoOptimizeBtn">
+                                <i class="fas fa-magic"></i> Optimizar con Conocimiento Moderno
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="evolutionSimBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución del Shampoo
+                        </button>
+                        <button class="btn btn-secondary" id="viewChemistryBtn">
+                            <i class="fas fa-atom"></i> Explorar Química del Shampoo
+                        </button>
+                        <button class="btn btn-error" id="compareErasBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Períodos Históricos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Origen del Shampoo - Historia y Evolución | 4,000 años de cuidado capilar</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-pump-soap"></i> Desde el Reetha de la India antigua hasta la biotecnología moderna
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Historia documentada desde 2000 a.C. | Revolución científica en el siglo XX | Innovación continua en el siglo XXI
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para química del shampoo -->
+    <div class="modal" id="chemistryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeChemistryModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-atom"></i> Química del Shampoo Moderno
+            </h2>
+            <div class="modal-body">
+                <p><strong>Composición química típica:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li><span class="highlight">Tensioactivos aniónicos</span> - Sodium Laureth Sulfate, Sodium Lauryl Sulfate (20-30%)</li>
+                    <li><span class="highlight">Espesantes</span> - Cocamidopropyl Betaine, Sodium Chloride (1-5%)</li>
+                    <li><span class="highlight">Acondicionadores</span> - Siliconas, Polímeros catiónicos (1-3%)</li>
+                    <li><span class="highlight">Conservantes</span> - Parabenos, Fenoxietanol, Ácido benzoico (0.5-1%)</li>
+                    <li><span class="highlight">Agentes quelantes</span> - EDTA (0.1-0.5%)</li>
+                    <li><span class="highlight">pH ajustadores</span> - Ácido cítrico, Sodium Citrate (0.1-0.5%)</li>
+                </ul>
+                
+                <p><strong>Mecanismo de acción:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Los tensioactivos reducen la tensión superficial del agua</li>
+                    <li>Las moléculas anfifílicas rodean la grasa y suciedad (micelas)</li>
+                    <li>La agitación mecánica ayuda a desprender las impurezas</li>
+                    <li>El enjuague arrastra las micelas cargadas de grasa</li>
+                    <li>Los acondicionadores depositan una capa protectora</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Ejemplo: Formulación básica de shampoo moderno</span><br>
+                    <span class="code-keyword">Agua desionizada:</span> 70-80%<br>
+                    <span class="code-keyword">Sodium Laureth Sulfate:</span> 10-15% (tensioactivo principal)<br>
+                    <span class="code-keyword">Cocamidopropyl Betaine:</span> 5-8% (tensioactivo secundario)<br>
+                    <span class="code-keyword">Glicerina:</span> 1-3% (humectante)<br>
+                    <span class="code-keyword">Dimethicone:</span> 1-2% (acondicionador)<br>
+                    <span class="code-keyword">Fragrancia:</span> 0.5-1%<br>
+                    <span class="code-keyword">Conservante:</span> 0.5-1%<br>
+                    <span class="code-keyword">Ácido cítrico:</span> q.s. para pH 5.5<br>
+                    <span class="code-keyword">Resultado:</span> Shampoo transparente con buena espuma y acondicionamiento
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de eras -->
+    <div class="modal" id="compareErasModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareErasModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Comparación de Períodos Históricos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-seedling"></i> Métodos Tradicionales</h3>
+                        <ul class="feature-list">
+                            <li>Ingredientes 100% naturales</li>
+                            <li>Preparación artesanal y personalizada</li>
+                            <li>Bajo impacto ambiental</li>
+                            <li>Acceso limitado a ingredientes exóticos</li>
+                            <li>Eficacia variable según habilidad</li>
+                            <li>Sin conservantes químicos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-industry"></i> Producción Industrial</h3>
+                        <ul class="feature-list feature-list-secondary">
+                            <li>Consistencia garantizada en cada botella</li>
+                            <li>Alta eficiencia de limpieza</li>
+                            <li>Disponibilidad global</li>
+                            <li>Uso de conservantes y estabilizadores</li>
+                            <li>Embalaje y transporte requerido</li>
+                            <li>Mayor huella ambiental</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Datos comparativos: Eficacia vs. Sostenibilidad</span><br>
+                    <span class="code-string">"Métodos tradicionales: 65% eficacia, 95% sostenibilidad"</span><br>
+                    <span class="code-string">"Shampoo industrial: 90% eficacia, 60% sostenibilidad"</span><br>
+                    <span class="code-comment"># Tendencia actual: Fórmulas balanceadas con 80% eficacia y 85% sostenibilidad</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">4000+</div>
+                        <div class="stat-label">Años de historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">Eficacia moderna</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">5,000+</div>
+                        <div class="stat-label">Fórmulas diferentes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$45B</div>
+                        <div class="stat-label">Mercado global</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para evolución detallada -->
+    <div class="modal" id="evolutionModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeEvolutionModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-sitemap"></i> Árbol de Evolución del Shampoo
+            </h2>
+            <div class="modal-body">
+                <div id="evolutionTree" style="margin: 2rem 0;">
+                    <!-- El árbol de evolución se generará con JavaScript -->
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" id="exploreBranchBtn">
+                        <i class="fas fa-search"></i> Explorar Rama Seleccionada
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="shampoo-script.js"></script>
+</body>
+</html>
