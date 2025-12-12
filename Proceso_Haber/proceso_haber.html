@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Haber - Origen y Evolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_proceso_haber.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚗️</text></svg>">
+</head>
+<body>
+    <!-- Canvas para animación de partículas químicas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="chemistry-logo">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h1>Proceso de Haber-Bosch</h1>
+                <p class="subtitle">La reacción que transformó la agricultura mundial y alimentó a la humanidad en el siglo XX</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-flask"></i> Del laboratorio a la revolución industrial: N₂ + 3H₂ ⇌ 2NH₃
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-seedling"></i> 50% del nitrógeno en cuerpos humanos proviene del proceso Haber
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Proceso de Haber?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="chemical-highlight">El Proceso de Haber-Bosch</span> es un método artificial de <span class="highlight">fijación de nitrógeno atmosférico</span> para producir amoníaco (NH₃) a escala industrial, desarrollado por Fritz Haber (1909) y Carl Bosch (1913).</p>
+                    <p>Esta reacción permite convertir el nitrógeno inerte del aire (N₂) en compuestos nitrogenados utilizables por las plantas, formando la base de los <span class="highlight">fertilizantes sintéticos modernos</span> que sustentan la agricultura mundial.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Ecuación del Proceso de Haber-Bosch</span><br>
+                        <span class="code-keyword">Reacción:</span> N₂(g) + 3H₂(g) ⇌ 2NH₃(g) ΔH = -92.4 kJ/mol<br>
+                        <span class="code-keyword">Condiciones:</span> 400-500°C | 150-300 atm | Catalizador de hierro<br>
+                        <span class="code-keyword">Conversión:</span> 10-20% por paso | Recirculación continua<br>
+                        <span class="code-keyword">Producción mundial:</span> 150 millones de toneladas/año<br>
+                        <span class="code-keyword">Consumo energético:</span> 1-2% del total mundial
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-balance-scale"></i> Principio de Le Chatelier
+                            </div>
+                            <p>La reacción es exotérmica y con disminución de volumen. Altas presiones favorecen la formación de NH₃, pero altas temperaturas la perjudican, requiriendo equilibrio óptimo.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-cogs"></i> Innovación Tecnológica
+                            </div>
+                            <p>Bosch resolvió problemas de ingeniería a gran escala: materiales resistentes a alta presión/hidrógeno, recirculación de gases, purificación catalítica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Contexto Histórico y Necesidad</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Crisis de fertilizantes (1900):</strong> Dependencia del guano chileno y salitre, recursos limitados y geopolíticamente inestables</li>
+                        <li><strong>Población en crecimiento:</strong> Necesidad urgente de aumentar producción agrícola para alimentar a millones</li>
+                        <li><strong>Investigación previa:</strong> Intentos fallidos de fijación de nitrógeno (Frank-Caro, cianamida cálcica)</li>
+                        <li><strong>Primera Guerra Mundial:</strong> Necesidad alemana de nitrógeno para explosivos tras bloqueo aliado</li>
+                        <li><strong>Carrera científica:</strong> Competencia internacional por dominar la síntesis de amoníaco</li>
+                        <li><strong>Transición energética:</strong> Del carbón a procesos electroquímicos y catalíticos</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">50%</div>
+                            <div class="stat-label">Población actual alimentada</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1909</div>
+                            <div class="stat-label">Primera demostración</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1913</div>
+                            <div class="stat-label">Primera planta industrial</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4.3B</div>
+                            <div class="stat-label">Personas adicionales sustentadas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia y Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1898</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1898</div>
+                            <h3 class="timeline-title">Crisis del guano y salitre</h3>
+                            <p>Sir William Crookes advierte en la Asociación Británica que las reservas mundiales de nitrógeno fijado naturalmente se agotarán, amenazando la seguridad alimentaria mundial.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1905</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1905-1909</div>
+                            <h3 class="timeline-title">Investigación de Fritz Haber</h3>
+                            <p>Haber y su estudiante Robert Le Rossignol logran producir amoníaco en el laboratorio usando osmio como catalizador, altas presiones (175 atm) y temperatura controlada.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1910</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1910-1913</div>
+                            <h3 class="timeline-title">Escalado industrial por Carl Bosch</h3>
+                            <p>Bosch en BASF resuelve problemas de ingeniería: sustituye osmio por hierro promovido, desarrolla reactores de acero de doble pared, y establece la primera planta en Oppau.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1918</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1918-1945</div>
+                            <h3 class="timeline-title">Expansión global y guerra</h3>
+                            <p>El proceso se extiende mundialmente. Durante las guerras, provee nitrógeno para explosivos. Haber recibe Nobel en Química 1918; Bosch en 1931.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950-1970</div>
+                            <h3 class="timeline-title">Revolución Verde</h3>
+                            <p>Los fertilizantes nitrogenados permiten aumentar dramáticamente rendimientos agrícolas. Norman Borlaug recibe Nobel de la Paz 1970 por su trabajo con trigo enano.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-Presente</div>
+                            <h3 class="timeline-title">Eficiencia y sostenibilidad</h3>
+                            <p>Mejoras en eficiencia energética, catalizadores, reciclaje. Investigación en procesos alternativos verdes (electroquímicos, biológicos) para reducir huella de carbono.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Métodos y Tecnologías</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Proceso Haber-Bosch tradicional</h3>
+                        <p>Síntesis catalítica a alta presión (150-300 atm) y temperatura (400-500°C) usando gas natural como fuente de H₂.</p>
+                        <div class="component-badge">Catalizador Fe</div>
+                        <div class="component-badge">Alta presión</div>
+                        <div class="component-badge">Recirculación</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Alternativas sostenibles</h3>
+                        <p>Investigación en métodos electroquímicos, biológicos (nitrogenasas) y fotocatalíticos para reducir consumo energético.</p>
+                        <div class="component-badge">Electrólisis</div>
+                        <div class="component-badge">Enzimas</div>
+                        <div class="component-badge">Solar</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Optimizaciones modernas</h3>
+                        <p>Mejoras en catalizadores (ruthenio), diseño de reactores, integración energética y captura de carbono.</p>
+                        <div class="component-badge">Ru/C</div>
+                        <div class="component-badge">KAAP</div>
+                        <div class="component-badge">H₂ verde</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Procesos derivados</h3>
+                        <p>Transformación de NH₃ en fertilizantes (urea, nitrato), explosivos, refrigerantes y combustibles alternativos.</p>
+                        <div class="component-badge">Urea</div>
+                        <div class="component-badge">Ostwald</div>
+                        <div class="component-badge">NH₃ como combustible</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Contribución a producción alimentaria mundial</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Eficiencia energética actual vs. 1913</span>
+                        <span>65% mejora</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill success" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Planta Industrial y Simulación</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los procesos se generarán con JavaScript -->
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Proceso de Haber en Reactor
+                    </div>
+                    <p>Simula cómo los parámetros de operación afectan la producción de amoníaco:</p>
+                    
+                    <div id="processSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Temperatura del Reactor:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="temperatureSlider" min="300" max="600" value="450" style="flex: 1;">
+                                    <span id="temperatureValue" style="min-width: 60px;">450°C</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>300°C (Cinética lenta)</span>
+                                    <span>600°C (Equilibrio desfavorable)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Presión del Sistema:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="pressure-btn active" data-pressure="100">100 atm</button>
+                                    <button class="pressure-btn" data-pressure="200">200 atm</button>
+                                    <button class="pressure-btn" data-pressure="300">300 atm</button>
+                                    <button class="pressure-btn" data-pressure="400">400 atm</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros del Catalizador:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Actividad Catalítica</span>
+                                            <span id="catalystValue">85%</span>
+                                        </div>
+                                        <input type="range" id="catalystSlider" min="50" max="100" value="85" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Relación N₂:H₂</span>
+                                            <span id="ratioValue">1:3</span>
+                                        </div>
+                                        <input type="range" id="ratioSlider" min="1" max="5" value="3" step="0.5" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="processCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="processConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">La producción óptima requiere equilibrio entre cinética y equilibrio termodinámico</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runProcessBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetProcessBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showProcessDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateIndustrialBtn">
+                            <i class="fas fa-industry"></i> Simular Planta Industrial
+                        </button>
+                        <button class="btn btn-secondary" id="viewCatalystsBtn">
+                            <i class="fas fa-vial"></i> Explorar Catalizadores
+                        </button>
+                        <button class="btn btn-error" id="compareProcessesBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Procesos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Proceso de Haber-Bosch - La Reacción que Cambió el Mundo</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-atom"></i> N₂ + 3H₂ → 2NH₃ | 50% población alimentada | Revolución agrícola-industrial
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De Fritz Haber (1909) a la agricultura moderna | Impacto demográfico y ambiental | Futuro sostenible
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para catalizadores -->
+    <div class="modal" id="catalystsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCatalystModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-vial"></i> Catalizadores del Proceso de Haber
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-magnet"></i> Catalizadores Tradicionales</h3>
+                        <ul class="theory-list">
+                            <li><strong>Hierro promovido (Fe₃O₄):</strong> K₂O, Al₂O₃, CaO como promotores. Eficiencia: 10-20% conversión por paso</li>
+                            <li><strong>Osmio (original):</strong> Usado por Haber en 1909. Muy efectivo pero costoso y escaso</li>
+                            <li><strong>Uranio:</strong> Investigado tempranamente, descartado por radioactividad y costo</li>
+                            <li><strong>Níquel:</strong> Efectivo pero forma hidruros que lo desactivan</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-flask"></i> Catalizadores Modernos</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Rutenio sobre carbono (Ru/C):</strong> Proceso KAAP (Kellogg Advanced Ammonia Process). Opera a menor presión</li>
+                            <li><strong>Nanoestructuras de hierro:</strong> Mayor área superficial, mayor actividad</li>
+                            <li><strong>Aleaciones bimetálicas:</strong> Fe-Co, Fe-Ni con promotores optimizados</li>
+                            <li><strong>Catalizadores soportados:</strong> Mejor dispersión, resistencia a envenenamiento</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Mecanismo catalítico del hierro en la síntesis de amoníaco</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Adsorción disociativa</span> - N₂(g) → 2N(ads)<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Adsorción de hidrógeno</span> - H₂(g) → 2H(ads)<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Formación de NH</span> - N(ads) + H(ads) → NH(ads)<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Formación de NH₂</span> - NH(ads) + H(ads) → NH₂(ads)<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Formación de NH₃</span> - NH₂(ads) + H(ads) → NH₃(ads)<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Desorción</span> - NH₃(ads) → NH₃(g)<br>
+                    <span class="code-keyword">Paso limitante:</span> Ruptura del triple enlace N≡N (energía 945 kJ/mol)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de procesos -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Proceso Haber vs. Métodos Alternativos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Proceso Haber-Bosch</h3>
+                        <ul class="theory-list">
+                            <li>Alta eficiencia (60-80% conversión energética)</li>
+                            <li>Tecnología madura y optimizada</li>
+                            <li>Escalable a millones de toneladas</li>
+                            <li>Integrado con industria química</li>
+                            <li>Bajo costo relativo</li>
+                            <li>Infraestructura global establecida</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-leaf"></i> Métodos Sostenibles Emergentes</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Electrosíntesis a temperatura ambiente</li>
+                            <li>Fotocatálisis con energía solar</li>
+                            <li>Procesos biológicos con nitrogenasas</li>
+                            <li>Plasma no térmico</li>
+                            <li>Hidrógeno verde como materia prima</li>
+                            <li>Menor huella de carbono potencial</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Desafíos para procesos alternativos</span><br>
+                    <span class="code-string">"Eficiencia energética: Nitrogenasas naturales usan 16 ATP por N₂ fijado"</span><br>
+                    <span class="code-string">"Escalabilidad: Métodos electroquímicos requieren mejor selectividad"</span><br>
+                    <span class="code-string">"Costo: Catalizadores nobles (Ru, Pt) son caros para producción masiva"</span><br>
+                    <span class="code-comment"># Transición necesaria: Optimizar Haber actual mientras se desarrollan alternativas sostenibles</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">1-2%</div>
+                        <div class="stat-label">Energía mundial</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3%</div>
+                        <div class="stat-label">CO₂ global</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">50%</div>
+                        <div class="stat-label">Alimentos producidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">150M t</div>
+                        <div class="stat-label">NH₃/año</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="proceso_haber.js"></script>
+</body>
+</html>
