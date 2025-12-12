@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen y Evolución del Termómetro - Historia de la Medición de la Temperatura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_termometro.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌡️</text></svg>">
+</head>
+<body>
+    <!-- Canvas para efectos visuales -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="science-logo">
+                    <i class="fas fa-thermometer-full"></i>
+                </div>
+                <h1>Origen y Evolución del Termómetro</h1>
+                <p class="subtitle">De Galileo a la era digital: 400 años de innovación en la medición de la temperatura</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> Un viaje científico que transformó la medicina, la industria y la vida cotidiana
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-temperature-high"></i> De los termoscopios de aire a los sensores infrarrojos: precisión en constante evolución
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es un Termómetro?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="science-highlight">El termómetro</span> es un instrumento que <span class="highlight">mide la temperatura</span> basándose en el principio de que algunas propiedades físicas de la materia cambian de manera predecible con la temperatura.</p>
+                    <p>Desde su invención en el siglo XVII hasta los dispositivos digitales modernos, el termómetro ha revolucionado la medicina, la meteorología, la industria y la vida cotidiana.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Principios Físicos de los Termómetros</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Dilatación térmica</span> - Líquidos, sólidos y gases se expanden con el calor<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Resistencia eléctrica</span> - Cambia con la temperatura en metales y semiconductores<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Fuerza electromotriz termoeléctrica</span> - Efecto Seebeck en termopares<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Radiación infrarroja</span> - Todos los objetos emiten radiación proporcional a su temperatura<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Cambios de estado</span> - Puntos fijos como fusión y ebullición
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-ruler-combined"></i> Escalas de Temperatura
+                            </div>
+                            <p>Celsius (1742), Fahrenheit (1724), Kelvin (1848) y Rankine. Cada escala tiene sus puntos fijos y aplicaciones específicas en ciencia e industria.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Precisión Histórica
+                            </div>
+                            <p>Los primeros termómetros tenían errores de ±5°C. Los instrumentos modernos alcanzan precisiones de ±0.001°C en laboratorios de calibración.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución Tecnológica</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Termoscopio de Galileo (1592)</strong>: Primer dispositivo para detectar cambios de temperatura</li>
+                        <li><strong>Termómetro de líquido en vidrio (1654)</strong>: Ferdinand II de Médici, alcohol como líquido</li>
+                        <li><strong>Termómetro de mercurio (1714)</strong>: Daniel Fahrenheit, mayor precisión</li>
+                        <li><strong>Termómetro clínico (1867)</strong>: Thomas Allbutt, precursor del termómetro médico</li>
+                        <li><strong>Termopar (1821)</strong>: Thomas Seebeck, principio termoeléctrico</li>
+                        <li><strong>Termómetro de resistencia (1871)</strong>: William Siemens, platino como sensor</li>
+                        <li><strong>Termómetro infrarrojo (1960s)</strong>: Sin contacto, medición a distancia</li>
+                        <li><strong>Termómetros digitales (1970s)</strong>: Microprocesadores, mayor precisión</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">1592</div>
+                            <div class="stat-label">Primer termoscopio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">0.001°C</div>
+                            <div class="stat-label">Precisión actual</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">Escalas principales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">430</div>
+                            <div class="stat-label">Años de evolución</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Línea de Tiempo Histórica</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1592</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1592</div>
+                            <h3 class="timeline-title">Galileo Galilei - El Termoscopio</h3>
+                            <p>Galileo inventa el termoscopio, un dispositivo que mostraba cambios de temperatura mediante la expansión y contracción del aire en un tubo de vidrio con agua coloreada.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1654</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1654</div>
+                            <h3 class="timeline-title">Ferdinand II de Médici - Termómetro de Líquido</h3>
+                            <p>El Gran Duque de Toscana desarrolla el primer termómetro sellado con alcohol como líquido termométrico, eliminando la influencia de la presión atmosférica.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1714</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1714</div>
+                            <h3 class="timeline-title">Daniel Fahrenheit - Mercurio y Escala</h3>
+                            <p>Daniel Fahrenheit crea el termómetro de mercurio y establece la escala Fahrenheit usando una mezcla de hielo, agua y cloruro de amonio como punto cero.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1742</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1742</div>
+                            <h3 class="timeline-title">Anders Celsius - Escala Centígrada</h3>
+                            <p>El astrónomo sueco propone la escala Celsius con 0° para el punto de ebullición y 100° para el punto de congelación (invertida posteriormente).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1867</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1867</div>
+                            <h3 class="timeline-title">Thomas Allbutt - Termómetro Clínico</h3>
+                            <p>Médico inglés que crea el primer termómetro clínico práctico de solo 15 cm (frente a los 30 cm anteriores), con tiempo de lectura de 5 minutos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Actualidad</div>
+                            <h3 class="timeline-title">Tecnología Digital y Sin Contacto</h3>
+                            <p>Termómetros infrarrojos, sensores digitales de alta precisión, aplicaciones móviles y dispositivos IoT para monitoreo continuo de temperatura.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Tipos de Termómetros</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3>Líquido en Vidrio</h3>
+                        <p>Mercurio o alcohol en capilar de vidrio. Precisión ±0.1°C. Usado en laboratorios y medicina tradicional.</p>
+                        <div class="component-badge">Mercurio</div>
+                        <div class="component-badge">Alcohol</div>
+                        <div class="component-badge">Galinstano</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Digitales</h3>
+                        <p>Termistores o circuitos integrados. Lectura rápida, memoria, alarma. Precisión ±0.1°C a ±0.01°C.</p>
+                        <div class="component-badge">Termistor NTC</div>
+                        <div class="component-badge">RTD</div>
+                        <div class="component-badge">IC Sensor</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h3>Infrarrojos</h3>
+                        <p>Miden radiación térmica sin contacto. Ideales para superficies, personas en movimiento, industria.</p>
+                        <div class="component-badge">Pirómetro</div>
+                        <div class="component-badge">Termografía</div>
+                        <div class="component-badge">Oído/Frente</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <h3>Termopares</h3>
+                        <p>Dos metales diferentes generan voltaje proporcional a ΔT. Amplio rango (-200°C a +2300°C).</p>
+                        <div class="component-badge">Tipo K</div>
+                        <div class="component-badge">Tipo J</div>
+                        <div class="component-badge">Tipo T</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Precisión termómetros médicos actuales</span>
+                        <span>±0.1°C</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 98%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Tiempo de lectura (termómetro digital vs mercurio)</span>
+                        <span>10s vs 300s</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 3.3%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <h2 class="card-title">Simulaciones y Experimentos</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los experimentos se generarán con JavaScript -->
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Comparación de Termómetros
+                    </div>
+                    <p>Compara el funcionamiento de diferentes tipos de termómetros y sus características:</p>
+                    
+                    <div id="thermometerSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Termómetro:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="therm-type-btn active" data-type="mercury">Mercurio</button>
+                                    <button class="therm-type-btn" data-type="digital">Digital</button>
+                                    <button class="therm-type-btn" data-type="infrared">Infrarrojo</button>
+                                    <button class="therm-type-btn" data-type="thermocouple">Termopar</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Temperatura a Medir:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="tempSlider" min="-20" max="120" value="37" style="flex: 1;">
+                                    <span id="tempValue" style="min-width: 60px;">37°C</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>-20°C (Congelación)</span>
+                                    <span>120°C (Autoclave)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Simulación:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Precisión</span>
+                                            <span id="precisionValue">±0.1°C</span>
+                                        </div>
+                                        <input type="range" id="precisionSlider" min="1" max="100" value="10" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Tiempo Respuesta</span>
+                                            <span id="responseValue">30s</span>
+                                        </div>
+                                        <input type="range" id="responseSlider" min="1" max="300" value="30" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="thermometerCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">El termómetro de mercurio muestra la temperatura mediante dilatación del líquido en un capilar de vidrio</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos Técnicos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewTypesBtn">
+                            <i class="fas fa-thermometer-three-quarters"></i> Explorar Tipos
+                        </button>
+                        <button class="btn btn-error" id="compareTechBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Tecnologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Origen y Evolución del Termómetro - 400 años de innovación en medición de temperatura</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-thermometer-three-quarters"></i> De Galileo a la era digital | Revolución en medicina y ciencia | Precisión en constante mejora
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Historia de la termometría | Escalas Celsius, Fahrenheit, Kelvin | Aplicaciones médicas, industriales y domésticas
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para tipos de termómetros -->
+    <div class="modal" id="typesModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-thermometer-three-quarters"></i> Tipos de Termómetros y sus Aplicaciones
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-vial"></i> Termómetros de Contacto</h3>
+                        <ul class="theory-list">
+                            <li><strong>Mercurio en vidrio</strong>: Alta precisión (±0.1°C), rango -39°C a 357°C</li>
+                            <li><strong>Alcohol en vidrio</strong>: Para bajas temperaturas (-115°C a 78°C)</li>
+                            <li><strong>Digital de termistor</strong>: Respuesta rápida, memoria, alarma</li>
+                            <li><strong>Termómetro clínico</strong>: Estrechamiento del capilar para mantener lectura</li>
+                            <li><strong>Termómetro de máxima y mínima</strong>: Para meteorología</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-satellite"></i> Termómetros Sin Contacto</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Infrarrojo</strong>: Mide radiación térmica, respuesta instantánea</li>
+                            <li><strong>Termógrafo</strong>: Imagen térmica, detección de puntos calientes</li>
+                            <li><strong>Pirómetro óptico</strong>: Para altas temperaturas (hasta 3000°C)</li>
+                            <li><strong>Termómetro de oído</strong>: Mide radiación del tímpano</li>
+                            <li><strong>Termómetro frontal</strong>: Para screening médico rápido</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Características Técnicas de Termómetros Modernos</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Rango de medición</span> - De -200°C (criogénico) a +3000°C (hornos industriales)<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Precisión</span> - Desde ±0.001°C (laboratorio) a ±0.5°C (uso doméstico)<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Tiempo de respuesta</span> - 1 segundo (infrarrojo) a 5 minutos (mercurio clínico)<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Resolución</span> - 0.01°C a 0.1°C según tecnología<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Aplicaciones</span> - Médica, industrial, meteorológica, científica<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Calibración</span> - Puntos fijos: hielo/agua (0°C), agua/ vapor (100°C)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Comparación: Mercurio vs Digital vs Infrarrojo
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: #00b4d8; margin-bottom: 1rem;"><i class="fas fa-vial"></i> Mercurio</h3>
+                        <ul class="theory-list">
+                            <li>Precisión: ±0.1°C</li>
+                            <li>Tiempo: 3-5 min</li>
+                            <li>Rango: -39 a 357°C</li>
+                            <li>Ventajas: Sin baterías, calibración estable</li>
+                            <li>Desventajas: Tóxico, frágil, lectura lenta</li>
+                            <li>Aplicación: Laboratorios, referencia</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #4ade80; margin-bottom: 1rem;"><i class="fas fa-microchip"></i> Digital</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Precisión: ±0.1°C a ±0.01°C</li>
+                            <li>Tiempo: 10-60 seg</li>
+                            <li>Rango: -50 a 300°C</li>
+                            <li>Ventajas: Rápido, memoria, alarma</li>
+                            <li>Desventajas: Baterías, deriva calibración</li>
+                            <li>Aplicación: Medicina, hogar, industria</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #ff9e00; margin-bottom: 1rem;"><i class="fas fa-satellite"></i> Infrarrojo</h3>
+                        <ul class="theory-list">
+                            <li>Precisión: ±0.2°C a ±2°C</li>
+                            <li>Tiempo: 1-3 seg</li>
+                            <li>Rango: -50 a 1000°C</li>
+                            <li>Ventajas: Sin contacto, instantáneo</li>
+                            <li>Desventajas: Costo, afectado por emisividad</li>
+                            <li>Aplicación: Screening, industria, cocina</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Evolución histórica de la precisión</span><br>
+                    <span class="code-string">"1592: Termoscopio de Galileo (±5°C)"</span><br>
+                    <span class="code-string">"1714: Fahrenheit (±1°C)"</span><br>
+                    <span class="code-string">"1867: Allbutt (±0.2°C)"</span><br>
+                    <span class="code-string">"1970: Digital (±0.1°C)"</span><br>
+                    <span class="code-string">"2020: Laboratorio (±0.001°C)"</span><br>
+                    <span class="code-comment"># Prohibición mercurio (2007-2013): Directiva RoHS, convenio Minamata</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">430</div>
+                        <div class="stat-label">Años historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">0.001°C</div>
+                        <div class="stat-label">Precisión máx</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3000°C</div>
+                        <div class="stat-label">Rango máx</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1s</div>
+                        <div class="stat-label">Tiempo mín</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="termometro_evolucion.js"></script>
+</body>
+</html>
