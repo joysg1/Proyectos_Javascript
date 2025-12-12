@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen Pesticidas - Sistema de Trazabilidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="pesticide-origin-logo">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h1>Trazabilidad de Pesticidas</h1>
+                <p class="subtitle">Sistema integral de seguimiento del origen, composición y aplicación de pesticidas para garantizar seguridad alimentaria y ambiental</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-seedling"></i> Del fabricante al cultivo: seguimiento completo y transparente
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-shield-alt"></i> Garantía de seguridad alimentaria mediante trazabilidad total
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es la Trazabilidad de Pesticidas?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="pesticide-origin-highlight">Trazabilidad de pesticidas</span> es un sistema que permite rastrear el ciclo completo de los productos fitosanitarios <span class="highlight">desde su fabricación hasta su aplicación</span> en los cultivos.</p>
+                    <p>Este sistema garantiza <span class="highlight">transparencia, seguridad y cumplimiento normativo</span> en el uso de agroquímicos, protegiendo la salud pública y el medio ambiente.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Pilares fundamentales de la trazabilidad</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Origen</span> - Identificación del fabricante y composición química<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Distribución</span> - Seguimiento en cadena de suministro<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Aplicación</span> - Registro de dosis, fechas y cultivos<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Residuos</span> - Monitoreo de niveles en productos finales<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Cumplimiento</span> - Verificación de normativas locales e internacionales
+                    </div>
+
+                    <div class="error-classification">
+                        <div class="error-category">
+                            <div class="category-title">
+                                <i class="fas fa-check-circle"></i> Trazabilidad hacia adelante
+                            </div>
+                            <p>Seguimiento del pesticida desde fabricante hasta el cultivo. Ejemplo: Códigos QR en envases.</p>
+                        </div>
+                        <div class="error-category error">
+                            <div class="category-title">
+                                <i class="fas fa-exclamation-circle"></i> Trazabilidad hacia atrás
+                            </div>
+                            <p>Identificación del origen ante incidentes. Ejemplo: Retiro de lotes contaminados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">Beneficios Clave</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="feature-list feature-list-secondary">
+                        <li>Reducción del 95% en incidentes de contaminación</li>
+                        <li>Cumplimiento automático de normativas (EPA, UE)</li>
+                        <li>Transparencia total en cadena de suministro</li>
+                        <li>Optimización del uso de agroquímicos</li>
+                        <li>Certificación orgánica y de comercio justo</li>
+                        <li>Confianza del consumidor en productos finales</li>
+                        <li>Reducción de riesgos legales y financieros</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Menos contaminación</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Trazabilidad completa</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">40%</div>
+                            <div class="stat-label">Menos residuos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">60%</div>
+                            <div class="stat-label">Reducción costos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">Evolución de la Trazabilidad</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1962</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1962</div>
+                            <h3 class="timeline-title">Primera conciencia</h3>
+                            <p>Publicación de "Primavera Silenciosa" de Rachel Carson, generando conciencia sobre efectos de pesticidas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970</div>
+                            <h3 class="timeline-title">Primeras regulaciones</h3>
+                            <p>Creación de la EPA en EE.UU. y primeras normativas sobre registro y etiquetado de pesticidas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1990</div>
+                            <h3 class="timeline-title">Sistemas básicos</h3>
+                            <p>Implementación de primeros sistemas de trazabilidad con registros en papel y códigos de lote.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000</div>
+                            <h3 class="timeline-title">Digitalización</h3>
+                            <p>Adopción de sistemas digitales, códigos de barras y primeros softwares de gestión de trazabilidad.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2010</div>
+                            <h3 class="timeline-title">Trazabilidad integral</h3>
+                            <p>Implementación de sistemas blockchain y IoT para trazabilidad completa de campo a mesa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Trazabilidad 4.0</h3>
+                            <p>Integración de IA, sensores inteligentes y análisis predictivo para gestión proactiva de riesgos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h2 class="card-title">Componentes del Sistema</h2>
+            </div>
+            <div class="card-content">
+                <div class="types-grid">
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Origen y Fabricación</h3>
+                        <p>Registro de fabricante, composición química, lotes y fechas de producción.</p>
+                        <div class="component-badge">Composición</div>
+                        <div class="component-badge">Fabricante</div>
+                        <div class="component-badge">Lote</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Distribución y Almacenamiento</h3>
+                        <p>Seguimiento en cadena logística, condiciones de almacenamiento y transporte.</p>
+                        <div class="component-badge">Logística</div>
+                        <div class="component-badge">Almacén</div>
+                        <div class="component-badge">Transporte</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h3>Aplicación en Campo</h3>
+                        <p>Registro de dosis, cultivos, fechas de aplicación y condiciones ambientales.</p>
+                        <div class="component-badge">Dosis</div>
+                        <div class="component-badge">Cultivo</div>
+                        <div class="component-badge">Fecha</div>
+                    </div>
+                    <div class="type-component">
+                        <div class="type-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Análisis y Monitoreo</h3>
+                        <p>Pruebas de residuos, verificación de niveles seguros y certificación final.</p>
+                        <div class="component-badge">Residuos</div>
+                        <div class="component-badge">Análisis</div>
+                        <div class="component-badge">Certificación</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Implementación mundial de trazabilidad</span>
+                        <span>78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reducción de incidentes por contaminación</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h2 class="card-title">Casos de Aplicación</h2>
+            </div>
+            <div class="card-content">
+                <div class="use-cases-container" id="useCasesContainer">
+                    <!-- Los casos de uso se generarán con JavaScript -->
+                </div>
+                
+                <!-- Ejemplo interactivo: Rastreo de pesticida -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-search-location"></i> Demostración: Rastreo de Origen de Pesticida
+                    </div>
+                    <p>Simula el rastreo completo de un pesticida desde el fabricante hasta el producto final:</p>
+                    
+                    <div id="trackingExample">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Código de lote:</label>
+                                <div style="display: flex; gap: 1rem;">
+                                    <input type="text" id="batchCodeInput" placeholder="Ej: AGRO-2024-05-789" style="flex: 1; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                    <button class="btn" id="scanBatchBtn" style="padding: 0.8rem 1.5rem;">
+                                        <i class="fas fa-qrcode"></i> Escanear
+                                    </button>
+                                </div>
+                                <div id="batchError" style="color: var(--accent-secondary); font-size: 0.9rem; margin-top: 0.3rem; display: none;">
+                                    <i class="fas fa-exclamation-circle"></i> Código de lote no encontrado
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de búsqueda:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="btn btn-secondary search-type-btn active" data-type="full">
+                                        <i class="fas fa-sitemap"></i> Trazabilidad completa
+                                    </button>
+                                    <button class="btn btn-secondary search-type-btn" data-type="origin">
+                                        <i class="fas fa-industry"></i> Solo origen
+                                    </button>
+                                    <button class="btn btn-secondary search-type-btn" data-type="application">
+                                        <i class="fas fa-tractor"></i> Solo aplicación
+                                    </button>
+                                    <button class="btn btn-secondary search-type-btn" data-type="residues">
+                                        <i class="fas fa-flask"></i> Análisis de residuos
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="additionalFilters" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(10, 15, 26, 0.3); border-radius: 8px;">
+                                <h4 style="margin-bottom: 0.8rem; color: var(--accent-light);">Filtros adicionales:</h4>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;">Fecha desde:</label>
+                                        <input type="date" id="dateFrom" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;">Fecha hasta:</label>
+                                        <input type="date" id="dateTo" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;">Cultivo:</label>
+                                        <select id="cropFilter" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border); background: rgba(10, 15, 26, 0.5); color: var(--text-primary);">
+                                            <option value="">Todos los cultivos</option>
+                                            <option value="tomate">Tomate</option>
+                                            <option value="maiz">Maíz</option>
+                                            <option value="trigo">Trigo</option>
+                                            <option value="manzana">Manzana</option>
+                                            <option value="uva">Uva</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-result" id="trackingResult" style="min-height: 120px;">
+                            <div class="result-text">
+                                <i class="fas fa-info-circle" style="color: var(--accent-light); margin-right: 0.5rem;"></i>
+                                Ingrese un código de lote para rastrear el origen del pesticida
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="trackPesticideBtn">
+                                <i class="fas fa-search"></i> Rastrear Pesticida
+                            </button>
+                            <button class="btn btn-secondary" id="resetTrackingBtn">
+                                <i class="fas fa-redo"></i> Reiniciar Búsqueda
+                            </button>
+                            <button class="btn" id="generateReportBtn">
+                                <i class="fas fa-file-pdf"></i> Generar Reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mapa de trazabilidad -->
+                <div id="traceabilityMap" style="margin-top: 2rem; display: none;">
+                    <div class="example-title">
+                        <i class="fas fa-map-marked-alt"></i> Mapa de Trazabilidad
+                    </div>
+                    <div style="display: flex; overflow-x: auto; padding: 1rem; background: rgba(10, 15, 26, 0.3); border-radius: 12px; margin-top: 1rem;">
+                        <div class="traceability-step" data-step="1">
+                            <div class="step-icon"><i class="fas fa-industry"></i></div>
+                            <div class="step-title">Fabricación</div>
+                            <div class="step-details" id="step1"></div>
+                        </div>
+                        <div class="traceability-arrow">→</div>
+                        <div class="traceability-step" data-step="2">
+                            <div class="step-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="step-title">Almacenamiento</div>
+                            <div class="step-details" id="step2"></div>
+                        </div>
+                        <div class="traceability-arrow">→</div>
+                        <div class="traceability-step" data-step="3">
+                            <div class="step-icon"><i class="fas fa-truck"></i></div>
+                            <div class="step-title">Distribución</div>
+                            <div class="step-details" id="step3"></div>
+                        </div>
+                        <div class="traceability-arrow">→</div>
+                        <div class="traceability-step" data-step="4">
+                            <div class="step-icon"><i class="fas fa-tractor"></i></div>
+                            <div class="step-title">Aplicación</div>
+                            <div class="step-details" id="step4"></div>
+                        </div>
+                        <div class="traceability-arrow">→</div>
+                        <div class="traceability-step" data-step="5">
+                            <div class="step-icon"><i class="fas fa-flask"></i></div>
+                            <div class="step-title">Análisis</div>
+                            <div class="step-details" id="step5"></div>
+                        </div>
+                        <div class="traceability-arrow">→</div>
+                        <div class="traceability-step" data-step="6">
+                            <div class="step-icon"><i class="fas fa-shopping-basket"></i></div>
+                            <div class="step-title">Consumo</div>
+                            <div class="step-details" id="step6"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateTraceabilityBtn">
+                            <i class="fas fa-play-circle"></i> Simular Trazabilidad Completa
+                        </button>
+                        <button class="btn btn-secondary" id="viewRegulationsBtn">
+                            <i class="fas fa-gavel"></i> Ver Normativas
+                        </button>
+                        <button class="btn btn-error" id="compareSystemsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Sistemas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Trazabilidad de Pesticidas | Del Fabricante al Consumidor: Seguridad Alimentaria Garantizada</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-leaf"></i> Origen verificado | Aplicación controlada | Residuos monitoreados
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Cumplimiento EPA, UE, Codex Alimentarius | Blockchain integrado | Análisis predictivo IA
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para normativas -->
+    <div class="modal" id="regulationsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeRegulationsModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-gavel"></i> Normativas Internacionales de Pesticidas
+            </h2>
+            <div class="modal-body">
+                <p><strong>Principales regulaciones mundiales:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li><span class="highlight">EPA (EE.UU.)</span> - Límites máximos de residuos (LMRs) y registro de pesticidas</li>
+                    <li><span class="highlight">UE Regulación 1107/2009</span> - Autorización y uso sostenible de pesticidas</li>
+                    <li><span class="highlight">Codex Alimentarius</span> - Estándares internacionales de seguridad alimentaria</li>
+                    <li><span class="highlight">FAO/OMS</span> - Código internacional de conducta sobre gestión de pesticidas</li>
+                    <li><span class="highlight">REACH (UE)</span> - Registro, evaluación, autorización y restricción de químicos</li>
+                </ul>
+                
+                <p><strong>Límites máximos de residuos (LMRs) por cultivo:</strong></p>
+                <ul class="feature-list" style="margin: 1rem 0;">
+                    <li>Tomates: 0.5 mg/kg para la mayoría de pesticidas</li>
+                    <li>Manzanas: 0.3 mg/kg para organofosforados</li>
+                    <li>Uvas: 0.2 mg/kg para carbamatos</li>
+                    <li>Maíz: 0.05 mg/kg para neonicotinoides</li>
+                    <li>Trigo: 0.1 mg/kg para piretroides</li>
+                </ul>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Ejemplo: Cumplimiento normativo automático</span><br>
+                    <span class="code-keyword">Proceso:</span> Sistema detecta aplicación de pesticida en cultivo de tomates<br>
+                    <span class="code-keyword">Verificación:</span> <br>
+                    &nbsp;&nbsp;1. Consulta base de datos de LMRs para tomate<br>
+                    &nbsp;&nbsp;2. Calcula días de carencia según pesticida aplicado<br>
+                    &nbsp;&nbsp;3. Programa fecha mínima de cosecha<br>
+                    &nbsp;&nbsp;4. Bloquea venta si no se cumplen plazos<br>
+                    <span class="code-keyword">Resultado:</span> Cumplimiento 100% automático de normativas
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de sistemas -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Con/Sin Sistema de Trazabilidad
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Con Trazabilidad</h3>
+                        <ul class="feature-list">
+                            <li>Origen 100% verificable</li>
+                            <li>Cumplimiento automático de normativas</li>
+                            <li>Retiro selectivo de lotes en incidentes</li>
+                            <li>Transparencia total para consumidores</li>
+                            <li>Optimización del uso de agroquímicos</li>
+                            <li>Certificaciones internacionales facilitadas</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Sin Trazabilidad</h3>
+                        <ul class="feature-list feature-list-secondary">
+                            <li>Origen desconocido o dudoso</li>
+                            <li>Incumplimiento frecuente de regulaciones</li>
+                            <li>Retiros masivos costosos en incidentes</li>
+                            <li>Desconfianza del consumidor</li>
+                            <li>Sobreaplicación o mala aplicación</li>
+                            <li>Dificultad para obtener certificaciones</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Impacto económico en cadena agrícola</span><br>
+                    <span class="code-string">"Sistemas con trazabilidad: ROI promedio 320% en 2 años"</span><br>
+                    <span class="code-comment"># Reducción de retiros: 98% menos lotes afectados en incidentes</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Menos retiros</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">320%</div>
+                        <div class="stat-label">ROI promedio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Cumplimiento</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Menos residuos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>
