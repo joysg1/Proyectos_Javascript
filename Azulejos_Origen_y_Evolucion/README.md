@@ -1,4 +1,10 @@
-# Características ✨
+# Azulejos: Origen y Evolución
+
+## Descripción
+
+## Aplicación web interactiva que explora la historia milenaria de los azulejos, desde la antigua Mesopotamia hasta las técnicas contemporáneas de fabricación.
+
+## Características ✨
 
 ## Simulador de diseños de azulejos • Línea de tiempo histórica interactiva • Comparativa de técnicas tradicionales vs modernas • Efectos visuales con partículas cerámicas • Información detallada sobre culturas y tradiciones
 
