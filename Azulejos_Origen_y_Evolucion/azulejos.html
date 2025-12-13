@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azulejos: Origen y Evolución - Historia del Arte en Cerámica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_azulejos.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>">
+</head>
+<body>
+    <!-- Canvas para partículas de textura cerámica -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="art-logo">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h1>Azulejos: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la historia milenaria del arte cerámico, desde la antigua Mesopotamia hasta las tendencias contemporáneas</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> Más de 4,000 años de evolución estética y técnica
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-palette"></i> Del zellige marroquí al azulejo portugués: tradición y modernidad
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son los Azulejos?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Los <span class="art-highlight">azulejos</span> son piezas de <span class="highlight">cerámica vidriada</span>, generalmente cuadradas, utilizadas como revestimiento decorativo en paredes, suelos y otras superficies arquitectónicas.</p>
+                    <p>Esta expresión artística combina <span class="highlight">arte, artesanía y tecnología</span>, evolucionando desde simples baldosas funcionales hasta complejas obras maestras que narran historias culturales a través de los siglos.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Características Técnicas Fundamentales</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Material Base</span> - Arcilla cocida | Porcelana | Gres porcelánico<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Acabado Superficial</span> - Vidriado | Esmaltado | Brillante | Mate<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Formatos Comunes</span> - 10x10cm a 60x120cm | Hexagonales | Rectangulares<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Técnicas Decorativas</span> - Cuenca | Cuerda seca | Mayólica | Estarcido<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Aplicaciones</span> - Interiores | Exteriores | Fachadas | Mosaicos
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-globe-americas"></i> Orígenes Históricos
+                            </div>
+                            <p>Los primeros azulejos vidriados aparecieron en el Antiguo Egipto y Mesopotamia alrededor del 2500 a.C. La técnica se perfeccionó en Persia y llegó a Europa a través de Al-Ándalus.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-thermometer-half"></i> Proceso de Fabricación
+                            </div>
+                            <p>Moldeo de arcilla → Secado → Cocción (900-1250°C) → Esmaltado → Decoración → Segunda cocción. La temperatura determina dureza y absorción de agua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Técnicas y Estilos Arquitectónicos</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Mayólica</strong>: Técnica italiana del Renacimiento con decoración sobre esmalte crudo</li>
+                        <li><strong>Cuenca (Cuerda Seca)</strong>: Separación de colores con relieves o líneas de grasa/óxido</li>
+                        <li><strong>Zellige Marroquí</strong>: Mosaicos geométricos de cerámica esmaltada hechos a mano</li>
+                        <li><strong>Azulejo Portugués (Azulejo)</strong>: Paneles narrativos en azul cobalto sobre blanco</li>
+                        <li><strong>Delftware Holandesa</strong>: Cerámica de estaño vidriado en azul característico</li>
+                        <li><strong>Talavera Poblana</strong>: Tradición mexicana con influencia árabe y española</li>
+                        <li><strong>Modernismo/Art Nouveau</strong>: Formas orgánicas y colores vibrantes (Gaudí, Mackintosh)</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">4,500+</div>
+                            <div class="stat-label">Años de Historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1,250°C</div>
+                            <div class="stat-label">Temperatura Máx.</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">711 d.C.</div>
+                            <div class="stat-label">Llegada a España</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100+</div>
+                            <div class="stat-label">Técnicas Diferentes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Línea Histórica de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2500 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2500 a.C. - Antigüedad</div>
+                            <h3 class="timeline-title">Orígenes en Mesopotamia y Egipto</h3>
+                            <p>Primeros azulejos vidriados descubiertos en pirámides egipcias y templos mesopotámicos. Uso de cobres y álcalis para crear vidriados azules y verdes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">711 d.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">711 d.C. - Al-Ándalus</div>
+                            <h3 class="timeline-title">Introducción a la Península Ibérica</h3>
+                            <p>Los musulmanes traen técnicas persas a España. Desarrollo del mosaico nazarí en la Alhambra. Palabra "azulejo" deriva del árabe "azzulayj" (piedra pulida).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1500</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVI - Renacimiento</div>
+                            <h3 class="timeline-title">Mayólica Italiana y Expansión Europea</h3>
+                            <p>Italia perfecciona la mayólica. Técnica llega a Flandes, Holanda (Delftware) y Portugal. Azulejos se usan para narrar historias religiosas y mitológicas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1700</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVIII - Barroco y Rococó</div>
+                            <h3 class="timeline-title">Apogeo del Azulejo Portugués</h3>
+                            <p>Portugal desarrolla estilo único con paneles azules sobre blanco. Cubren iglesias, palacios y estaciones de tren. Producción industrial comienza.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XX - Modernismo</div>
+                            <h3 class="timeline-title">Revolución Artística y Nouveau</h3>
+                            <p>Gaudí en Barcelona y Mackintosh en Glasgow reinventan el azulejo. Formas orgánicas, colores intensos. Integración en arquitectura modernista.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XXI - Contemporáneo</div>
+                            <h3 class="timeline-title">Tecnología y Sostenibilidad</h3>
+                            <p>Impresión digital permite personalización ilimitada. Gres porcelánico de gran formato. Materiales reciclados y producción ecológica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h2 class="card-title">Tradiciones Regionales y Técnicas</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <h3>Zellige Marroquí</h3>
+                        <p>Artesanía milenaria de Fez y Marrakech. Teselas geométricas cortadas a mano. Colores vibrantes de cobalto, turquesa, verde y amarillo.</p>
+                        <div class="component-badge">Geometría sagrada</div>
+                        <div class="component-badge">Hecho a mano</div>
+                        <div class="component-badge">Colores minerales</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <h3>Azulejo Portugués</h3>
+                        <p>Icono cultural luso desde siglo XVI. Paneles narrativos en azul cobalto sobre blanco. Cubre fachadas, iglesias y espacios públicos.</p>
+                        <div class="component-badge">Azul cobalto</div>
+                        <div class="component-badge">Temas narrativos</div>
+                        <div class="component-badge">Fachadas</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-paint-roller"></i>
+                        </div>
+                        <h3>Talavera Poblana</h3>
+                        <p>Tradición mexicana con denominación de origen. Influencia árabe y española. Colores intensos con negro de manganeso.</p>
+                        <div class="component-badge">Denominación origen</div>
+                        <div class="component-badge">México</div>
+                        <div class="component-badge">Colores vivos</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Gres Porcelánico</h3>
+                        <p>Tecnología contemporánea. Alta resistencia y baja absorción. Formatos grandes (120x120cm). Ideal para exteriores y tráfico intenso.</p>
+                        <div class="component-badge">Alta resistencia</div>
+                        <div class="component-badge">Gran formato</div>
+                        <div class="component-badge">Tecnológico</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Azulejos artesanales vs industriales (mercado actual)</span>
+                        <span>30% / 70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%;"></div>
+                        <div class="progress-fill error" style="width: 70%; margin-left: 30%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Adopción de impresión digital en fabricación</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h2 class="card-title">Culturas y Artesanos Destacados</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Las culturas/artesanos se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de culturas y artesanos...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva: Diseño de Azulejos -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-brush"></i> Simulación: Diseño de Patrones de Azulejos
+                    </div>
+                    <p>Experimenta con diferentes estilos, colores y patrones para crear tu propio diseño de azulejos:</p>
+                    
+                    <div id="designSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Estilo Tradicional:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="styleSlider" min="1" max="6" value="3" step="1" style="flex: 1;">
+                                    <span id="styleValue" style="min-width: 100px;">Portugués</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Zellige</span>
+                                    <span>Contemporáneo</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Paleta de Colores:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="color-palette-btn active" data-palette="iberico">Ibérico</button>
+                                    <button class="color-palette-btn" data-palette="mediterraneo">Mediterráneo</button>
+                                    <button class="color-palette-btn" data-palette="oriental">Oriental</button>
+                                    <button class="color-palette-btn" data-palette="moderno">Moderno</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Diseño:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Complejidad del Patrón</span>
+                                            <span id="patternComplexityValue">Media</span>
+                                        </div>
+                                        <input type="range" id="patternComplexitySlider" min="1" max="5" value="3" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Brillo/Textura</span>
+                                            <span id="textureValue">Mate</span>
+                                        </div>
+                                        <input type="range" id="textureSlider" min="1" max="4" value="1" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="tilePatternCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Patrón portugués (azul cobalto) con complejidad media y acabado mate</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Generar Diseño
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Detalles Técnicos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Proceso de Fabricación
+                        </button>
+                        <button class="btn btn-error" id="compareProtocolsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Técnicas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Azulejos: Origen y Evolución - 4,500 Años de Arte en Cerámica</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-history"></i> 2500 a.C. - Actualidad | Mesopotamia → Al-Ándalus → Global
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Arte | Arquitectura | Cultura | Tecnología | Tradición e Innovación
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para proceso de fabricación -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-industry"></i> Proceso de Fabricación Detallado
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-clay-brick"></i> Preparación de la Arcilla</h3>
+                        <ul class="theory-list">
+                            <li><strong>Extracción</strong>: Arcilla, caolín, feldespato, cuarzo</li>
+                            <li><strong>Purificación</strong>: Eliminación de impurezas y materia orgánica</li>
+                            <li><strong>Mezcla</strong>: Homogeneización con agua (25-35% humedad)</li>
+                            <li><strong>Conformado</strong>: Prensado (gres) o extrusión (barro cocido)</li>
+                            <li><strong>Secado</strong>: 24-48 horas para eliminar humedad antes de cocción</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-fire"></i> Cocción y Esmaltado</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Bizcochado</strong>: Cocción a 900-1000°C (primera cochura)</li>
+                            <li><strong>Esmaltado</strong>: Aplicación de vidriado por inmersión o pulverización</li>
+                            <li><strong>Decoración</strong>: Pintura manual, serigrafía o impresión digital</li>
+                            <li><strong>Cocción final</strong>: 1050-1250°C para vitrificación completa</li>
+                            <li><strong>Control calidad</strong>: Verificación de absorción, resistencia y color</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Tipos de Azulejos por Material y Propiedades</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Barro Cocido</span> - Arcilla roja | Absorción 10-20% | Usos: Decoración interior<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Gres Esmaltado</span> - Arcilla gris | Absorción 3-6% | Usos: Baños, cocinas<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Gres Porcelánico</span> - Caolín, feldespato | Absorción <0.5% | Usos: Exteriores, tráfico intenso<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Porcelánico Técnico</span> - Alta pureza | Absorción <0.1% | Usos: Comercial, industrial<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Azulejo Artesanal</span> - Hecho a mano | Variaciones únicas | Usos: Decoración de lujo
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de técnicas -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Técnicas Tradicionales vs. Contemporáneas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-hands"></i> Técnicas Artesanales</h3>
+                        <ul class="theory-list">
+                            <li>Cuenca (cuerda seca): separación física de colores</li>
+                            <li>Mayólica: pintura sobre esmalte crudo antes de cocción</li>
+                            <li>Zellige marroquí: corte manual de teselas geométricas</li>
+                            <li>Decoración a mano: pincel, plantillas (estarcido)</li>
+                            <li>Cocción en horno de leña: variaciones únicas de color</li>
+                            <li>Materiales naturales: pigmentos minerales y vegetales</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-robot"></i> Técnicas Industriales</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Impresión digital: alta definición, sin límites de diseño</li>
+                            <li>Prensado seco: alta presión para baja absorción</li>
+                            <li>Serigrafía: repetición exacta, grandes tiradas</li>
+                            <li>Hornos túnel: cocción continua y uniforme</li>
+                            <li>Control digital: temperatura, tiempo y atmósfera</li>
+                            <li>Materiales sintéticos: mayor estabilidad y consistencia</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado actual de azulejos y cerámica</span><br>
+                    <span class="code-string">"Producción mundial: 13,000 millones de m² anuales"</span><br>
+                    <span class="code-string">"Principales productores: China (65%), India (10%), Brasil (5%)"</span><br>
+                    <span class="code-string">"Tendencia: gran formato (>60x120cm) y espesor reducido (<7mm)"</span><br>
+                    <span class="code-comment"># La artesanía mantiene nicho de lujo, mientras la industria domina mercado masivo</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">4,500+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">13,000M m²</div>
+                        <div class="stat-label">Producción anual</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1,250°C</div>
+                        <div class="stat-label">Temperatura máx.</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Digitalización</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="azulejos.js"></script>
+</body>
+</html>
