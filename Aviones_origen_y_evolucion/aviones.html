@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviones - Origen y Evolución de la Aviación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_aviones.css">
+</head>
+<body>
+    <!-- Canvas para partículas de vuelo -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h1>Aviones: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución tecnológica que transformó el transporte aéreo desde los primeros vuelos hasta la era moderna de la aviación</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-wind"></i> De los hermanos Wright al Concorde: 120 años de innovación
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-chart-line"></i> De 12 km/h a 2,179 km/h: La evolución de la velocidad en el aire
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es la Aviación?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">La aviación</span> es el diseño, desarrollo, producción, operación y utilización de aeronaves, especialmente las más pesadas que el aire. Esta disciplina revolucionaria transformó el <span class="highlight">transporte, la guerra y la conexión global</span> en apenas un siglo.</p>
+                    <p>Desde los primeros vuelos de los hermanos Wright en 1903 hasta los aviones supersónicos y drones modernos, la aviación ha representado uno de los <span class="highlight">logros tecnológicos más significativos de la humanidad</span>.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Hitos Históricos de la Aviación</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1903</span> - Primer vuelo motorizado (Wright Flyer) - 12 segundos<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1927</span> - Primer vuelo transatlántico sin escalas (Charles Lindbergh)<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1939</span> - Primer avión a reacción (Heinkel He 178)<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1969</span> - Primer vuelo del Boeing 747 "Jumbo Jet"<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">1976</span> - Concorde inicia vuelos comerciales supersónicos<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">2005</span> - Airbus A380, el avión de pasajeros más grande
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Impacto Global
+                            </div>
+                            <p>La aviación redujo drásticamente los tiempos de viaje, conectó continentes, impulsó el comercio global y transformó la guerra y el transporte de mercancías.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Cifras Actuales
+                            </div>
+                            <p>4,5 mil millones de pasajeros anuales, 100.000 vuelos diarios, 16 millones de empleos directos en la industria. La aviación mueve el 35% del comercio mundial por valor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Principios de Vuelo</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Sustentación</strong>: Fuerza generada por el perfil alar que contrarresta el peso</li>
+                        <li><strong>Resistencia</strong>: Fuerza que se opone al movimiento a través del aire</li>
+                        <li><strong>Empuje</strong>: Fuerza generada por motores para vencer la resistencia</li>
+                        <li><strong>Peso</strong>: Fuerza gravitacional que el avión debe superar</li>
+                        <li><strong>Control de vuelo</strong>: Alerones, timón de profundidad y dirección</li>
+                        <li><strong>Estabilidad</strong>: Diseño que permite vuelo estable sin corrección constante</li>
+                        <li><strong>Materiales compuestos</strong>: Fibra de carbono, aluminio, titanio para peso/robustez</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">4.5B</div>
+                            <div class="stat-label">Pasajeros/año</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2,179km/h</div>
+                            <div class="stat-label">Concorde</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1903</div>
+                            <div class="stat-label">Primer vuelo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">853</div>
+                            <div class="stat-label">Capacidad A380</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1903</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1903</div>
+                            <h3 class="timeline-title">Primer Vuelo Motorizado</h3>
+                            <p>Los hermanos Wright realizan el primer vuelo controlado y motorizado en Kitty Hawk, Carolina del Norte. El Wright Flyer voló 37 metros en 12 segundos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1914</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1914</div>
+                            <h3 class="timeline-title">Primera Guerra Mundial</h3>
+                            <p>La aviación encuentra su primera aplicación masiva en la guerra. Se desarrollan cazas, bombarderos y reconocimiento aéreo. La tecnología avanza rápidamente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1927</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1927</div>
+                            <h3 class="timeline-title">Vuelo Transatlántico</h3>
+                            <p>Charles Lindbergh completa el primer vuelo sin escalas entre Nueva York y París en el "Spirit of St. Louis". 33.5 horas de vuelo que capturaron la imaginación mundial.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1939</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1939</div>
+                            <h3 class="timeline-title">Primer Avión a Reacción</h3>
+                            <p>El Heinkel He 178 realiza el primer vuelo propulsado exclusivamente por un motor a reacción. Comienza una nueva era en la aviación con mayores velocidades.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1969</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1969</div>
+                            <h3 class="timeline-title">Boeing 747 y Concorde</h3>
+                            <p>Dos revoluciones: El 747 democratiza el viaje aéreo masivo, mientras el Concorde inicia la era supersónica comercial. Tecnologías contrastantes que definieron épocas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2005</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2005-Presente</div>
+                            <h3 class="timeline-title">Era Moderna y Futuro</h3>
+                            <p>Airbus A380 (el más grande), Boeing 787 Dreamliner (eficiencia), y aviones eléctricos experimentales. Drones autónomos y taxis aéreos marcan el futuro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-plane-engines"></i>
+                </div>
+                <h2 class="card-title">Tipos de Aviones y Motores</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-propeller"></i>
+                        </div>
+                        <h3>Hélices (1903-1940)</h3>
+                        <p>Primera era de la aviación. Motores de combustión interna que giran hélices. Baja velocidad pero gran eficiencia a bajas altitudes.</p>
+                        <div class="component-badge">190-650 km/h</div>
+                        <div class="component-badge">Combustión</div>
+                        <div class="component-badge">Alta eficiencia</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-jet-fighter"></i>
+                        </div>
+                        <h3>Turbohélices (1930+)</h3>
+                        <p>Turbina de gas que impulsa una hélice. Combina eficiencia de hélice con potencia de turbina. Ideal para aviones regionales.</p>
+                        <div class="component-badge">300-700 km/h</div>
+                        <div class="component-badge">Turbina</div>
+                        <div class="component-badge">Regional</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-fan"></i>
+                        </div>
+                        <h3>Turbofán (1960+)</h3>
+                        <p>Motor a reacción con ventilador grande. Alta eficiencia, bajo ruido. Domina la aviación comercial actual. Bypass alto para eficiencia.</p>
+                        <div class="component-badge">800-950 km/h</div>
+                        <div class="component-badge">Bajo consumo</div>
+                        <div class="component-badge">Comercial</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Turborreactor y Supersónico</h3>
+                        <p>Turborreactor puro para alta velocidad (cazas militares). Cohetes para vuelos espaciales. Tecnología especializada para propósitos específicos.</p>
+                        <div class="component-badge">Mach 2+</div>
+                        <div class="component-badge">Militar</div>
+                        <div class="component-badge">Cohete</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reducción consumo combustible (1970-2020)</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reducción emisiones CO2/pasajero (1990-2020)</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                    <h2 class="card-title">Fabricantes y Modelos</h2>
+                </div>
+                <div class="card-content">
+                    <div class="experiments-container" id="experimentsContainer">
+                        <!-- Los fabricantes se generarán con JavaScript -->
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                            <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de fabricantes...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Simulación interactiva -->
+                    <div class="interactive-example">
+                        <div class="example-title">
+                            <i class="fas fa-plane-departure"></i> Simulación: Evolución del Rendimiento Aéreo
+                        </div>
+                        <p>Compara el rendimiento de diferentes tipos de aviones a través de la historia:</p>
+                        
+                        <div id="transferSimulation">
+                            <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Era de la Aviación:</label>
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <input type="range" id="eraSlider" min="1" max="4" value="3" step="1" style="flex: 1;">
+                                        <span id="eraValue" style="min-width: 100px;">Era del Jet (1960-1990)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                        <span>Pioneros (1900-1920)</span>
+                                        <span>Modernidad (2000+)</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Avión:</label>
+                                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                        <button class="plane-type-btn active" data-type="pioneer">Avión Pioneer</button>
+                                        <button class="plane-type-btn" data-type="propeller">Hélices</button>
+                                        <button class="plane-type-btn" data-type="jet">Jet Comercial</button>
+                                        <button class="plane-type-btn" data-type="supersonic">Supersónico</button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Vuelo:</label>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span>Distancia del Vuelo</span>
+                                                <span id="distanceValue">5,000 km</span>
+                                            </div>
+                                            <input type="range" id="distanceSlider" min="100" max="15000" value="5000" style="width: 100%;">
+                                        </div>
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span>% Carga Máxima</span>
+                                                <span id="loadValue">80%</span>
+                                            </div>
+                                            <input type="range" id="loadSlider" min="10" max="100" value="80" style="width: 100%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="simulation-result" id="simulationResult">
+                                <div class="canvas-container">
+                                    <canvas id="performanceCurveCanvas" width="600" height="300"></canvas>
+                                </div>
+                                <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                    <div class="result-text">Los jets modernos ofrecen el mejor balance entre velocidad y eficiencia</div>
+                                </div>
+                            </div>
+                            
+                            <div class="example-controls">
+                                <button class="btn btn-error" id="runSimulationBtn">
+                                    <i class="fas fa-play"></i> Ejecutar Simulación
+                                </button>
+                                <button class="btn btn-secondary" id="resetSimulationBtn">
+                                    <i class="fas fa-redo"></i> Reiniciar
+                                </button>
+                                <button class="btn" id="showDataBtn">
+                                    <i class="fas fa-chart-line"></i> Ver Datos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <div class="btn-container">
+                            <button class="btn glow-animation" id="simulateEvolutionBtn">
+                                <i class="fas fa-play-circle"></i> Simular Evolución Tecnológica
+                            </button>
+                            <button class="btn btn-secondary" id="viewSpecsBtn">
+                                <i class="fas fa-file-alt"></i> Ver Especificaciones
+                            </button>
+                            <button class="btn btn-error" id="compareProtocolsBtn">
+                                <i class="fas fa-balance-scale"></i> Comparar Tecnologías
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="container">
+                <p>Aviones: Origen y Evolución - La Revolución del Transporte Aéreo</p>
+                <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                    <i class="fas fa-plane"></i> 1903-2024 | De 12 km/h a Mach 2.04 | Conectando el mundo en horas
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                    De los hermanos Wright a los aviones eléctricos | Innovación continua | Seguridad y eficiencia | Futuro sostenible
+                </p>
+            </div>
+        </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Componentes Críticos</h3>
+                        <ul class="theory-list">
+                            <li><strong>Fuselaje</strong>: Estructura principal que aloja pasajeros, carga y sistemas</li>
+                            <li><strong>Alas</strong>: Generan sustentación mediante perfil aerodinámico</li>
+                            <li><strong>Motores</strong>: Proporcionan empuje (turbofán, turbohélice, etc.)</li>
+                            <li><strong>Superficies de control</strong>: Alerones, timones, flaps, slats</li>
+                            <li><strong>Tren de aterrizaje</strong>: Sistema retráctil para despegue/aterrizaje</li>
+                            <li><strong>Avionica</strong>: Sistemas electrónicos de navegación y comunicación</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Tecnologías Avanzadas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Fly-by-Wire</strong>: Control electrónico en lugar de mecánico</li>
+                            <li><strong>Materiales compuestos</strong>: Fibra de carbono para reducir peso</li>
+                            <li><strong>Winglets</strong>: Reducen la resistencia inducida en las puntas alares</li>
+                            <li><strong>Motores GEnx</strong>: Alta relación de bypass para eficiencia</li>
+                            <li><strong>Cabina presurizada</strong>: Permite vuelos a gran altitud</li>
+                            <li><strong>Sistema anti-hielo</strong>: Previene acumulación de hielo en superficies</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Rendimiento por Era</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Era Pionera (1903-1914)</span> - Velocidad: 50-120 km/h | Autonomía: 50-200 km<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Era de Hélices (1930-1950)</span> - Velocidad: 300-650 km/h | Autonomía: 3,000-8,000 km<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Era del Jet (1960-1990)</span> - Velocidad: 800-950 km/h | Autonomía: 10,000-14,000 km<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Era Moderna (2000+)</span> - Velocidad: 900-1,050 km/h | Autonomía: 15,000-18,000 km<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Supersónico (1976-2003)</span> - Velocidad: 2,179 km/h | Autonomía: 6,500 km
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Comparativa: Aviones vs. Otros Transportes
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas del Transporte Aéreo</h3>
+                        <ul class="theory-list">
+                            <li>Velocidad: Más rápido que cualquier transporte terrestre o marítimo</li>
+                            <li>Accesibilidad: Conecta lugares sin infraestructura terrestre directa</li>
+                            <li>Eficiencia en largas distancias: Tiempo de viaje reducido drásticamente</li>
+                            <li>Capacidad: Transporte masivo de pasajeros y carga</li>
+                            <li>Seguridad moderna: Estadísticamente muy seguro</li>
+                            <li>Red global: Conexión entre todos los continentes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Desafíos y Limitaciones</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Impacto ambiental: Emisiones de CO2 y ruido</li>
+                            <li>Dependencia de combustibles fósiles</li>
+                            <li>Alto costo de infraestructura aeroportuaria</li>
+                            <li>Vulnerabilidad a condiciones climáticas</li>
+                            <li>Capacidad limitada en distancias muy cortas</li>
+                            <li>Regulaciones complejas y espacio aéreo congestionado</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Estadísticas del Transporte Aéreo Moderno</span><br>
+                    <span class="code-string">"Pasajeros anuales: 4.5 mil millones (pre-pandemia)"</span><br>
+                    <span class="code-string">"Vuelos diarios: ~100,000 (comerciales)"</span><br>
+                    <span class="code-string">"Empleos directos: 11.3 millones mundialmente"</span><br>
+                    <span class="code-string">"Contribución al PIB global: $3.5 trillones (4.1%)"</span><br>
+                    <span class="code-comment"># La aviación conecta economías, culturas y personas como ningún otro medio</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">120+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">28,000+</div>
+                        <div class="stat-label">Aviones comerciales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.04 Mach</div>
+                        <div class="stat-label">Concorde</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99.999%</div>
+                        <div class="stat-label">Fiabilidad motores</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="aviones.js"></script>
+</body>
+</html>
