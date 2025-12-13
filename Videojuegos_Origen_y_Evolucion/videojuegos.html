@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videojuegos - Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_videojuegos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+</head>
+<body>
+    <!-- Canvas para partículas gaming -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="game-logo">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h1>Videojuegos: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución tecnológica y cultural que transformó el entretenimiento desde sus inicios hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-microchip"></i> La industria que democratizó el entretenimiento digital
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-chart-line"></i> De Pong a Ray Tracing: 50 años de innovación continua
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son los Videojuegos?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Los videojuegos</span> son aplicaciones interactivas orientadas al entretenimiento que utilizan dispositivos electrónicos como <span class="highlight">computadoras, consolas, teléfonos móviles o máquinas arcade</span>.</p>
+                    <p>Esta forma de entretenimiento revolucionaria surgió en los años 70, evolucionando desde simples juegos de texto hasta <span class="highlight">mundos virtuales complejos con gráficos hiperrealistas</span>. Se convirtió en una de las industrias de entretenimiento más lucrativas del mundo.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Generaciones de Consolas (Linea Temporal)</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1ra Generación (1972-1977)</span> - Magnavox Odyssey, Atari Pong<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">2da Generación (1976-1984)</span> - Atari 2600, Intellivision, ColecoVision<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">3ra Generación (1983-1992)</span> - NES, Sega Master System<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">4ta Generación (1987-1996)</span> - SNES, Sega Genesis<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">5ta Generación (1993-2006)</span> - PlayStation, Nintendo 64, Sega Saturn
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Impacto Cultural
+                            </div>
+                            <p>Los videojuegos han influenciado el cine, la música y la literatura. Han creado comunidades globales y han sido reconocidos como forma de arte por instituciones culturales.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto Económico
+                            </div>
+                            <p>La industria de videojuegos superó los $200 mil millones en 2023, superando a Hollywood y la música combinados. Es una de las industrias de más rápido crecimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Plataformas y Géneros</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Consolas de Sobremesa</strong>: PlayStation, Xbox, Nintendo Switch</li>
+                        <li><strong>PC Gaming</strong>: Plataforma más versátil y potente</li>
+                        <li><strong>Dispositivos Móviles</strong>: Smartphones y tablets (mayor alcance)</li>
+                        <li><strong>Realidad Virtual</strong>: Inmersión total en mundos digitales</li>
+                        <li><strong>Género Acción/Aventura</strong>: The Legend of Zelda, Uncharted</li>
+                        <li><strong>Género RPG</strong>: Final Fantasy, The Witcher, Skyrim</li>
+                        <li><strong>Género Estrategia</strong>: StarCraft, Civilization, Age of Empires</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">3.2B</div>
+                            <div class="stat-label">Jugadores globales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$200B+</div>
+                            <div class="stat-label">Ingresos 2023</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1972</div>
+                            <div class="stat-label">Primer videojuego</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Años de evolución</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1958</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1958-1970</div>
+                            <h3 class="timeline-title">Orígenes y Primeros Experimentos</h3>
+                            <p>William Higinbotham crea "Tennis for Two" en 1958. En 1962, Spacewar! se convierte en el primer videojuego para computadora. La era de los mainframes y universidades.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1972</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1972</div>
+                            <h3 class="timeline-title">Nacimiento de la Industria</h3>
+                            <p>Nolan Bushnell funda Atari y lanza Pong, el primer videojuego comercial exitoso. Magnavox Odyssey se convierte en la primera consola doméstica. Comienza la era arcade.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1977</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1977-1983</div>
+                            <h3 class="timeline-title">La Edad de Oro del Arcade</h3>
+                            <p>Space Invaders (1978), Pac-Man (1980) y Donkey Kong (1981) dominan las salas arcade. Atari 2600 populariza los juegos en casa. La industria crece exponencialmente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1983</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1983-1985</div>
+                            <h3 class="timeline-title">El Crash de los Videojuegos</h3>
+                            <p>Saturación del mercado, juegos de baja calidad y competencia de PC causan el colapso de la industria norteamericana. Muchas compañías quiebran, incluida Atari.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1985</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1985-1994</div>
+                            <h3 class="timeline-title">El Renacimiento con Nintendo y Sega</h3>
+                            <p>Nintendo Entertainment System (NES) revive la industria con Super Mario Bros. Comienza la "guerra de consolas" entre Nintendo y Sega con Genesis vs SNES.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1994</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1994-2005</div>
+                            <h3 class="timeline-title">La Era 3D y PlayStation</h3>
+                            <p>Sony PlayStation introduce los juegos 3D en CD-ROM. Nintendo 64 mantiene cartuchos. Títulos como Final Fantasy VII y Super Mario 64 redefinen los videojuegos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2006</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2006-Presente</div>
+                            <h3 class="timeline-title">Online, Movilidad y Realidad Virtual</h3>
+                            <p>Xbox Live y PlayStation Network popularizan el juego online. Smartphones crean mercado masivo casual. VR/AR abren nuevas posibilidades. eSports se profesionalizan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h2 class="card-title">Generaciones de Consolas</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>1ra Generación (1972-1977)</h3>
+                        <p>Magnavox Odyssey, Atari Pong. Gráficos simples de líneas y puntos. Sin CPU, solo circuitos discretos. Juegos pre-programados.</p>
+                        <div class="component-badge">Analogico</div>
+                        <div class="component-badge">1972</div>
+                        <div class="component-badge">Pong</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>4ta Generación (1987-1996)</h3>
+                        <p>SNES, Sega Genesis. 16-bit, sprites avanzados, chips de sonido. Modo 7 en SNES. Sonic vs Mario define la era.</p>
+                        <div class="component-badge">16-bit</div>
+                        <div class="component-badge">Sprite</div>
+                        <div class="component-badge">Cartucho</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>6ta Generación (1998-2013)</h3>
+                        <p>PlayStation 2, Xbox, GameCube. 128-bit, gráficos 3D realistas, DVD, online gaming. PS2 es la consola más vendida.</p>
+                        <div class="component-badge">128-bit</div>
+                        <div class="component-badge">DVD</div>
+                        <div class="component-badge">Online</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                        <h3>9na Generación (2020-Presente)</h3>
+                        <p>PS5, Xbox Series X/S. Ray tracing, SSD NVMe, 4K/120fps, retrocompatibilidad. Enfasis en servicios y suscripciones.</p>
+                        <div class="component-badge">Ray Tracing</div>
+                        <div class="component-badge">SSD NVMe</div>
+                        <div class="component-badge">8K</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Penetración en hogares (USA 2023)</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Mercado móvil vs Consolas</span>
+                        <span>52%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 52%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-ghost"></i>
+                </div>
+                <h2 class="card-title">Desarrolladoras y Franquicias</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Las desarrolladoras se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de desarrolladoras...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-desktop"></i> Simulación: Evolución de Gráficos en Videojuegos
+                    </div>
+                    <p>Compara la evolución de los gráficos a través de diferentes generaciones y consolas:</p>
+                    
+                    <div id="graphicsSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Generación de Consola:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="consoleGenSlider" min="1" max="9" value="6" step="1" style="flex: 1;">
+                                    <span id="consoleGenValue" style="min-width: 120px;">6ta Gen (PS2/Xbox)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>1ra Gen (1972)</span>
+                                    <span>9na Gen (2020)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Juego:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="game-type-btn active" data-type="platformer">Plataformas</button>
+                                    <button class="game-type-btn" data-type="rpg">RPG</button>
+                                    <button class="game-type-btn" data-type="fps">FPS</button>
+                                    <button class="game-type-btn" data-type="openworld">Mundo Abierto</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros Gráficos:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Resolución</span>
+                                            <span id="resolutionValue">640x480</span>
+                                        </div>
+                                        <input type="range" id="resolutionSlider" min="1" max="100" value="25" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Polígonos por frame</span>
+                                            <span id="polygonsValue">250K</span>
+                                        </div>
+                                        <input type="range" id="polygonsSlider" min="1" max="100" value="25" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="graphicsEvolutionCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">La evolución gráfica muestra un crecimiento exponencial desde los 8-bit hasta el Ray Tracing</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Tecnológica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareConsolesBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Consolas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Videojuegos: Origen y Evolución - La Revolución del Entretenimiento Digital</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-gamepad"></i> 1958-2024 | De Pong a Realidad Virtual | 50+ años de innovación
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De arcades a cloud gaming | Cultura gamer global | eSports profesionales | Arte interactivo
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Históricas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Evolución de Hardware</h3>
+                        <ul class="theory-list">
+                            <li><strong>Atari 2600 (1977)</strong>: CPU 1.19MHz, 128 bytes RAM, resolución 160x192</li>
+                            <li><strong>NES (1985)</strong>: CPU 1.79MHz, 2KB RAM, 64 colores, resolución 256x240</li>
+                            <li><strong>PlayStation (1994)</strong>: CPU 33.87MHz, 2MB RAM, 3D acelerado, CD-ROM</li>
+                            <li><strong>PlayStation 5 (2020)</strong>: CPU Zen 2 3.5GHz, GPU 10.28 TFLOPS, 16GB RAM, SSD 5.5GB/s</li>
+                            <li><strong>PC Gaming Alto</strong>: RTX 4090, 24GB VRAM, 8K, Ray Tracing, DLSS 3</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Hitos Tecnológicos</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Sprites (1970s)</strong>: Gráficos reutilizables para animación eficiente</li>
+                            <li><strong>Modo 7 (SNES)</strong>: Efecto pseudo-3D con rotación y escalado</li>
+                            <li><strong>3D Poligonal (1990s)</strong>: Transformación de juegos a tercera dimensión</li>
+                            <li><strong>Shader Programs (2000s)</strong>: Gráficos programables y efectos avanzados</li>
+                            <li><strong>Ray Tracing (2020s)</strong>: Iluminación realista en tiempo real</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Consolas Históricas (Especificaciones)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Atari 2600 (1977)</span> - 1.19MHz | 128B RAM | 160x192 | Cartuchos 4KB<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">NES (1985)</span> - 1.79MHz | 2KB RAM | 256x240 | 52 colores<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">PlayStation (1994)</span> - 33.87MHz | 2MB RAM | 640x480 | CD-ROM 650MB<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">PlayStation 2 (2000)</span> - 294MHz | 32MB RAM | 1280x1024 | DVD 4.7GB<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">PlayStation 5 (2020)</span> - 3.5GHz | 16GB RAM | 8K | SSD 825GB
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Consolas vs. PC Gaming
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de Consolas</h3>
+                        <ul class="theory-list">
+                            <li>Experiencia optimizada y consistente</li>
+                            <li>Precio accesible por rendimiento</li>
+                            <li>Exclusivos de alta calidad</li>
+                            <li>Fácil configuración y uso</li>
+                            <li>Juego en sofá (couch gaming)</li>
+                            <li>Soporte garantizado por fabricante</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Ventajas de PC Gaming</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Máximo rendimiento y gráficos</li>
+                            <li>Retrocompatibilidad casi infinita</li>
+                            <li>Multitarea y multipropósito</li>
+                            <li>Mods y personalización</li>
+                            <li>Mayor variedad de juegos</li>
+                            <li>Mejoras progresivas de hardware</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado actual de videojuegos 2024</span><br>
+                    <span class="code-string">"Consolas: 30% del mercado (PS5, Xbox Series, Switch)"</span><br>
+                    <span class="code-string">"PC Gaming: 20% del mercado (Steam, Epic, Battle.net)"</span><br>
+                    <span class="code-string">"Mobile Gaming: 50% del mercado (iOS, Android)"</span><br>
+                    <span class="code-comment"># El mercado móvil domina en ingresos, pero consolas/PC lideran en juegos AAA</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">50+ años</div>
+                        <div class="stat-label">Historia gaming</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3.2B</div>
+                        <div class="stat-label">Jugadores globales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$200B</div>
+                        <div class="stat-label">Ingresos anuales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">46%</div>
+                        <div class="stat-label">Mujeres jugadoras</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="videojuegos.js"></script>
+</body>
+</html>
