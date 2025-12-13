@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse: Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_mouse.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖱️</text></svg>">
+</head>
+<body>
+    <!-- Canvas para partículas tecnológicas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-mouse-pointer"></i>
+                </div>
+                <h1>Mouse: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución tecnológica que transformó la interacción humano-computadora desde su invención hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-microchip"></i> El dispositivo que democratizó la interfaz gráfica de usuario
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-chart-line"></i> De la esfera mecánica a los 26,000 DPI: 50+ años de evolución continua
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es un Mouse?</h2>
+                </div>
+                <div class="card-content">
+                    <p>El <span class="tech-highlight">mouse o ratón</span> es un dispositivo apuntador utilizado para facilitar el manejo de un entorno gráfico en una computadora. Generalmente está fabricado en plástico y se utiliza con una de las manos.</p>
+                    <p>Esta tecnología revolucionaria fue inventada por <span class="highlight">Douglas Engelbart</span> en 1963 y presentada en 1968, marcando el inicio de la <span class="highlight">interfaz gráfica de usuario moderna</span>. Ha evolucionado desde modelos mecánicos con esfera hasta ópticos, láser y actualmente inalámbricos con altísima precisión.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Hitos históricos del Mouse (Cronología)</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1963</span> - Douglas Engelbart inventa el primer mouse de madera<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1973</span> - Xerox Alto integra mouse con interfaz gráfica<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1981</span> - Primer mouse comercial: Xerox 8010 Star<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1984</span> - Apple Macintosh populariza el mouse<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">1999</span> - Microsoft introduce IntelliMouse con rueda de scroll<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">2004</span> - Logitech MX1000: primer mouse láser comercial<br>
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Ventajas sobre interfaces de texto
+                            </div>
+                            <p>Interacción intuitiva, acceso directo a funciones, reducción de comandos memorizados, democratización del uso de computadoras, y creación de la metáfora de escritorio.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto en la Computación
+                            </div>
+                            <p>El mouse fue fundamental para la revolución de las GUI (Interfaces Gráficas de Usuario), haciendo las computadoras accesibles para usuarios no técnicos y cambiando para siempre la interacción humano-computadora.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Arquitectura y Tecnologías</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Mecánico (Esfera)</strong>: Usaba una esfera de goma que giraba rodillos internos</li>
+                        <li><strong>Óptico (LED)</strong>: Emplea un LED rojo y sensor CMOS para detectar movimiento</li>
+                        <li><strong>Láser</strong>: Mayor precisión que óptico, funciona en más superficies</li>
+                        <li><strong>Trackball</strong>: Esfera manipulada directamente con el dedo/pulgar</li>
+                        <li><strong>Inalámbrico</strong>: RF 2.4GHz, Bluetooth o propietario, con batería recargable</li>
+                        <li><strong>Gaming</strong>: Alto DPI, polling rate, pesos ajustables, iluminación RGB</li>
+                        <li><strong>Ergonómico</strong>: Diseños para reducir fatiga y prevenir lesiones</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">26K</div>
+                            <div class="stat-label">DPI Máximo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">8K Hz</div>
+                            <div class="stat-label">Polling Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1963</div>
+                            <div class="stat-label">Inventado</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">70%</div>
+                            <div class="stat-label">Mercado gaming</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1963</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1963</div>
+                            <h3 class="timeline-title">El Primer Mouse de Madera</h3>
+                            <p>Douglas Engelbart del Stanford Research Institute construye el primer prototipo: una caja de madera con dos ruedas metálicas y un botón. El nombre "mouse" proviene del cable que parecía una cola.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1973</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1973</div>
+                            <h3 class="timeline-title">Xerox Alto: Primera GUI</h3>
+                            <p>La computadora Xerox Alto incluye mouse con interfaz gráfica, ventanas e íconos. Usaba tres botones y costaba aproximadamente $400 (equivalente a $2,500 hoy).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1984</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1984</div>
+                            <h3 class="timeline-title">Apple Macintosh lo Populariza</h3>
+                            <p>Apple Lisa y Macintosh incluyen mouse de un solo botón, haciéndolo accesible al público general. Steve Jobs insistió en simplificar la interfaz para usuarios no técnicos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1999</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1999</div>
+                            <h3 class="timeline-title">La Rueda de Scroll</h3>
+                            <p>Microsoft IntelliMouse introduce la rueda de scroll, revolucionando la navegación en documentos y páginas web. Se convierte en estándar en meses.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2004</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2004</div>
+                            <h3 class="timeline-title">Era del Mouse Láser</h3>
+                            <p>Logitech MX1000 presenta el primer mouse láser comercial, con 20 veces más precisión que los ópticos. Funciona en casi cualquier superficie.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Especialización y Personalización</h3>
+                            <p>Mouses gaming con 26,000 DPI, pesos ajustables, iluminación RGB. Mouses ergonómicos para salud. Tecnologías inalámbricas de baja latencia y carga rápida.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-mouse-pointer"></i>
+                </div>
+                <h2 class="card-title">Tipos y Tecnologías de Sensor</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Mecánico (Esfera)</h3>
+                        <p>Primera generación (1963-1999). Usaba esfera de goma que giraba rodillos. Requería limpieza constante y alfombrilla especial.</p>
+                        <div class="component-badge">400 DPI</div>
+                        <div class="component-badge">1963-1999</div>
+                        <div class="component-badge">Esfera</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Óptico (LED)</h3>
+                        <p>Segunda generación (1999-presente). LED rojo ilumina superficie, sensor CMOS captura imágenes. No requiere alfombrilla.</p>
+                        <div class="component-badge">12,000 DPI</div>
+                        <div class="component-badge">LED rojo</div>
+                        <div class="component-badge">1999</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Láser</h3>
+                        <p>Tercera generación (2004-presente). Mayor precisión y funciona en más superficies. Ideal para gaming y diseño.</p>
+                        <div class="component-badge">26,000 DPI</div>
+                        <div class="component-badge">Láser</div>
+                        <div class="component-badge">2004</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3>Inalámbrico Avanzado</h3>
+                        <p>Cuarta generación. Bluetooth, RF 2.4GHz, Lightspeed (Logitech). Baja latencia, meses de batería, carga rápida.</p>
+                        <div class="component-badge">Inalámbrico</div>
+                        <div class="component-badge">1ms latencia</div>
+                        <div class="component-badge">RGB</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Adopción en computadoras (2000)</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Mercado gaming inalámbrico (2024)</span>
+                        <span>68%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 68%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Fabricantes y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los fabricantes se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de fabricantes...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-desktop"></i> Simulación: Sensibilidad DPI y Precisión
+                    </div>
+                    <p>Ajusta los parámetros para comparar la precisión y velocidad de diferentes tecnologías de mouse:</p>
+                    
+                    <div id="transferSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tecnología de Sensor:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="sensorSlider" min="1" max="4" value="3" step="1" style="flex: 1;">
+                                    <span id="sensorValue" style="min-width: 100px;">Láser (20K DPI)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Mecánico (400 DPI)</span>
+                                    <span>Óptico Avanzado (26K DPI)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Uso:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="device-type-btn active" data-type="office">Oficina</button>
+                                    <button class="device-type-btn" data-type="design">Diseño</button>
+                                    <button class="device-type-btn" data-type="gaming">Gaming</button>
+                                    <button class="device-type-btn" data-type="pro">Profesional</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Precisión:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>DPI (Precisión)</span>
+                                            <span id="dpiValue">8,000 DPI</span>
+                                        </div>
+                                        <input type="range" id="dpiSlider" min="400" max="26000" value="8000" step="100" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Polling Rate (Hz)</span>
+                                            <span id="pollingValue">1000 Hz</span>
+                                        </div>
+                                        <input type="range" id="pollingSlider" min="125" max="8000" value="1000" step="125" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="precisionCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Mouse láser (azul) ofrece mayor precisión en movimiento, ideal para gaming y diseño</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución del Mouse
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareProtocolsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Tecnologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Mouse: Origen y Evolución - La Revolución de la Interacción Humano-Computadora</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-mouse-pointer"></i> 1963-2024 | De 400 DPI a 26,000 DPI | 50+ años de innovación continua
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De la esfera mecánica al sensor láser | Mecánico → Óptico → Láser → Inalámbrico | Douglas Engelbart (1963)
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Parámetros de Rendimiento</h3>
+                        <ul class="theory-list">
+                            <li><strong>DPI/CPI</strong>: Puntos por pulgada (400 a 26,000)</li>
+                            <li><strong>Polling Rate</strong>: 125Hz a 8,000Hz (reportes por segundo)</li>
+                            <li><strong>Aceleración</strong>: Máxima velocidad de seguimiento (ips)</li>
+                            <li><strong>Latencia</strong>: Tiempo de respuesta (1ms en gaming)</li>
+                            <li><strong>Resolución</strong>: Precisión del sensor (óptico/láser)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Características Avanzadas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>RGB Lighting</strong>: 16.8 millones de colores personalizables</li>
+                            <li><strong>Perfiles de Memoria</strong>: Configuraciones almacenadas en el mouse</li>
+                            <li><strong>Pesos Ajustables</strong>: Pesos para personalizar balance (2g-30g)</li>
+                            <li><strong>Switches Ópticos</strong>: Mayor durabilidad (80M clics)</li>
+                            <li><strong>Carga Rápida</strong>: Minutos de carga para horas de uso</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Tecnologías de Sensor</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Mecánico (Esfera)</span> - DPI: 400-800 | Precisión: Baja | Superficie: Alfombrilla<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Óptico LED</span> - DPI: 800-12,000 | Precisión: Alta | Superficie: Múltiples<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Láser</span> - DPI: 2,000-26,000 | Precisión: Muy Alta | Superficie: Cualquiera<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Óptico Avanzado (PixArt)</span> - DPI: 16,000-26,000 | Precisión: Extrema | Trackign: 400+ IPS<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Híbrido</span> - Sensor óptico + funciones láser para máxima precisión
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Mouse vs. Otros Dispositivos Apuntadores
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas del Mouse</h3>
+                        <ul class="theory-list">
+                            <li>Precisión milimétrica para tareas detalladas</li>
+                            <li>Velocidad y eficiencia en selección</li>
+                            <li>Ergonomía mejorada (formas anatómicas)</li>
+                            <li>Personalización completa (DPI, botones, peso)</li>
+                            <li>Compatibilidad universal con todos los sistemas</li>
+                            <li>Retroalimentación táctil (scroll, clics)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones vs. Alternativas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Requiere superficie plana para operar</li>
+                            <li>Espacio físico necesario para movimiento</li>
+                            <li>Riesgo de lesiones por uso prolongado (RSI)</li>
+                            <li>Menos intuitivo que pantallas táctiles para algunos</li>
+                            <li>Cables pueden enredarse (en modelos con cable)</li>
+                            <li>Batería en modelos inalámbricos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado actual de dispositivos apuntadores</span><br>
+                    <span class="code-string">"Mouse tradicional: 85% del mercado (oficina, gaming)"</span><br>
+                    <span class="code-string">"Trackball: 5% (diseño CAD, limitaciones físicas)"</span><br>
+                    <span class="code-string">"Touchpad: 8% (portátiles, espacio limitado)"</span><br>
+                    <span class="code-string">"Stylus/Tableta: 2% (arte digital, diseño)"</span><br>
+                    <span class="code-comment"># El mouse sigue dominando en precisión y velocidad para la mayoría de tareas</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">50+ años</div>
+                        <div class="stat-label">Vida útil</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Cuota mercado</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">26K DPI</div>
+                        <div class="stat-label">Máxima precisión</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">80M clics</div>
+                        <div class="stat-label">Durabilidad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mouse_evolucion.js"></script>
+</body>
+</html>
