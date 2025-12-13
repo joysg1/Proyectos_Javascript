@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telas - Origen y Evolución Textil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_telas.css">
+</head>
+<body>
+    <!-- Canvas para partículas textiles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="textile-logo">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h1>Telas: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución textil que transformó la vestimenta humana desde sus inicios hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-threads"></i> El tejido que vistió civilizaciones a través de milenios
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-history"></i> De las fibras naturales a los sintéticos: 30,000 años de innovación
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son las Telas?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Las telas</span> son materiales flexibles compuestos por una red de <span class="highlight">fibras naturales o artificiales</span>, obtenidas mediante procesos de hilado, tejido, trenzado o fieltrado.</p>
+                    <p>Este material revolucionario permitió a la humanidad <span class="highlight">protegerse del clima, expresar identidad cultural y desarrollar comercio</span>. Su evolución marca hitos en el desarrollo tecnológico y social.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Cronología de Materiales Textiles</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Paleolítico (30,000 a.C.)</span> - Pieles animales | Fibras vegetales primitivas<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Neolítico (10,000 a.C.)</span> - Lino | Cáñamo | Primera ropa tejida<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">3,000 a.C.</span> - Seda (China) | Algodón (India) | Lana (Mesopotamia)<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Siglo XIX</span> - Revolución Industrial | Telares mecánicos<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Siglo XX</span> - Fibras sintéticas | Nanotecnología textil
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-leaf"></i> Fibras Naturales
+                            </div>
+                            <p>Algodón, lana, seda, lino, cáñamo, yute. Provenientes de plantas y animales, biodegradables y con propiedades únicas determinadas por su origen.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-flask"></i> Fibras Sintéticas
+                            </div>
+                            <p>Políster, nailon, acrílico, spandex. Creadas químicamente a partir de polímeros, ofrecen durabilidad, elasticidad y propiedades personalizadas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Técnicas de Fabricación</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Tejido de Punto</strong>: Formado por bucles entrelazados (tricot, tejido de punto)</li>
+                        <li><strong>Tejido Plano</strong>: Dos conjuntos de hilos entrelazados (tela, sarga, satén)</li>
+                        <li><strong>No Tejido</strong>: Fibras unidas por presión, calor o químicos (fieltro)</li>
+                        <li><strong>Trenzado</strong>: Tres o más hilos entrelazados diagonalmente</li>
+                        <li><strong>Enmallado</strong>: Red de hilos anudados (redes, encaje)</li>
+                        <li><strong>Teñido</strong>: Aplicación de colorantes naturales o sintéticos</li>
+                        <li><strong>Estampado</strong>: Patrones aplicados con rodillos, pantallas o digital</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">30K</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100M</div>
+                            <div class="stat-label">Ton/año producción</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">70%</div>
+                            <div class="stat-label">Fibras sintéticas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">5K</div>
+                            <div class="stat-label">Tipos de telas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia Textil</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">30K a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">30,000 a.C.</div>
+                            <h3 class="timeline-title">Orígenes Prehistóricos</h3>
+                            <p>Primeras evidencias de uso de pieles animales como vestimenta. Fibras vegetales trenzadas para cuerdas y redes básicas en el Paleolítico superior.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">5K a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">5,000 a.C.</div>
+                            <h3 class="timeline-title">Revolución Neolítica</h3>
+                            <p>Domesticación del lino en Mesopotamia. Primeros telares verticales. Cultivo de algodón en el valle del Indo. Tejidos como símbolo de estatus social.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3K a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">3,000 a.C.</div>
+                            <h3 class="timeline-title">Seda y Rutas Comerciales</h3>
+                            <p>Descubrimiento de la seda en China. Inicio de la Ruta de la Seda. Tejidos de lana en Mesopotamia. Telares horizontales mejoran eficiencia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">XVIII</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVIII</div>
+                            <h3 class="timeline-title">Revolución Industrial</h3>
+                            <p>Máquina de hilar (1764), Telar mecánico (1785). Producción masiva de telas de algodón. La industria textil impulsa la industrialización global.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">XX</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XX</div>
+                            <h3 class="timeline-title">Era de los Sintéticos</h3>
+                            <p>Nailon (1935), Poliéster (1941), Spandex (1959). Telas inteligentes, deportivas y técnicas. Globalización de moda rápida.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">XXI</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XXI - Presente</div>
+                            <h3 class="timeline-title">Sostenibilidad e Innovación</h3>
+                            <p>Telas recicladas, biodegradables y de origen ético. Nanotecnología textil. Impresión 3D en moda. Retorno a fibras naturales con procesos ecológicos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h2 class="card-title">Tipos de Telas y Propiedades</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Algodón</h3>
+                        <p>Fibra natural vegetal. Suave, transpirable, absorbente. Uso universal en ropa, hogar e industria. Cultivo intensivo en agua.</p>
+                        <div class="component-badge">Natural</div>
+                        <div class="component-badge">Transpirable</div>
+                        <div class="component-badge">5K a.C.</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3>Seda</h3>
+                        <p>Fibra proteica natural de gusanos de seda. Brillante, suave, fuerte. Históricamente de lujo. Termorreguladora natural.</p>
+                        <div class="component-badge">Lujo</div>
+                        <div class="component-badge">Brillante</div>
+                        <div class="component-badge">3K a.C.</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Poliéster</h3>
+                        <p>Fibra sintética derivada del petróleo. Resistente, elástico, de secado rápido. Domina mercado actual. No biodegradable.</p>
+                        <div class="component-badge">Sintético</div>
+                        <div class="component-badge">Resistente</div>
+                        <div class="component-badge">1941</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Telas Sostenibles</h3>
+                        <p>Bambú, tencel, piñatex, telas recicladas. Bajas emisiones, biodegradables. Futuro de la industria textil responsable.</p>
+                        <div class="component-badge">Ecológico</div>
+                        <div class="component-badge">Innovación</div>
+                        <div class="component-badge">Siglo XXI</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Cuota mercado fibras sintéticas (2020)</span>
+                        <span>68%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 68%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Crecimiento telas sostenibles (2020-2030)</span>
+                        <span>42%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 42%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Innovadores y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los innovadores se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de innovadores textiles...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-sliders-h"></i> Simulación: Propiedades de Telas
+                    </div>
+                    <p>Compara las propiedades de diferentes tipos de telas según material y estructura:</p>
+                    
+                    <div id="fabricSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Fibra:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="fabricTypeSlider" min="1" max="5" value="3" step="1" style="flex: 1;">
+                                    <span id="fabricTypeValue" style="min-width: 100px;">Sintética Moderna</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Natural Primitiva</span>
+                                    <span>Tecnológica Avanzada</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Estructura Textil:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="structure-type-btn active" data-type="woven">Tejido Plano</button>
+                                    <button class="structure-type-btn" data-type="knit">Tejido Punto</button>
+                                    <button class="structure-type-btn" data-type="nonwoven">No Tejido</button>
+                                    <button class="structure-type-btn" data-type="smart">Inteligente</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Propiedades:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Durabilidad</span>
+                                            <span id="durabilityValue">70%</span>
+                                        </div>
+                                        <input type="range" id="durabilitySlider" min="10" max="100" value="70" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Confort</span>
+                                            <span id="comfortValue">65%</span>
+                                        </div>
+                                        <input type="range" id="comfortSlider" min="10" max="100" value="65" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="fabricRadarCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Las telas modernas equilibran durabilidad y confort, pero las naturales ofrecen mejor transpirabilidad</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Textil
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareMaterialsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Materiales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Telas: Origen y Evolución - La Historia Textil de la Humanidad</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-tshirt"></i> 30,000 a.C. - Presente | De pieles animales a nanotextiles
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Innovación continua | Sostenibilidad | Cultura y tecnología entrelazadas
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-ruler-combined"></i> Propiedades Físicas</h3>
+                        <ul class="theory-list">
+                            <li><strong>Gramaje</strong>: Peso por metro cuadrado (ligero: <100 g/m², pesado: >300 g/m²)</li>
+                            <li><strong>Espesor</strong>: Desde 0.1 mm (seda) hasta varios cm (tejidos técnicos)</li>
+                            <li><strong>Densidad de hilos</strong>: Hilos por pulgada (TPI), determina calidad</li>
+                            <li><strong>Resistencia a la tracción</strong>: Fuerza necesaria para romper la tela</li>
+                            <li><strong>Elasticidad</strong>: Capacidad de estirarse y recuperar forma (spandex: 500%)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-tint"></i> Propiedades Químicas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Absorción de humedad</strong>: Capacidad de absorber agua (algodón: 8-25%)</li>
+                            <li><strong>Resistencia a químicos</strong>: Poliéster resistente a ácidos, algodón sensible</li>
+                            <li><strong>Inflamabilidad</strong>: Algodón inflamable, lana autoextinguible</li>
+                            <li><strong>Degradabilidad</strong>: Naturales: 1-5 años, Sintéticos: 20-200 años</li>
+                            <li><strong>Estabilidad al calor</strong>: Lana: 100°C, Poliéster: 150°C, Nomex: 370°C</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Propiedades por Fibra (Escala 1-10)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Algodón</span> - Confort: 9 | Durabilidad: 7 | Secado: 3 | Arrugas: 2<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Lana</span> - Calor: 9 | Absorción: 8 | Lavado: 4 | Arrugas: 7<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Seda</span> - Suavidad: 10 | Brillantez: 9 | Resistencia: 5 | Luz: 2<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Poliéster</span> - Durabilidad: 9 | Arrugas: 8 | Secado: 10 | Confort: 5<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Spandex</span> - Elasticidad: 10 | Recuperación: 9 | Durabilidad: 7 | Confort: 6
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Telas Naturales vs. Sintéticas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-leaf"></i> Ventajas de Fibras Naturales</h3>
+                        <ul class="theory-list">
+                            <li>Biodegradables y renovables</li>
+                            <li>Excelente transpirabilidad y confort</li>
+                            <li>Propiedades termorreguladoras naturales</li>
+                            <li>Baja toxicidad en producción</li>
+                            <li>Tradición cultural milenaria</li>
+                            <li>Menor huella de carbono (si producción local)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-flask"></i> Ventajas de Fibras Sintéticas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Mayor durabilidad y resistencia</li>
+                            <li>Propiedades personalizables</li>
+                            <li>Precio más bajo de producción</li>
+                            <li>Resistentes a moho y plagas</li>
+                            <li>Mantenimiento más fácil</li>
+                            <li>Mayor variedad de acabados</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Impacto ambiental comparativo (por kg de fibra)</span><br>
+                    <span class="code-string">"Algodón convencional: 10,000L agua | 2.5kg CO₂"</span><br>
+                    <span class="code-string">"Algodón orgánico: 7,000L agua | 1.8kg CO₂"</span><br>
+                    <span class="code-string">"Poliéster virgen: 70L agua | 5.5kg CO₂"</span><br>
+                    <span class="code-string">"Poliéster reciclado: 5L agua | 1.7kg CO₂"</span><br>
+                    <span class="code-comment"># Las fibras recicladas ofrecen mejor equilibrio ambiental</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">30K+ años</div>
+                        <div class="stat-label">Historia textil</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">68%</div>
+                        <div class="stat-label">Cuota sintéticos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100M ton</div>
+                        <div class="stat-label">Producción anual</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">20%</div>
+                        <div class="stat-label">Agua industrial</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="telas_origen.js"></script>
+</body>
+</html>
