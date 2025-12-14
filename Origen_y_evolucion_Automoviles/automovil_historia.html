@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automóvil - Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_automovil.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+</head>
+<body>
+    <!-- Canvas para efectos visuales -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h1>Automóvil: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución tecnológica que transformó la movilidad humana desde sus inicios hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-cogs"></i> La máquina que democratizó el transporte personal
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-chart-line"></i> De 16 km/h a 400+ km/h: 140 años de evolución continua
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Automóvil?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">El automóvil</span> es un vehículo autopropulsado diseñado para el transporte terrestre de personas o mercancías sin necesidad de carriles. <span class="highlight">Revolucionó la sociedad, economía y cultura mundial</span> desde finales del siglo XIX.</p>
+                    <p>Esta invención transformó radicalmente la movilidad humana, reemplazando gradualmente a los carruajes de tracción animal y <span class="highlight">dando origen a la industria automotriz, una de las más importantes del mundo</span>.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Hitos Históricos del Automóvil</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1886</span> - Primer automóvil con motor de combustión (Karl Benz)<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1908</span> - Ford Model T (producción en masa)<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1930</span> - Sistemas de suspensión independiente<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1950</span> - Popularización del automóvil familiar<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">1970</span> - Control electrónico y seguridad<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">2000</span> - Sistemas híbridos y eléctricos<br>
+                        <span class="code-keyword">7.</span> <span class="highlight">2020</span> - Autonomía y conectividad
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Impacto Social
+                            </div>
+                            <p>Revolucionó el transporte personal, creó suburbios, transformó el comercio, generó millones de empleos y cambió patrones culturales y de ocio.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto Económico
+                            </div>
+                            <p>Industria automotriz representa ~3% del PIB mundial. Más de 50 millones de empleos directos e indirectos. Innovación constante en materiales y tecnologías.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Componentes y Tecnologías</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Motor de combustión interna</strong>: Desde monocilíndrico a W16, gasolina/diésel</li>
+                        <li><strong>Sistemas de transmisión</strong>: Manual, automática, CVT, DSG, eléctrica</li>
+                        <li><strong>Chasis y carrocería</strong>: De madera a acero, aluminio, fibra de carbono</li>
+                        <li><strong>Sistemas de seguridad</strong>: ABS, airbags, ESC, ADAS, estructura de deformación</li>
+                        <li><strong>Electrónica y conectividad</strong>: ECU, infotainment, asistencia a la conducción</li>
+                        <li><strong>Propulsión alternativa</strong>: Híbrido, eléctrico, hidrógeno, biocombustibles</li>
+                        <li><strong>Materiales avanzados</strong>: Aleaciones ligeras, composites, plásticos técnicos</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">1.4B</div>
+                            <div class="stat-label">Vehículos en uso</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">80M</div>
+                            <div class="stat-label">Producción anual</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1886</div>
+                            <div class="stat-label">Primer auto</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">400+</div>
+                            <div class="stat-label">km/h récord</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1886</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1886</div>
+                            <h3 class="timeline-title">Nacimiento del Automóvil</h3>
+                            <p>Karl Benz patenta el "Motorwagen", primer automóvil con motor de combustión interna. Velocidad máxima: 16 km/h. Motor monocilíndrico de 954 cc y 0.75 CV.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1908</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1908</div>
+                            <h3 class="timeline-title">Ford Model T y Producción en Masa</h3>
+                            <p>Henry Ford introduce la línea de ensamblaje. Reduce costo y tiempo de producción. 15 millones de unidades vendidas. Velocidad: 72 km/h.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1930</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1930</div>
+                            <h3 class="timeline-title">Innovaciones Técnicas</h3>
+                            <p>Suspensión independiente, frenos hidráulicos, carrocerías aerodinámicas. Aparecen marcas como Chevrolet, Chrysler, Volkswagen.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950</div>
+                            <h3 class="timeline-title">Época Dorada del Diseño</h3>
+                            <p>Aletas, cromados, motores V8 grandes. Popularización del automóvil familiar. Inicio de la cultura del muscle car en Estados Unidos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970</div>
+                            <h3 class="timeline-title">Seguridad y Ecología</h3>
+                            <p>Crisis del petróleo impulsa eficiencia. Introducción del catalizador, airbags, ABS. Regulaciones de emisiones y seguridad más estrictas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-Presente</div>
+                            <h3 class="timeline-title">Era Digital y Electrificación</h3>
+                            <p>Sistemas híbridos y eléctricos (Toyota Prius, Tesla). Conectividad, ADAS, vehículos autónomos. Materiales ligeros y sustentabilidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h2 class="card-title">Eras Tecnológicas</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-horse-head"></i>
+                        </div>
+                        <h3>Era Pionera (1886-1900)</h3>
+                        <p>Primeros automóviles artesanales. Motores de 1-2 cilindros. Transmisión por cadena. Velocidades 10-30 km/h. Coches de lujo para élites.</p>
+                        <div class="component-badge">16 km/h</div>
+                        <div class="component-badge">1886</div>
+                        <div class="component-badge">1 CV</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Producción en Masa (1908-1930)</h3>
+                        <p>Línea de ensamblaje de Ford. Reducción radical de costos. Automóvil accesible para clase media. Estándarización de componentes.</p>
+                        <div class="component-badge">72 km/h</div>
+                        <div class="component-badge">Ford T</div>
+                        <div class="component-badge">$850</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Era de Potencia (1950-1970)</h3>
+                        <p>Motores V8 grandes. Cultura del muscle car. Diseños extravagantes. Énfasis en potencia y velocidad. Crisis del petróleo 1973.</p>
+                        <div class="component-badge">400+ HP</div>
+                        <div class="component-badge">Muscle Cars</div>
+                        <div class="component-badge">1950-70</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Era Moderna (2000+)</h3>
+                        <p>Electrificación, híbridos, eléctricos. Conectividad 5G. Asistencia a la conducción. Materiales compuestos. Vehículos autónomos.</p>
+                        <div class="component-badge">Eléctrico</div>
+                        <div class="component-badge">Autónomo</div>
+                        <div class="component-badge">0 Emisiones</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Producción mundial anual (2023)</span>
+                        <span>80M</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Vehículos eléctricos (2023)</span>
+                        <span>14%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 14%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-car-side"></i>
+                </div>
+                <h2 class="card-title">Fabricantes y Tecnologías</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los fabricantes se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de fabricantes...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-tachometer-alt"></i> Simulación: Evolución del Rendimiento
+                    </div>
+                    <p>Compara el rendimiento de automóviles a través de diferentes eras tecnológicas:</p>
+                    
+                    <div id="performanceSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Era Tecnológica:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="eraSlider" min="1" max="5" value="3" step="1" style="flex: 1;">
+                                    <span id="eraValue" style="min-width: 120px;">Era de Potencia (1950-70)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Pionera (1886)</span>
+                                    <span>Moderna (2020+)</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Automóvil:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="vehicle-type-btn active" data-type="economy">Económico</button>
+                                    <button class="vehicle-type-btn" data-type="family">Familiar</button>
+                                    <button class="vehicle-type-btn" data-type="sports">Deportivo</button>
+                                    <button class="vehicle-type-btn" data-type="luxury">Lujo</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Rendimiento:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Potencia (CV)</span>
+                                            <span id="powerValue">120 CV</span>
+                                        </div>
+                                        <input type="range" id="powerSlider" min="1" max="500" value="120" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Eficiencia (km/L)</span>
+                                            <span id="efficiencyValue">12 km/L</span>
+                                        </div>
+                                        <input type="range" id="efficiencySlider" min="3" max="30" value="12" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="performanceCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Los deportivos (rojo) ofrecen mayor velocidad, pero menor eficiencia</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Tecnológica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareErasBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Eras
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Automóvil: Origen y Evolución - La Revolución del Transporte Personal</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-car"></i> 1886-2024 | 16 km/h a 400+ km/h | 1.4 billones de vehículos en uso
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De motores de combustión a vehículos eléctricos | Industria de 3% PIB mundial | Innovación continua
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Motores y Propulsión</h3>
+                        <ul class="theory-list">
+                            <li><strong>Motores térmicos</strong>: Gasolina, diésel, rotativos, turbocargados</li>
+                            <li><strong>Electrificación</strong>: Híbridos, enchufables, eléctricos puros, hidrógeno</li>
+                            <li><strong>Configuraciones</strong>: En línea, V, W, bóxer, eléctricos sincrónicos</li>
+                            <li><strong>Potencia específica</strong>: De 0.5 CV/L (1886) a 200+ CV/L (F1)</li>
+                            <li><strong>Transmisiones</strong>: Manual, automática, CVT, DSG, reductores eléctricos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Innovaciones Clave</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Seguridad activa</strong>: ABS, ESP, control de tracción, ADAS</li>
+                            <li><strong>Seguridad pasiva</strong>: Airbags, estructura deformable, cinturones</li>
+                            <li><strong>Conectividad</strong>: 5G, OTA updates, infotainment, telemetría</li>
+                            <li><strong>Materiales</strong>: Acero HSS, aluminio, fibra de carbono, composites</li>
+                            <li><strong>Autonomía</strong>: Niveles 0-5, sensores LIDAR, radar, cámaras</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Rendimiento por Era</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Era Pionera (1886)</span> - 16 km/h | 0.75 CV | 3 ruedas | 954 cc<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Ford Model T (1908)</span> - 72 km/h | 20 CV | 2.9 L | 4 cilindros<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Muscle Car (1970)</span> - 200 km/h | 400 CV | 7.0 L | V8<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Superdeportivo (2000)</span> - 350 km/h | 1000 CV | híbrido | AWD<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Eléctrico (2023)</span> - 250 km/h | 500 CV | 0-100 km/h: 2s | 600 km autonomía
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Comparativa de Eras Tecnológicas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de cada Era</h3>
+                        <ul class="theory-list">
+                            <li><strong>Pionera (1886-1900)</strong>: Innovación radical, simplicidad mecánica</li>
+                            <li><strong>Producción en masa (1908-30)</strong>: Accesibilidad, estandarización</li>
+                            <li><strong>Época dorada (1950-70)</strong>: Diseño, potencia, expresión cultural</li>
+                            <li><strong>Modernización (1970-2000)</strong>: Seguridad, eficiencia, electrónica</li>
+                            <li><strong>Era digital (2000+)</strong>: Conectividad, electrificación, autonomía</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones de cada Era</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Pionera</strong>: Baja velocidad, poca fiabilidad, costo alto</li>
+                            <li><strong>Producción en masa</strong>: Poca variedad, opciones limitadas</li>
+                            <li><strong>Época dorada</strong>: Alta contaminación, consumo elevado</li>
+                            <li><strong>Modernización</strong>: Complejidad electrónica, costo mantenimiento</li>
+                            <li><strong>Era digital</strong>: Dependencia tecnológica, obsolescencia programada</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado automotriz actual (2023)</span><br>
+                    <span class="code-string">"Vehículos en circulación: 1.4 billones"</span><br>
+                    <span class="code-string">"Producción anual: 80 millones"</span><br>
+                    <span class="code-string">"Eléctricos: 14% mercado global"</span><br>
+                    <span class="code-string">"Autónomos: Nivel 2-3 adopción en lujo"</span><br>
+                    <span class="code-comment"># Transición hacia movilidad eléctrica y conectada</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">140+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1.4B</div>
+                        <div class="stat-label">Vehículos activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">400+</div>
+                        <div class="stat-label">km/h récord</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3%</div>
+                        <div class="stat-label">PIB mundial</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="automovil_historia.js"></script>
+</body>
+</html>
