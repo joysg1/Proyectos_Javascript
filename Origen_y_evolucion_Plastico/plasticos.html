@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plásticos - Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_plasticos.css">
+</head>
+<body>
+    <!-- Canvas para partículas moleculares -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h1>Plásticos: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución material que transformó la civilización moderna desde sus inicios químicos hasta la era de la sostenibilidad</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-flask"></i> Del baquelita a los bioplásticos: 150 años de innovación molecular
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-recycle"></i> De 1.5 millones de toneladas a 400 millones: el dilema de la abundancia
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Plástico?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Los plásticos</span> son materiales poliméricos sintéticos o semi-sintéticos que pueden ser moldeados bajo presión o calor. Constituyen uno de los <span class="highlight">inventos más transformadores del siglo XX</span>.</p>
+                    <p>Estos materiales revolucionarios reemplazaron materiales tradicionales como <span class="highlight">madera, metal y vidrio</span>, ofreciendo <span class="highlight">ligereza, durabilidad, versatilidad y bajo costo</span>. Se convirtieron en el material omnipresente de la civilización moderna.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Clasificación de Plásticos por Tipo</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Termoplásticos (75%)</span> - Se ablandan con calor: PET, PVC, PP, PS, PE<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Termoestables (20%)</span> - No se remodelan: Baquelita, Poliuretanos, Epoxis<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Elastómeros (5%)</span> - Elasticidad recuperable: Caucho sintético, Siliconas<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Bioplásticos (<2%)</span> - Origen renovable: PLA, PHA, Almidón termoplástico<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Compuestos avanzados</span> - Nanocompuestos, Fibras de carbono
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Ventajas sobre materiales tradicionales
+                            </div>
+                            <p>Ligereza extrema (densidad 0.9-1.5 g/cm³), resistencia a la corrosión, transparencia óptica, versatilidad de formas, aislamiento eléctrico/térmico y bajo costo de producción masiva.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-industry"></i> Impacto en la Civilización
+                            </div>
+                            <p>Los plásticos permitieron la revolución del empaque, medicina estéril, electrónica de consumo, transporte ligero y acceso masivo a productos manufacturados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Química y Características</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Polimerización</strong>: Reacción química que une monómeros en largas cadenas poliméricas</li>
+                        <li><strong>Peso Molecular</strong>: Determina propiedades mecánicas (10k a 1M+ g/mol)</li>
+                        <li><strong>Cristalinidad</strong>: Grado de orden molecular que afecta transparencia y rigidez</li>
+                        <li><strong>Tg (Temperatura de transición vítrea)</strong>: Temperatura donde polímero se ablanda</li>
+                        <li><strong>Aditivos</strong>: Plastificantes, estabilizadores UV, colorantes, retardantes de llama</li>
+                        <li><strong>Procesamiento</strong>: Inyección, extrusión, soplado, termoformado, rotomoldeo</li>
+                        <li><strong>Propiedades</strong>: Relación resistencia/peso superior a metales en muchas aplicaciones</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">368M</div>
+                            <div class="stat-label">Ton/año (2020)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">9000+</div>
+                            <div class="stat-label">Tipos de plástico</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1907</div>
+                            <div class="stat-label">Baquelita</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">40%</div>
+                            <div class="stat-label">Embalaje</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1862</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1862</div>
+                            <h3 class="timeline-title">Parkesina: El Primer Plástico</h3>
+                            <p>Alexander Parkes exhibe la parkesina en la Gran Exposición Internacional de Londres. Primer plástico semisintético derivado de celulosa, precursora del celuloide.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1907</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1907</div>
+                            <h3 class="timeline-title">Baquelita: Primera Termoestable</h3>
+                            <p>Leo Baekeland inventa la baquelita, primer plástico totalmente sintético y termoestable. Revoluciona industria eléctrica y productos de consumo duraderos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1920</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1920s-30s</div>
+                            <h3 class="timeline-title">Era de los Termoplásticos</h3>
+                            <p>Desarrollo del PVC (1926), poliestireno (1930), poliamida/nylon (1935) y politetrafluoroetileno/Teflón (1938). Expansión industrial previa a Segunda Guerra.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950s</div>
+                            <h3 class="timeline-title">Revolución del Polipropileno y PET</h3>
+                            <p>Giulio Natta y Karl Ziegler desarrollan polipropileno (1954). PET (1941) se populariza en fibras y botellas (1973). Comienza la era del plástico desechable.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970s-80s</div>
+                            <h3 class="timeline-title">Masificación Global</h3>
+                            <p>Los plásticos dominan embalaje, construcción, automoción y electrónica. Producción mundial supera 50M ton/año. Aparecen primeras preocupaciones ambientales.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-Presente</div>
+                            <h3 class="timeline-title">Era de la Sostenibilidad</h3>
+                            <p>Crisis de microplásticos impulsa bioplásticos, economía circular y reciclaje avanzado. Producción supera 350M ton/año. Nanotecnología y composites inteligentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h2 class="card-title">Tipos y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>PET (Tereftalato)</h3>
+                        <p>Botellas, fibras textiles, films. Alta transparencia, barrera a gases, reciclable. 70M ton/año.</p>
+                        <div class="component-badge">Botellas</div>
+                        <div class="component-badge">Reciclable</div>
+                        <div class="component-badge">1973</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-pipe"></i>
+                        </div>
+                        <h3>PVC (Policloruro)</h3>
+                        <p>Tuberías, ventanas, cables, suelos. Resistente, económico, versátil. 40M ton/año.</p>
+                        <div class="component-badge">Construcción</div>
+                        <div class="component-badge">Durable</div>
+                        <div class="component-badge">1926</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h3>PE (Polietileno)</h3>
+                        <p>Bolsas, films, envases, juguetes. Ligero, flexible, química inerte. 100M ton/año.</p>
+                        <div class="component-badge">Embalaje</div>
+                        <div class="component-badge">1933</div>
+                        <div class="component-badge">Ligero</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>PP (Polipropileno)</h3>
+                        <p>Automoción, electrodomésticos, textiles. Alta resistencia térmica, rígido. 70M ton/año.</p>
+                        <div class="component-badge">Automoción</div>
+                        <div class="component-badge">1954</div>
+                        <div class="component-badge">Térmico</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Producción mundial actual (millones de ton)</span>
+                        <span>368M</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Porcentaje reciclado efectivamente</span>
+                        <span>9%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 9%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Fabricantes y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los fabricantes se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de la industria plástica...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Producción y Degradación de Plásticos
+                    </div>
+                    <p>Explora la producción, uso y degradación de diferentes tipos de plásticos en el tiempo:</p>
+                    
+                    <div id="degradationSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Plástico:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="plasticTypeSlider" min="1" max="6" value="3" step="1" style="flex: 1;">
+                                    <span id="plasticTypeValue" style="min-width: 100px;">PET (Botellas)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>PE (Bolsas)</span>
+                                    <span>Bioplásticos</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Entorno de Degradación:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="environment-type-btn active" data-type="landfill">Vertedero</button>
+                                    <button class="environment-type-btn" data-type="ocean">Océano</button>
+                                    <button class="environment-type-btn" data-type="recycling">Reciclaje</button>
+                                    <button class="environment-type-btn" data-type="compost">Compostaje</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros Temporales:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Tiempo (años)</span>
+                                            <span id="timeValue">50 años</span>
+                                        </div>
+                                        <input type="range" id="timeSlider" min="1" max="1000" value="50" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Cantidad (kg)</span>
+                                            <span id="quantityValue">100 kg</span>
+                                        </div>
+                                        <input type="range" id="quantitySlider" min="1" max="1000" value="100" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="degradationCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">PET (azul) persiste por siglos en vertedero, mientras bioplásticos (verde) se degradan en meses en compostaje</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Industrial
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones Químicas
+                        </button>
+                        <button class="btn btn-error" id="compareMaterialsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Materiales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Plásticos: Origen y Evolución - La Revolución Material del Siglo XX</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-atom"></i> 1862-2024 | De la Parkesina a los Biopolímeros | Material que definió una era
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Innovación química | Revolución industrial | Desafíos ambientales | Futuro sostenible
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones químicas -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Químicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-vial"></i> Estructura Molecular</h3>
+                        <ul class="theory-list">
+                            <li><strong>Monómeros base</strong>: Etileno, propileno, estireno, cloruro de vinilo</li>
+                            <li><strong>Polimerización</strong>: Radicalaria, iónica, coordinación, condensación</li>
+                            <li><strong>Peso molecular</strong>: 10,000 a >1,000,000 g/mol (determina propiedades)</li>
+                            <li><strong>Cristalinidad</strong>: 0-90% (afecta transparencia y rigidez)</li>
+                            <li><strong>Tg y Tm</strong>: Temperaturas de transición vítrea y fusión</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Propiedades Técnicas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Densidad</strong>: 0.9-1.5 g/cm³ (vs 2.7 aluminio, 7.8 acero)</li>
+                            <li><strong>Resistencia a tracción</strong>: 10-100 MPa (vidrio: 50, acero: 400-800)</li>
+                            <li><strong>Módulo elástico</strong>: 0.1-4 GPa (alta flexibilidad relativa)</li>
+                            <li><strong>Barrera a gases</strong>: PET excelente, PE pobre</li>
+                            <li><strong>Estabilidad química</strong>: Resistencia a ácidos, bases, solventes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Tiempos de Degradación Ambiental</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Bolsas de PE</span> - Vertedero: 1000+ años | Océano: 20-1000 años<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Botellas PET</span> - Vertedero: 450+ años | Fotodegradación: 50-80 años<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Espuma PS</span> - No biodegradable | Fragmentación: 50+ años<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Bioplástico PLA</span> - Compost industrial: 6 meses | Ambiente: 10-100 años<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Papel</span> - 2-5 meses | <span class="highlight">Madera</span> - 10-15 años
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Plásticos vs. Materiales Tradicionales
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de los Plásticos</h3>
+                        <ul class="theory-list">
+                            <li>Relación resistencia/peso superior</li>
+                            <li>Bajo costo de producción masiva</li>
+                            <li>Versatilidad de formas y colores</li>
+                            <li>Excelente aislamiento eléctrico/térmico</li>
+                            <li>Resistencia a corrosión y químicos</li>
+                            <li>Transparencia óptica en algunos tipos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Desventajas Ambientales</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Degradación extremadamente lenta</li>
+                            <li>Acumulación de microplásticos</li>
+                            <li>Baja tasa de reciclaje efectivo (9%)</li>
+                            <li>Dependencia de petróleo (90%)</li>
+                            <li>Emisiones de CO₂ en producción</li>
+                            <li>Contaminación de ecosistemas marinos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Impacto ambiental comparado (por kg de material)</span><br>
+                    <span class="code-string">"PE: 1.9 kg CO₂ | Reciclado: 0.8 kg CO₂ (58% reducción)"</span><br>
+                    <span class="code-string">"PET: 2.1 kg CO₂ | Vidrio: 1.2 kg CO₂ pero 10x más pesado"</span><br>
+                    <span class="code-string">"PLA (maíz): 0.8 kg CO₂ pero uso de tierra agrícola"</span><br>
+                    <span class="code-comment"># El impacto real depende de aplicación, durabilidad y fin de vida</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">150+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Para embalaje</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">8.3B</div>
+                        <div class="stat-label">Ton producidas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">79%</div>
+                        <div class="stat-label">En vertederos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="plasticos.js"></script>
+</body>
+</html>
