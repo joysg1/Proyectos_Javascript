@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combustibles - Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_combustibles.css">
+</head>
+<body>
+    <!-- Canvas para partículas energéticas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-gas-pump"></i>
+                </div>
+                <h1>Combustibles: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución energética que transformó la civilización desde la leña hasta los biocombustibles avanzados</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-fire"></i> La energía que impulsó la civilización industrial y moderna
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-industry"></i> De la madera al hidrógeno: 5.000 años de evolución energética
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son los Combustibles?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Los combustibles</span> son materiales que almacenan energía química que puede liberarse como energía térmica mediante procesos de combustión, <span class="highlight">impulsando motores, generando electricidad y alimentando procesos industriales</span>.</p>
+                    <p>Esta evolución tecnológica transformó la sociedad, desde <span class="highlight">la leña prehistórica hasta los combustibles fósiles de la revolución industrial y las alternativas renovables modernas</span>, redefiniendo el transporte, la industria y la vida diaria.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Cronología de los Combustibles Dominantes</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Prehistoria-1800</span> - Biomasa (leña, carbón vegetal) | Energía renovable primitiva<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1800-1900</span> - Carbón mineral | Revolución industrial<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1900-1950</span> - Petróleo y derivados | Era del automóvil<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1950-2000</span> - Gas natural, nuclear | Globalización<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">2000-Presente</span> - Renovables, biocombustibles, hidrógeno | Transición energética
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Importancia Energética
+                            </div>
+                            <p>Los combustibles proveen el 84% de la energía mundial. Petróleo solo representa el 33% del consumo energético global, seguido por carbón (27%) y gas natural (24%).</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto en la Civilización
+                            </div>
+                            <p>La disponibilidad de energía barata y densa permitió la industrialización, transporte global, agricultura mecanizada y el desarrollo tecnológico del siglo XX.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Tipos y Características</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Combustibles Sólidos</strong>: Carbón, leña, biomasa compactada - Alta densidad, fácil almacenamiento</li>
+                        <li><strong>Combustibles Líquidos</strong>: Petróleo, diésel, gasolina, biocombustibles - Alta energía por volumen</li>
+                        <li><strong>Combustibles Gaseosos</strong>: Gas natural, GLP, hidrógeno - Combustión más limpia</li>
+                        <li><strong>Combustibles Nucleares</strong>: Uranio, plutonio - Energía extremadamente densa</li>
+                        <li><strong>Combustibles Renovables</strong>: Biocombustibles, hidrógeno verde - Ciclo de carbono neutro</li>
+                        <li><strong>Combustibles Sintéticos</strong>: Combustibles creados artificialmente - Futuro de la aviación</li>
+                        <li><strong>Combustibles de Transición</strong>: Gas natural licuado (GNL) - Puente entre fósiles y renovables</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">84%</div>
+                            <div class="stat-label">Energía mundial</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4.6×10⁷</div>
+                            <div class="stat-label">kJ/kg H₂</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1859</div>
+                            <div class="stat-label">Primer pozo petróleo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">13%</div>
+                            <div class="stat-label">Renovables</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">-4000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">4000 a.C. - 1800</div>
+                            <h3 class="timeline-title">Era de la Biomasa</h3>
+                            <p>Uso de leña y carbón vegetal como combustibles primarios. Agricultura básica, metalurgia primitiva. La energía se obtiene principalmente de recursos renovables inmediatos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1700</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1700 - 1850</div>
+                            <h3 class="timeline-title">Revolución del Carbón</h3>
+                            <p>Máquina de vapor de Newcomen (1712) y Watt (1765). El carbón mineral sustituye a la leña, permitiendo industrialización a gran escala y ferrocarriles.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1859</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1859 - 1900</div>
+                            <h3 class="timeline-title">Nacimiento de la Industria Petrolera</h3>
+                            <p>Primer pozo de petróleo moderno (Pennsylvania, 1859). Desarrollo de refinerías, lámparas de queroseno. Motor de combustión interna (Otto, 1876).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1900 - 1950</div>
+                            <h3 class="timeline-title">Era del Petróleo y Automóvil</h3>
+                            <p>Producción en masa del Ford Model T (1908). Aviones, barcos y vehículos militares en guerras mundiales. Crackeo catalítico (1937) mejora producción gasolina.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950 - 2000</div>
+                            <h3 class="timeline-title">Diversificación Energética</h3>
+                            <p>Gas natural para calefacción y electricidad. Energía nuclear civil (1954). Crisis del petróleo (1973, 1979) impulsa eficiencia y exploración de alternativas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000 - Presente</div>
+                            <h3 class="timeline-title">Transición Energética</h3>
+                            <p>Biocombustibles (etanol, biodiesel), energía solar/eólica, vehículos eléctricos. Hidrógeno como vector energético. Economía circular y descarbonización.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h2 class="card-title">Generaciones y Densidad Energética</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Combustibles Primarios</h3>
+                        <p>Leña, carbón vegetal, turba. Baja densidad energética (15-18 MJ/kg). Uso local, impacto ambiental significativo por deforestación.</p>
+                        <div class="component-badge">15-18 MJ/kg</div>
+                        <div class="component-badge">Renovable</div>
+                        <div class="component-badge">Baja densidad</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>Combustibles Fósiles</h3>
+                        <p>Carbón (24 MJ/kg), petróleo (46 MJ/kg), gas natural (55 MJ/kg). Alta densidad, alto impacto ambiental, recursos finitos.</p>
+                        <div class="component-badge">24-55 MJ/kg</div>
+                        <div class="component-badge">Alta densidad</div>
+                        <div class="component-badge">Finito</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3>Combustibles Nucleares</h3>
+                        <p>Uranio-235 (8×10⁷ MJ/kg). Energía extremadamente densa. Desafíos de residuos y seguridad. Bajas emisiones directas.</p>
+                        <div class="component-badge">8×10⁷ MJ/kg</div>
+                        <div class="component-badge">Ultra denso</div>
+                        <div class="component-badge">Bajas emisiones</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Combustibles Alternativos</h3>
+                        <p>Biocombustibles, hidrógeno (142 MJ/kg), amoníaco. Energía renovable, almacenamiento de intermitentes, futuro sostenible.</p>
+                        <div class="component-badge">Renovable</div>
+                        <div class="component-badge">Hidrógeno</div>
+                        <div class="component-badge">Sostenible</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Participación petróleo en transporte (2023)</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Objetivo renovables 2030 (IEA)</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 30%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Producción y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los productores se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de productores...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-desktop"></i> Simulación: Densidad Energética y Emisiones
+                    </div>
+                    <p>Compara la densidad energética y emisiones de CO₂ de diferentes combustibles:</p>
+                    
+                    <div id="energySimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Combustible:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="fuelTypeSlider" min="1" max="6" value="3" step="1" style="flex: 1;">
+                                    <span id="fuelTypeValue" style="min-width: 120px;">Gasolina</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Leña</span>
+                                    <span>Hidrógeno</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Aplicación Principal:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="device-type-btn active" data-type="transport">Transporte</button>
+                                    <button class="device-type-btn" data-type="electricity">Electricidad</button>
+                                    <button class="device-type-btn" data-type="industry">Industria</button>
+                                    <button class="device-type-btn" data-type="residential">Residencial</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Evaluación:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Cantidad Energía</span>
+                                            <span id="energyValue">1000 MJ</span>
+                                        </div>
+                                        <input type="range" id="energySlider" min="100" max="10000" value="1000" step="100" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Eficiencia Conversión</span>
+                                            <span id="efficiencyValue">35%</span>
+                                        </div>
+                                        <input type="range" id="efficiencySlider" min="10" max="90" value="35" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="energyCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">La gasolina ofrece alta densidad energética pero altas emisiones; el hidrógeno es limpio pero costoso de almacenar</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Energética
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareProtocolsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Combustibles
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Combustibles: Origen y Evolución - La Revolución Energética de la Civilización</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-gas-pump"></i> 4000 a.C. - 2024 | De la leña al hidrógeno | Impulso de la civilización
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De combustibles fósiles a renovables | Transición energética | Sostenibilidad | Futuro energético
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Propiedades Físico-Químicas</h3>
+                        <ul class="theory-list">
+                            <li><strong>Poder calorífico superior</strong>: Energía total liberada incluyendo vapor de agua</li>
+                            <li><strong>Poder calorífico inferior</strong>: Energía útil descontando calor latente</li>
+                            <li><strong>Densidad energética</strong>: MJ/kg o MJ/L - clave para transporte</li>
+                            <li><strong>Número de octano/cetano</strong>: Medida de resistencia a la detonación</li>
+                            <li><strong>Punto de inflamación</strong>: Temperatura mínima para formar mezcla inflamable</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Procesos de Transformación</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Refinación de petróleo</strong>: Destilación, cracking, reformado catalítico</li>
+                            <li><strong>Gasificación</strong>: Conversión de carbón/sólidos a gas sintético</li>
+                            <li><strong>Fermentación</strong>: Producción de etanol a partir de biomasa</li>
+                            <li><strong>Electrólisis</strong>: Producción de hidrógeno verde con electricidad renovable</li>
+                            <li><strong>Fischer-Tropsch</strong>: Síntesis de combustibles líquidos a partir de gas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Densidad Energética (MJ/kg)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Hidrógeno</span> - 142 MJ/kg | Desafío: almacenamiento a -253°C o 700 bar<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Gasolina</span> - 46 MJ/kg | Alta densidad, infraestructura madura<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Diésel</span> - 45 MJ/kg | Mayor eficiencia en motores, más energía por litro<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Gas Natural (GNL)</span> - 55 MJ/kg | -162°C para líquido, 1/600 volumen<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Carbón</span> - 24 MJ/kg | Más contaminante, menor costo<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Etanol</span> - 30 MJ/kg | Renovable, menor densidad que gasolina
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Combustibles Fósiles vs. Alternativos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de Fósiles</h3>
+                        <ul class="theory-list">
+                            <li>Alta densidad energética</li>
+                            <li>Infraestructura global madura</li>
+                            <li>Coste competitivo (sin externalidades)</li>
+                            <li>Almacenamiento relativamente fácil</li>
+                            <li>Disponibilidad constante (no intermitente)</li>
+                            <li>Versatilidad de aplicaciones</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones vs Alternativas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Emisiones de CO₂ y cambio climático</li>
+                            <li>Contaminación local (NOx, SOx, partículas)</li>
+                            <li>Recursos finitos (agotamiento en décadas)</li>
+                            <li>Dependencia geopolítica</li>
+                            <li>Costes ambientales y de salud no internalizados</li>
+                            <li>Transición inevitable hacia renovables</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado energético actual y proyecciones</span><br>
+                    <span class="code-string">"Petróleo: 33% mix energético global (2023), reducción a 28% para 2030"</span><br>
+                    <span class="code-string">"Renovables: 13% actual, crecimiento a 30% para 2030 según IEA"</span><br>
+                    <span class="code-string">"Vehículos eléctricos: 18% ventas nuevas 2023, 35% proyectado 2030"</span><br>
+                    <span class="code-comment"># Transición acelerada por políticas climáticas y avances tecnológicos</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">6,000 años</div>
+                        <div class="stat-label">Uso de combustibles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">84%</div>
+                        <div class="stat-label">Energía de fósiles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">142 MJ/kg</div>
+                        <div class="stat-label">H₂ densidad</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.1°C</div>
+                        <div class="stat-label">Calentamiento proyectado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="combustibles.js"></script>
+</body>
+</html>
