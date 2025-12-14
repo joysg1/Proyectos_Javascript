@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Papel - Origen y Evolución Histórica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_papel.css">
+</head>
+<body>
+    <!-- Canvas para partículas de fibra -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-scroll"></i>
+                </div>
+                <h1>El Papel: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución histórica que transformó la comunicación humana desde el papiro hasta la era digital</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> El soporte que democratizó el conocimiento en la civilización
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-chart-line"></i> 2000 años de evolución: de China a la revolución industrial
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Papel?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">El papel</span> es un material compuesto por fibras vegetales entrecruzadas que forman una hoja resistente y flexible. Inventado en China alrededor del año 105 d.C., revolucionó la <span class="highlight">comunicación, el arte y la administración</span> en todo el mundo.</p>
+                    <p>Esta tecnología milenaria reemplazó a materiales como <span class="highlight">piedra, arcilla, bambú, seda y papiro</span>, ofreciendo un medio más accesible, duradero y económico para registrar información.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Evolución de la Fabricación de Papel</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Papiro (3000 a.C.)</span> - Egipto | Fibras de planta Cyperus papyrus<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Papel (105 d.C.)</span> - China | Cai Lun, fibras de morera<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Papel Árabe (751 d.C.)</span> - Samarkanda | Primer molino papelero<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Europa (Siglo XII)</span> - España/Italia | Molinos hidráulicos<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Revolución Industrial (1799)</span> - Máquina continua Fourdrinier
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-leaf"></i> Ventajas sobre materiales anteriores
+                            </div>
+                            <p>Mayor durabilidad, producción masiva, menor costo, facilidad de transporte, soporte para tinta estable y capacidad de reciclaje.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-globe"></i> Impacto en la Civilización
+                            </div>
+                            <p>Permitió la difusión masiva del conocimiento, la burocracia estatal, el desarrollo de la imprenta y la educación universal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Composición y Características</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Fibras Celulósicas</strong>: Principal componente (madera, algodón, lino, cáñamo)</li>
+                        <li><strong>Proceso de Pulpa</strong>: Mecánica, química o semi-química para separar fibras</li>
+                        <li><strong>Agente Encolante</strong>: Almidón o cola para reducir absorción de tinta</li>
+                        <li><strong>Cargas Minerales</strong>: Caolín, carbonato cálcico para opacidad y suavidad</li>
+                        <li><strong>Blanqueadores</strong>: Para obtener diferentes grados de blancura</li>
+                        <li><strong>Pegamento</strong>: Para unir las fibras durante la formación de la hoja</li>
+                        <li><strong>Acabados</strong>: Calandrado, estucado para diferentes texturas</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">420M</div>
+                            <div class="stat-label">Toneladas anuales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">105 d.C.</div>
+                            <div class="stat-label">Inventado</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">Celulosa</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2000+</div>
+                            <div class="stat-label">Años de uso</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">105</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">105 d.C.</div>
+                            <h3 class="timeline-title">Invento en China</h3>
+                            <p>Cai Lun, funcionario de la corte Han, perfecciona el proceso de fabricación de papel usando fibras de morera, trapos y redes de pesca. Se establece como secreto de estado por siglos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">751</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">751 d.C.</div>
+                            <h3 class="timeline-title">Difusión al Mundo Árabe</h3>
+                            <p>Tras la Batalla de Talas, prisioneros chinos revelan la técnica en Samarkanda. Se establece el primer molino papelero fuera de China, usando fibras de lino y cáñamo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1151</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1151 d.C.</div>
+                            <h3 class="timeline-title">Llegada a Europa</h3>
+                            <p>Primer molino papelero europeo en Xátiva, España. La técnica se difunde lentamente por el Mediterráneo, enfrentando resistencia por el uso de pergamino.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1440</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1440</div>
+                            <h3 class="timeline-title">Imprenta de Gutenberg</h3>
+                            <p>La invención de la imprenta de tipos móviles crea demanda masiva de papel. Se establecen molinos por toda Europa y se experimenta con nuevas fibras.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1799</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1799</div>
+                            <h3 class="timeline-title">Revolución Industrial</h3>
+                            <p>Nicolas-Louis Robert patenta la primera máquina continua de papel (Fourdrinier). Permite producción masiva y estandarización, bajando costos drásticamente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1844</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1844-Presente</div>
+                            <h3 class="timeline-title">Era Moderna</h3>
+                            <p>Invento de la pulpa química de madera (celulosa). Automatización completa, reciclaje masivo, papel especializado. Transición parcial a medios digitales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Tipos y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3>Papel de Periódico</h3>
+                        <p>Papel de baja calidad, alta porosidad, hecho principalmente de pulpa mecánica. Se amarillea rápidamente por la lignina residual.</p>
+                        <div class="component-badge">45-50 g/m²</div>
+                        <div class="component-badge">Alta acidez</div>
+                        <div class="component-badge">Pulpa mecánica</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Papel para Libros</h3>
+                        <p>Papel opaco, de baja reflectancia, con buen comportamiento para la impresión tipográfica. Tratado para mayor durabilidad.</p>
+                        <div class="component-badge">60-90 g/m²</div>
+                        <div class="component-badge">Baja acidez</div>
+                        <div class="component-badge">Alta opacidad</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Papel de Oficina</h3>
+                        <p>Papel de alta calidad para escritura e impresión láser/inyección. Buena blancura, suavidad y resistencia a la penetración de tinta.</p>
+                        <div class="component-badge">70-100 g/m²</div>
+                        <div class="component-badge">pH neutro</div>
+                        <div class="component-badge">Alta blancura</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Papel para Arte</h3>
+                        <p>Variedades especializadas: acuarela, grabado, dibujo. Diferentes texturas, gramajes y composiciones según técnica artística.</p>
+                        <div class="component-badge">120-300 g/m²</div>
+                        <div class="component-badge">Sin ácido</div>
+                        <div class="component-badge">Algodón/lino</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Producción mundial anual</span>
+                        <span>420M ton</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Tasa de reciclaje (Europa)</span>
+                        <span>72%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 72%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h2 class="card-title">Fabricación y Sustentabilidad</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los procesos se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando procesos de fabricación...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-industry"></i> Simulación: Proceso de Fabricación de Papel
+                    </div>
+                    <p>Explora las diferentes etapas de producción de papel y su impacto ambiental:</p>
+                    
+                    <div id="fabricationSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Papel:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="paperTypeSlider" min="1" max="4" value="3" step="1" style="flex: 1;">
+                                    <span id="paperTypeValue" style="min-width: 100px;">Papel de Oficina</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Papel Periódico</span>
+                                    <span>Papel Artístico</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Materia Prima:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="material-type-btn active" data-type="wood-pulp">Pulpa de Madera</button>
+                                    <button class="material-type-btn" data-type="recycled">Reciclado</button>
+                                    <button class="material-type-btn" data-type="cotton">Algodón/Lino</button>
+                                    <button class="material-type-btn" data-type="bamboo">Bambú</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros Ambientales:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>% Energía Renovable</span>
+                                            <span id="energyValue">65%</span>
+                                        </div>
+                                        <input type="range" id="energySlider" min="0" max="100" value="65" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>% Agua Recirculada</span>
+                                            <span id="waterValue">85%</span>
+                                        </div>
+                                        <input type="range" id="waterSlider" min="0" max="100" value="85" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="impactCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">El papel reciclado (verde) reduce significativamente el impacto ambiental frente al virgen (rojo)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareMaterialsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Materiales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>El Papel: Origen y Evolución - La Revolución del Conocimiento Escrito</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-scroll"></i> 105 d.C.-2024 | De Cai Lun a la producción industrial | 2000 años de historia
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De los rollos de papiro a los libros impresos | El soporte que construyó civilizaciones | Transición a la era digital
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Especificaciones Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Propiedades Físicas</h3>
+                        <ul class="theory-list">
+                            <li><strong>Gramaje</strong>: 40-300 g/m² (varía según aplicación)</li>
+                            <li><strong>Espesor</strong>: 0.05-0.25 mm (calibre)</li>
+                            <li><strong>Densidad</strong>: 0.6-1.2 g/cm³</li>
+                            <li><strong>Blancura</strong>: 70-100% CIE (escala internacional)</li>
+                            <li><strong>Opacidad</strong>: 70-98% (transparencia de la hoja)</li>
+                            <li><strong>Porosidad</strong>: 10-60 ml/min (absorción de aire)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-flask"></i> Propiedades Químicas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>pH</strong>: 4.5-8.5 (ácido a alcalino)</li>
+                            <li><strong>Contenido de Cenizas</strong>: 0-30% (cargas minerales)</li>
+                            <li><strong>Retención de Humedad</strong>: 4-8% en ambiente estándar</li>
+                            <li><strong>Resistencia a la Luz</strong>: Varía según blanqueadores</li>
+                            <li><strong>Estabilidad Dimensional</strong>: Cambio ≤ 0.5% con humedad</li>
+                            <li><strong>Vida Útil</strong>: 50-1000 años (según acidez)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Tipos de Papel por Aplicación</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Periódico (40-52 g/m²)</span> - Alta porosidad, rápida absorción, baja permanencia<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Oficina (70-100 g/m²)</span> - Alta blancura, buen comportamiento tintas, pH neutro<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Libros (60-90 g/m²)</span> - Opaco, bajo brillo, buena legibilidad<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Arte (120-300 g/m²)</span> - Alta calidad, sin ácido, diversas texturas<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Embalaje (150-400 g/m²)</span> - Alta resistencia, rigidez, barrera humedad
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Papel vs. Materiales Históricos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas del Papel</h3>
+                        <ul class="theory-list">
+                            <li>Costo de producción relativamente bajo</li>
+                            <li>Flexibilidad y facilidad de manipulación</li>
+                            <li>Buena absorción de tintas y pigmentos</li>
+                            <li>Posibilidad de producción masiva</li>
+                            <li>Reciclable múltiples veces</li>
+                            <li>Biodegradable y renovable</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones históricas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Sensibilidad a la humedad y fuego</li>
+                            <li>Degradación por acidez (papel ácido)</li>
+                            <li>Impacto ambiental de la producción</li>
+                            <li>Consumo significativo de agua y energía</li>
+                            <li>Espacio de almacenamiento físico</li>
+                            <li>Competencia con medios digitales</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Consumo mundial de papel por sector</span><br>
+                    <span class="code-string">"Embalaje y envases: 54% del total mundial"</span><br>
+                    <span class="code-string">"Papel gráfico (libros, revistas): 29%"</span><br>
+                    <span class="code-string">"Papel sanitario/higiénico: 7%"</span><br>
+                    <span class="code-string">"Otros usos industriales: 10%"</span><br>
+                    <span class="code-comment"># El papel mantiene dominio en empaques, aunque disminuye en comunicación escrita</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">2000+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">72%</div>
+                        <div class="stat-label">Reciclaje UE</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10 L</div>
+                        <div class="stat-label">Agua/kg papel</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3-7x</div>
+                        <div class="stat-label">Reciclable</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="papel.js"></script>
+</body>
+</html>
