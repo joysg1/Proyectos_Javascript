@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dieselgate: El Escándalo de Emisiones - Revelación y Consecuencias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_dieselgate.css">
+</head>
+<body>
+    <!-- Canvas para efectos visuales -->
+    <canvas id="emissions-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="scandal-logo">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h1>DIESELGATE: El Escándalo</h1>
+                <p class="subtitle">Revelando la manipulación de emisiones en motores diesel de Volkswagen y su impacto global en la industria automotriz</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-exclamation-triangle"></i> El mayor escándalo automotriz de la historia
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-globe-americas"></i> 11 millones de vehículos | 15 mil millones en multas | 40 países afectados
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-biohazard"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué fue el Dieselgate?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Dieselgate</span> es el nombre coloquial del escándalo de emisiones que involucró al <span class="highlight">Grupo Volkswagen</span> y reveló que millones de vehículos diesel utilizaban <span class="highlight">software ilegal para evadir las pruebas de emisiones</span>.</p>
+                    <p>Descubierto en 2015 por investigadores de la Universidad de Virginia Occidental, el software detectaba cuándo el vehículo estaba siendo probado y activaba controles de emisiones, mientras que en condiciones normales de conducción <span class="highlight">emitía hasta 40 veces más óxidos de nitrógeno (NOx)</span> permitidos por la ley.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Cronología del Escándalo</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">2009-2014</span> - Desarrollo e implementación del software "defeat device"<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Septiembre 2015</span> - EPA emite orden de violación a VW<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">2015-2017</span> - Revelaciones globales, CEO Martin Winterkorn renuncia<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">2017-2020</span> - Acuerdos de compensación, retirada de vehículos<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">2020-Presente</span> - Juicios continuos, transición a vehículos eléctricos
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-microchip"></i> El "Defeat Device"
+                            </div>
+                            <p>Software que detectaba condiciones de prueba mediante sensores de volante, presión atmosférica y duración del motor. Desactivaba controles de emisiones en conducción real.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-balance-scale"></i> Impacto Legal y Financiero
+                            </div>
+                            <p>VW enfrentó multas por más de $30 mil millones, retirada de 11 millones de vehículos, y demandas en más de 40 países. Acciones legales continuaron por años.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">Datos y Consecuencias</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Vehículos afectados</strong>: 11 millones mundialmente (2009-2015)</li>
+                        <li><strong>Emisiones reales</strong>: Hasta 40x más NOx que límites legales</li>
+                        <li><strong>Multas totales</strong>: Más de $30 mil millones a nivel global</li>
+                        <li><strong>Países afectados</strong>: 40+ incluyendo EUA, UE, Corea, Australia</li>
+                        <li><strong>Directivos procesados</strong>: 6 ejecutivos enfrentaron cargos criminales</li>
+                        <li><strong>Muertes estimadas</strong>: 1,200 por contaminación adicional en EUA/UE</li>
+                        <li><strong>Coste por vehículo</strong>: $7,000 promedio en multas y compensaciones</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">11M</div>
+                            <div class="stat-label">Vehículos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">40x</div>
+                            <div class="stat-label">Más emisiones</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$30B</div>
+                            <div class="stat-label">En multas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2015</div>
+                            <div class="stat-label">Descubrimiento</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Línea de Tiempo del Escándalo</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2009</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2006-2009</div>
+                            <h3 class="timeline-title">Desarrollo del Software Ilegal</h3>
+                            <p>Volkswagen desarrolla software "defeat device" para motores EA189. El código detecta pruebas de emisiones y activa controles solo durante pruebas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2014</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Mayo 2014</div>
+                            <h3 class="timeline-title">Primera Investigación</h3>
+                            <p>Investigadores de la Universidad de Virginia Occidental descubren discrepancias en pruebas reales vs laboratorio. Envían hallazgos a la EPA y CARB.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Sept 2015</div>
+                            <h3 class="timeline-title">Escándalo Público</h3>
+                            <p>EPA emite orden de violación a VW. Se revela que 482,000 vehículos en EUA tienen software ilegal. Acciones de VW caen 20% en un día.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Sept-Dic 2015</div>
+                            <h3 class="timeline-title">Renuncia del CEO</h3>
+                            <p>Martin Winterkorn renuncia como CEO. Se revela que 11 millones de vehículos mundialmente están afectados. Investigaciones globales comienzan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2017</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Enero 2017</div>
+                            <h3 class="timeline-title">Acuerdo de Compensación</h3>
+                            <p>VW acuerda pagar $4.3 mil millones en multas criminales y civiles en EUA. Seis ejecutivos enfrentan cargos. Programas de compensación comienzan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020-Presente</div>
+                            <h3 class="timeline-title">Legado y Cambio</h3>
+                            <p>VW se enfoca en vehículos eléctricos con inversión de $86 mil millones. Escándalo acelera transición global desde diesel. Nuevas regulaciones de emisiones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-car-crash"></i>
+                </div>
+                <h2 class="card-title">Modelos Afectados y Motores</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Volkswagen</h3>
+                        <p>Golf, Jetta, Passat, Beetle, Touareg (2009-2015). Motores EA189 2.0L TDI. Software ilegal en modelos EUA, UE y globales.</p>
+                        <div class="component-badge">482K EUA</div>
+                        <div class="component-badge">2.0L TDI</div>
+                        <div class="component-badge">2009-2015</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Audi</h3>
+                        <p>A3, A4, A6, Q5, Q7 (2009-2016). Motores 3.0L V6 TDI. Algunos modelos con software más sofisticado.</p>
+                        <div class="component-badge">85K EUA</div>
+                        <div class="component-badge">3.0L V6</div>
+                        <div class="component-badge">Premium</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Porche</h3>
+                        <p>Cayenne Diesel (2013-2016). Compartía tecnología con Audi/VW. Alto perfil afectó marca de lujo.</p>
+                        <div class="component-badge">Lujo</div>
+                        <div class="component-badge">SUV</div>
+                        <div class="component-badge">2013-2016</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3>Otras Marcas VW</h3>
+                        <p>Skoda, SEAT también afectadas en Europa. Mismos motores EA189. Escándalo expuso prácticas corporativas grupales.</p>
+                        <div class="component-badge">Skoda</div>
+                        <div class="component-badge">SEAT</div>
+                        <div class="component-badge">Europa</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Vehículos reparados/retirados (2023)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Compensación a consumidores pagada</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h2 class="card-title">Consecuencias Legales y Regulatorias</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información legal...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva de emisiones -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-smog"></i> Simulación: Emisiones Reales vs Pruebas
+                    </div>
+                    <p>Compara las emisiones de NOx en diferentes condiciones de conducción y vehículos afectados:</p>
+                    
+                    <div id="emissionsSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Modelo de Vehículo:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="vehicleModelSlider" min="1" max="4" value="2" step="1" style="flex: 1;">
+                                    <span id="vehicleModelValue" style="min-width: 120px;">VW Jetta TDI</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Golf TDI</span>
+                                    <span>Audi Q7</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Condiciones de Conducción:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="device-type-btn active" data-type="lab-test">Prueba Laboratorio</button>
+                                    <button class="device-type-btn" data-type="city-driving">Ciudad</button>
+                                    <button class="device-type-btn" data-type="highway">Autopista</button>
+                                    <button class="device-type-btn" data-type="mountain">Montaña</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Software:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Software Activado</span>
+                                            <span id="softwareValue">No</span>
+                                        </div>
+                                        <input type="range" id="softwareSlider" min="0" max="1" value="0" step="1" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Temp. Ambiente</span>
+                                            <span id="temperatureValue">20°C</span>
+                                        </div>
+                                        <input type="range" id="temperatureSlider" min="-10" max="40" value="20" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="emissionsCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Software desactivado (rojo) muestra emisiones 40x mayores que en pruebas (verde)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateScandalBtn">
+                            <i class="fas fa-play-circle"></i> Simular Cronología del Escándalo
+                        </button>
+                        <button class="btn btn-secondary" id="viewLegalBtn">
+                            <i class="fas fa-file-alt"></i> Ver Consecuencias Legales
+                        </button>
+                        <button class="btn btn-error" id="compareEmissionsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Emisiones
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Dieselgate: Escándalo de Emisiones - El Fraude que Cambió la Industria Automotriz</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-industry"></i> 2009-2023 | 11M vehículos | $30B en multas | Cambio regulatorio global
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                De motores diesel a electrificación | Mayor fraude automotriz | Nuevas normas WLTP | Transparencia forzada
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles legales -->
+    <div class="modal" id="legalModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-gavel"></i> Consecuencias Legales y Financieras
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-dollar-sign"></i> Impacto Financiero</h3>
+                        <ul class="theory-list">
+                            <li><strong>Multas EUA</strong>: $4.3B criminales, $14.7B acuerdos civiles</li>
+                            <li><strong>Compensación EUA</strong>: $10B a propietarios, $4.7B mitigación ambiental</li>
+                            <li><strong>Multas Europa</strong>: €1B Alemania, €10M Italia, €16M Francia</li>
+                            <li><strong>Acciones</strong>: Caída 37% tras revelación, recuperación lenta</li>
+                            <li><strong>Costes totales</strong>: $33B estimados globalmente (2023)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-balance-scale"></i> Consecuencias Legales</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Ejecutivos</strong>: 6 cargos criminales EUA, 2 condenas</li>
+                            <li><strong>Oliver Schmidt</strong>: 7 años prisión, $400K multa</li>
+                            <li><strong>James Liang</strong>: 40 meses prisión, cooperación</li>
+                            <li><strong>Investigaciones</strong>: 40+ países, múltiples jurisdicciones</li>
+                            <li><strong>Martin Winterkorn</strong>: Cargos en Alemania, EUA; juicio pendiente</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Acuerdos de Compensación por Región</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Estados Unidos</span> - $25B total | $7,000-10,000 por propietario<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Canadá</span> - $2.1B | $5,100-8,000 por propietario<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Alemania</span> - €830M | Acuerdo con 400,000 propietarios<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Australia</span> - A$127M | Mayor acuerdo de clase<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Reino Unido</span> - £193M | 91,000 demandantes<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Corea del Sur</span> - ₩37.2B | Multas y compensaciones
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de emisiones -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-wind"></i> Impacto Ambiental y de Salud
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-lungs"></i> Impacto en Salud Pública</h3>
+                        <ul class="theory-list">
+                            <li>1,200 muertes prematuras en EUA/Europa (estudio MIT)</li>
+                            <li>31,000 años de vida perdidos por enfermedades respiratorias</li>
+                            <li>210,000 días de síntomas de asma en niños EUA</li>
+                            <li>Aumento cáncer pulmonar, enfermedades cardiovasculares</li>
+                            <li>Costes sanitarios: $39B anuales (estudio EUA)</li>
+                            <li>Mayor impacto en áreas urbanas densas</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-leaf"></i> Impacto Ambiental</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>1M toneladas NOx extra anuales (equivalente a 40M autos)</li>
+                            <li>Contribución significativa a smog fotoquímico</li>
+                            <li>Lluvia ácida y eutrofización de ecosistemas</li>
+                            <li>Emisiones equivalentes a plantas de carbón</li>
+                            <li>Daño a cultivos y vegetación</li>
+                            <li>Impacto desproporcionado en comunidades vulnerables</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Cambios regulatorios post-Dieselgate</span><br>
+                    <span class="code-string">"WLTP (Worldwide Harmonized Light Vehicles Test Procedure) reemplaza NEDC"</span><br>
+                    <span class="code-string">"RDE (Real Driving Emissions) pruebas en condiciones reales"</span><br>
+                    <span class="code-string">"Mayor supervisión regulatoria independiente"</span><br>
+                    <span class="code-string">"Sanciones más severas por fraude de emisiones"</span><br>
+                    <span class="code-comment"># Dieselgate catalizó cambio global en regulación de emisiones vehiculares</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">1,200</div>
+                        <div class="stat-label">Muertes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1M t</div>
+                        <div class="stat-label">NOx extra/año</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$39B</div>
+                        <div class="stat-label">Coste salud/año</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40x</div>
+                        <div class="stat-label">Más emisiones</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dieselgate.js"></script>
+</body>
+</html>
