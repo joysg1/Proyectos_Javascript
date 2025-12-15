@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómics: Origen y Evolución Histórica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_comics.css">
+</head>
+<body>
+    <!-- Canvas para partículas de tinta y papel -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="comic-logo">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h1>Cómics: Origen y Evolución</h1>
+                <p class="subtitle">Explorando el viaje histórico de la narrativa gráfica desde las primeras tiras cómicas hasta el universo cinematográfico moderno</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-pencil-ruler"></i> El noveno arte: de la prensa escrita a las pantallas globales
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-history"></i> Siglo XIX - Presente: 200 años de evolución narrativa y artística
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son los Cómics?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">El cómic</span> es una forma de expresión artística y literaria que combina <span class="highlight">imágenes secuenciales con texto</span> para contar historias, informar o entretener.</p>
+                    <p>Conocido como el <span class="highlight">"noveno arte"</span>, el cómic ha evolucionado desde las simples tiras periodísticas del siglo XIX hasta convertirse en un <span class="highlight">fenómeno cultural global</span> que ha dado origen a superhéroes icónicos y universos narrativos complejos.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Cronología de Hitos Importantes</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1837</span> - "The Adventures of Obadiah Oldbuck" (primer cómic)<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1895</span> - "The Yellow Kid" en New York World<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1938</span> - Superman debut (inicio Edad de Oro)<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1962</span> - Spider-Man debut (inicio Edad de Plata)<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">1986</span> - "Watchmen" y "The Dark Knight Returns"<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">2008</span> - Inicio del Universo Cinematográfico Marvel
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-feather-alt"></i> Elementos Fundamentales
+                            </div>
+                            <p>Viñetas, globos de texto, onomatopeyas, metáforas visuales. Combina literatura y arte visual para crear narrativa secuencial.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-globe-americas"></i> Impacto Cultural
+                            </div>
+                            <p>Ha influenciado cine, TV, videojuegos y moda. Iconos como Superman y Batman son reconocidos mundialmente como símbolos culturales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Estructura y Estilos Artísticos</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Viñetas</strong>: Unidades básicas de espacio y tiempo narrativo</li>
+                        <li><strong>Globos de Diálogo</strong>: Contienen conversaciones y pensamientos</li>
+                        <li><strong>Onomatopeyas</strong>: Representaciones visuales de sonidos</li>
+                        <li><strong>Líneas Cinéticas</strong>: Ilustran movimiento y acción</li>
+                        <li><strong>Estilo Americano</strong>: Superhéroes, acción dinámica, colores vibrantes</li>
+                        <li><strong>Estilo Europeo/Belga</strong>: Línea clara (Tintín, Asterix), humor e historias cerradas</li>
+                        <li><strong>Manga Japonés</strong>: Lectura derecha-izquierda, expresiones exageradas</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">1837</div>
+                            <div class="stat-label">Primer cómic</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$29B</div>
+                            <div class="stat-label">Industria global</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1938</div>
+                            <div class="stat-label">Superman debut</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Países productores</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1837</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1837</div>
+                            <h3 class="timeline-title">Los Orígenes: Proto-cómics</h3>
+                            <p>"The Adventures of Obadiah Oldbuck" de Rodolphe Töpffer, considerado el primer cómic moderno. Combinaba imágenes secuenciales con texto para contar una historia humorística.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1895</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1895</div>
+                            <h3 class="timeline-title">La Era de las Tiras Cómicas</h3>
+                            <p>"The Yellow Kid" de Richard F. Outcault en New York World. Primer personaje recurrente en cómics y uso innovador de globos de texto. Popularizó el formato en periódicos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1938</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1938</div>
+                            <h3 class="timeline-title">La Edad de Oro del Cómic</h3>
+                            <p>Debut de Superman en Action Comics #1, creado por Jerry Siegel y Joe Shuster. Inicio de la era de superhéroes y fundación de DC Comics. Aparecen Batman, Wonder Woman y Capitán América.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1956</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1956</div>
+                            <h3 class="timeline-title">La Edad de Plata</h3>
+                            <p>Showcase #4 presenta al nuevo Flash, reiniciando el género de superhéroes. Marvel Comics introduce a Los 4 Fantásticos (1961) y Spider-Man (1962). Cómics más sofisticados psicológicamente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1986</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1986</div>
+                            <h3 class="timeline-title">La Edad Oscura/Moderna</h3>
+                            <p>"Watchmen" de Alan Moore y "The Dark Knight Returns" de Frank Miller revolucionan el medio. Cómics más adultos, complejos y literarios. Surge Vertigo Comics y el manga gana popularidad global.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000-Presente</div>
+                            <h3 class="timeline-title">La Era Digital y Cinematográfica</h3>
+                            <p>Los cómics se adaptan masivamente al cine y TV (MCU, DCEU). Webcómics y cómics digitales democratizan la creación. Diversificación de géneros y voces. El cómic como literatura gráfica respetada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h2 class="card-title">Géneros y Estilos Principales</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-user-ninja"></i>
+                        </div>
+                        <h3>Superhéroes</h3>
+                        <p>Desde Superman (1938) hasta los X-Men y Avengers. Marvel y DC dominan este género que define la cultura pop moderna.</p>
+                        <div class="component-badge">Marvel</div>
+                        <div class="component-badge">DC Comics</div>
+                        <div class="component-badge">1938-presente</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <h3>Humor y Sátira</h3>
+                        <p>Tiras cómicas como Peanuts, Calvin y Hobbes, Mafalda. Cómics europeos como Asterix y Tintín mezclan aventura y humor.</p>
+                        <div class="component-badge">Asterix</div>
+                        <div class="component-badge">Tintín</div>
+                        <div class="component-badge">Humor</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-ghost"></i>
+                        </div>
+                        <h3>Horror y Noir</h3>
+                        <p>EC Comics en los 50s, Hellboy, The Walking Dead. Cómics adultos como Sandman y obras de Junji Ito en Japón.</p>
+                        <div class="component-badge">Terror</div>
+                        <div class="component-badge">Noir</div>
+                        <div class="component-badge">Madura</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <h3>Ciencia Ficción</h3>
+                        <p>Desde Flash Gordon hasta Saga. Exploración de futuros distópicos, viajes espaciales y tecnología avanzada.</p>
+                        <div class="component-badge">Space Opera</div>
+                        <div class="component-badge">Cyberpunk</div>
+                        <div class="component-badge">Futurista</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Popularidad Superhéroes vs Otros géneros</span>
+                        <span>68%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 68%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Adaptaciones cinematográficas exitosas</span>
+                        <span>82%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 82%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-hdd"></i>
+                </div>
+                <h2 class="card-title">Editoriales y Creadores Icónicos</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Las editoriales se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de editoriales...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-chart-line"></i> Simulación: Evolución de Ventas de Cómics
+                    </div>
+                    <p>Compara las ventas y popularidad de diferentes géneros y épocas de cómics:</p>
+                    
+                    <div id="salesSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Época Histórica:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="eraSlider" min="1" max="5" value="3" step="1" style="flex: 1;">
+                                    <span id="eraValue" style="min-width: 120px;">Edad de Plata (1956-70)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Pre-1930</span>
+                                    <span>Era Moderna</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Género de Cómic:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="genre-btn active" data-type="superhero">Superhéroes</button>
+                                    <button class="genre-btn" data-type="manga">Manga</button>
+                                    <button class="genre-btn" data-type="european">Europeo</button>
+                                    <button class="genre-btn" data-type="indie">Independiente</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros de Mercado:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Inversión Publicitaria</span>
+                                            <span id="marketingValue">70%</span>
+                                        </div>
+                                        <input type="range" id="marketingSlider" min="0" max="100" value="70" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Adaptaciones Multimedia</span>
+                                            <span id="adaptationsValue">60%</span>
+                                        </div>
+                                        <input type="range" id="adaptationsSlider" min="0" max="100" value="60" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="salesCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Superhéroes (azul) dominan ventas, pero manga (rojo) crece rápidamente</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones Técnicas
+                        </button>
+                        <button class="btn btn-error" id="compareGenresBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Géneros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Cómics: Origen y Evolución - El Noveno Arte a Través del Tiempo</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-book-open"></i> 1837-2024 | De tiras periodísticas a fenómeno cinematográfico global
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Narrativa gráfica | Arte secuencial | Cultura pop | Adaptaciones multimedia
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para técnicas de creación -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Técnicas de Creación de Cómics
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-paint-brush"></i> Proceso Creativo</h3>
+                        <ul class="theory-list">
+                            <li><strong>Guion</strong>: Historia, diálogos y descripción de escenas</li>
+                            <li><strong>Layout</strong>: Bocetos iniciales de páginas y viñetas</li>
+                            <li><strong>Lápiz</strong>: Dibujo detallado de todas las páginas</li>
+                            <li><strong>Entintado</strong>: Trazo final sobre los dibujos a lápiz</li>
+                            <li><strong>Colorización</strong>: Aplicación de color digital o tradicional</li>
+                            <li><strong>Rotulación</strong> : Textos, globos y onomatopeyas</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-tools"></i> Estilos y Técnicas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Línea Clara</strong>: Tintín, Asterix (contornos definidos, colores planos)</li>
+                            <li><strong>Estilo Marvel</strong>: Dinamismo, perspectiva forzada, anatomía exagerada</li>
+                            <li><strong>Manga</strong>: Expresiones exageradas, efectos de velocidad, screentones</li>
+                            <li><strong>Underground</strong>: Estilo crudo, contracultural, experimental</li>
+                            <li><strong>Digital</strong>: Tabletas gráficas, Photoshop, Clip Studio Paint</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Tiempos Promedio de Producción por Página</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Guion</span> - 2-4 horas por página (dependiendo de complejidad)<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Layout</span> - 1-2 horas por página<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Lápiz</span> - 4-8 horas por página (arte detallado)<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Entintado</span> - 2-4 horas por página<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Color</span> - 1-3 horas por página (digital)<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Rotulación</span> - 30-60 minutos por página<br>
+                    <span class="code-comment"># Total: 10-22 horas por página completa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de géneros -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Comparativa: Cómics Americanos vs Manga
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-flag-usa"></i> Cómics Americanos</h3>
+                        <ul class="theory-list">
+                            <li>Publicación mensual o quincenal</li>
+                            <li>Equipos creativos (guionista, dibujante, entintador, colorista)</li>
+                            <li>Formato comic book (20-30 páginas)</li>
+                            <li>Universos compartidos (Marvel, DC)</li>
+                            <li>Personajes icónicos de larga duración</li>
+                            <li>Adaptaciones cinematográficas masivas</li>
+                            <li>Color completo desde origen</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-flag"></i> Manga Japonés</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Publicación semanal en revistas antológicas</li>
+                            <li>Creador único o pequeño equipo</li>
+                            <li>Lectura de derecha a izquierda</li>
+                            <li>Historias con principio y fin definidos</li>
+                            <li>Blanco y negro (excepto portadas)</li>
+                            <li>Volúmenes recopilatorios (tankōbon)</li>
+                            <li>Diversidad extrema de géneros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado global de cómics y manga (2023)</span><br>
+                    <span class="code-string">"Cómics americanos: $1.2B (principalmente EUA)"</span><br>
+                    <span class="code-string">"Manga japonés: $6.1B (global, Japón $3.1B)"</span><br>
+                    <span class="code-string">"Cómics europeos: $700M (Francia, Bélgica)"</span><br>
+                    <span class="code-string">"Webcómics/independientes: $400M (crecimiento rápido)"</span><br>
+                    <span class="code-comment"># El manga domina en ventas globales, cómics americanos en adaptaciones cinematográficas</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">1837</div>
+                        <div class="stat-label">Primer cómic</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$29B</div>
+                        <div class="stat-label">Industria global</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Japón lee manga</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40+</div>
+                        <div class="stat-label">Idiomas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="comics_evolution.js"></script>
+</body>
+</html>
