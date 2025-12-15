@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidrio - Origen y Evolución Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_vidrio.css">
+</head>
+<body>
+    <!-- Canvas para partículas de vidrio -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-glass-whiskey"></i>
+                </div>
+                <h1>Vidrio: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución tecnológica que transformó este material desde sus inicios hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-microscope"></i> El material que dio forma a la civilización humana
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-history"></i> De la obsidiana natural al Gorilla Glass: 5,000 años de evolución
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es el Vidrio?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">El vidrio</span> es un material amorfo, duro, frágil, transparente y amorfo que se origina de la fusión de arena de sílice con carbonato de sodio y calcio a altas temperaturas, seguido de un rápido enfriamiento.</p>
+                    <p>Este material revolucionario ha evolucionado desde sus formas más básicas hasta convertirse en un <span class="highlight">componente esencial de la tecnología moderna</span> en pantallas táctiles, fibra óptica, materiales arquitectónicos y dispositivos médicos.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Composición Química Típica</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">SiO₂ (Sílice)</span> - 70-75% | Arena de cuarzo<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Na₂O (Óxido de sodio)</span> - 12-16% | Carbonato de sodio<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">CaO (Óxido de calcio)</span> - 10-15% | Caliza<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Aditivos</span> - Al₂O₃, MgO, K₂O | Para propiedades específicas<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Temperatura fusión</span> - 1,500-1,600°C | En hornos especializados
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Propiedades Únicas
+                            </div>
+                            <p>Transparencia óptica, resistencia química, dureza, aislante eléctrico, maleable en estado líquido, reciclable al 100% infinitas veces.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto Histórico
+                            </div>
+                            <p>Revolucionó la arquitectura, ciencia, medicina y comunicaciones. Desde lentes de aumento hasta telescopios que expandieron nuestro conocimiento del universo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Tipos y Aplicaciones</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Vidrio sódico-cálcico</strong>: 90% de producción mundial. Ventanas, envases</li>
+                        <li><strong>Vidrio de borosilicato</strong>: Alta resistencia térmica. Pyrex, laboratorio</li>
+                        <li><strong>Vidrio templado</strong>: 5x más resistente que vidrio normal. Automóviles, móviles</li>
+                        <li><strong>Vidrio laminado</strong>: Capas con PVB. Seguridad, antirrobo</li>
+                        <li><strong>Fibra óptica</strong>: Sílice ultrapura. Telecomunicaciones</li>
+                        <li><strong>Gorilla Glass</strong>: Vidrio alcalino-aluminosilicato. Dispositivos móviles</li>
+                        <li><strong>Vidrio inteligente</strong>: Cambia transparencia con electricidad. Arquitectura</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">5,000+</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">130M Ton</div>
+                            <div class="stat-label">Producción anual</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Reciclable</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1,600°C</div>
+                            <div class="stat-label">Temperatura fusión</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3500 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">3500 a.C.</div>
+                            <h3 class="timeline-title">Primeros Vidrios Naturales</h3>
+                            <p>Uso de obsidiana (vidrio volcánico natural) por culturas antiguas para herramientas y armas. Primeros objetos de vidrio fabricado en Mesopotamia y Egipto.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1 d.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo I d.C.</div>
+                            <h3 class="timeline-title">Revolución del Soplado</h3>
+                            <p>Los fenicios inventan la técnica del soplado de vidrio, revolucionando la producción y haciendo el vidrio accesible. Los romanos perfeccionan la técnica.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1200</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XIII</div>
+                            <h3 class="timeline-title">Vidrio Veneciano</h3>
+                            <p>Venecia se convierte en el centro mundial del vidrio. Se desarrolla el cristal de Murano, famoso por su pureza y colorido. Surgen las primeras lentes correctivas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1600</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVII</div>
+                            <h3 class="timeline-title">Revolución Científica</h3>
+                            <p>Desarrollo de telescopios y microscopios de vidrio que transforman la astronomía y biología. Se crean fórmulas de vidrio óptico de alta calidad.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XX</div>
+                            <h3 class="timeline-title">Producción Industrial</h3>
+                            <p>Automación del proceso de fabricación (máquina Owens). Desarrollo de vidrio laminado, templado y de borosilicato. Nace la fibra óptica.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2007</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2007-Presente</div>
+                            <h3 class="timeline-title">Era del Vidrio Inteligente</h3>
+                            <p>iPhone populariza pantallas táctiles de vidrio. Gorilla Glass revoluciona dispositivos móviles. Vidrio autolimpiable, fotovoltaico y arquitectónico avanzado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h2 class="card-title">Tecnologías de Fabricación</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Soplado Manual</h3>
+                        <p>Técnica artesanal milenaria. Vidriero recoge masa fundida y sopla a través de caña para dar forma. Usado en objetos artísticos y decorativos.</p>
+                        <div class="component-badge">Artesanal</div>
+                        <div class="component-badge">Siglo I a.C.</div>
+                        <div class="component-badge">Alta habilidad</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Flotado (Float Glass)</h3>
+                        <p>Proceso industrial moderno (1959). Vidrio fundido flota sobre estaño líquido para superficie perfectamente plana. 90% del vidrio plano mundial.</p>
+                        <div class="component-badge">Industrial</div>
+                        <div class="component-badge">1959</div>
+                        <div class="component-badge">Alta precisión</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <h3>Templado Térmico</h3>
+                        <p>Calentamiento a 650°C y enfriamiento rápido con aire. Crea tensiones superficiales que aumentan resistencia 5x. Usado en automoción y arquitectura.</p>
+                        <div class="component-badge">Resistencia 5x</div>
+                        <div class="component-badge">Seguridad</div>
+                        <div class="component-badge">1930</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3>Intercambio Iónico</h3>
+                        <p>Tratamiento químico que reemplaza iones de sodio por potasio en superficie. Creación de Gorilla Glass para dispositivos móviles ultraresistentes.</p>
+                        <div class="component-badge">Químico</div>
+                        <div class="component-badge">Gorilla Glass</div>
+                        <div class="component-badge">2007</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Vidrio plano (método flotado)</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Reciclaje en Europa</span>
+                        <span>76%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 76%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Fabricantes y Aplicaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Los fabricantes se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de fabricantes...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Propiedades del Vidrio
+                    </div>
+                    <p>Explora cómo diferentes composiciones afectan las propiedades del vidrio:</p>
+                    
+                    <div id="transferSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Vidrio:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="glassTypeSlider" min="1" max="4" value="2" step="1" style="flex: 1;">
+                                    <span id="glassTypeValue" style="min-width: 100px;">Sódico-Cálcico</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Ventana Básica</span>
+                                    <span>Gorilla Glass</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tratamiento:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="treatment-type-btn active" data-type="none">Sin Tratar</button>
+                                    <button class="treatment-type-btn" data-type="tempered">Templado</button>
+                                    <button class="treatment-type-btn" data-type="laminated">Laminado</button>
+                                    <button class="treatment-type-btn" data-type="ion-exchange">Intercambio Iónico</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Espesor (mm)</span>
+                                            <span id="thicknessValue">5 mm</span>
+                                        </div>
+                                        <input type="range" id="thicknessSlider" min="1" max="20" value="5" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>% Sílice</span>
+                                            <span id="silicaValue">72%</span>
+                                        </div>
+                                        <input type="range" id="silicaSlider" min="50" max="100" value="72" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="propertiesCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">El vidrio sódico-cálcico ofrece buen equilibrio entre propiedades y coste</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Especificaciones
+                        </button>
+                        <button class="btn btn-error" id="compareProtocolsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Tipos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Vidrio: Origen y Evolución - El Material que Moldeó la Civilización</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-glass-whiskey"></i> 3500 a.C.-2024 | De la obsidiana al vidrio inteligente | 5,000 años de innovación
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Arquitectura • Ciencia • Medicina • Comunicaciones • Tecnología • Arte
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Propiedades Técnicas Detalladas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Propiedades Físicas</h3>
+                        <ul class="theory-list">
+                            <li><strong>Densidad</strong>: 2.4-2.8 g/cm³ (dependiendo de composición)</li>
+                            <li><strong>Dureza (Mohs)</strong>: 5.5-7 (similar al cuarzo)</li>
+                            <li><strong>Resistencia a compresión</strong>: 500-2,000 MPa (vidrio templado)</li>
+                            <li><strong>Coeficiente expansión térmica</strong>: 8.5-9.0 × 10⁻⁶/°C (sódico-cálcico)</li>
+                            <li><strong>Temperatura transición vítrea</strong>: 550-600°C</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Propiedades Ópticas</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Transmitancia luminosa</strong>: 85-92% (vidrio claro de 4mm)</li>
+                            <li><strong>Índice refracción</strong>: 1.5-1.9 (dependiendo de composición)</li>
+                            <li><strong>Dispersión óptica</strong>: Número de Abbe 55-60 (vidrio crown)</li>
+                            <li><strong>Reflectancia</strong>: 4-8% por superficie (sin recubrimiento)</li>
+                            <li><strong>Color</strong>: Varía con impurezas (Fe²⁺ verde, Co²⁺ azul)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Comparativa de Tipos de Vidrio</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Vidrio sódico-cálcico</span> - Ventanas, envases | Coste bajo, reciclable | Resistencia media<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Borosilicato (Pyrex)</span> - Laboratorio, cocina | Alta resistencia térmica | Coste moderado<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Vidrio templado</span> - Automóviles, fachadas | 5x más resistente | Seguridad al romperse<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Vidrio laminado</span> - Seguridad, bancos | No se fragmenta | Aislamiento acústico<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Gorilla Glass</span> - Dispositivos móviles | Ultraresistente a rayaduras | Delgado y ligero
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Vidrio vs. Materiales Alternativos
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas del Vidrio</h3>
+                        <ul class="theory-list">
+                            <li>Transparencia óptica superior</li>
+                            <li>Inerte químicamente (no reacciona)</li>
+                            <li>Reciclable infinitamente sin pérdida de calidad</li>
+                            <li>Excelente barrera contra gases y humedad</li>
+                            <li>Dureza y resistencia al rayado</li>
+                            <li>Resistente a altas temperaturas (según tipo)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Fragilidad y quebradizo (a menos que sea templado)</li>
+                            <li>Alto peso comparado con plásticos</li>
+                            <li>Alto consumo energético en producción</li>
+                            <li>Difícil de mecanizar (requiere herramientas diamantadas)</li>
+                            <li>Puede fracturarse con choque térmico</li>
+                            <li>Costo mayor que plásticos para algunas aplicaciones</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado actual de materiales transparentes</span><br>
+                    <span class="code-string">"Vidrio: 65% del mercado de envases para alimentos líquidos"</span><br>
+                    <span class="code-string">"Ventanas arquitectónicas: 85% vidrio (templado/laminado)"</span><br>
+                    <span class="code-string">"Pantallas dispositivos: 90% vidrio endurecido (Gorilla Glass, etc.)"</span><br>
+                    <span class="code-string">"Alternativas: Policarbonato (más resistente pero menos transparente)"</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">5,000+ años</div>
+                        <div class="stat-label">Historia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">130M Ton</div>
+                        <div class="stat-label">Producción anual</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Reciclable</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">76%</div>
+                        <div class="stat-label">Reciclaje EU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vidrio.js"></script>
+</body>
+</html>
