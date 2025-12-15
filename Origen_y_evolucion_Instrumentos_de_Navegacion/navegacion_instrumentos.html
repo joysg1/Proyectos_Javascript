@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumentos de Navegación - Origen y Evolución Histórica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_navegacion.css">
+</head>
+<body>
+    <!-- Canvas para partículas estelares -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h1>Instrumentos de Navegación: Origen y Evolución</h1>
+                <p class="subtitle">Explorando el viaje tecnológico que guió a la humanidad a través de océanos, cielos y espacio desde la antigüedad hasta la era moderna</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-star-and-crescent"></i> De la brújula magnética al GPS: 3000 años de innovación
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-globe-americas"></i> De la observación estelar a la navegación satelital
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es la Navegación?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">La navegación</span> es el proceso de determinar y controlar la posición, dirección y velocidad de un vehículo a través de un medio como el mar, aire o espacio, utilizando <span class="highlight">instrumentos especializados, técnicas y conocimientos</span>.</p>
+                    <p>Esta disciplina milenaria evolucionó desde la simple observación celestial hasta sistemas electrónicos complejos, permitiendo a la humanidad <span class="highlight">explorar los confines del planeta y más allá</span>.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Eras de la Navegación (Comparativa)</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">Antigüedad (2000 a.C. - 1000 d.C.)</span> - Observación estelar, vientos y corrientes<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">Edad Media (1000-1500)</span> - Brújula magnética, astrolabio, cartas portulanas<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">Era de los Descubrimientos (1400-1700)</span> - Cuadrante, ballestilla, cronómetro marino<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">Revolución Industrial (1700-1900)</span> - Sextante, cronómetro preciso, cartas náuticas<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">Siglo XX (1900-2000)</span> - Radio, radar, sistemas inerciales, satélites<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">Era Moderna (2000-presente)</span> - GPS, GNSS, navegación integrada
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-water"></i> Navegación Marítima
+                            </div>
+                            <p>Desde la Polinesia usando estrellas hasta los buques modernos con sistemas integrados. Incluye brújulas, sextantes, sondas, correderas y sistemas electrónicos.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-plane"></i> Navegación Aérea y Espacial
+                            </div>
+                            <p>Evolución desde brújulas magnéticas hasta sistemas inerciales y GPS. Instrumentación de cabina, VOR, DME, ILS y sistemas de navegación por satélite.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Tipos de Navegación</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Navegación Celeste</strong>: Determinación de posición mediante observación de cuerpos celestes</li>
+                        <li><strong>Navegación Estimada</strong>: Cálculo basado en rumbo, velocidad y tiempo transcurrido</li>
+                        <li><strong>Navegación Costera</strong>: Referencia a puntos visibles en la costa o profundidades</li>
+                        <li><strong>Navegación por Satélite</strong>: Uso de sistemas como GPS, GLONASS, Galileo</li>
+                        <li><strong>Navegación Inercial</strong>: Sistemas autónomos usando giróscopos y acelerómetros</li>
+                        <li><strong>Navegación Radioeléctrica</strong>: Utilización de señales de radio como VOR, LORAN</li>
+                        <li><strong>Navegación Integrada</strong>: Combinación de múltiples sistemas para mayor precisión</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">3000+</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">±5m</div>
+                            <div class="stat-label">Precisión GPS</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1100</div>
+                            <div class="stat-label">Primera brújula</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">31</div>
+                            <div class="stat-label">Satélites GPS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000 a.C. - 500 d.C.</div>
+                            <h3 class="timeline-title">Navegación Primitiva</h3>
+                            <p>Los polinesios navegan el Pacífico usando estrellas, corrientes y aves. Los fenicios desarrollan cartas náuticas básicas. Los vikingos usan piedras solar para navegar en latitudes altas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1100</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1100-1300</div>
+                            <h3 class="timeline-title">Brújula Magnética y Astrolabio</h3>
+                            <p>Los chinos desarrollan la primera brújula magnética (1100). El astrolabio se perfecciona en el mundo islámico. Surgen las primeras cartas portulanas detalladas en el Mediterráneo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1400</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1400-1600</div>
+                            <h3 class="timeline-title">Era de los Descubrimientos</h3>
+                            <p>Portugueses y españoles desarrollan la carabela y perfeccionan la navegación astronómica. Se utilizan cuadrantes, ballestillas y el primer cronómetro marino rudimentario.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1700</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1700-1800</div>
+                            <h3 class="timeline-title">Revolución de la Precisión</h3>
+                            <p>John Harrison inventa el cronómetro marino H4 (1761). El sextante reemplaza instrumentos anteriores. Se establece el meridiano de Greenwich como referencia internacional.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1900-1950</div>
+                            <h3 class="timeline-title">Navegación Electrónica</h3>
+                            <p>Desarrollo del girocompás, radar y radiofaros. Los sistemas inerciales emergen durante la Segunda Guerra Mundial. Aparece LORAN para navegación de largo alcance.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1978</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1978-Presente</div>
+                            <h3 class="timeline-title">Era Satelital y Digital</h3>
+                            <p>Lanzamiento del primer satélite GPS (1978). Sistemas GNSS globales (GPS, GLONASS, Galileo, BeiDou). Navegación integrada con mapas digitales y realidad aumentada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h2 class="card-title">Instrumentos Principales</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h3>Brújula Magnética</h3>
+                        <p>Instrumento de orientación que utiliza el magnetismo terrestre. Desarrollada en China alrededor del siglo XI. Fundamental para la Era de los Descubrimientos.</p>
+                        <div class="component-badge">Siglo XI</div>
+                        <div class="component-badge">Magnética</div>
+                        <div class="component-badge">China</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Sextante</h3>
+                        <p>Instrumento para medir ángulos entre objetos celestes y el horizonte. Perfeccionado en 1730. Permite determinar la latitud con gran precisión.</p>
+                        <div class="component-badge">1730</div>
+                        <div class="component-badge">Celeste</div>
+                        <div class="component-badge">±0.1°</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Cronómetro Marino</h3>
+                        <p>Reloj de precisión para determinar la longitud en el mar. Inventado por John Harrison (1761). Revolucionó la navegación oceánica.</p>
+                        <div class="component-badge">1761</div>
+                        <div class="component-badge">Longitud</div>
+                        <div class="component-badge">Harrison</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h3>Receptor GPS</h3>
+                        <p>Sistema de navegación por satélite que proporciona posición, velocidad y tiempo. Desarrollado por EE.UU. desde 1978. Precisión de metros o centímetros.</p>
+                        <div class="component-badge">1978</div>
+                        <div class="component-badge">Satelital</div>
+                        <div class="component-badge">24+ satélites</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Precisión navegación celeste (1760)</span>
+                        <span>±20 km</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Precisión GPS moderno (2024)</span>
+                        <span>±5 cm</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 99%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2 class="card-title">Exploradores y Civilizaciones</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="explorersContainer">
+                    <!-- Los exploradores se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de exploradores...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-ship"></i> Simulación: Precisión de Navegación Histórica
+                    </div>
+                    <p>Compara la precisión de diferentes métodos de navegación a través de la historia:</p>
+                    
+                    <div id="navigationSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Época Histórica:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="eraSlider" min="1" max="6" value="4" step="1" style="flex: 1;">
+                                    <span id="eraValue" style="min-width: 120px;">Siglo XVIII</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Antigüedad</span>
+                                    <span>Era Moderna</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Navegación:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="nav-type-btn active" data-type="celestial">Celeste</button>
+                                    <button class="nav-type-btn" data-type="estimated">Estimada</button>
+                                    <button class="nav-type-btn" data-type="coastal">Costera</button>
+                                    <button class="nav-type-btn" data-type="satellite">Satelital</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Parámetros del Viaje:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Distancia del Viaje</span>
+                                            <span id="distanceValue">5000 km</span>
+                                        </div>
+                                        <input type="range" id="distanceSlider" min="100" max="20000" value="5000" step="100" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>% Tiempo Nublado</span>
+                                            <span id="cloudValue">30%</span>
+                                        </div>
+                                        <input type="range" id="cloudSlider" min="0" max="100" value="30" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="accuracyCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">La navegación celeste (azul) tenía gran variabilidad, mientras que el GPS (verde) ofrece precisión constante</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Instrumentos
+                        </button>
+                        <button class="btn btn-error" id="compareMethodsBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Métodos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Instrumentos de Navegación: Origen y Evolución - El Viaje de la Humanidad a Través del Tiempo y el Espacio</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-compass"></i> 2000 a.C. - 2024 | De la observación estelar a la navegación satelital
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Fenicios, Polinesios, Vikingos, Portugueses, Españoles | Revolución Científica | Era Electrónica | Era Espacial
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para instrumentos -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-tools"></i> Instrumentos de Navegación Detallados
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-water"></i> Instrumentos Marítimos Clásicos</h3>
+                        <ul class="theory-list">
+                            <li><strong>Brújula magnética</strong>: Aguja imantada que apunta al norte magnético</li>
+                            <li><strong>Sextante</strong>: Mide ángulo entre astros y horizonte (±0.1° precisión)</li>
+                            <li><strong>Astrolabio</strong>: Calcula posición de estrellas y planetas</li>
+                            <li><strong>Corredera</strong>: Mide velocidad del barco a través del agua</li>
+                            <li><strong>Sonda</strong>: Mide profundidad del agua bajo el casco</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-satellite"></i> Sistemas Modernos</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>GPS</strong>: Sistema de navegación por satélite (24+ satélites)</li>
+                            <li><strong>GLONASS</strong>: Sistema ruso de navegación satelital</li>
+                            <li><strong>Galileo</strong>: Sistema europeo de navegación por satélite</li>
+                            <li><strong>INS</strong>: Sistema de navegación inercial (giroscópicos)</li>
+                            <li><strong>VOR/DME</strong>: Navegación aérea por radioayudas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Evolución de la Precisión de Navegación (error típico)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Antigüedad (2000 a.C.)</span> - ±100 km | Navegación costera y estelar básica<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Edad Media (1300)</span> - ±50 km | Brújula, astrolabio, portulanos<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Siglo XVI (1500)</span> - ±20 km | Cuadrante, ballestilla, cartas mejoradas<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Siglo XVIII (1760)</span> - ±2 km | Sextante, cronómetro de Harrison<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Siglo XX (1950)</span> - ±100 m | Radar, LORAN, sistemas inerciales<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Siglo XXI (2024)</span> - ±5 cm | GPS diferencial, GNSS multiconstelación
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Métodos de Navegación Comparados
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de Métodos Tradicionales</h3>
+                        <ul class="theory-list">
+                            <li>Independencia de tecnología externa</li>
+                            <li>Funcionamiento sin energía eléctrica</li>
+                            <li>No susceptible a interferencias electrónicas</li>
+                            <li>Desarrolla habilidades de observación</li>
+                            <li>Backup en caso de fallo tecnológico</li>
+                            <li>Conocimiento fundamental para navegantes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Limitaciones vs. Sistemas Modernos</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Menor precisión en condiciones adversas</li>
+                            <li>Dependencia de condiciones meteorológicas</li>
+                            <li>Requerimiento de visibilidad celeste o terrestre</li>
+                            <li>Mayor tiempo para determinar posición</li>
+                            <li>Necesidad de cálculos manuales complejos</li>
+                            <li>Error acumulativo en navegación estimada</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Aplicaciones modernas por tipo de navegación</span><br>
+                    <span class="code-string">"Marítima comercial: 99% GPS + sistemas integrados"</span><br>
+                    <span class="code-string">"Aviación: GPS + VOR + DME + INS + ILS"</span><br>
+                    <span class="code-string">"Militar: GPS encriptado + INS + navegación celeste de respaldo"</span><br>
+                    <span class="code-string">"Recreativa: GPS básico + brújula + cartas papel de respaldo"</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">5000+ años</div>
+                        <div class="stat-label">Historia navegación</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Barcos usan GPS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">±5cm</div>
+                        <div class="stat-label">GPS diferencial</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">31</div>
+                        <div class="stat-label">Satélites GPS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="navegacion_instrumentos.js"></script>
+</body>
+</html>
