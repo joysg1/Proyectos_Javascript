@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeans - Origen y Evolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="estilos_jeans.css">
+</head>
+<body>
+    <!-- Canvas para partículas de hilos y tejido -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="tech-logo">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h1>Jeans: Origen y Evolución</h1>
+                <p class="subtitle">Explorando la revolución de la prenda que transformó la moda mundial desde sus orígenes hasta la actualidad</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-history"></i> De la mina de oro a la pasarela: 150 años de historia
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-globe-americas"></i> Símbolo de rebeldía, trabajo y moda universal
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué son los Jeans?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="tech-highlight">Los jeans o vaqueros</span> son pantalones de mezclilla, un tejido de algodón resistente conocido como denim. Originalmente diseñados como ropa de trabajo, se convirtieron en <span class="highlight">símbolo de la cultura juvenil y la moda casual</span> a nivel mundial.</p>
+                    <p>Esta prenda revolucionaria fue patentada por <span class="highlight">Levi Strauss & Jacob Davis</span> en 1873, ofreciendo <span class="highlight">durabilidad, comodidad y estilo atemporal</span>. Hoy es la prenda de vestir más producida y usada en el mundo.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Datos clave sobre los jeans (Comparativa histórica)</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">1873</span> - Primera patente de jeans con remaches<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">1890</span> - Modelo Levi's 501 se convierte en estándar<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">1930-50</span> - Símbolo del estilo cowboy americano<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">1950-60</span> - Adoptados por la cultura juvenil rebelde<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">1970-90</span> - Globalización y diversificación de estilos<br>
+                        <span class="code-keyword">6.</span> <span class="highlight">2000-Presente</span> - Alta costura y sostenibilidad
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-bolt"></i> Ventajas sobre otras prendas
+                            </div>
+                            <p>Durabilidad extrema, versatilidad de estilo, adaptabilidad a diferentes contextos, facilidad de personalización y atemporalidad en la moda.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-tachometer-alt"></i> Impacto en la Cultura
+                            </div>
+                            <p>Los jeans trascendieron su función original para convertirse en símbolo de identidad cultural, rebelión, igualdad social y expresión personal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Materiales y Fabricación</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Denim</strong>: Tejido de algodón en sarga con hilo azul índigo y blanco</li>
+                        <li><strong>Remaches de cobre</strong>: Refuerzan puntos de tensión (bolsillos, costuras)</li>
+                        <li><strong>Hilo de costura naranja</strong>: Tradición de Levi's para identificar autenticidad</li>
+                        <li><strong>Botones de metal</strong>: Inicialmente de latón, ahora diversos metales</li>
+                        <li><strong>Etiqueta de cuero</strong>: Identifica la marca y modelo</li>
+                        <li><strong>Teñido índigo</strong>: Proceso tradicional de múltiples inmersiones</li>
+                        <li><strong>Acabados</strong> Lavado a la piedra, sandblasting, roturas, bordados</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">2.3B</div>
+                            <div class="stat-label">Unidades/año</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">150+</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1873</div>
+                            <div class="stat-label">Patente original</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">96%</div>
+                            <div class="stat-label">Algodón en denim</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Evolución</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1853</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1853</div>
+                            <h3 class="timeline-title">Levi Strauss llega a San Francisco</h3>
+                            <p>Levi Strauss, inmigrante bávaro, establece un negocio de productos secos en San Francisco durante la Fiebre del Oro de California.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1873</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1873</div>
+                            <h3 class="timeline-title">Patente del Jeans con Remaches</h3>
+                            <p>Levi Strauss y el sastre Jacob Davis patentan los "pantalones de trabajo con remaches" para mineros. Nacen los jeans modernos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1890</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1890</div>
+                            <h3 class="timeline-title">Nace el Levi's 501</h3>
+                            <p>Se introduce el modelo 501, caracterizado por su cierre de botones. Se convierte en el estándar de los jeans de trabajo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1930-50</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1930-50</div>
+                            <h3 class="timeline-title">Hollywood y los Cowboys</h3>
+                            <p>Estrellas de cine western como John Wayne popularizan los jeans como parte de la identidad cowboy americana.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1950-60</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1950-60</div>
+                            <h3 class="timeline-title">Rebelión Juvenil</h3>
+                            <p>James Dean y Marlon Brando convierten los jeans en símbolo de rebeldía juvenil. Prohibidos en algunas escuelas por su asociación con la contracultura.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1970-90</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970-Presente</div>
+                            <h3 class="timeline-title">Globalización y Diversificación</h3>
+                            <p>Los jeans se globalizan, aparecen nuevos cortes (skinny, bootcut, flare), marcas como Wrangler y Lee compiten, y entran en la alta costura.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h2 class="card-title">Estilos y Tipologías</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Straight Cut</h3>
+                        <p>Corte recto clásico. Original de los años 50. Versátil y atemporal. Base del estilo tradicional cowboy y trabajador.</p>
+                        <div class="component-badge">Clásico</div>
+                        <div class="component-badge">1950</div>
+                        <div class="component-badge">Levi's 501</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Bootcut y Flare</h3>
+                        <p>Años 70. Pierna que se ensancha desde la rodilla. Asociado con la cultura hippie y disco. Icono de la década.</p>
+                        <div class="component-badge">1970s</div>
+                        <div class="component-badge">Hippie</div>
+                        <div class="component-badge">Disco</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-compress-alt"></i>
+                        </div>
+                        <h3>Skinny y Slim</h3>
+                        <p>Años 2000. Ajustados al cuerpo. Popularizados por subculturas punk, emo y moda contemporánea. Dominan el mercado actual.</p>
+                        <div class="component-badge">Ajustado</div>
+                        <div class="component-badge">2000s</div>
+                        <div class="component-badge">Moderno</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3>Destroyed y Vintage</h3>
+                        <p>Roturas, desteñidos, parches. Estilo grunge años 90 y moda actual. Valor estético del desgaste y personalización.</p>
+                        <div class="component-badge">Grunge</div>
+                        <div class="component-badge">Personalizado</div>
+                        <div class="component-badge">Vintage</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Penetración en mercado global (2024)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Preferencia: Jeans vs otras prendas</span>
+                        <span>72%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 72%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h2 class="card-title">Marcas y Cultura</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Las marcas se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de marcas icónicas...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-chart-line"></i> Simulación: Evolución del Consumo de Jeans
+                    </div>
+                    <p>Analiza cómo ha evolucionado el consumo y preferencias de jeans a través de las décadas:</p>
+                    
+                    <div id="consumptionSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Década:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="decadeSlider" min="1" max="7" value="4" step="1" style="flex: 1;">
+                                    <span id="decadeValue" style="min-width: 100px;">1980s</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>1950s</span>
+                                    <span>2020s</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Jeans:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="style-type-btn active" data-type="straight">Straight</button>
+                                    <button class="style-type-btn" data-type="bootcut">Bootcut</button>
+                                    <button class="style-type-btn" data-type="skinny">Skinny</button>
+                                    <button class="style-type-btn" data-type="destroyed">Destroyed</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Factores Culturales:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Influencia Juvenil</span>
+                                            <span id="youthValue">70%</span>
+                                        </div>
+                                        <input type="range" id="youthSlider" min="0" max="100" value="70" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>% Moda Casual</span>
+                                            <span id="casualValue">65%</span>
+                                        </div>
+                                        <input type="range" id="casualSlider" min="0" max="100" value="65" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="consumptionCurveCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Los jeans straight (azul) dominaron hasta los 80s, luego los skinny (rojo) tomaron liderazgo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Ejecutar Simulación
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showDataBtn">
+                                <i class="fas fa-chart-line"></i> Ver Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Cultural
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Datos Técnicos
+                        </button>
+                        <button class="btn btn-error" id="compareStylesBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Estilos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Jeans: Origen y Evolución - La Prenda que Vistió al Mundo</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-tshirt"></i> 1873-2024 | De la mina a la pasarela | Símbolo cultural universal
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Denim · Levi Strauss · Cultura juvenil · Moda global · Sustentabilidad
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para datos técnicos -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-file-alt"></i> Datos Técnicos del Denim
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Composición y Tejido</h3>
+                        <ul class="theory-list">
+                            <li><strong>Denim tradicional</strong>: 100% algodón, tejido en sarga 3x1</li>
+                            <li><strong>Peso</strong>: 12-16 oz/yd² (liviano a pesado)</li>
+                            <li><strong>Teñido índigo</strong>: 8-12 inmersiones para color profundo</li>
+                            <li><strong>Hilos</strong>: Azul índigo en urdimbre, blanco en trama</li>
+                            <li><strong>Estiramiento</strong>: Mezclas con elastano (2-4%) para comfort</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Procesos de Acabado</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Stone washing</strong>: Lavado con piedra pómez para suavizar y desteñir</li>
+                            <li><strong>Sandblasting</strong>: Chorreado con arena para desgaste localizado</li>
+                            <li><strong>Enzyma wash</strong>: Uso de enzimas para acabados más ecológicos</li>
+                            <li><strong>Laser fading</strong>: Láser para crear patrones de desgaste precisos</li>
+                            <li><strong>Overdye</strong>: Segundo teñido para tonalidades únicas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Impacto ambiental y sustentabilidad</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Consumo de agua</span> - 7,000L por par de jeans (producción tradicional)<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Técnicas eco</span> - Ozonación, láser, reciclaje de agua reducen consumo 90%<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Algodón orgánico</span> - 80% menos agua, sin pesticidas químicos<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Denim reciclado</span> - Mezcla de fibras recicladas (hasta 40%)<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Tintes naturales</span> - Índigo natural, tintes vegetales alternativos
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación de estilos -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Jeans vs. Otras Prendas
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Ventajas de los Jeans</h3>
+                        <ul class="theory-list">
+                            <li>Durabilidad extrema (años de uso)</li>
+                            <li>Versatilidad de estilo (formal a casual)</li>
+                            <li>Mejora con el tiempo (patina personal)</li>
+                            <li>Adaptabilidad a modas cambiantes</li>
+                            <li>Cultura e identidad asociada</li>
+                            <li>Inversión a largo plazo</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-secondary); margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Desafíos Actuales</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Alto impacto ambiental tradicional</li>
+                            <li>Saturación del mercado fast fashion</li>
+                            <li>Problemas de tallas inclusivas</li>
+                            <li>Competencia con prendas técnicas</li>
+                            <li>Deslocalización de producción</li>
+                            <li>Uniformización estética</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado global de jeans (2024)</span><br>
+                    <span class="code-string">"Producción anual: 2.3 mil millones de pares"</span><br>
+                    <span class="code-string">"Valor mercado: USD 95 mil millones"</span><br>
+                    <span class="code-string">"Crecimiento anual: 4.8% (mercado premium)"</span><br>
+                    <span class="code-string">"Sustentabilidad: 22% mercado en 2024"</span><br>
+                    <span class="code-comment"># Los jeans siguen dominando el vestuario casual mundial</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">150+ años</div>
+                        <div class="stat-label">Vida útil</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Penetración EE.UU.</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">8 pares</div>
+                        <div class="stat-label">Promedio por persona</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">70%</div>
+                        <div class="stat-label">Algodón global</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jeans.js"></script>
+</body>
+</html>
