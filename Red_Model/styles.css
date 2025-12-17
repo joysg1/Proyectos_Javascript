@@ -1,0 +1,115 @@
+/* Agregar al final del archivo styles.css */
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.architecture-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.architecture-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: rgb(167, 139, 250);
+}
+
+.architecture-btn.active {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgb(139, 92, 246);
+    color: rgb(167, 139, 250);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+/* Mejoras para los gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Mejoras para el modal de frameworks */
+.framework-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.framework-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .architecture-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.architecture-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+}
