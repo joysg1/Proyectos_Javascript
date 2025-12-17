@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes - Historia y Evolución del Arte de la Perfumería</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="estilos_perfumes.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+    <!-- Canvas para partículas aromáticas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="perfume-logo">
+                    <i class="fas fa-spray-can-sparkles"></i>
+                </div>
+                <h1>La Alquimia del Aroma</h1>
+                <p class="subtitle">Un viaje olfativo a través de 4000 años de historia: desde las primeras esencias sagradas hasta las fragancias contemporáneas</p>
+                <div class="tagline pulse-animation">
+                    <i class="fas fa-feather-alt"></i> Donde la química se encuentra con el arte y la emoción
+                </div>
+                <div class="tagline tagline-secondary mt-2">
+                    <i class="fas fa-history"></i> Mesopotamia a París: La evolución de la perfumería
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="main-grid">
+            <div class="card float-animation">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h2 class="card-title">¿Qué es un Perfume?</h2>
+                </div>
+                <div class="card-content">
+                    <p><span class="perfume-highlight">Un perfume</span> es una mezcla de <span class="highlight">aceites esenciales aromáticos, fijadores y disolventes</span> que emiten un aroma agradable. Más que una simple fragancia, es una expresión artística, una memoria olfativa y una forma de comunicación no verbal.</p>
+                    <p>La palabra "perfume" proviene del latín <span class="highlight">"per fumum"</span> que significa "a través del humo", haciendo referencia a los primeros usos de resinas aromáticas en rituales religiosos.</p>
+                    
+                    <div class="code-container">
+                        <span class="code-comment"># Pirámide Olfativa - Estructura de un Perfume</span><br>
+                        <span class="code-keyword">1.</span> <span class="highlight">NOTAS DE SALIDA</span> - Primera impresión (15-30 min) | Cítricos, frutales, herbales<br>
+                        <span class="code-keyword">2.</span> <span class="highlight">NOTAS DE CORAZÓN</span> - Esencia principal (2-4 horas) | Florales, especias, frutas<br>
+                        <span class="code-keyword">3.</span> <span class="highlight">NOTAS DE FONDO</span> - Duración prolongada (6h+) | Maderas, almizcles, resinas<br>
+                        <span class="code-keyword">4.</span> <span class="highlight">CONCENTRACIÓN</span> - Eau de Toilette (5-15%) | Eau de Parfum (15-20%) | Parfum (20-30%)<br>
+                        <span class="code-keyword">5.</span> <span class="highlight">FAMILIAS OLFATIVAS</span> - Floral, Oriental, Chipre, Amaderado, Fougère, Hespereidés
+                    </div>
+
+                    <div class="evidence-classification">
+                        <div class="evidence-category">
+                            <div class="category-title">
+                                <i class="fas fa-atom"></i> Composición Química
+                            </div>
+                            <p>Los perfumes contienen entre 50-300 ingredientes diferentes. Ingredientes naturales (flores, resinas, maderas) y sintéticos (aldehídos, almizcles) se combinan para crear aromas únicos.</p>
+                        </div>
+                        <div class="evidence-category secondary">
+                            <div class="category-title">
+                                <i class="fas fa-brain"></i> Psicología del Aroma
+                            </div>
+                            <p>El olfato está directamente conectado al sistema límbico, responsable de las emociones y la memoria. Un perfume puede evocar recuerdos con 65% más precisión que otros estímulos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <div class="card-icon card-icon-secondary">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="card-title">Componentes y Familias Olfativas</h2>
+                </div>
+                <div class="card-content">
+                    <ul class="theory-list theory-list-secondary">
+                        <li><strong>Aceites Esenciales</strong>: Extraídos de flores, hojas, raíces y resinas mediante destilación</li>
+                        <li><strong>Aceites Absolutos</strong>: Extracción con solventes para materiales delicados como jazmín</li>
+                        <li><strong>Fijadores</strong>: Almizcle, ámbar gris, vainilla, benjuí que prolongan la fragancia</li>
+                        <li><strong>Notas Sintéticas</strong>: Aldehídos (Chanel N°5), Iononas (violeta), Coumarina (heno)</li>
+                        <li><strong>Disolventes</strong>: Alcohol etílico (70-90%) que transporta las moléculas aromáticas</li>
+                        <li><strong>Familias Clásicas</strong>: Floral, Oriental, Chipre, Hespereidés, Fougère, Amaderado</li>
+                        <li><strong>Concentraciones</strong>: Eau Fraîche (1-3%), Eau de Cologne (2-4%), Eau de Toilette (5-15%), Eau de Parfum (15-20%), Parfum/Extrait (20-30%)</li>
+                    </ul>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">4000+</div>
+                            <div class="stat-label">Años de Historia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">300</div>
+                            <div class="stat-label">Ingredientes/Perfume</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">10M</div>
+                            <div class="stat-label">Receptores Olfativos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1700+</div>
+                            <div class="stat-label">Notas Diferentes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-timeline"></i>
+                    </div>
+                    <h2 class="card-title">Historia de la Perfumería</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2000 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000 a.C. - Mesopotamia</div>
+                            <h3 class="timeline-title">Los Primeros Perfumes</h3>
+                            <p>Los sumerios y babilonios quemaban resinas aromáticas (incienso, mirra) en rituales religiosos. Tapputi, la primera perfumista registrada, destilaba flores y aceites.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1500 a.C.</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1500 a.C. - Antiguo Egipto</div>
+                            <h3 class="timeline-title">Perfumería Sagrada</h3>
+                            <p>Los egipcios perfeccionaron la maceración de flores en grasas (enfleurage). El Kyphi, un perfume ceremonial complejo, contenía 16 ingredientes incluyendo miel, vino y resinas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S. IX</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo IX - Mundo Árabe</div>
+                            <h3 class="timeline-title">Revolución de la Destilación</h3>
+                            <p>Al-Kindi escribió el "Libro de la Química del Perfume", describiendo 107 recetas. Avicenna perfeccionó la destilación al vapor para extraer aceite de rosas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S. XIV</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XIV - Hungría</div>
+                            <h3 class="timeline-title">Primer Perfume Moderno</h3>
+                            <p>Creación del "Agua de Hungría" (Eau de la Reine de Hongrie), un perfume a base de romero en alcohol. Se considera el primer perfume alcohólico de Europa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S. XVIII</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Siglo XVIII - Francia</div>
+                            <h3 class="timeline-title">Grasse, Capital del Perfume</h3>
+                            <p>Grasse se convierte en el centro mundial de la perfumería gracias a su clima ideal para cultivar jazmín, rosas y naranjos. Aparecen las primeras casas de perfumes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1921</div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1921 - Era Moderna</div>
+                            <h3 class="timeline-title">Chanel N°5 y la Revolución</h3>
+                            <p>Ernest Beaux crea Chanel N°5 para Coco Chanel, introduciendo aldehídos sintéticos. Marca el inicio de la perfumería moderna y el concepto de fragancia de firma.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="card-title">Familias Olfativas y Notas</h2>
+            </div>
+            <div class="card-content">
+                <div class="methods-grid">
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-rose"></i>
+                        </div>
+                        <h3>Floral</h3>
+                        <p>La familia más popular. Notas de rosa, jazmín, nardo, lirio de los valles. Ejemplos: Chanel N°5, Joy de Jean Patou.</p>
+                        <div class="component-badge">Rosa</div>
+                        <div class="component-badge">Jazmín</div>
+                        <div class="component-badge">Femenino</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3>Oriental</h3>
+                        <p>Calidos y sensuales con notas de vainilla, ámbar, resinas y especias. Ejemplos: Shalimar de Guerlain, Opium de YSL.</p>
+                        <div class="component-badge">Vainilla</div>
+                        <div class="component-badge">Ámbar</div>
+                        <div class="component-badge">Especias</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Amaderado</h3>
+                        <p>Notas secas de sándalo, cedro, pachulí, vetiver. A menudo combinadas con cítricos o especias.</p>
+                        <div class="component-badge">Sándalo</div>
+                        <div class="component-badge">Pachulí</div>
+                        <div class="component-badge">Masculino</div>
+                    </div>
+                    <div class="method-component">
+                        <div class="method-icon">
+                            <i class="fas fa-lemon"></i>
+                        </div>
+                        <h3>Hespereidés</h3>
+                        <p>Frescos y vibrantes con notas cítricas de limón, bergamota, naranja y pomelo. Ejemplos: Eau de Cologne.</p>
+                        <div class="component-badge">Limón</div>
+                        <div class="component-badge">Bergamota</div>
+                        <div class="component-badge">Fresco</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Popularidad Familia Floral (Mujeres)</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Mercado Perfumes Nicho vs Masivo</span>
+                        <span>15%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill error" style="width: 15%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mt-3 card-secondary">
+            <div class="card-header">
+                <div class="card-icon card-icon-secondary">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <h2 class="card-title">Casas Perfumistas y Técnicas</h2>
+            </div>
+            <div class="card-content">
+                <div class="experiments-container" id="experimentsContainer">
+                    <!-- Las casas perfumistas se generarán con JavaScript -->
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--perfume-accent);"></i>
+                        <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando información de casas perfumistas...</p>
+                    </div>
+                </div>
+                
+                <!-- Simulación interactiva -->
+                <div class="interactive-example">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i> Simulación: Creación de un Perfume
+                    </div>
+                    <p>Experimenta combinando notas para crear tu propia fragancia virtual:</p>
+                    
+                    <div id="perfumeSimulation">
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Familia Olfativa Principal:</label>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <input type="range" id="olfactiveSlider" min="1" max="6" value="3" step="1" style="flex: 1;">
+                                    <span id="olfactiveValue" style="min-width: 120px;">Floral</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    <span>Hespereidés</span>
+                                    <span>Oriental</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tipo de Concentración:</label>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <button class="concentration-btn active" data-type="cologne">Eau de Cologne</button>
+                                    <button class="concentration-btn" data-type="toilette">Eau de Toilette</button>
+                                    <button class="concentration-btn" data-type="parfum">Eau de Parfum</button>
+                                    <button class="concentration-btn" data-type="extrait">Parfum/Extrait</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Balance de Notas:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Notas Cítricas</span>
+                                            <span id="citrusValue">30%</span>
+                                        </div>
+                                        <input type="range" id="citrusSlider" min="0" max="100" value="30" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Notas Amaderadas</span>
+                                            <span id="woodyValue">40%</span>
+                                        </div>
+                                        <input type="range" id="woodySlider" min="0" max="100" value="40" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-result" id="simulationResult">
+                            <div class="canvas-container">
+                                <canvas id="perfumePyramidCanvas" width="600" height="300"></canvas>
+                            </div>
+                            <div id="simulationConclusion" style="margin-top: 1rem; text-align: center;">
+                                <div class="result-text">Tu fragancia: Floral-Amaderada con acentos cítricos - Duración estimada: 6-8 horas</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-controls">
+                            <button class="btn btn-error" id="runSimulationBtn">
+                                <i class="fas fa-play"></i> Crear Perfume
+                            </button>
+                            <button class="btn btn-secondary" id="resetSimulationBtn">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
+                            <button class="btn" id="showNotesBtn">
+                                <i class="fas fa-list-ol"></i> Ver Notas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="btn-container">
+                        <button class="btn glow-animation" id="simulateEvolutionBtn">
+                            <i class="fas fa-play-circle"></i> Simular Evolución Histórica
+                        </button>
+                        <button class="btn btn-secondary" id="viewSpecsBtn">
+                            <i class="fas fa-file-alt"></i> Ver Composición
+                        </button>
+                        <button class="btn btn-error" id="compareFamiliesBtn">
+                            <i class="fas fa-balance-scale"></i> Comparar Familias
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Perfumes: Historia y Evolución - El Arte Invisible que Captura el Tiempo</p>
+            <p style="margin-top: 0.8rem; font-size: 1rem; color: var(--text-muted);">
+                <i class="fas fa-spray-can-sparkles"></i> 2000 a.C. - Presente | De las resinas sagradas a la química de precisión
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                Alquimia, botánica, química y arte | Grasse a París | Tradición e innovación | Memoria olfativa
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para composición -->
+    <div class="modal" id="specsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--perfume-accent-light);">
+                <i class="fas fa-file-alt"></i> Composición Detallada de un Perfume
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--perfume-accent); margin-bottom: 1rem;"><i class="fas fa-seedling"></i> Ingredientes Naturales</h3>
+                        <ul class="theory-list">
+                            <li><strong>Absolutos</strong>: Jazmín, rosa, nardo, tuberosa - Extracción con solventes</li>
+                            <li><strong>Aceites Esenciales</strong>: Bergamota, neroli, lavanda - Destilación al vapor</li>
+                            <li><strong>Resinoides</strong>: Benjuí, láudano, olíbano - Extracción de resinas</li>
+                            <li><strong>Concretas</strong>: Flores delicadas - Enfleurage en frío</li>
+                            <li><strong>Tinturas</strong>: Vainilla, ámbar gris - Maceración en alcohol</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--perfume-secondary); margin-bottom: 1rem;"><i class="fas fa-atom"></i> Componentes Sintéticos</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li><strong>Aldehlídos</strong>: Chanel N°5 - Notas limpias, jabonosas</li>
+                            <li><strong>Musk sintéticos</strong>: Alternativas éticas al almizcle animal</li>
+                            <li><strong>Calonas</strong>: Notas marinas, acuáticas, ozónicas</li>
+                            <li><strong>Iononas</strong>: Aroma a violetas, orris</li>
+                            <li><strong>Ésteres</strong>: Notas frutales artificiales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 1.5rem;">
+                    <span class="code-comment"># Proceso de Creación de un Perfume (Método Clásico)</span><br>
+                    <span class="code-keyword">1.</span> <span class="highlight">Brief olfativo</span> - Concepto, inspiración, público objetivo<br>
+                    <span class="code-keyword">2.</span> <span class="highlight">Selección de materias primas</span> - 50-300 ingredientes diferentes<br>
+                    <span class="code-keyword">3.</span> <span class="highlight">Formulación</span> - Creación de la "bandeja de fórmulas"<br>
+                    <span class="code-keyword">4.</span> <span class="highlight">Maceration</span> - Reposo de 2-4 semanas para armonización<br>
+                    <span class="code-keyword">5.</span> <span class="highlight">Filtración y control de calidad</span> - Eliminación de impurezas<br>
+                    <span class="code-keyword">6.</span> <span class="highlight">Envejecimiento</span> - 1-6 meses para maduración completa<br>
+                    <span class="code-keyword">7.</span> <span class="highlight">Envase y comercialización</span> - Botella, packaging, marketing
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCompareModal">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--perfume-accent-light);">
+                <i class="fas fa-balance-scale-right"></i> Perfumería Tradicional vs. Moderna
+            </h2>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <h3 style="color: var(--perfume-accent); margin-bottom: 1rem;"><i class="fas fa-history"></i> Perfumería Tradicional</h3>
+                        <ul class="theory-list">
+                            <li>Ingredientes 100% naturales</li>
+                            <li>Extracción manual y artesanal</li>
+                            <li>Envejecimiento prolongado (6-24 meses)</li>
+                            <li>Fórmulas secretas transmitidas generacionalmente</li>
+                            <li>Enfoque en materias primas de lujo</li>
+                            <li>Producción limitada</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--perfume-secondary); margin-bottom: 1rem;"><i class="fas fa-flask"></i> Perfumería Moderna</h3>
+                        <ul class="theory-list theory-list-secondary">
+                            <li>Combinación natural/sintético</li>
+                            <li>Tecnología GC-MS para análisis preciso</li>
+                            <li>Producción industrial escalable</li>
+                            <li>Innovación con moléculas sintéticas nuevas</li>
+                            <li>Sostenibilidad y ética</li>
+                            <li>Personalización y nicho</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-container code-container-secondary">
+                    <span class="code-comment"># Mercado actual de perfumes</span><br>
+                    <span class="code-string">"Perfumes de lujo: 40% del mercado | Crecimiento anual: 8%"</span><br>
+                    <span class="code-string">"Perfumes nicho: Segmento de más rápido crecimiento"</span><br>
+                    <span class="code-string">"Sostenibilidad: Ingredientes éticos y packaging ecológico"</span><br>
+                    <span class="code-comment"># La perfumería moderna combina tradición artesanal con innovación científica</span>
+                </div>
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">4000+ años</div>
+                        <div class="stat-label">Tradición</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$50B</div>
+                        <div class="stat-label">Mercado Global</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">300+</div>
+                        <div class="stat-label">Ingredientes/Promedio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2 años</div>
+                        <div class="stat-label">Desarrollo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="perfumes.js"></script>
+</body>
+</html>
