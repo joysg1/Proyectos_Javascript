@@ -20,7 +20,7 @@
 
     Descarga los tres archivos (HTML, CSS, JS)
 
-    Ábrelos en cualquier navegador moderno
+    Abre el HTML
 
     Explora la historia, interactúa con simulaciones y modales
 
