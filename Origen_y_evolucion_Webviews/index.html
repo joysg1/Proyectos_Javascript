@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView Evolution - Origen y Evolución de WebViews</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'webview-dark': '#0a0a12',
+                        'webview-secondary': '#121220',
+                        'webview-accent': '#3b82f6',
+                        'webview-accent-light': '#60a5fa',
+                        'webview-accent-dark': '#1d4ed8',
+                        'webview-gradient': 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                        'webview-accent-secondary': '#10b981',
+                        'webview-accent-secondary-light': '#34d399',
+                        'webview-secondary-gradient': 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                        'webview-accent-tertiary': '#f59e0b',
+                        'webview-accent-tertiary-light': '#fbbf24',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e293b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(59, 130, 246, 0.3)',
+                        'shadow-secondary': 'rgba(16, 185, 129, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-webview-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas web -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-webview-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-webview-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-webview-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <i class="fas fa-window-restore"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-webview-accent-light to-webview-accent-tertiary-light bg-clip-text text-transparent">
+                    WebView Evolution
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución de WebViews: De Navegadores Móviles a Aplicaciones Híbridas
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-webview-accent/10 border border-webview-accent/40 rounded-full text-webview-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-webview-accent/10 animate-pulse-glow">
+                        <i class="fas fa-code"></i>
+                        Tecnología que transformó las aplicaciones móviles
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-webview-accent-secondary/10 border border-webview-accent-secondary/40 rounded-full text-webview-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-webview-accent-secondary/10">
+                        <i class="fas fa-mobile-alt"></i>
+                        De web embebida a apps híbridas multiplataforma
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es una WebView? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-webview-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-webview-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-webview-accent to-webview-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-webview-accent/30">
+                        <i class="fas fa-window-maximize text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es una WebView?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        Una <span class="text-webview-accent-light font-bold">WebView</span> es un componente que permite mostrar contenido web dentro de una aplicación nativa. Actúa como un navegador web embebido que puede cargar páginas HTML, CSS y JavaScript dentro del contexto de una app móvil o de escritorio.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Esta tecnología ha evolucionado desde simples visores de contenido web hasta poderosos motores que permiten el desarrollo de <span class="highlight">aplicaciones híbridas y multiplataforma</span>, combinando lo mejor del desarrollo web con las capacidades nativas de los dispositivos.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-webview-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-cogs text-webview-accent-light"></i>
+                            <h4 class="font-bold text-webview-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Renderizado de contenido HTML/CSS/JS</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Comunicación entre JavaScript y código nativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Acceso a APIs del dispositivo (cámara, GPS, etc.)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Desarrollo rápido y multiplataforma</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Tipos de WebViews -->
+            <div class="bg-card-bg backdrop-blur-xl border border-webview-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-webview-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-webview-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-webview-accent-secondary to-emerald-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-webview-accent-secondary/30">
+                        <i class="fas fa-layer-group text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tipos de Implementaciones</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <i class="fas fa-apple text-webview-accent mt-1"></i>
+                            <div>
+                                <strong class="text-webview-accent-light">WKWebView (iOS)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Motor WebKit moderno con mejor rendimiento y seguridad que UIWebView.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <i class="fab fa-android text-webview-accent-secondary mt-1"></i>
+                            <div>
+                                <strong class="text-webview-accent-secondary-light">WebView (Android)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Basado en Chromium, evolucionó a Android System WebView independiente.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <i class="fab fa-windows text-webview-accent-tertiary mt-1"></i>
+                            <div>
+                                <strong class="text-webview-accent-tertiary-light">WebView2 (Windows)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Basado en Chromium Edge, permite apps modernas con tecnologías web.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <i class="fas fa-cube text-purple-400 mt-1"></i>
+                            <div>
+                                <strong class="text-purple-300">Frameworks Híbridos</strong>
+                                <p class="text-sm text-text-secondary mt-1">Cordova, Ionic, Capacitor, React Native WebView.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-webview-accent to-webview-accent-dark bg-clip-text text-transparent">2008</div>
+                            <div class="text-sm text-text-secondary mt-1">iPhone SDK</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-webview-accent-secondary to-emerald-700 bg-clip-text text-transparent">2011</div>
+                            <div class="text-sm text-text-secondary mt-1">PhoneGap 1.0</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-webview-accent-tertiary to-amber-700 bg-clip-text text-transparent">2014</div>
+                            <div class="text-sm text-text-secondary mt-1">WKWebView</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2020</div>
+                            <div class="text-sm text-text-secondary mt-1">WebView2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-webview-accent to-webview-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-webview-accent/30">
+                        <i class="fas fa-timeline text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-webview-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-webview-accent/15 border border-webview-accent/40 rounded-full text-webview-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2008
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">iPhone SDK y UIWebView</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Apple introduce UIWebView en el iPhone SDK, permitiendo mostrar contenido web dentro de apps nativas por primera vez.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-webview-accent to-webview-accent-dark flex items-center justify-center z-10 shadow-lg shadow-webview-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-webview-accent-secondary to-emerald-700 flex items-center justify-center z-10 shadow-lg shadow-webview-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-webview-accent-secondary/15 border border-webview-accent-secondary/40 rounded-full text-webview-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2011
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">PhoneGap 1.0 y Apache Cordova</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Nace PhoneGap (posteriormente Apache Cordova), popularizando el desarrollo de apps híbridas usando WebViews y JavaScript.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2014
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">WKWebView (iOS 8)</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Apple reemplaza UIWebView con WKWebView, ofreciendo mejor rendimiento, seguridad y soporte para tecnologías web modernas.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-webview-accent-tertiary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-webview-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-webview-accent-tertiary/15 border border-webview-accent-tertiary/40 rounded-full text-webview-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2019
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Android System WebView</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Google separa WebView del sistema operativo, permitiendo actualizaciones independientes a través de Google Play Store.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2020-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">WebView2 y Frameworks Modernos</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Microsoft lanza WebView2 basado en Chromium, mientras frameworks como Capacitor y React Native WebView evolucionan.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Tecnologías Populares -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-webview-accent to-webview-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-webview-accent/30">
+                        <i class="fas fa-microchip text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tecnologías y Frameworks</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-webview-accent hover:shadow-xl hover:shadow-webview-accent/20">
+                        <div class="text-3xl mb-4 text-webview-accent">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">iOS WebViews</h3>
+                        <p class="text-sm text-text-secondary mb-3">UIWebView, WKWebView, SFSafariViewController.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-webview-accent/15 text-webview-accent-light text-xs rounded">WKWebView</span>
+                            <span class="px-2 py-1 bg-webview-accent/15 text-webview-accent-light text-xs rounded">JavaScriptCore</span>
+                            <span class="px-2 py-1 bg-webview-accent/15 text-webview-accent-light text-xs rounded">Safari</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-webview-accent-secondary hover:shadow-xl hover:shadow-webview-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-webview-accent-secondary">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Android WebViews</h3>
+                        <p class="text-sm text-text-secondary mb-3">WebView, Chrome Custom Tabs, GeckoView.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-webview-accent-secondary/15 text-webview-accent-secondary-light text-xs rounded">Chromium</span>
+                            <span class="px-2 py-1 bg-webview-accent-secondary/15 text-webview-accent-secondary-light text-xs rounded">Custom Tabs</span>
+                            <span class="px-2 py-1 bg-webview-accent-secondary/15 text-webview-accent-secondary-light text-xs rounded">System WebView</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Frameworks Híbridos</h3>
+                        <p class="text-sm text-text-secondary mb-3">Cordova, Ionic, Capacitor, React Native.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Cordova</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Ionic</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Capacitor</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-webview-accent-tertiary hover:shadow-xl hover:shadow-webview-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-webview-accent-tertiary">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Desktop WebViews</h3>
+                        <p class="text-sm text-text-secondary mb-3">WebView2, Electron, CEF, NW.js.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-webview-accent-tertiary/15 text-webview-accent-tertiary-light text-xs rounded">WebView2</span>
+                            <span class="px-2 py-1 bg-webview-accent-tertiary/15 text-webview-accent-tertiary-light text-xs rounded">Electron</span>
+                            <span class="px-2 py-1 bg-webview-accent-tertiary/15 text-webview-accent-tertiary-light text-xs rounded">CEF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Adopción en apps móviles (2024)</span>
+                            <span class="font-bold text-webview-accent-light">42%</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-webview-accent to-webview-accent-dark rounded-full" style="width: 42%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento de apps híbridas (2015-2024)</span>
+                            <span class="font-bold text-webview-accent-secondary-light">300%</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-webview-accent-secondary to-emerald-700 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-webview-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-webview-accent-secondary to-emerald-700 flex items-center justify-center mr-6 shadow-xl shadow-webview-accent-secondary/30">
+                        <i class="fas fa-laptop-code text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulación de WebViews</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fas fa-desktop text-webview-accent-light"></i>
+                            <h3 class="text-xl font-bold text-webview-accent-light">Simulador: Comparación de Tecnologías</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara el rendimiento de diferentes implementaciones de WebViews en aplicaciones reales:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Tecnología:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="technology-btn active" data-tech="wkwebview">
+                                            <i class="fab fa-apple mr-2"></i> WKWebView
+                                        </button>
+                                        <button class="technology-btn" data-tech="android">
+                                            <i class="fab fa-android mr-2"></i> Android WebView
+                                        </button>
+                                        <button class="technology-btn" data-tech="cordova">
+                                            <i class="fas fa-cube mr-2"></i> Cordova
+                                        </button>
+                                        <button class="technology-btn" data-tech="webview2">
+                                            <i class="fab fa-windows mr-2"></i> WebView2
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Complejidad de la App</label>
+                                        <span id="complexityValue" class="font-bold text-webview-accent-light">Media</span>
+                                    </div>
+                                    <input type="range" id="complexitySlider" min="1" max="10" value="5" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Sencilla</span>
+                                        <span>Media</span>
+                                        <span>Compleja</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Uso de APIs Nativas</label>
+                                        <span id="apiValue" class="font-bold text-webview-accent-secondary-light">Moderado</span>
+                                    </div>
+                                    <input type="range" id="apiSlider" min="1" max="10" value="5" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Mínimo</span>
+                                        <span>Moderado</span>
+                                        <span>Extenso</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tamaño del Proyecto</label>
+                                        <span id="sizeValue" class="font-bold text-purple-300">Mediano</span>
+                                    </div>
+                                    <input type="range" id="sizeSlider" min="1" max="10" value="5" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Pequeño</span>
+                                        <span>Mediano</span>
+                                        <span>Grande</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-webview-accent-light">Comparación de Tecnologías</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación de rendimiento por tecnología</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-webview-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Rendimiento</div>
+                                <div id="performanceValue" class="text-2xl font-bold text-webview-accent-light">85%</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="performanceBar" class="h-full bg-gradient-to-r from-webview-accent to-webview-accent-dark rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Tiempo Desarrollo</div>
+                                <div id="timeValue" class="text-2xl font-bold text-webview-accent-secondary-light">3.2 meses</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="timeBar" class="h-full bg-gradient-to-r from-webview-accent-secondary to-emerald-700 rounded-full" style="width: 32%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Compatibilidad</div>
+                                <div id="compatibilityValue" class="text-2xl font-bold text-purple-300">92%</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="compatibilityBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <i class="fas fa-lightbulb text-webview-accent-tertiary mr-2"></i>
+                                WKWebView ofrece el mejor rendimiento para aplicaciones iOS
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-webview-accent to-webview-accent-dark text-white font-bold rounded-xl shadow-lg shadow-webview-accent/30 hover:shadow-xl hover:shadow-webview-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <i class="fas fa-play mr-2"></i> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-redo mr-2"></i> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-webview-accent-secondary to-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-webview-accent-secondary/30 hover:shadow-xl hover:shadow-webview-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <i class="fas fa-chart-line mr-2"></i> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de frameworks -->
+                <div id="frameworksInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-webview-accent to-webview-accent-dark text-white font-bold rounded-xl shadow-lg shadow-webview-accent/30 hover:shadow-xl hover:shadow-webview-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <i class="fas fa-play-circle mr-2"></i> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-webview-accent/40 text-webview-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <i class="fas fa-file-alt mr-2"></i> Ver Especificaciones
+                        </button>
+                        <button id="compareTechnologiesBtn" class="px-6 py-3 bg-gradient-to-r from-webview-accent-secondary to-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-webview-accent-secondary/30 hover:shadow-xl hover:shadow-webview-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <i class="fas fa-balance-scale mr-2"></i> Comparar Tecnologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">WebView Evolution - Origen y Evolución de WebViews</p>
+            <p class="text-text-secondary mb-4">
+                <i class="fas fa-window-restore mr-2"></i> 2008-2024 | De UIWebView a WebView2 | La Revolución de las Apps Híbridas
+            </p>
+            <p class="text-sm text-text-muted">
+                Desarrollo Móvil | Aplicaciones Híbridas | Web Embebida | Frameworks Multiplataforma
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-webview-accent-light">
+                <i class="fas fa-file-alt mr-2"></i> Especificaciones Técnicas de WebViews
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-webview-accent flex items-center gap-2">
+                            <i class="fas fa-cogs"></i> Componentes de una WebView
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span><strong>Motor de Renderizado:</strong> WebKit, Chromium, Gecko</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span><strong>JavaScript Engine:</strong> JavaScriptCore, V8, SpiderMonkey</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span><strong>Bridge Nativo:</strong> Comunicación JS ↔ Código Nativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span><strong>APIs de Dispositivo:</strong> Cámara, GPS, Acelerómetro</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span><strong>Gestión de Memoria:</strong> Aislamiento de procesos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-webview-accent-secondary flex items-center gap-2">
+                            <i class="fas fa-bolt"></i> Características Avanzadas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span><strong>WebAssembly:</strong> Ejecución de código nativo en el navegador</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span><strong>Service Workers:</strong> Ejecución en segundo plano</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span><strong>IndexedDB:</strong> Almacenamiento local avanzado</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span><strong>WebRTC:</strong> Comunicación en tiempo real</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span><strong>WebGL:</strong> Gráficos 3D acelerados</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-webview-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-webview-accent-light"># Comparativa de Rendimiento (Puntuación)</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-webview-accent-light">WKWebView (iOS):</span> 95/100 - Motor WebKit optimizado</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-webview-accent-light">Android System WebView:</span> 88/100 - Basado en Chromium</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-webview-accent-light">WebView2 (Windows):</span> 92/100 - Edge Chromium integrado</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-webview-accent-light">Cordova WebView:</span> 75/100 - Capa de abstracción multiplataforma</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-webview-accent-light">UIWebView (Legacy):</span> 60/100 - Obsoleto, bajo rendimiento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-webview-accent-light">
+                <i class="fas fa-balance-scale-right mr-2"></i> Comparativa de Tecnologías WebView
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-webview-accent flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> Ventajas de Apps Híbridas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Desarrollo más rápido y costo reducido</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Código base único para múltiples plataformas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Fácil mantenimiento y actualizaciones</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Acceso a APIs nativas a través de bridges</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent"></i>
+                                <span>Amplia comunidad y recursos disponibles</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-webview-accent-secondary flex items-center gap-2">
+                            <i class="fas fa-times-circle"></i> Limitaciones vs. Nativo
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span>Rendimiento inferior en gráficos intensivos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span>Acceso limitado a características específicas de plataforma</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span>Tamaño de app generalmente mayor</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span>Dependencia de WebView del sistema operativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-circle text-xs mt-2 text-webview-accent-secondary"></i>
+                                <span>Experiencia de usuario no 100% nativa</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-webview-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-webview-accent-light"># Casos de uso recomendados por tecnología</div>
+                        <div><span class="text-webview-accent">"WKWebView:"</span> Apps iOS con contenido web dinámico, lectores RSS, navegadores internos</div>
+                        <div><span class="text-webview-accent-secondary">"Android WebView:"</span> Apps Android con integración web, visualizadores de documentos</div>
+                        <div><span class="text-purple-300">"Cordova/Ionic:"</span> Apps empresariales, prototipos rápidos, aplicaciones con mucho contenido web</div>
+                        <div><span class="text-webview-accent-tertiary">"WebView2:"</span> Aplicaciones de escritorio Windows, herramientas de desarrollo, apps empresariales</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-webview-accent to-webview-accent-dark bg-clip-text text-transparent">85%</div>
+                        <div class="text-sm text-text-secondary mt-1">Código compartido</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-webview-accent-secondary to-emerald-700 bg-clip-text text-transparent">60%</div>
+                        <div class="text-sm text-text-secondary mt-1">Reducción tiempo desarrollo</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-webview-accent-tertiary to-amber-700 bg-clip-text text-transparent">42%</div>
+                        <div class="text-sm text-text-secondary mt-1">Apps con WebView</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">300k+</div>
+                        <div class="text-sm text-text-secondary mt-1">Apps con Cordova</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+/* Agregar al final del archivo styles.css */
+
+/* Estilos personalizados para WebView Evolution */
+
+/* Animaciones personalizadas */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+}
+
+@keyframes data-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.technology-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.technology-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: rgb(96, 165, 250);
+}
+
+.technology-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgb(59, 130, 246);
+    color: rgb(96, 165, 250);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Mejoras para los gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Mejoras para el modal de frameworks */
+.framework-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.framework-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .technology-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.technology-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Efectos de partículas web */
+.web-particle {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Resaltado de texto */
+.highlight {
+    background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.2) 50%, transparent 100%);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Estilos para la línea de tiempo */
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+@media (min-width: 768px) {
+    .timeline-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Estilos para barras de progreso personalizadas */
+.progress-bar-web {
+    background: linear-gradient(90deg, 
+        rgba(59, 130, 246, 0.1) 0%, 
+        rgba(59, 130, 246, 0.3) 50%, 
+        rgba(59, 130, 246, 0.1) 100%);
+    background-size: 200% 100%;
+    animation: data-flow 3s linear infinite;
+}
+
+/* Tarjetas con efecto de borde animado */
+.animated-border {
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #3b82f6, #1d4ed8, #10b981, #059669);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: border-flow 3s ease infinite;
+    border-radius: inherit;
+}
+
+@keyframes border-flow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Estilos para código */
+.code-block {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(30, 30, 50, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.code-block .keyword {
+    color: #60a5fa;
+}
+
+.code-block .string {
+    color: #34d399;
+}
+
+.code-block .comment {
+    color: #94a3b8;
+}
+
+/* Efecto de vidrio mejorado */
+.glass-effect {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tooltips personalizados */
+.tooltip-web {
+    position: relative;
+}
+
+.tooltip-web:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 50, 0.95);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 50;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+/* Animación de carga */
+.loading-spinner {
+    border: 3px solid rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+    border-top: 3px solid #3b82f6;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Efecto de pulso para elementos importantes */
+.pulse-important {
+    animation: pulse-important 2s infinite;
+}
+
+@keyframes pulse-important {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+}
