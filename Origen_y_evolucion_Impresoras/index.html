@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintLine - Historia y Evolución de las Impresoras</title>
+    
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'print-dark': '#0f172a',
+                        'print-primary': '#1e293b',
+                        'print-accent': '#3b82f6',
+                        'print-accent-light': '#60a5fa',
+                        'print-secondary': '#10b981',
+                        'print-secondary-light': '#34d399',
+                        'print-warning': '#f59e0b',
+                        'print-warning-light': '#fbbf24',
+                        'print-danger': '#ef4444',
+                        'print-danger-light': '#f87171',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(30, 41, 59, 0.8)',
+                        'card-bg-solid': '#1e293b',
+                        'glass-bg': 'rgba(15, 23, 42, 0.95)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'roboto-mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-print': 'pulse-print 2s ease-in-out infinite',
+                        'paper-flow': 'paper-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Estilos adicionales para efecto impresión */
+        .print-pattern {
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .printer-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        @keyframes pulse-print {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes paper-flow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        
+        /* Ionic-like button styles */
+        .ion-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            gap: 0.5rem;
+        }
+        
+        .ion-button-filled {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .ion-button-filled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+        
+        .ion-button-outline {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #60a5fa;
+        }
+        
+        .ion-button-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .ion-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-print-dark text-text-primary font-inter min-h-screen overflow-x-hidden print-pattern">
+    <!-- Canvas para partículas de impresión -->
+    <canvas id="print-particles" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-print-accent/30 py-8 md:py-12 px-4 mb-8 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-print-accent to-transparent"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-print-accent text-5xl md:text-6xl mb-4 animate-pulse-print">
+                    <ion-icon name="print"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-print-accent-light via-print-secondary-light to-print-warning-light bg-clip-text text-transparent">
+                    PrintLine
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Historia y Evolución de las Impresoras: De Gutenberg a la Impresión 3D
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-print-accent/10 border border-print-accent/40 rounded-full text-print-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-print-accent/10">
+                        <ion-icon name="hardware-chip"></ion-icon>
+                        Más de 500 años de tecnología de impresión
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-print-secondary/10 border border-print-secondary/40 rounded-full text-print-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-print-secondary/10">
+                        <ion-icon name="trending-up"></ion-icon>
+                        De la imprenta manual a la digitalización
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: Historia de las Impresoras -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-print-accent/20 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-print-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-print-accent to-blue-800 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-print-accent/30 printer-glow">
+                        <ion-icon name="time" class="text-3xl md:text-4xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de las Impresoras</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        La historia de las impresoras se remonta al siglo XV con la <span class="text-print-accent-light font-bold">prensa de tipos móviles de Gutenberg</span>, que revolucionó la producción de libros. En el siglo XX, la tecnología evolucionó hacia sistemas digitales que transformaron la comunicación.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Desde las primeras <span class="highlight">impresoras de matriz de puntos</span> hasta las modernas <span class="text-print-secondary-light">impresoras 3D industriales</span>, cada avance tecnológico ha ampliado las posibilidades de creación y comunicación.
+                    </p>
+                    
+                    <div class="bg-gray-800/50 border-l-4 border-print-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="bulb" class="text-print-accent-light"></ion-icon>
+                            <h4 class="font-bold text-print-accent-light">Momentos Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>1440:</strong> Prensa de Gutenberg</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>1953:</strong> Primera impresora de alta velocidad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>1976:</strong> Primera impresora de inyección de tinta</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>1984:</strong> Primera impresora láser de escritorio</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Tipos de Impresoras -->
+            <div class="bg-card-bg backdrop-blur-xl border border-print-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-print-secondary/20 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-print-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-print-secondary to-emerald-800 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-print-secondary/30">
+                        <ion-icon name="layers" class="text-3xl md:text-4xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tipos de Impresoras</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <ion-icon name="print" class="text-print-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-print-accent-light">Matriz de puntos</strong>
+                                <p class="text-sm text-text-secondary mt-1">Usa un cabezal con agujas que golpean una cinta entintada (1970s-1990s).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <ion-icon name="water" class="text-print-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-print-secondary-light">Inyección de tinta</strong>
+                                <p class="text-sm text-text-secondary mt-1">Rocía pequeñas gotas de tinta sobre el papel (1976-actualidad).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <ion-icon name="flash" class="text-print-warning mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-print-warning-light">Láser</strong>
+                                <p class="text-sm text-text-secondary mt-1">Usa tóner y un láser para crear imágenes electrostáticas (1971-actualidad).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <ion-icon name="cube" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Impresión 3D</strong>
+                                <p class="text-sm text-text-secondary mt-1">Crea objetos tridimensionales capa por capa (1984-actualidad).</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-print-accent to-blue-800 bg-clip-text text-transparent">1440</div>
+                            <div class="text-sm text-text-secondary mt-1">Gutenberg</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-print-secondary to-emerald-800 bg-clip-text text-transparent">1976</div>
+                            <div class="text-sm text-text-secondary mt-1">Inyección</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-print-warning to-amber-800 bg-clip-text text-transparent">1984</div>
+                            <div class="text-sm text-text-secondary mt-1">HP LaserJet</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">2009</div>
+                            <div class="text-sm text-text-secondary mt-1">3D comercial</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-print-accent to-blue-800 flex items-center justify-center mr-6 shadow-xl shadow-print-accent/30 printer-glow">
+                        <ion-icon name="timer" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Histórica</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-print-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-print-accent/15 border border-print-accent/40 rounded-full text-print-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        1440
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Prensa de Gutenberg</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Johannes Gutenberg inventa la prensa de tipos móviles, revolucionando la producción de libros en Europa.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-print-accent to-blue-800 flex items-center justify-center z-10 shadow-lg shadow-print-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-print-secondary to-emerald-800 flex items-center justify-center z-10 shadow-lg shadow-print-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-print-secondary/15 border border-print-secondary/40 rounded-full text-print-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        1953
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Primera Impresora Electrónica</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Remington Rand desarrolla la UNIVAC High-Speed Printer, primera impresora para computadoras.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        1976
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Inyección de Tinta</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">IBM introduce la primera impresora de inyección de tinta, la IBM 4640, para aplicaciones comerciales.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-print-warning to-amber-800 flex items-center justify-center z-10 shadow-lg shadow-print-warning/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-print-warning/15 border border-print-warning/40 rounded-full text-print-warning-light font-bold mb-3 text-sm min-w-[120px]">
+                                        1984
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">HP LaserJet</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Hewlett-Packard lanza la LaserJet, primera impresora láser asequible para oficinas y hogares.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2009-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Impresión 3D Comercial</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">La impresión 3D se hace accesible con impresoras como MakerBot, revolucionando manufactura y diseño.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-800 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Tecnologías de Impresión -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-print-accent to-blue-800 flex items-center justify-center mr-6 shadow-xl shadow-print-accent/30 printer-glow">
+                        <ion-icon name="hardware-chip" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tecnologías de Impresión</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-800/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-print-accent hover:shadow-xl hover:shadow-print-accent/20">
+                        <div class="text-3xl mb-4 text-print-accent">
+                            <ion-icon name="print"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Matriz de Puntos</h3>
+                        <p class="text-sm text-text-secondary mb-3">Impacto mecánico para documentos múltiples.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-print-accent/15 text-print-accent-light text-xs rounded">Epson</span>
+                            <span class="px-2 py-1 bg-print-accent/15 text-print-accent-light text-xs rounded">IBM</span>
+                            <span class="px-2 py-1 bg-print-accent/15 text-print-accent-light text-xs rounded">9-24 agujas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-print-secondary hover:shadow-xl hover:shadow-print-secondary/20">
+                        <div class="text-3xl mb-4 text-print-secondary">
+                            <ion-icon name="water"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Inyección de Tinta</h3>
+                        <p class="text-sm text-text-secondary mb-3">Precisión fotográfica a color.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-print-secondary/15 text-print-secondary-light text-xs rounded">HP</span>
+                            <span class="px-2 py-1 bg-print-secondary/15 text-print-secondary-light text-xs rounded">Canon</span>
+                            <span class="px-2 py-1 bg-print-secondary/15 text-print-secondary-light text-xs rounded">Epson</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-print-warning hover:shadow-xl hover:shadow-print-warning/20">
+                        <div class="text-3xl mb-4 text-print-warning">
+                            <ion-icon name="flash"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Impresoras Láser</h3>
+                        <p class="text-sm text-text-secondary mb-3">Alta velocidad y bajo costo por página.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-print-warning/15 text-print-warning-light text-xs rounded">Xerox</span>
+                            <span class="px-2 py-1 bg-print-warning/15 text-print-warning-light text-xs rounded">HP LaserJet</span>
+                            <span class="px-2 py-1 bg-print-warning/15 text-print-warning-light text-xs rounded">Brother</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="cube"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Impresión 3D</h3>
+                        <p class="text-sm text-text-secondary mb-3">Fabricación aditiva para prototipos y producción.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">FDM</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">SLA</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">SLS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Estadísticas -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Mercado mundial de impresión 3D (2024)</span>
+                            <span class="font-bold text-print-accent-light">$23.1B</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-print-accent to-blue-800 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento anual de impresión sostenible</span>
+                            <span class="font-bold text-print-secondary-light">+28%</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-print-secondary to-emerald-800 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-print-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-print-secondary to-emerald-800 flex items-center justify-center mr-6 shadow-xl shadow-print-secondary/30">
+                        <ion-icon name="settings" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulación de Impresión</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-800/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="construct" class="text-print-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-print-accent-light">Simulador: Comparación de Tecnologías</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara el rendimiento de diferentes tecnologías de impresión según tus necesidades:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Tecnología:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="print-tech-btn active" data-tech="inkjet">
+                                            <ion-icon name="water" class="mr-2"></ion-icon> Inyección
+                                        </button>
+                                        <button class="print-tech-btn" data-tech="laser">
+                                            <ion-icon name="flash" class="mr-2"></ion-icon> Láser
+                                        </button>
+                                        <button class="print-tech-btn" data-tech="dotmatrix">
+                                            <ion-icon name="print" class="mr-2"></ion-icon> Matriz
+                                        </button>
+                                        <button class="print-tech-btn" data-tech="3d">
+                                            <ion-icon name="cube" class="mr-2"></ion-icon> 3D
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Volumen de Páginas/Mes</label>
+                                        <span id="volumeValue" class="font-bold text-print-accent-light">1000</span>
+                                    </div>
+                                    <input type="range" id="volumeSlider" min="100" max="10000" value="1000" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>100</span>
+                                        <span>5,000</span>
+                                        <span>10,000</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Calidad de Impresión</label>
+                                        <span id="qualityValue" class="font-bold text-print-secondary-light">Alta</span>
+                                    </div>
+                                    <input type="range" id="qualitySlider" min="1" max="3" value="3" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Baja</span>
+                                        <span>Media</span>
+                                        <span>Alta</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tipo de Contenido</label>
+                                        <span id="contentValue" class="font-bold text-purple-300">Color</span>
+                                    </div>
+                                    <select id="contentSelect" class="w-full bg-gray-800 border border-border rounded-lg p-2 text-text-primary">
+                                        <option value="text">Solo Texto</option>
+                                        <option value="bw">Texto+Imágenes B/N</option>
+                                        <option value="color" selected>Color Completo</option>
+                                        <option value="photo">Fotografías</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-800/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-print-accent-light">Costos por Tecnología</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="costChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Costo por página en centavos USD</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-800/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-print-secondary-light">Comparación de Características</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="featureChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa (1-100)</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Costo/Página</div>
+                                <div id="costValue" class="text-2xl font-bold text-print-accent-light">$0.05</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="costBar" class="h-full bg-gradient-to-r from-print-accent to-blue-800 rounded-full" style="width: 20%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Velocidad</div>
+                                <div id="speedValue" class="text-2xl font-bold text-print-secondary-light">22 ppm</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="speedBar" class="h-full bg-gradient-to-r from-print-secondary to-emerald-800 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Calidad</div>
+                                <div id="qualityResultValue" class="text-2xl font-bold text-purple-300">9/10</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="qualityBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-800 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="information-circle" class="text-print-warning mr-2"></ion-icon>
+                                La inyección de tinta es ideal para impresión a color de alta calidad
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="ion-button ion-button-filled">
+                                <ion-icon name="play"></ion-icon>
+                                Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="ion-button ion-button-outline">
+                                <ion-icon name="refresh"></ion-icon>
+                                Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="ion-button ion-button-filled" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                <ion-icon name="stats-chart"></ion-icon>
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de fabricantes -->
+                <div id="manufacturersInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="ion-button ion-button-filled animate-pulse-print">
+                            <ion-icon name="rocket"></ion-icon>
+                            Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="ion-button ion-button-outline">
+                            <ion-icon name="document-text"></ion-icon>
+                            Ver Especificaciones
+                        </button>
+                        <button id="compareTechnologiesBtn" class="ion-button ion-button-filled" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <ion-icon name="git-compare"></ion-icon>
+                            Comparar Tecnologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">PrintLine - Historia y Evolución de las Impresoras</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="print" class="mr-2"></ion-icon> 1440-2024 | De Gutenberg a la Impresión 3D | La Revolución de la Comunicación Impresa
+            </p>
+            <p class="text-sm text-text-muted">
+                Tecnología de Impresión | Historia Industrial | Innovación | Comunicación Visual
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-print-accent-light">
+                <ion-icon name="document-text" class="mr-2"></ion-icon> Especificaciones Técnicas
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-print-accent flex items-center gap-2">
+                            <ion-icon name="settings"></ion-icon>
+                            Características Técnicas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>Resolución:</strong> 1200-4800 dpi (inyección), 600-1200 dpi (láser)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>Velocidad:</strong> 8-40 ppm (inyección), 20-100 ppm (láser)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>Conexiones:</strong> USB, Ethernet, Wi-Fi, Wi-Fi Direct</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>Capacidad papel:</strong> 100-500 hojas, bandejas múltiples</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span><strong>Tamaños:</strong> A4, Carta, Legal, Oficio, sobres, fotos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-print-secondary flex items-center gap-2">
+                            <ion-icon name="color-palette"></ion-icon>
+                            Tecnologías de Color
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span><strong>CMYK:</strong> Cian, Magenta, Amarillo, Negro (estándar)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span><strong>CMYK+:</strong> Sistemas de 6+ colores para gama extendida</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span><strong>Pigmentos vs. Tintas Dye:</strong> Durabilidad vs. brillo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span><strong>Tóner:</strong> Partículas de plástico coloreado para láser</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span><strong>Filamentos 3D:</strong> PLA, ABS, PETG, TPU, resinas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/50 border-l-4 border-print-accent rounded-r-lg p-4">
+                    <div class="font-roboto-mono text-sm space-y-1">
+                        <div class="text-print-accent-light"># Evolución de Velocidades de Impresión</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-print-accent-light">Matriz de puntos (1970):</span> ~80 cps</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-print-accent-light">Inyección temprana (1980):</span> ~2 ppm</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-print-accent-light">Láser (1990):</span> ~8 ppm</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-print-accent-light">Inyección moderna (2000):</span> ~20 ppm</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-print-accent-light">Láser industrial (2020):</span> ~150 ppm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-print-accent-light">
+                <ion-icon name="git-compare" class="mr-2"></ion-icon> Comparativa de Tecnologías de Impresión
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-print-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                            Ventajas Inyección de Tinta
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span>Alta calidad fotográfica a color</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span>Precio inicial más bajo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span>Tamaño compacto</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span>Impresión en múltiples superficies</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-accent"></ion-icon>
+                                <span>Excelente para volúmenes bajos-medios</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-print-secondary flex items-center gap-2">
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                            Ventajas Impresión Láser
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span>Menor costo por página</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span>Mayor velocidad de impresión</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span>Tóner no se seca</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span>Durabilidad de la impresión</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-print-secondary"></ion-icon>
+                                <span>Ideal para altos volúmenes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/50 border-l-4 border-print-secondary rounded-r-lg p-4">
+                    <div class="font-roboto-mono text-sm space-y-1">
+                        <div class="text-print-accent-light"># Aplicaciones por tecnología</div>
+                        <div><span class="text-print-accent">"Inyección:"</span> Fotografías, materiales de marketing, documentos a color</div>
+                        <div><span class="text-print-secondary">"Láser:"</span> Documentos de oficina, facturas, manuales, altos volúmenes</div>
+                        <div><span class="text-print-warning">"Matriz:"</span> Formularios continuos, comprobantes, múltiples copias</div>
+                        <div><span class="text-purple-300">"3D:"</span> Prototipos, piezas personalizadas, maquetas, productos finales</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-print-accent to-blue-800 bg-clip-text text-transparent">$0.03-0.10</div>
+                        <div class="text-sm text-text-secondary mt-1">Costo/página (láser)</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-print-secondary to-emerald-800 bg-clip-text text-transparent">$0.10-0.50</div>
+                        <div class="text-sm text-text-secondary mt-1">Costo/página (inyección)</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-print-warning to-amber-800 bg-clip-text text-transparent">8-150 ppm</div>
+                        <div class="text-sm text-text-secondary mt-1">Velocidad impresión</div>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">0.01-0.4mm</div>
+                        <div class="text-sm text-text-secondary mt-1">Resolución capa 3D</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>

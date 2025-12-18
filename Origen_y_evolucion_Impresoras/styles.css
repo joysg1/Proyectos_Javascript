@@ -1,0 +1,322 @@
+/* Estilos principales para PrintLine */
+:root {
+    --print-accent: #3b82f6;
+    --print-accent-light: #60a5fa;
+    --print-secondary: #10b981;
+    --print-secondary-light: #34d399;
+    --print-warning: #f59e0b;
+    --print-warning-light: #fbbf24;
+    --print-danger: #ef4444;
+    --print-danger-light: #f87171;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --border-light: #475569;
+}
+
+/* Patrón de fondo de puntos (efecto impresión) */
+.print-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.05) 2px, transparent 2px);
+    background-size: 40px 40px;
+}
+
+/* Animaciones personalizadas */
+@keyframes pulse-print {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes paper-flow {
+    0% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+    }
+    90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-100px) rotate(5deg);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+    }
+    33% { 
+        transform: translateY(-10px) rotate(2deg);
+    }
+    66% { 
+        transform: translateY(5px) rotate(-2deg);
+    }
+}
+
+/* Efecto de brillo para impresoras */
+.printer-glow {
+    position: relative;
+}
+
+.printer-glow::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #3b82f6, #60a5fa, #3b82f6);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.printer-glow:hover::after {
+    opacity: 0.3;
+    animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Estilos para botones de tecnología de impresión */
+.print-tech-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 41, 59, 0.7);
+    border: 2px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.print-tech-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--print-accent);
+    color: var(--print-accent-light);
+    transform: translateY(-2px);
+}
+
+.print-tech-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--print-accent);
+    color: var(--print-accent-light);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Estilos para sliders */
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--print-accent);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--print-accent);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para timeline */
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+}
+
+@media (min-width: 768px) {
+    .timeline-container {
+        padding-left: 0;
+    }
+}
+
+.timeline-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para cards de fabricantes */
+.manufacturer-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.manufacturer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--print-accent), transparent);
+    transition: left 0.5s ease;
+}
+
+.manufacturer-card:hover::before {
+    left: 100%;
+}
+
+.manufacturer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Estilos para modales */
+.modal-close-btn {
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    color: var(--print-danger-light) !important;
+}
+
+/* Estilos para notificaciones */
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: linear-gradient(135deg, var(--print-secondary), #059669);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, var(--print-danger), #dc2626);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, var(--print-accent), #1d4ed8);
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, var(--print-warning), #d97706);
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+    .print-tech-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+    
+    .ion-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.print-tech-btn:focus-visible,
+.slider:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--print-accent);
+    outline-offset: 2px;
+}
+
+/* Estilos para el canvas de partículas */
+#print-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Efecto de texto impreso */
+.printed-text {
+    position: relative;
+}
+
+.printed-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--print-accent), var(--print-secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.printed-text:hover::after {
+    transform: scaleX(1);
+}
