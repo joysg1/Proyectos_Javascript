@@ -1,0 +1,210 @@
+/* Estilos personalizados para GrafenoLab */
+
+/* Variables personalizadas */
+:root {
+    --graphene-primary: #00d4aa;
+    --graphene-secondary: #ff6b6b;
+    --graphene-tertiary: #ffd93d;
+    --graphene-dark: #0a0a12;
+    --graphene-card: #121220;
+}
+
+/* Animación para partículas de grafeno (hexágonos) */
+@keyframes hexagonRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes graphenePulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Animaciones personalizadas */
+.animate-graphene-pulse {
+    animation: graphenePulse 3s ease-in-out infinite;
+}
+
+.animate-hexagon-rotate {
+    animation: hexagonRotate 20s linear infinite;
+}
+
+/* Estilos para botones de material */
+.material-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.material-btn:hover {
+    background: rgba(0, 212, 170, 0.1);
+    border-color: rgba(0, 212, 170, 0.3);
+    color: rgb(52, 245, 211);
+}
+
+.material-btn.active {
+    background: rgba(0, 212, 170, 0.2);
+    border-color: rgb(0, 212, 170);
+    color: rgb(52, 245, 211);
+    box-shadow: 0 0 15px rgba(0, 212, 170, 0.3);
+}
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para tarjetas de métodos de producción */
+.method-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el hexágono de grafeno */
+.hexagon {
+    position: relative;
+    width: 100px;
+    height: 57.74px;
+    background-color: #00d4aa;
+    margin: 28.87px 0;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 28.87px solid #00d4aa;
+}
+
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 28.87px solid #00d4aa;
+}
+
+/* Efectos de vidrio mejorados */
+.glass-effect {
+    background: rgba(18, 18, 32, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mejoras para gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .material-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.material-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #00d4aa;
+    outline-offset: 2px;
+}
+
+/* Estilos para iconos de Ionic */
+ion-icon {
+    vertical-align: middle;
+}
+
+/* Efecto de brillo para elementos destacados */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+}
+
+/* Efecto de partículas flotantes */
+.floating-particle {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Resaltado de texto para términos importantes */
+.highlight {
+    background: linear-gradient(120deg, rgba(0, 212, 170, 0.3) 0%, rgba(0, 212, 170, 0.1) 100%);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+}

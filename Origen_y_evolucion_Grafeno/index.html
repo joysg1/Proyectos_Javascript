@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrafenoLab - Origen y Evolución del Grafeno</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'graphene-dark': '#0a0a12',
+                        'graphene-secondary': '#121220',
+                        'graphene-accent': '#00d4aa',
+                        'graphene-accent-light': '#34f5d3',
+                        'graphene-accent-dark': '#00b894',
+                        'graphene-gradient': 'linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%)',
+                        'graphene-accent-secondary': '#ff6b6b',
+                        'graphene-accent-secondary-light': '#ff8787',
+                        'graphene-secondary-gradient': 'linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%)',
+                        'graphene-accent-tertiary': '#ffd93d',
+                        'graphene-accent-tertiary-light': '#ffed4e',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(0, 212, 170, 0.3)',
+                        'shadow-secondary': 'rgba(255, 107, 107, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'graphene-pulse': 'graphene-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'hexagon-rotate': 'hexagonRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-graphene-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de grafeno -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-graphene-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-graphene-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-graphene-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="diamond-outline"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-graphene-accent-light to-graphene-accent-tertiary-light bg-clip-text text-transparent">
+                    GrafenoLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Material del Futuro: Del Grafito al Grafeno
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-graphene-accent/10 border border-graphene-accent/40 rounded-full text-graphene-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-graphene-accent/10 animate-graphene-pulse">
+                        <ion-icon name="hardware-chip-outline"></ion-icon>
+                        El material más fuerte y conductor conocido
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-graphene-accent-secondary/10 border border-graphene-accent-secondary/40 rounded-full text-graphene-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-graphene-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2004 a la revolución tecnológica actual
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es el Grafeno? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-graphene-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-graphene-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-graphene-accent to-graphene-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-graphene-accent/30">
+                        <ion-icon name="cube-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es el Grafeno?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-graphene-accent-light font-bold">El grafeno</span> es una forma alotrópica del carbono que consiste en una sola capa de átomos dispuestos en un patrón hexagonal de panal de abeja. Es el material más delgado conocido (un átomo de grosor) y posee propiedades extraordinarias.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Este material bidimensional fue aislado por primera vez en 2004 por <span class="highlight">Andre Geim y Konstantin Novoselov</span>, quienes recibieron el Premio Nobel de Física en 2010 por sus revolucionarios experimentos.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-graphene-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-graphene-accent-light"></ion-icon>
+                            <h4 class="font-bold text-graphene-accent-light">Propiedades Excepcionales</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>200 veces más fuerte que el acero</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Excelente conductor eléctrico y térmico</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Transparente y flexible</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Impermeable a gases y líquidos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Métodos de Obtención -->
+            <div class="bg-card-bg backdrop-blur-xl border border-graphene-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-graphene-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-graphene-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-graphene-accent-secondary to-red-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-graphene-accent-secondary/30">
+                        <ion-icon name="flask-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Métodos de Obtención</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="bandage-outline" class="text-graphene-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-graphene-accent-light">Exfoliación Mecánica</strong>
+                                <p class="text-sm text-text-secondary mt-1">Método original usando cinta adhesiva sobre grafito. Alta calidad pero baja producción.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="cloud-outline" class="text-graphene-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-graphene-accent-secondary-light">Depósito Químico de Vapor (CVD)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Proceso de alta temperatura para obtener grafeno de gran área sobre sustratos metálicos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="water-outline" class="text-graphene-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-graphene-accent-tertiary-light">Exfoliación en Líquido</strong>
+                                <p class="text-sm text-text-secondary mt-1">Grafeno disperso en solventes para aplicaciones como tintas y composites.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="thermometer-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Crecimiento Epitaxial</strong>
+                                <p class="text-sm text-text-secondary mt-1">Sobre carburo de silicio a altas temperaturas para electrónica de alta calidad.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-graphene-accent to-graphene-accent-dark bg-clip-text text-transparent">2004</div>
+                            <div class="text-sm text-text-secondary mt-1">Aislamiento</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-graphene-accent-secondary to-red-700 bg-clip-text text-transparent">2010</div>
+                            <div class="text-sm text-text-secondary mt-1">Nobel</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-graphene-accent-tertiary to-amber-700 bg-clip-text text-transparent">2015</div>
+                            <div class="text-sm text-text-secondary mt-1">Comercialización</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2023</div>
+                            <div class="text-sm text-text-secondary mt-1">Aplicaciones Masivas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-graphene-accent to-graphene-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-graphene-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-graphene-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-graphene-accent/15 border border-graphene-accent/40 rounded-full text-graphene-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        1947
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Teoría del Grafeno</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Philip Wallace estudia teóricamente el grafeno como base para entender el grafito. Predice sus propiedades electrónicas extraordinarias.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-graphene-accent to-graphene-accent-dark flex items-center justify-center z-10 shadow-lg shadow-graphene-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-graphene-accent-secondary to-red-700 flex items-center justify-center z-10 shadow-lg shadow-graphene-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-graphene-accent-secondary/15 border border-graphene-accent-secondary/40 rounded-full text-graphene-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2004
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Aislamiento Experimental</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Andre Geim y Konstantin Novoselov aíslan grafeno mediante exfoliación mecánica con cinta adhesiva, demostrando su existencia estable.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2010
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Premio Nobel</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Geim y Novoselov reciben el Premio Nobel de Física por sus experimentos revolucionarios con el grafeno bidimensional.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-graphene-accent-tertiary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-graphene-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-graphene-accent-tertiary/15 border border-graphene-accent-tertiary/40 rounded-full text-graphene-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2015
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Escalado Industrial</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Primeras plantas de producción a gran escala de grafeno mediante CVD y otros métodos. Comienza la comercialización.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2020-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Aplicaciones Diversas</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Integración en baterías, composites, electrónica flexible, sensores biomédicos y tecnologías de purificación de agua.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h 10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Aplicaciones -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-graphene-accent to-graphene-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-graphene-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Aplicaciones del Grafeno</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-graphene-accent hover:shadow-xl hover:shadow-graphene-accent/20">
+                        <div class="text-3xl mb-4 text-graphene-accent">
+                            <ion-icon name="battery-charging-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Energía</h3>
+                        <p class="text-sm text-text-secondary mb-3">Baterías de litio-grafeno y supercondensadores.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-graphene-accent/15 text-graphene-accent-light text-xs rounded">Baterías</span>
+                            <span class="px-2 py-1 bg-graphene-accent/15 text-graphene-accent-light text-xs rounded">Supercondensadores</span>
+                            <span class="px-2 py-1 bg-graphene-accent/15 text-graphene-accent-light text-xs rounded">Celdas solares</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-graphene-accent-secondary hover:shadow-xl hover:shadow-graphene-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-graphene-accent-secondary">
+                            <ion-icon name="phone-portrait-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Electrónica</h3>
+                        <p class="text-sm text-text-secondary mb-3">Pantallas táctiles flexibles y transistores de alta velocidad.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-graphene-accent-secondary/15 text-graphene-accent-secondary-light text-xs rounded">Pantallas</span>
+                            <span class="px-2 py-1 bg-graphene-accent-secondary/15 text-graphene-accent-secondary-light text-xs rounded">Transistores</span>
+                            <span class="px-2 py-1 bg-graphene-accent-secondary/15 text-graphene-accent-secondary-light text-xs rounded">Circuitos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="medkit-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Biomedicina</h3>
+                        <p class="text-sm text-text-secondary mb-3">Sensores biomédicos y sistemas de administración de fármacos.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Biosensores</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Implantes</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Terapias</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-graphene-accent-tertiary hover:shadow-xl hover:shadow-graphene-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-graphene-accent-tertiary">
+                            <ion-icon name="filter-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Medio Ambiente</h3>
+                        <p class="text-sm text-text-secondary mb-3">Filtros de agua y captura de contaminantes.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-graphene-accent-tertiary/15 text-graphene-accent-tertiary-light text-xs rounded">Desalinización</span>
+                            <span class="px-2 py-1 bg-graphene-accent-tertiary/15 text-graphene-accent-tertiary-light text-xs rounded">Filtros</span>
+                            <span class="px-2 py-1 bg-graphene-accent-tertiary/15 text-graphene-accent-tertiary-light text-xs rounded">Adsorbentes</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Mercado global (2023)</span>
+                            <span class="font-bold text-graphene-accent-light">$1.2B USD</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-graphene-accent to-graphene-accent-dark rounded-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento proyectado (2024-2030)</span>
+                            <span class="font-bold text-graphene-accent-secondary-light">35% anual</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-graphene-accent-secondary to-red-700 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-graphene-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-graphene-accent-secondary to-red-700 flex items-center justify-center mr-6 shadow-xl shadow-graphene-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Propiedades</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-graphene-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-graphene-accent-light">Simulador: Comparación de Materiales</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara las propiedades del grafeno con otros materiales convencionales:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Material:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="graphene">
+                                            <ion-icon name="diamond-outline" class="mr-2"></ion-icon> Grafeno
+                                        </button>
+                                        <button class="material-btn" data-material="steel">
+                                            <ion-icon name="hammer-outline" class="mr-2"></ion-icon> Acero
+                                        </button>
+                                        <button class="material-btn" data-material="copper">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> Cobre
+                                        </button>
+                                        <button class="material-btn" data-material="silicon">
+                                            <ion-icon name="hardware-chip-outline" class="mr-2"></ion-icon> Silicio
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Espesor de Capa</label>
+                                        <span id="thicknessValue" class="font-bold text-graphene-accent-light">1 átomo</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="1" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>1 átomo</span>
+                                        <span>10 capas</span>
+                                        <span>100 capas</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Área de Superficie</label>
+                                        <span id="areaValue" class="font-bold text-graphene-accent-secondary-light">2630 m²/g</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="100" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>100 m²/g</span>
+                                        <span>1500 m²/g</span>
+                                        <span>2630 m²/g</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Pureza del Material</label>
+                                        <span id="purityValue" class="font-bold text-purple-300">99.9%</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="80" max="100" value="99" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>80%</span>
+                                        <span>95%</span>
+                                        <span>100%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-graphene-accent-light">Comparación de Propiedades</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por material</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-graphene-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Resistencia</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-graphene-accent-light">200x Acero</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-graphene-accent to-graphene-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Conductividad</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-graphene-accent-secondary-light">1.0×10⁸ S/m</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-graphene-accent-secondary to-red-700 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Transparencia</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-purple-300">97.7%</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 97.7%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-graphene-accent-tertiary mr-2"></ion-icon>
+                                El grafeno es 200 veces más resistente que el acero y excelente conductor
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-graphene-accent to-graphene-accent-dark text-white font-bold rounded-xl shadow-lg shadow-graphene-accent/30 hover:shadow-xl hover:shadow-graphene-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-graphene-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-graphene-accent-secondary/30 hover:shadow-xl hover:shadow-graphene-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de métodos de producción -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-graphene-accent to-graphene-accent-dark text-white font-bold rounded-xl shadow-lg shadow-graphene-accent/30 hover:shadow-xl hover:shadow-graphene-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-graphene-accent/40 text-graphene-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-graphene-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-graphene-accent-secondary/30 hover:shadow-xl hover:shadow-graphene-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Materiales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">GrafenoLab - Origen y Evolución del Grafeno</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="diamond-outline" class="mr-2"></ion-icon> 1947-2024 | Del Grafito al Grafeno | El Material del Futuro
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Nanomateriales | Propiedades Excepcionales | Aplicaciones Tecnológicas | Sustentabilidad
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h 10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-graphene-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas del Grafeno
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-graphene-accent flex items-center gap-2">
+                            <ion-icon name="cube-outline"></ion-icon> Estructura Cristalina
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span><strong>Estructura:</strong> Hexagonal (panal de abeja)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span><strong>Espesor:</strong> 0.345 nm (un átomo)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span><strong>Longitud enlace C-C:</strong> 0.142 nm</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span><strong>Área superficial:</strong> 2630 m²/g</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span><strong>Densidad:</strong> 2.267 g/cm³</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-graphene-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Propiedades Eléctricas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span><strong>Conductividad:</strong> 1.0×10⁸ S/m</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span><strong>Movilidad electrónica:</strong> 200,000 cm²/V·s</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span><strong>Densidad corriente:</strong> 10⁸ A/cm²</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span><strong>Efecto Hall cuántico:</strong> A temperatura ambiente</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span><strong>Band gap:</strong> Cero (semimetal)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-graphene-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-graphene-accent-light"># Comparativa de Propiedades Mecánicas</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-graphene-accent-light">Resistencia a la tracción:</span> ~130 GPa</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-graphene-accent-light">Módulo de Young:</span> ~1 TPa</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-graphene-accent-light">Dureza:</span> Mayor que el diamante</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-graphene-accent-light">Flexibilidad:</span> Puede estirarse 20% sin romperse</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-graphene-accent-light">Relación resistencia/peso:</span> 200× acero</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-graphene-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Materiales
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-graphene-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas del Grafeno
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Conductividad eléctrica superior</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Resistencia mecánica excepcional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Transparencia óptica del 97.7%</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Flexibilidad y elasticidad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent"></ion-icon>
+                                <span>Impermeabilidad a gases</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-graphene-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos Actuales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span>Producción a gran escala costosa</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span>Dificultad en manipulación monoatómica</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span>Ausencia de band gap natural</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span>Agregación de capas (restacking)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-graphene-accent-secondary"></ion-icon>
+                                <span>Integración con procesos industriales</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-graphene-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-graphene-accent-light"># Aplicaciones por propiedad destacada</div>
+                        <div><span class="text-graphene-accent">"Conductividad:"</span> Electrónica flexible, electrodos transparentes, interconexiones</div>
+                        <div><span class="text-graphene-accent-secondary">"Resistencia:"</span> Composites estructurales, materiales armadura, aeronáutica</div>
+                        <div><span class="text-purple-300">"Transparencia:"</span> Pantallas táctiles, celdas solares, ventanas inteligentes</div>
+                        <div><span class="text-graphene-accent-tertiary">"Impermeabilidad:"</span> Filtros de agua, barreras anticorrosión, empaques</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-graphene-accent to-graphene-accent-dark bg-clip-text text-transparent">200x</div>
+                        <div class="text-sm text-text-secondary mt-1">Más fuerte que acero</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-graphene-accent-secondary to-red-700 bg-clip-text text-transparent">97.7%</div>
+                        <div class="text-sm text-text-secondary mt-1">Transparencia óptica</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-graphene-accent-tertiary to-amber-700 bg-clip-text text-transparent">5000 W/m·K</div>
+                        <div class="text-sm text-text-secondary mt-1">Conductividad térmica</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">1 átomo</div>
+                        <div class="text-sm text-text-secondary mt-1">Espesor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
