@@ -10,7 +10,7 @@
 
     Descarga los 3 archivos (HTML, CSS, JS)
 
-    Ábrelos en tu navegador
+    Abre el .html
 
     Explora las secciones interactivas
 
