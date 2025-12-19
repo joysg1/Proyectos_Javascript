@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashlight Evolution - Historia de las Linternas</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'flashlight-dark': '#0a0a12',
+                        'flashlight-secondary': '#121220',
+                        'flashlight-accent': '#FFD700',
+                        'flashlight-accent-light': '#FFF8DC',
+                        'flashlight-accent-dark': '#FFA500',
+                        'flashlight-gradient': 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                        'flashlight-accent-secondary': '#4169E1',
+                        'flashlight-accent-secondary-light': '#6495ED',
+                        'flashlight-secondary-gradient': 'linear-gradient(135deg, #4169E1 0%, #1E90FF 100%)',
+                        'flashlight-accent-tertiary': '#32CD32',
+                        'flashlight-accent-tertiary-light': '#90EE90',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(255, 215, 0, 0.3)',
+                        'shadow-secondary': 'rgba(65, 105, 225, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'light-pulse': 'light-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'beam-rotate': 'beamRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-flashlight-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de luz -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-flashlight-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-flashlight-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-flashlight-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="flashlight"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-flashlight-accent-light to-flashlight-accent-tertiary-light bg-clip-text text-transparent">
+                    Flashlight Evolution
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución de las Linternas: Del Fuego Primigenio a la Tecnología LED
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-flashlight-accent/10 border border-flashlight-accent/40 rounded-full text-flashlight-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-flashlight-accent/10 animate-light-pulse">
+                        <ion-icon name="flame-outline"></ion-icon>
+                        De las antorchas prehistóricas a los LED de alta potencia
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-flashlight-accent-secondary/10 border border-flashlight-accent-secondary/40 rounded-full text-flashlight-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-flashlight-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        40,000 años de innovación en iluminación portátil
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es una linterna? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-flashlight-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-flashlight-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-flashlight-accent to-flashlight-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-flashlight-accent/30">
+                        <ion-icon name="flashlight" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es una Linterna?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-flashlight-accent-light font-bold">Linterna</span> es un dispositivo portátil de iluminación alimentado por electricidad que produce luz mediante una bombilla incandescente, fluorescente o LED. Su evolución representa siglos de innovación tecnológica.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        El concepto de iluminación portátil existe desde la prehistoria con <span class="highlight">antorchas de madera y grasa animal</span>. La linterna eléctrica moderna fue patentada en 1899 por David Misell, revolucionando la iluminación personal.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-flashlight-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-flashlight-accent-light"></ion-icon>
+                            <h4 class="font-bold text-flashlight-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Fuente de luz: Incandescente, fluorescente o LED</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Fuente de energía: Baterías recargables o desechables</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Reflector para direccionar el haz de luz</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Cuerpo resistente y diseño ergonómico</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Técnica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-flashlight-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-flashlight-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-flashlight-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-flashlight-accent-secondary to-blue-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-flashlight-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Técnica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="flame-outline" class="text-flashlight-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-flashlight-accent-light">Antorchas (40,000 a.C.)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Palos con material inflamable impregnado en grasa animal.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="oil-outline" class="text-flashlight-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-flashlight-accent-secondary-light">Lámparas de Aceite (3,000 a.C.)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Recipientes de piedra o cerámica con aceite y mecha.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="bulb-outline" class="text-flashlight-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-flashlight-accent-tertiary-light">Linterna Eléctrica (1899)</strong>
+                                <p class="text-sm text-text-secondary mt-1">David Misell patenta la primera linterna con baterías y bombilla.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="flash-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">LED Modernos (2000s)</strong>
+                                <p class="text-sm text-text-secondary mt-1">LED de alta potencia, baterías recargables, múltiples modos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark bg-clip-text text-transparent">40,000 a.C.</div>
+                            <div class="text-sm text-text-secondary mt-1">Antorchas</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 bg-clip-text text-transparent">3,000 a.C.</div>
+                            <div class="text-sm text-text-secondary mt-1">Lámparas aceite</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-flashlight-accent-tertiary to-green-700 bg-clip-text text-transparent">1899</div>
+                            <div class="text-sm text-text-secondary mt-1">Eléctrica</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2000s</div>
+                            <div class="text-sm text-text-secondary mt-1">LED Moderna</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-flashlight-accent to-flashlight-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-flashlight-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-flashlight-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-flashlight-accent/15 border border-flashlight-accent/40 rounded-full text-flashlight-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        40,000 a.C.
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Antorchas Prehistóricas</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Los primeros humanos usan palos con material inflamable y grasa animal para iluminación nocturna y protección.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-flashlight-accent to-flashlight-accent-dark flex items-center justify-center z-10 shadow-lg shadow-flashlight-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-flashlight-accent-secondary to-blue-700 flex items-center justify-center z-10 shadow-lg shadow-flashlight-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-flashlight-accent-secondary/15 border border-flashlight-accent-secondary/40 rounded-full text-flashlight-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        3,000 a.C.
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lámparas de Aceite</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Civilizaciones antiguas desarrollan lámparas de piedra y cerámica que usan aceite vegetal o animal como combustible.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-flashlight-accent-tertiary/15 border border-flashlight-accent-tertiary/40 rounded-full text-flashlight-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        1899
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Primera Linterna Eléctrica</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">David Misell patenta la "linterna eléctrica" usando baterías de zinc-carbono y una bombilla incandescente.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-flashlight-accent-tertiary to-green-700 flex items-center justify-center z-10 shadow-lg shadow-flashlight-accent-tertiary/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-amber-500/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-amber-500/15 border border-amber-500/40 rounded-full text-amber-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        1970s
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Linternas Recargables</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Introducción de baterías recargables de níquel-cadmio, haciendo las linternas más económicas y ecológicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2000s-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Era LED y Tecnología Inteligente</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">LED de alta potencia, baterías de litio, múltiples modos, y linternas tácticas con características avanzadas.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ecosistema -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-flashlight-accent to-flashlight-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-flashlight-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tipos de Linternas Modernas</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-flashlight-accent hover:shadow-xl hover:shadow-flashlight-accent/20">
+                        <div class="text-3xl mb-4 text-flashlight-accent">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">LED de Alta Potencia</h3>
+                        <p class="text-sm text-text-secondary mb-3">Desde 100 hasta 10,000+ lúmenes para uso profesional y táctico.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-flashlight-accent/15 text-flashlight-accent-light text-xs rounded">Tácticas</span>
+                            <span class="px-2 py-1 bg-flashlight-accent/15 text-flashlight-accent-light text-xs rounded">Deportivas</span>
+                            <span class="px-2 py-1 bg-flashlight-accent/15 text-flashlight-accent-light text-xs rounded">Profesionales</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-flashlight-accent-secondary hover:shadow-xl hover:shadow-flashlight-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-flashlight-accent-secondary">
+                            <ion-icon name="battery-charging-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Recargables</h3>
+                        <p class="text-sm text-text-secondary mb-3">USB-C, baterías de litio, y tecnologías de carga rápida.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-flashlight-accent-secondary/15 text-flashlight-accent-secondary-light text-xs rounded">USB-C</span>
+                            <span class="px-2 py-1 bg-flashlight-accent-secondary/15 text-flashlight-accent-secondary-light text-xs rounded">Solar</span>
+                            <span class="px-2 py-1 bg-flashlight-accent-secondary/15 text-flashlight-accent-secondary-light text-xs rounded">Manivela</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Multifuncionales</h3>
+                        <p class="text-sm text-text-secondary mb-3">Con radio, cargador de teléfono, sirenas y herramientas integradas.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Emergencia</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Supervivencia</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Camping</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-flashlight-accent-tertiary hover:shadow-xl hover:shadow-flashlight-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-flashlight-accent-tertiary">
+                            <ion-icon name="phone-portrait-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Smart & App</h3>
+                        <p class="text-sm text-text-secondary mb-3">Control por Bluetooth, programación de modos, y seguimiento.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-flashlight-accent-tertiary/15 text-flashlight-accent-tertiary-light text-xs rounded">Bluetooth</span>
+                            <span class="px-2 py-1 bg-flashlight-accent-tertiary/15 text-flashlight-accent-tertiary-light text-xs rounded">App Control</span>
+                            <span class="px-2 py-1 bg-flashlight-accent-tertiary/15 text-flashlight-accent-tertiary-light text-xs rounded">GPS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Mercado global (2023)</span>
+                            <span class="font-bold text-flashlight-accent-light">$8.2 billones</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento anual (LED)</span>
+                            <span class="font-bold text-flashlight-accent-secondary-light">12.5% anual</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-flashlight-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-flashlight-accent-secondary to-blue-700 flex items-center justify-center mr-6 shadow-xl shadow-flashlight-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Tecnologías</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-flashlight-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-flashlight-accent-light">Simulador: Comparación de Tecnologías</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara diferentes tecnologías de iluminación portátil:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Tecnología:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="led">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> LED Moderna
+                                        </button>
+                                        <button class="material-btn" data-material="incandescent">
+                                            <ion-icon name="bulb-outline" class="mr-2"></ion-icon> Incandescente
+                                        </button>
+                                        <button class="material-btn" data-material="fluorescent">
+                                            <ion-icon name="ellipse-outline" class="mr-2"></ion-icon> Fluorescente
+                                        </button>
+                                        <button class="material-btn" data-material="halogen">
+                                            <ion-icon name="flame-outline" class="mr-2"></ion-icon> Halógena
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Intensidad de Uso</label>
+                                        <span id="thicknessValue" class="font-bold text-flashlight-accent-light">Ocasional</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="20" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Ocasional</span>
+                                        <span>Regular</span>
+                                        <span>Intenso</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Duración Necesaria</label>
+                                        <span id="areaValue" class="font-bold text-flashlight-accent-secondary-light">Media</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Corta</span>
+                                        <span>Media</span>
+                                        <span>Larga</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Condiciones Ambientales</label>
+                                        <span id="purityValue" class="font-bold text-purple-300">Moderadas</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Interior</span>
+                                        <span>Mixtas</span>
+                                        <span>Extremas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-flashlight-accent-light">Comparación de Métricas</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por tecnología</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-flashlight-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Eficiencia Energética</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-flashlight-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Durabilidad</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-flashlight-accent-secondary-light">Alta</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Costo Operativo</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-purple-300">Bajo</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-flashlight-accent-tertiary mr-2"></ion-icon>
+                                Las linternas LED dominan en eficiencia y durabilidad, ideales para uso moderno
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark text-white font-bold rounded-xl shadow-lg shadow-flashlight-accent/30 hover:shadow-xl hover:shadow-flashlight-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-flashlight-accent-secondary/30 hover:shadow-xl hover:shadow-flashlight-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark text-white font-bold rounded-xl shadow-lg shadow-flashlight-accent/30 hover:shadow-xl hover:shadow-flashlight-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-flashlight-accent/40 text-flashlight-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-flashlight-accent-secondary/30 hover:shadow-xl hover:shadow-flashlight-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Tecnologías
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">Flashlight Evolution - Historia y Evolución de las Linternas</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="flashlight" class="mr-2"></ion-icon> 40,000 a.C. - 2024 | Del Fuego a la Tecnología LED | El Futuro de la Iluminación Portátil
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Tecnología de Iluminación | Evolución de Dispositivos Portátiles | Innovación en Energía | Historia de la Tecnología
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-flashlight-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Linternas Modernas
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-flashlight-accent flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Tecnologías de Iluminación
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span><strong>LED:</strong> 50,000-100,000 horas de vida</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span><strong>Incandescente:</strong> 1,000-2,000 horas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span><strong>Halógena:</strong> 2,000-4,000 horas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span><strong>Xenón:</strong> 10,000-20,000 horas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span><strong>Eficiencia:</strong> LED 80-100 lm/W</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-flashlight-accent-secondary flex items-center gap-2">
+                            <ion-icon name="battery-charging-outline"></ion-icon> Sistemas de Energía
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span><strong>Baterías:</strong> Li-ion, NiMH, Alcalinas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span><strong>Recarga:</strong> USB-C, Solar, Manivela</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span><strong>Capacidad:</strong> 500-10,000 mAh</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span><strong>Voltaje:</strong> 3.7V (Li-ion) - 12V (automotriz)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span><strong>Autonomía:</strong> 2-100+ horas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-flashlight-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-flashlight-accent-light"># Comparativa de Rendimiento</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-flashlight-accent-light">Lúmenes:</span> 10-10,000+ lm según modelo</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-flashlight-accent-light">Alcance:</span> 50-1,500+ metros</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-flashlight-accent-light">Temperatura color:</span> 2,700K-6,500K</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-flashlight-accent light">Resistencia agua:</span> IPX4-IPX8</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-flashlight-accent-light">Modos:</span> 3-10+ modos programables</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-flashlight-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Tecnologías de Iluminación
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-flashlight-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas LED
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Alta eficiencia energética (80-100 lm/W)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Larga vida útil (50,000+ horas)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Resistente a impactos y vibraciones</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Encendido instantáneo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent"></ion-icon>
+                                <span>Baja generación de calor</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-flashlight-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Limitaciones
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span>Costo inicial más alto</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span>Sensibilidad al calor excesivo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span>Degradación gradual del brillo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span>Requiere controladores electrónicos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-flashlight-accent-secondary"></ion-icon>
+                                <span>Posible parpadeo con drivers económicos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-flashlight-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-flashlight-accent-light"># Casos de Uso por Tecnología</div>
+                        <div><span class="text-flashlight-accent">"LED:"</span> Uso general, táctico, emergencias, profesional</div>
+                        <div><span class="text-flashlight-accent-secondary">"Incandescente:"</span> Bajo costo, luz cálida, usos específicos</div>
+                        <div><span class="text-purple-300">"Halógena:"</span> Automotriz, iluminación precisa</div>
+                        <div><span class="text-flashlight-accent-tertiary">"Xenón:"</span> Alta potencia, usos especializados</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-flashlight-accent to-flashlight-accent-dark bg-clip-text text-transparent">85%</div>
+                        <div class="text-sm text-text-secondary mt-1">Cuota mercado LED</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-flashlight-accent-secondary to-blue-700 bg-clip-text text-transparent">50x</div>
+                        <div class="text-sm text-text-secondary mt-1">Más eficiente LED</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-flashlight-accent-tertiary to-green-700 bg-clip-text text-transparent">40K</div>
+                        <div class="text-sm text-text-secondary mt-1">Años de historia</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">$8.2B</div>
+                        <div class="text-sm text-text-secondary mt-1">Mercado global</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
