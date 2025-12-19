@@ -1,0 +1,217 @@
+/* Estilos personalizados para NextLab */
+
+/* Variables personalizadas */
+:root {
+    --next-primary: #0070f3;
+    --next-secondary: #ff4081;
+    --next-tertiary: #00c7ff;
+    --next-dark: #0a0a12;
+    --next-card: #121220;
+}
+
+/* Animación para flujo de red */
+@keyframes networkFlow {
+    0% { transform: translateX(-100%) translateY(-100%); }
+    100% { transform: translateX(100%) translateY(100%); }
+}
+
+@keyframes nextPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Animaciones personalizadas */
+.animate-next-pulse {
+    animation: nextPulse 3s ease-in-out infinite;
+}
+
+.animate-network-flow {
+    animation: networkFlow 20s linear infinite;
+}
+
+/* Estilos para botones de framework */
+.framework-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.framework-btn:hover {
+    background: rgba(0, 112, 243, 0.1);
+    border-color: rgba(0, 112, 243, 0.3);
+    color: rgb(50, 145, 255);
+}
+
+.framework-btn.active {
+    background: rgba(0, 112, 243, 0.2);
+    border-color: rgb(0, 112, 243);
+    color: rgb(50, 145, 255);
+    box-shadow: 0 0 15px rgba(0, 112, 243, 0.3);
+}
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para tarjetas de características */
+.feature-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Efectos de vidrio mejorados */
+.glass-effect {
+    background: rgba(18, 18, 32, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mejoras para gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .framework-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.framework-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #0070f3;
+    outline-offset: 2px;
+}
+
+/* Estilos para iconos de Ionic */
+ion-icon {
+    vertical-align: middle;
+}
+
+/* Efecto de brillo para elementos destacados */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(0, 112, 243, 0.5);
+}
+
+/* Efecto de nodos flotantes */
+.floating-node {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Resaltado de texto para términos importantes */
+.highlight {
+    background: linear-gradient(120deg, rgba(0, 112, 243, 0.3) 0%, rgba(0, 112, 243, 0.1) 100%);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+}
+
+/* Estilo para código */
+.code-block {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--next-primary);
+}
+
+/* Animación para líneas de conexión */
+.connection-line {
+    stroke-dasharray: 5;
+    animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 1000;
+    }
+}
+
+/* Efecto de gradiente animado para textos */
+.gradient-text {
+    background: linear-gradient(90deg, var(--next-primary), var(--next-tertiary), var(--next-secondary));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}

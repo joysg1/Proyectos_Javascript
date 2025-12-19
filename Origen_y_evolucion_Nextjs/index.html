@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextLab - Origen y Evolución de Next.js</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'next-dark': '#0a0a12',
+                        'next-secondary': '#121220',
+                        'next-accent': '#0070f3',
+                        'next-accent-light': '#3291ff',
+                        'next-accent-dark': '#0050b3',
+                        'next-gradient': 'linear-gradient(135deg, #0070f3 0%, #00c7ff 100%)',
+                        'next-accent-secondary': '#ff4081',
+                        'next-accent-secondary-light': '#ff79b0',
+                        'next-secondary-gradient': 'linear-gradient(135deg, #ff4081 0%, #ff6b6b 100%)',
+                        'next-accent-tertiary': '#00c7ff',
+                        'next-accent-tertiary-light': '#4ddbff',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(0, 112, 243, 0.3)',
+                        'shadow-secondary': 'rgba(255, 64, 129, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'next-pulse': 'next-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'network-flow': 'networkFlow 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-next-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de red -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-next-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-next-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-next-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="logo-react"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-next-accent-light to-next-accent-tertiary-light bg-clip-text text-transparent">
+                    NextLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Framework del Futuro: De React a Next.js
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-next-accent/10 border border-next-accent/40 rounded-full text-next-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-next-accent/10 animate-next-pulse">
+                        <ion-icon name="server-outline"></ion-icon>
+                        El framework React más popular para producción
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-next-accent-secondary/10 border border-next-accent-secondary/40 rounded-full text-next-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-next-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2016 a la revolución del desarrollo web moderno
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es Next.js? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-next-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-next-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-next-accent to-next-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-next-accent/30">
+                        <ion-icon name="logo-nodejs" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es Next.js?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-next-accent-light font-bold">Next.js</span> es un framework de React de código abierto creado por Vercel que permite funcionalidades como renderizado del lado del servidor y generación de sitios estáticos para aplicaciones web.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Este framework fue creado en <span class="highlight">2016</span> por <span class="highlight">Guillermo Rauch</span> y el equipo de Vercel (antes Zeit) para resolver las limitaciones de React en aplicaciones de producción, proporcionando una experiencia de desarrollo optimizada.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-next-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-next-accent-light"></ion-icon>
+                            <h4 class="font-bold text-next-accent-light">Características Excepcionales</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Renderizado híbrido (SSG, SSR, ISR)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Enrutamiento basado en sistema de archivos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Optimización automática de imágenes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Soporte nativo para TypeScript y API Routes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Características Principales -->
+            <div class="bg-card-bg backdrop-blur-xl border border-next-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-next-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-next-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-next-accent-secondary to-pink-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-next-accent-secondary/30">
+                        <ion-icon name="grid-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Características Principales</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="server-outline" class="text-next-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-next-accent-light">Renderizado Híbrido</strong>
+                                <p class="text-sm text-text-secondary mt-1">SSG (Static Generation), SSR (Server-Side Rendering) e ISR (Incremental Static Regeneration).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="code-slash-outline" class="text-next-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-next-accent-secondary-light">File-based Routing</strong>
+                                <p class="text-sm text-text-secondary mt-1">Sistema de enrutamiento basado en la estructura de archivos del proyecto.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="image-outline" class="text-next-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-next-accent-tertiary-light">Image Optimization</strong>
+                                <p class="text-sm text-text-secondary mt-1">Optimización automática de imágenes con WebP y lazy loading.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="construct-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">API Routes</strong>
+                                <p class="text-sm text-text-secondary mt-1">Creación de endpoints API dentro del mismo proyecto Next.js.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-next-accent to-next-accent-dark bg-clip-text text-transparent">2016</div>
+                            <div class="text-sm text-text-secondary mt-1">Lanzamiento</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-next-accent-secondary to-pink-700 bg-clip-text text-transparent">2018</div>
+                            <div class="text-sm text-text-secondary mt-1">Versión 7</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-next-accent-tertiary to-cyan-700 bg-clip-text text-transparent">2020</div>
+                            <div class="text-sm text-text-secondary mt-1">Next.js 10</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2023</div>
+                            <div class="text-sm text-text-secondary mt-1">App Router</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-next-accent to-next-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-next-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-next-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-next-accent/15 border border-next-accent/40 rounded-full text-next-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2016
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento Inicial</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Next.js es creado por Guillermo Rauch y el equipo de Zeit (ahora Vercel). Primera versión enfocada en SSR y routing simple.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-next-accent to-next-accent-dark flex items-center justify-center z-10 shadow-lg shadow-next-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-next-accent-secondary to-pink-700 flex items-center justify-center z-10 shadow-lg shadow-next-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-next-accent-secondary/15 border border-next-accent-secondary/40 rounded-full text-next-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2018
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Next.js 7 y Static Export</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Introducción de la exportación estática, mejoras de rendimiento y soporte para React 16.8 con Hooks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2020
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Next.js 10 e ISR</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Lanzamiento de Incremental Static Regeneration (ISR), optimización de imágenes nativa y compatibilidad con Web Vitals.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-next-accent-tertiary to-cyan-700 flex items-center justify-center z-10 shadow-lg shadow-next-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-next-accent-tertiary/15 border border-next-accent-tertiary/40 rounded-full text-next-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2021
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Next.js 12 y Middleware</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Introducción de Middleware, mejoras en compilador Rust y soporte para React 18.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2023-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">App Router y Next.js 13/14</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Nuevo App Router, Server Components, Streaming, y mejoras sustanciales en rendimiento y DX.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Aplicaciones -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-next-accent to-next-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-next-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Aplicaciones de Next.js</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-next-accent hover:shadow-xl hover:shadow-next-accent/20">
+                        <div class="text-3xl mb-4 text-next-accent">
+                            <ion-icon name="business-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Sitios Corporativos</h3>
+                        <p class="text-sm text-text-secondary mb-3">Landing pages, sitios de marketing y portales empresariales.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-next-accent/15 text-next-accent-light text-xs rounded">Marketing</span>
+                            <span class="px-2 py-1 bg-next-accent/15 text-next-accent-light text-xs rounded">Landing Pages</span>
+                            <span class="px-2 py-1 bg-next-accent/15 text-next-accent-light text-xs rounded">Corporativos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-next-accent-secondary hover:shadow-xl hover:shadow-next-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-next-accent-secondary">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">E-commerce</h3>
+                        <p class="text-sm text-text-secondary mb-3">Tiendas online con renderizado optimizado y SEO avanzado.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-next-accent-secondary/15 text-next-accent-secondary-light text-xs rounded">Tiendas</span>
+                            <span class="px-2 py-1 bg-next-accent-secondary/15 text-next-accent-secondary-light text-xs rounded">Marketplaces</span>
+                            <span class="px-2 py-1 bg-next-accent-secondary/15 text-next-accent-secondary-light text-xs rounded">Checkout</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Redes Sociales</h3>
+                        <p class="text-sm text-text-secondary mb-3">Aplicaciones con contenido dinámico y actualización en tiempo real.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Feed</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Perfiles</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Mensajería</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-next-accent-tertiary hover:shadow-xl hover:shadow-next-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-next-accent-tertiary">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Dashboards</h3>
+                        <p class="text-sm text-text-secondary mb-3">Paneles de administración con datos en tiempo real y SSR.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-next-accent-tertiary/15 text-next-accent-tertiary-light text-xs rounded">Analítica</span>
+                            <span class="px-2 py-1 bg-next-accent-tertiary/15 text-next-accent-tertiary-light text-xs rounded">Admin</span>
+                            <span class="px-2 py-1 bg-next-accent-tertiary/15 text-next-accent-tertiary-light text-xs rounded">Monitoreo</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Adopción en empresas (2023)</span>
+                            <span class="font-bold text-next-accent-light">45% de startups tech</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-next-accent to-next-accent-dark rounded-full" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento de descargas npm</span>
+                            <span class="font-bold text-next-accent-secondary-light">78% anual</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-next-accent-secondary to-pink-700 rounded-full" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-next-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-next-accent-secondary to-pink-700 flex items-center justify-center mr-6 shadow-xl shadow-next-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Rendimiento</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-next-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-next-accent-light">Simulador: Comparación de Frameworks</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara el rendimiento de Next.js con otros frameworks de React:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Framework:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="framework-btn active" data-framework="nextjs">
+                                            <ion-icon name="logo-react" class="mr-2"></ion-icon> Next.js
+                                        </button>
+                                        <button class="framework-btn" data-framework="cra">
+                                            <ion-icon name="construct-outline" class="mr-2"></ion-icon> Create React App
+                                        </button>
+                                        <button class="framework-btn" data-framework="gatsby">
+                                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Gatsby
+                                        </button>
+                                        <button class="framework-btn" data-framework="remix">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> Remix
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tamaño de la Aplicación</label>
+                                        <span id="sizeValue" class="font-bold text-next-accent-light">Pequeña (10 páginas)</span>
+                                    </div>
+                                    <input type="range" id="sizeSlider" min="1" max="100" value="10" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>SPA simple</span>
+                                        <span>Aplicación media</span>
+                                        <span>Enterprise</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tráfico de Usuarios</label>
+                                        <span id="trafficValue" class="font-bold text-next-accent-secondary-light">10K usuarios/mes</span>
+                                    </div>
+                                    <input type="range" id="trafficSlider" min="1" max="100" value="10" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>1K/mes</span>
+                                        <span>100K/mes</span>
+                                        <span>1M+/mes</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">SEO Requerido</label>
+                                        <span id="seoValue" class="font-bold text-purple-300">Alto</span>
+                                    </div>
+                                    <input type="range" id="seoSlider" min="1" max="3" value="3" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Bajo</span>
+                                        <span>Medio</span>
+                                        <span>Alto</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-next-accent-light">Comparación de Rendimiento</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por framework</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-next-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Performance (Lighthouse)</div>
+                                <div id="performanceValue" class="text-2xl font-bold text-next-accent-light">95/100</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="performanceBar" class="h-full bg-gradient-to-r from-next-accent to-next-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">SEO Score</div>
+                                <div id="seoScoreValue" class="text-2xl font-bold text-next-accent-secondary-light">98/100</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="seoScoreBar" class="h-full bg-gradient-to-r from-next-accent-secondary to-pink-700 rounded-full" style="width: 98%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Developer Experience</div>
+                                <div id="dxValue" class="text-2xl font-bold text-purple-300">92/100</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="dxBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-next-accent-tertiary mr-2"></ion-icon>
+                                Next.js ofrece el mejor equilibrio entre rendimiento, SEO y experiencia de desarrollo
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-next-accent to-next-accent-dark text-white font-bold rounded-xl shadow-lg shadow-next-accent/30 hover:shadow-xl hover:shadow-next-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-next-accent-secondary to-pink-700 text-white font-bold rounded-xl shadow-lg shadow-next-accent-secondary/30 hover:shadow-xl hover:shadow-next-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de características -->
+                <div id="featuresInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-next-accent to-next-accent-dark text-white font-bold rounded-xl shadow-lg shadow-next-accent/30 hover:shadow-xl hover:shadow-next-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-next-accent/40 text-next-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareFrameworksBtn" class="px-6 py-3 bg-gradient-to-r from-next-accent-secondary to-pink-700 text-white font-bold rounded-xl shadow-lg shadow-next-accent-secondary/30 hover:shadow-xl hover:shadow-next-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Frameworks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">NextLab - Origen y Evolución de Next.js</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="logo-react" class="mr-2"></ion-icon> 2016-2024 | De React a Next.js | El Framework del Futuro
+            </p>
+            <p class="text-sm text-text-muted">
+                Desarrollo Web Moderno | Renderizado Híbrido | Performance Óptima | Developer Experience
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-next-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Next.js
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-next-accent flex items-center gap-2">
+                            <ion-icon name="build-outline"></ion-icon> Características Principales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span><strong>Hybrid Rendering:</strong> SSG, SSR, ISR</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span><strong>File-system Routing:</strong> Automático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span><strong>Image Optimization:</strong> Automática</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span><strong>API Routes:</strong> Full-stack en un proyecto</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span><strong>TypeScript:</strong> Soporte nativo</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-next-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Rendimiento
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span><strong>Code Splitting:</strong> Automático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span><strong>Prefetching:</strong> Enlaces automáticos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span><strong>Fast Refresh:</strong> Hot reloading</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span><strong>Middleware:</strong> Edge runtime</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span><strong>Bundle Size:</strong> Optimizado automático</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-next-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-next-accent-light"># Estadísticas de Adopción (2024)</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-next-accent-light">Descargas npm:</span> ~5M semanales</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-next-accent-light">GitHub Stars:</span> ~115k</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-next-accent-light">Empresas que lo usan:</span> Netflix, Twitch, Uber</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-next-accent-light">Tiempo de compilación:</span> ~40% más rápido que CRA</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-next-accent-light">Bundle Size inicial:</span> ~50KB gzipped</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-next-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Frameworks React
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-next-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de Next.js
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Renderizado híbrido (SSG/SSR/ISR)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>File-system routing automático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Optimización de imágenes nativa</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>API Routes integradas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent"></ion-icon>
+                                <span>Soporte para Middleware</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-next-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Consideraciones
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span>Curva de aprendizaje para SSR</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span>Vendor lock-in con Vercel</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span>Complejidad en proyectos simples</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span>Mayor bundle inicial</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-next-accent-secondary"></ion-icon>
+                                <span>Configuración más compleja que CRA</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-next-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-next-accent-light"># Casos de uso recomendados</div>
+                        <div><span class="text-next-accent">"SEO crítico:"</span> Blogs, sitios de marketing, e-commerce</div>
+                        <div><span class="text-next-accent-secondary">"Performance:"</span> Aplicaciones con mucho tráfico, dashboards</div>
+                        <div><span class="text-purple-300">"Full-stack:"</span> Aplicaciones con backend integrado, APIs</div>
+                        <div><span class="text-next-accent-tertiary">"ISR:"</span> Contenido que cambia periódicamente</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-next-accent to-next-accent-dark bg-clip-text text-transparent">95%</div>
+                        <div class="text-sm text-text-secondary mt-1">Lighthouse Score</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-next-accent-secondary to-pink-700 bg-clip-text text-transparent">40%</div>
+                        <div class="text-sm text-text-secondary mt-1">Más rápido que CRA</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-next-accent-tertiary to-cyan-700 bg-clip-text text-transparent">115k</div>
+                        <div class="text-sm text-text-secondary mt-1">GitHub Stars</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">5M/w</div>
+                        <div class="text-sm text-text-secondary mt-1">Descargas npm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
