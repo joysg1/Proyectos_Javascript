@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularLab - Origen y Evolución de Angular Framework</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'angular-dark': '#0a0a12',
+                        'angular-secondary': '#121220',
+                        'angular-accent': '#dd0031',
+                        'angular-accent-light': '#ff4072',
+                        'angular-accent-dark': '#a80024',
+                        'angular-gradient': 'linear-gradient(135deg, #dd0031 0%, #c3002f 100%)',
+                        'angular-accent-secondary': '#1976d2',
+                        'angular-accent-secondary-light': '#42a5f5',
+                        'angular-secondary-gradient': 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+                        'angular-accent-tertiary': '#ffab00',
+                        'angular-accent-tertiary-light': '#ffd740',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(221, 0, 49, 0.3)',
+                        'shadow-secondary': 'rgba(25, 118, 210, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'angular-pulse': 'angular-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'component-rotate': 'componentRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-angular-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de Angular -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-angular-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-angular-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-angular-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="logo-angular"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-angular-accent-light to-angular-accent-tertiary-light bg-clip-text text-transparent">
+                    AngularLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Framework: De AngularJS a Angular Moderno
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-angular-accent/10 border border-angular-accent/40 rounded-full text-angular-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-angular-accent/10 animate-angular-pulse">
+                        <ion-icon name="code-slash-outline"></ion-icon>
+                        Framework para aplicaciones web modernas
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-angular-accent-secondary/10 border border-angular-accent-secondary/40 rounded-full text-angular-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-angular-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2010 a la revolución del desarrollo frontend
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es Angular? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-angular-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-angular-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-angular-accent to-angular-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-angular-accent/30">
+                        <ion-icon name="logo-angular" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es Angular?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-angular-accent-light font-bold">Angular</span> es un framework de desarrollo frontend basado en TypeScript, mantenido por Google. Permite crear aplicaciones web de una sola página (SPA) con arquitectura MVC, ofreciendo herramientas robustas para desarrollo empresarial.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Surgió como una reescritura completa de <span class="highlight">AngularJS</span>, con el objetivo de abordar las limitaciones de su predecesor y adaptarse a las necesidades del desarrollo web moderno.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-angular-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-angular-accent-light"></ion-icon>
+                            <h4 class="font-bold text-angular-accent-light">Características Principales</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>Arquitectura basada en componentes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>TypeScript como lenguaje principal</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>Inyección de dependencias</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>CLI para automatización de tareas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Versiones Principales -->
+            <div class="bg-card-bg backdrop-blur-xl border border-angular-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-angular-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-angular-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-angular-accent-secondary to-blue-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-angular-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Versiones Principales</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="logo-javascript" class="text-angular-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-angular-accent-tertiary-light">AngularJS (2010)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Primera versión basada en JavaScript, introdujo el two-way data binding.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="logo-angular" class="text-angular-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-angular-accent-light">Angular 2 (2016)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Reescritura completa con TypeScript, arquitectura de componentes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-angular-accent-secondary-light mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-angular-accent-secondary-light">Angular 4 (2017)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Optimización de rendimiento y reducción del tamaño del bundle.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="speedometer-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Angular Ivy (2019)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Nuevo motor de renderizado, menor tamaño y mejor rendimiento.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-angular-accent-tertiary to-amber-700 bg-clip-text text-transparent">2010</div>
+                            <div class="text-sm text-text-secondary mt-1">AngularJS</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-angular-accent to-angular-accent-dark bg-clip-text text-transparent">2016</div>
+                            <div class="text-sm text-text-secondary mt-1">Angular 2</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-angular-accent-secondary to-blue-700 bg-clip-text text-transparent">2019</div>
+                            <div class="text-sm text-text-secondary mt-1">Angular 8+</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2023</div>
+                            <div class="text-sm text-text-secondary mt-1">Standalone</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-angular-accent to-angular-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-angular-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-angular-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-angular-accent-tertiary/15 border border-angular-accent-tertiary/40 rounded-full text-angular-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2009
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Nacimiento de AngularJS</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Miško Hevery comienza a trabajar en lo que sería AngularJS como proyecto personal en Google. Inicialmente llamado "GetAngular".</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-angular-accent-tertiary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-angular-accent-tertiary/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-angular-accent to-angular-accent-dark flex items-center justify-center z-10 shadow-lg shadow-angular-accent/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-angular-accent/15 border border-angular-accent/40 rounded-full text-angular-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2010
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento Oficial</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Google lanza AngularJS 1.0, revolucionando el desarrollo frontend con two-way data binding y directivas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-angular-accent-secondary/15 border border-angular-accent-secondary/40 rounded-full text-angular-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2014
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Anuncio de Angular 2</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">El equipo de Angular anuncia una reescritura completa del framework, causando controversia en la comunidad.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-angular-accent-secondary to-blue-700 flex items-center justify-center z-10 shadow-lg shadow-angular-accent-secondary/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2016
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento Angular 2</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Se lanza Angular 2 con TypeScript, componentes y mejor rendimiento. Marcó el inicio del Angular moderno.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2020-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Evolución Continua</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Angular continúa evolucionando con Ivy, standalone components, signals y mejoras constantes en rendimiento.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Características -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-angular-accent to-angular-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-angular-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Características de Angular</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-angular-accent hover:shadow-xl hover:shadow-angular-accent/20">
+                        <div class="text-3xl mb-4 text-angular-accent">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Componentes</h3>
+                        <p class="text-sm text-text-secondary mb-3">Arquitectura basada en componentes reutilizables y autocontenidos.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-angular-accent/15 text-angular-accent-light text-xs rounded">@Component</span>
+                            <span class="px-2 py-1 bg-angular-accent/15 text-angular-accent-light text-xs rounded">Templates</span>
+                            <span class="px-2 py-1 bg-angular-accent/15 text-angular-accent-light text-xs rounded">Styles</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-angular-accent-secondary hover:shadow-xl hover:shadow-angular-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-angular-accent-secondary">
+                            <ion-icon name="arrow-redo-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Dependency Injection</h3>
+                        <p class="text-sm text-text-secondary mb-3">Sistema robusto de inyección de dependencias para servicios y componentes.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-angular-accent-secondary/15 text-angular-accent-secondary-light text-xs rounded">@Injectable</span>
+                            <span class="px-2 py-1 bg-angular-accent-secondary/15 text-angular-accent-secondary-light text-xs rounded">Providers</span>
+                            <span class="px-2 py-1 bg-angular-accent-secondary/15 text-angular-accent-secondary-light text-xs rounded">Inject</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="code-slash-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">TypeScript</h3>
+                        <p class="text-sm text-text-secondary mb-3">Desarrollo con tipos estáticos, interfaces y características modernas de ES6+.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Types</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Interfaces</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Decorators</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-angular-accent-tertiary hover:shadow-xl hover:shadow-angular-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-angular-accent-tertiary">
+                            <ion-icon name="terminal-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">CLI</h3>
+                        <p class="text-sm text-text-secondary mb-3">Angular CLI para automatización de creación, construcción y testing.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-angular-accent-tertiary/15 text-angular-accent-tertiary-light text-xs rounded">ng generate</span>
+                            <span class="px-2 py-1 bg-angular-accent-tertiary/15 text-angular-accent-tertiary-light text-xs rounded">ng build</span>
+                            <span class="px-2 py-1 bg-angular-accent-tertiary/15 text-angular-accent-tertiary-light text-xs rounded">ng serve</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Popularidad entre desarrolladores (2023)</span>
+                            <span class="font-bold text-angular-accent-light">22.96%</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-angular-accent to-angular-accent-dark rounded-full" style="width: 23%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Satisfacción de desarrolladores</span>
+                            <span class="font-bold text-angular-accent-secondary-light">68%</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-angular-accent-secondary to-blue-700 rounded-full" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-angular-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-angular-accent-secondary to-blue-700 flex items-center justify-center mr-6 shadow-xl shadow-angular-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Características</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-angular-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-angular-accent-light">Simulador: Comparación de Frameworks</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara las características de Angular con otros frameworks frontend:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Framework:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="framework-btn active" data-framework="angular">
+                                            <ion-icon name="logo-angular" class="mr-2"></ion-icon> Angular
+                                        </button>
+                                        <button class="framework-btn" data-framework="react">
+                                            <ion-icon name="logo-react" class="mr-2"></ion-icon> React
+                                        </button>
+                                        <button class="framework-btn" data-framework="vue">
+                                            <ion-icon name="logo-vue" class="mr-2"></ion-icon> Vue.js
+                                        </button>
+                                        <button class="framework-btn" data-framework="svelte">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> Svelte
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tamaño del Bundle</label>
+                                        <span id="bundleValue" class="font-bold text-angular-accent-light">~500 KB</span>
+                                    </div>
+                                    <input type="range" id="bundleSlider" min="1" max="100" value="30" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>50 KB</span>
+                                        <span>250 KB</span>
+                                        <span>500 KB</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Curva de Aprendizaje</label>
+                                        <span id="learningValue" class="font-bold text-angular-accent-secondary-light">Media-Alta</span>
+                                    </div>
+                                    <input type="range" id="learningSlider" min="1" max="100" value="70" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Baja</span>
+                                        <span>Media</span>
+                                        <span>Alta</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Ecosistema</label>
+                                        <span id="ecosystemValue" class="font-bold text-purple-300">Muy Completo</span>
+                                    </div>
+                                    <input type="range" id="ecosystemSlider" min="1" max="100" value="90" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Limitado</span>
+                                        <span>Moderado</span>
+                                        <span>Completo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-angular-accent-light">Comparación de Características</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por framework</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-angular-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Rendimiento</div>
+                                <div id="performanceValue" class="text-2xl font-bold text-angular-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="performanceBar" class="h-full bg-gradient-to-r from-angular-accent to-angular-accent-dark rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Escalabilidad</div>
+                                <div id="scalabilityValue" class="text-2xl font-bold text-angular-accent-secondary-light">Muy Alta</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="scalabilityBar" class="h-full bg-gradient-to-r from-angular-accent-secondary to-blue-700 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Adopción Empresarial</div>
+                                <div id="enterpriseValue" class="text-2xl font-bold text-purple-300">Muy Alta</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="enterpriseBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-angular-accent-tertiary mr-2"></ion-icon>
+                                Angular es ideal para aplicaciones empresariales complejas y equipos grandes
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-angular-accent to-angular-accent-dark text-white font-bold rounded-xl shadow-lg shadow-angular-accent/30 hover:shadow-xl hover:shadow-angular-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-angular-accent-secondary to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-angular-accent-secondary/30 hover:shadow-xl hover:shadow-angular-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones -->
+                <div id="versionsInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-angular-accent to-angular-accent-dark text-white font-bold rounded-xl shadow-lg shadow-angular-accent/30 hover:shadow-xl hover:shadow-angular-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-angular-accent/40 text-angular-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareFrameworksBtn" class="px-6 py-3 bg-gradient-to-r from-angular-accent-secondary to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-angular-accent-secondary/30 hover:shadow-xl hover:shadow-angular-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Frameworks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">AngularLab - Origen y Evolución del Framework Angular</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="logo-angular" class="mr-2"></ion-icon> 2009-2024 | De AngularJS a Angular Moderno | Framework Empresarial
+            </p>
+            <p class="text-sm text-text-muted">
+                Desarrollo Frontend | TypeScript | Aplicaciones Escalables | Google Maintained
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-angular-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Angular
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-angular-accent flex items-center gap-2">
+                            <ion-icon name="build-outline"></ion-icon> Arquitectura
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span><strong>Patrón:</strong> Component-Based Architecture</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span><strong>Lenguaje:</strong> TypeScript (superset de JavaScript)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span><strong>Template Engine:</strong> HTML con Angular Directives</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span><strong>Bundler:</strong> Webpack (Angular CLI)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span><strong>Testing:</strong> Jasmine, Karma, Protractor</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-angular-accent-secondary flex items-center gap-2">
+                            <ion-icon name="stats-chart-outline"></ion-icon> Rendimiento
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span><strong>Change Detection:</strong> Zone.js (Optimizable)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span><strong>Render Engine:</strong> Ivy (desde v9)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span><strong>Bundle Size:</strong> ~500KB (gzipped)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span><strong>Lazy Loading:</strong> Soporte nativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span><strong>AOT Compilation:</strong> Mejor rendimiento</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-angular-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-angular-accent-light"># Características Avanzadas de Angular</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-angular-accent-light">Reactive Forms:</span> Validación compleja y reactiva</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-angular-accent-light">RxJS Integration:</span> Programación reactiva integrada</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-angular-accent-light">Internationalization (i18n):</span> Soporte para múltiples idiomas</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-angular-accent-light">Server-Side Rendering:</span> Angular Universal</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-angular-accent-light">PWA Support:</span> Aplicaciones Web Progresivas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-angular-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Frameworks
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-angular-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de Angular
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>Arquitectura completa y opinada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>TypeScript integrado</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>CLI muy potente</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>Ideal para proyectos grandes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent"></ion-icon>
+                                <span>Soporte empresarial de Google</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-angular-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos Actuales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span>Curva de aprendizaje más pronunciada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span>Tamaño de bundle más grande</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span>Menos flexible que otros frameworks</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span>Mayor overhead en proyectos pequeños</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-angular-accent-secondary"></ion-icon>
+                                <span>Actualizaciones breaking changes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-angular-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-angular-accent-light"># Casos de Uso por Característica</div>
+                        <div><span class="text-angular-accent">"Arquitectura Completa:"</span> Aplicaciones empresariales, equipos grandes, proyectos complejos</div>
+                        <div><span class="text-angular-accent-secondary">"TypeScript:"</span> Proyectos que requieren tipos estáticos, mantenibilidad a largo plazo</div>
+                        <div><span class="text-purple-300">"CLI Potente:"</span> Desarrollo rápido, scaffolding automático, mejores prácticas</div>
+                        <div><span class="text-angular-accent-tertiary">"Soporte Google:"</span> Proyectos críticos, largo plazo, actualizaciones garantizadas</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-angular-accent to-angular-accent-dark bg-clip-text text-transparent">2M+</div>
+                        <div class="text-sm text-text-secondary mt-1">Descargas semanales npm</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-angular-accent-secondary to-blue-700 bg-clip-text text-transparent">23%</div>
+                        <div class="text-sm text-text-secondary mt-1">Cuota de mercado</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-angular-accent-tertiary to-amber-700 bg-clip-text text-transparent">85K+</div>
+                        <div class="text-sm text-text-secondary mt-1">Estrellas en GitHub</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">14+</div>
+                        <div class="text-sm text-text-secondary mt-1">Años de desarrollo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
