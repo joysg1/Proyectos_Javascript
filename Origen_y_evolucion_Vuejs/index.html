@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueLab - Origen y Evolución de Vue.js</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vue-dark': '#0a0a12',
+                        'vue-secondary': '#121220',
+                        'vue-primary': '#42b883',
+                        'vue-primary-light': '#64d9ac',
+                        'vue-primary-dark': '#349c73',
+                        'vue-gradient': 'linear-gradient(135deg, #42b883 0%, #35495e 100%)',
+                        'vue-accent-secondary': '#ff6b6b',
+                        'vue-accent-secondary-light': '#ff8787',
+                        'vue-secondary-gradient': 'linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%)',
+                        'vue-accent-tertiary': '#ffd93d',
+                        'vue-accent-tertiary-light': '#ffed4e',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(66, 184, 131, 0.3)',
+                        'shadow-secondary': 'rgba(255, 107, 107, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'vue-pulse': 'vue-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'hexagon-rotate': 'hexagonRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-vue-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de Vue.js -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-vue-primary to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vue-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-vue-primary text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="logo-vue"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-vue-primary-light to-vue-accent-tertiary-light bg-clip-text text-transparent">
+                    VueLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Framework Progresivo: De la Idea a la Revolución Frontend
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-vue-primary/10 border border-vue-primary/40 rounded-full text-vue-primary-light font-semibold backdrop-blur-sm shadow-lg shadow-vue-primary/10 animate-vue-pulse">
+                        <ion-icon name="code-slash-outline"></ion-icon>
+                        El framework JavaScript progresivo y accesible
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-vue-accent-secondary/10 border border-vue-accent-secondary/40 rounded-full text-vue-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-vue-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2014 al ecosistema moderno de desarrollo web
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es Vue.js? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-vue-primary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-vue-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-vue-primary to-vue-primary-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-vue-primary/30">
+                        <ion-icon name="logo-vue" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es Vue.js?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-vue-primary-light font-bold">Vue.js</span> es un framework progresivo de JavaScript para construir interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado para ser adoptado incrementalmente.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Creado por <span class="highlight">Evan You</span> en 2014, Vue.js combina lo mejor de Angular y React, ofreciendo un sistema reactivo de componentes y una API simple pero poderosa.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-vue-primary rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-vue-primary-light"></ion-icon>
+                            <h4 class="font-bold text-vue-primary-light">Características Principales</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Sistema reactivo de datos con Virtual DOM</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Arquitectura de componentes reutilizables</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Directivas poderosas y flexibles</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Ecosistema progresivo y escalable</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Filosofía y Evolución -->
+            <div class="bg-card-bg backdrop-blur-xl border border-vue-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-vue-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-vue-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-vue-accent-secondary to-red-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-vue-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Filosofía y Evolución</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="bulb-outline" class="text-vue-primary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vue-primary-light">Progresividad</strong>
+                                <p class="text-sm text-text-secondary mt-1">Puede usarse para mejorar HTML estático o construir complejas SPA.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="layers-outline" class="text-vue-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vue-accent-secondary-light">Enfoque en Componentes</strong>
+                                <p class="text-sm text-text-secondary mt-1">Arquitectura basada en componentes reutilizables y autocontenidos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="school-outline" class="text-vue-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vue-accent-tertiary-light">Curva de Aprendizaje</strong>
+                                <p class="text-sm text-text-secondary mt-1">Diseñado para ser fácil de aprender e integrar gradualmente.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Ecosistema Rico</strong>
+                                <p class="text-sm text-text-secondary mt-1">Vue Router, Vuex/Pinia, Vue CLI, Vite y Nuxt.js como meta-framework.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vue-primary to-vue-primary-dark bg-clip-text text-transparent">2014</div>
+                            <div class="text-sm text-text-secondary mt-1">Lanzamiento</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vue-accent-secondary to-red-700 bg-clip-text text-transparent">2016</div>
+                            <div class="text-sm text-text-secondary mt-1">Vue 2.0</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vue-accent-tertiary to-amber-700 bg-clip-text text-transparent">2020</div>
+                            <div class="text-sm text-text-secondary mt-1">Vue 3.0</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2023</div>
+                            <div class="text-sm text-text-secondary mt-1">Vue 3.3+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vue-primary to-vue-primary-dark flex items-center justify-center mr-6 shadow-xl shadow-vue-primary/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-vue-primary to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-vue-primary/15 border border-vue-primary/40 rounded-full text-vue-primary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Feb 2013
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Primeras Ideas</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Evan You, trabajando en Google Creative Labs, comienza a experimentar con un framework más ligero que Angular.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vue-primary to-vue-primary-dark flex items-center justify-center z-10 shadow-lg shadow-vue-primary/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vue-accent-secondary to-red-700 flex items-center justify-center z-10 shadow-lg shadow-vue-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-vue-accent-secondary/15 border border-vue-accent-secondary/40 rounded-full text-vue-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Feb 2014
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Primer Release</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Vue.js 0.6 es lanzado públicamente. Evan You abandona Google para trabajar tiempo completo en Vue.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        Oct 2015
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Vue 1.0 "Evangelion"</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Primera versión estable. Introducción del sistema de componentes y directivas básicas.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vue-accent-tertiary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-vue-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-vue-accent-tertiary/15 border border-vue-accent-tertiary/40 rounded-full text-vue-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Sep 2016
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Vue 2.0</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Introducción del Virtual DOM, mejoras de rendimiento y SSR. Vue alcanza popularidad masiva.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        Sep 2020
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Vue 3.0 "One Piece"</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Reescritura completa con Composition API, mejor rendimiento, TypeScript nativo y tamaño reducido.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ecosistema -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vue-primary to-vue-primary-dark flex items-center justify-center mr-6 shadow-xl shadow-vue-primary/30">
+                        <ion-icon name="cog-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Ecosistema Vue.js</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vue-primary hover:shadow-xl hover:shadow-vue-primary/20">
+                        <div class="text-3xl mb-4 text-vue-primary">
+                            <ion-icon name="navigate-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Vue Router</h3>
+                        <p class="text-sm text-text-secondary mb-3">Enrutador oficial para aplicaciones de una sola página.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vue-primary/15 text-vue-primary-light text-xs rounded">SPA</span>
+                            <span class="px-2 py-1 bg-vue-primary/15 text-vue-primary-light text-xs rounded">Nested Routes</span>
+                            <span class="px-2 py-1 bg-vue-primary/15 text-vue-primary-light text-xs rounded">Lazy Loading</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vue-accent-secondary hover:shadow-xl hover:shadow-vue-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-vue-accent-secondary">
+                            <ion-icon name="storefront-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Pinia</h3>
+                        <p class="text-sm text-text-secondary mb-3">Sistema de gestión de estado intuitivo y tipado para Vue.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vue-accent-secondary/15 text-vue-accent-secondary-light text-xs rounded">Estado</span>
+                            <span class="px-2 py-1 bg-vue-accent-secondary/15 text-vue-accent-secondary-light text-xs rounded">TypeScript</span>
+                            <span class="px-2 py-1 bg-vue-accent-secondary/15 text-vue-accent-secondary-light text-xs rounded">DevTools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="rocket-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Vite</h3>
+                        <p class="text-sm text-text-secondary mb-3">Build tool extremadamente rápido y optimizado para Vue.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">ESBuild</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">HMR</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Optimización</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vue-accent-tertiary hover:shadow-xl hover:shadow-vue-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-vue-accent-tertiary">
+                            <ion-icon name="server-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Nuxt.js</h3>
+                        <p class="text-sm text-text-secondary mb-3">Framework meta para Vue con SSR, SSG y otras mejoras.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vue-accent-tertiary/15 text-vue-accent-tertiary-light text-xs rounded">SSR</span>
+                            <span class="px-2 py-1 bg-vue-accent-tertiary/15 text-vue-accent-tertiary-light text-xs rounded">File Routing</span>
+                            <span class="px-2 py-1 bg-vue-accent-tertiary/15 text-vue-accent-tertiary-light text-xs rounded">SEO</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Descargas NPM (2023)</span>
+                            <span class="font-bold text-vue-primary-light">6.2M/mes</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-vue-primary to-vue-primary-dark rounded-full" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Popularidad vs React/Angular</span>
+                            <span class="font-bold text-vue-accent-secondary-light">Segundo lugar</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-vue-accent-secondary to-red-700 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-vue-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vue-accent-secondary to-red-700 flex items-center justify-center mr-6 shadow-xl shadow-vue-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Comparación</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-vue-primary-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-vue-primary-light">Simulador: Vue.js vs Otros Frameworks</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara Vue.js con otros frameworks frontend populares:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Framework:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="framework-btn active" data-framework="vue">
+                                            <ion-icon name="logo-vue" class="mr-2"></ion-icon> Vue.js
+                                        </button>
+                                        <button class="framework-btn" data-framework="react">
+                                            <ion-icon name="logo-react" class="mr-2"></ion-icon> React
+                                        </button>
+                                        <button class="framework-btn" data-framework="angular">
+                                            <ion-icon name="logo-angular" class="mr-2"></ion-icon> Angular
+                                        </button>
+                                        <button class="framework-btn" data-framework="svelte">
+                                            <ion-icon name="code-outline" class="mr-2"></ion-icon> Svelte
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Complejidad del Proyecto</label>
+                                        <span id="complexityValue" class="font-bold text-vue-primary-light">SPA Media</span>
+                                    </div>
+                                    <input type="range" id="complexitySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Landing Page</span>
+                                        <span>SPA Media</span>
+                                        <span>Enterprise</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tamaño del Bundle</label>
+                                        <span id="bundleValue" class="font-bold text-vue-accent-secondary-light">33 KB (gzip)</span>
+                                    </div>
+                                    <input type="range" id="bundleSlider" min="1" max="100" value="33" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>10 KB</span>
+                                        <span>50 KB</span>
+                                        <span>100+ KB</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Experiencia del Equipo</label>
+                                        <span id="experienceValue" class="font-bold text-purple-300">Intermedia</span>
+                                    </div>
+                                    <input type="range" id="experienceSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Principiante</span>
+                                        <span>Intermedia</span>
+                                        <span>Avanzada</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-vue-primary-light">Comparación de Métricas</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por framework</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-vue-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Curva de Aprendizaje</div>
+                                <div id="learningValue" class="text-2xl font-bold text-vue-primary-light">9.2/10</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="learningBar" class="h-full bg-gradient-to-r from-vue-primary to-vue-primary-dark rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Rendimiento</div>
+                                <div id="performanceValue" class="text-2xl font-bold text-vue-accent-secondary-light">8.7/10</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="performanceBar" class="h-full bg-gradient-to-r from-vue-accent-secondary to-red-700 rounded-full" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Tamaño del Ecosistema</div>
+                                <div id="ecosystemValue" class="text-2xl font-bold text-purple-300">8.5/10</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="ecosystemBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-vue-accent-tertiary mr-2"></ion-icon>
+                                Vue.js es el framework más accesible con excelente rendimiento
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-vue-primary to-vue-primary-dark text-white font-bold rounded-xl shadow-lg shadow-vue-primary/30 hover:shadow-xl hover:shadow-vue-primary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-vue-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-vue-accent-secondary/30 hover:shadow-xl hover:shadow-vue-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones principales -->
+                <div id="versionsInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-vue-primary to-vue-primary-dark text-white font-bold rounded-xl shadow-lg shadow-vue-primary/30 hover:shadow-xl hover:shadow-vue-primary/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-vue-primary/40 text-vue-primary-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareFrameworksBtn" class="px-6 py-3 bg-gradient-to-r from-vue-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-vue-accent-secondary/30 hover:shadow-xl hover:shadow-vue-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Frameworks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">VueLab - Origen y Evolución de Vue.js</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="logo-vue" class="mr-2"></ion-icon> 2014-2024 | De la Idea al Framework Progresivo | El Framework Accesible
+            </p>
+            <p class="text-sm text-text-muted">
+                Desarrollo Frontend Moderno | Framework Progresivo | Ecosistema Vue | Comunidad Global
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-vue-primary-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Vue.js
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vue-primary flex items-center gap-2">
+                            <ion-icon name="cube-outline"></ion-icon> Características Principales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span><strong>Reactividad:</strong> Sistema reactivo basado en Proxy</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span><strong>Virtual DOM:</strong> Implementación optimizada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span><strong>Componentes:</strong> SFC (Single File Components)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span><strong>Directivas:</strong> v-if, v-for, v-model, v-bind</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span><strong>Composition API:</strong> Alternativa a Options API</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vue-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Rendimiento
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span><strong>Tamaño runtime:</strong> ~33 KB (gzipped)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span><strong>Actualizaciones:</strong> Tree-shaking nativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span><strong>Compilación:</strong> AOT (Ahead-of-Time)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span><strong>SSR:</strong> Hydration rápida</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span><strong>TypeScript:</strong> Soporte nativo</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-vue-primary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-vue-primary-light"># Ventajas de Vue.js 3.x</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-vue-primary-light">Composition API:</span> Lógica reutilizable y mejor TypeScript</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-vue-primary-light">Teleport:</span> Renderizar componentes en cualquier parte del DOM</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-vue-primary-light">Suspense:</span> Manejo asíncrono de componentes</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-vue-primary-light">Fragmentos:</span> Múltiples nodos raíz</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-vue-primary-light">Mejora de rendimiento:</span> 2x más rápido que Vue 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-vue-primary-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Frameworks
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vue-primary flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de Vue.js
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Curva de aprendizaje más suave</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Documentación excepcional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Enfoque progresivo e incremental</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Sintaxis clara y consistente</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-primary"></ion-icon>
+                                <span>Rendimiento optimizado</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vue-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos Actuales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span>Ecosistema más pequeño que React</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span>Menor adopción en grandes empresas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span>Dualidad API (Options vs Composition)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span>Migración Vue 2 a Vue 3</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vue-accent-secondary"></ion-icon>
+                                <span>Competencia con frameworks más nuevos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-vue-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-vue-primary-light"># Casos de Uso Ideales</div>
+                        <div><span class="text-vue-primary">"Startups:"</span> Desarrollo rápido con equipo pequeño</div>
+                        <div><span class="text-vue-accent-secondary">"Proyectos Legacy:"</span> Migración progresiva de jQuery</div>
+                        <div><span class="text-purple-300">"Aplicaciones Empresariales:"</span> Con Nuxt.js para SSR/SEO</div>
+                        <div><span class="text-vue-accent-tertiary">"Prototipado Rápido:"</span> CDN sin necesidad de build</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vue-primary to-vue-primary-dark bg-clip-text text-transparent">33KB</div>
+                        <div class="text-sm text-text-secondary mt-1">Tamaño Runtime</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vue-accent-secondary to-red-700 bg-clip-text text-transparent">97%</div>
+                        <div class="text-sm text-text-secondary mt-1">Satisfacción Dev</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vue-accent-tertiary to-amber-700 bg-clip-text text-transparent">2x</div>
+                        <div class="text-sm text-text-secondary mt-1">Más rápido Vue 3</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">10 días</div>
+                        <div class="text-sm text-text-secondary mt-1">Aprendizaje básico</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
