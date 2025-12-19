@@ -1,0 +1,365 @@
+/* Estilos personalizados para FunctionLab */
+
+/* Variables personalizadas */
+:root {
+    --js-primary: #f7df1e;
+    --js-secondary: #4cc9f0;
+    --js-tertiary: #f72585;
+    --js-dark: #0f172a;
+    --js-card: #1e293b;
+}
+
+/* Animaciones personalizadas */
+@keyframes jsPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes dataFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(247, 223, 30, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(247, 223, 30, 0.8); }
+}
+
+@keyframes codeTyping {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+/* Animaciones personalizadas */
+.animate-js-pulse {
+    animation: jsPulse 3s ease-in-out infinite;
+}
+
+.animate-code-typing {
+    animation: codeTyping 3s steps(40) infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--js-primary);
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-data-flow {
+    animation: dataFlow 3s linear infinite;
+}
+
+/* Estilos para botones de función */
+.function-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.function-btn:hover {
+    background: rgba(247, 223, 30, 0.1);
+    border-color: rgba(247, 223, 30, 0.3);
+    color: rgb(255, 237, 74);
+}
+
+.function-btn.active {
+    background: rgba(247, 223, 30, 0.2);
+    border-color: rgb(247, 223, 30);
+    color: rgb(255, 237, 74);
+    box-shadow: 0 0 15px rgba(247, 223, 30, 0.3);
+}
+
+/* Estilos para código */
+code {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+}
+
+pre {
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para ejemplos de código */
+.code-example {
+    position: relative;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-header {
+    background: rgba(30, 41, 59, 0.9);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-body {
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Efectos de vidrio mejorados */
+.glass-effect {
+    background: rgba(18, 18, 32, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mejoras para gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .function-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .code-body {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.function-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #f7df1e;
+    outline-offset: 2px;
+}
+
+/* Estilos para iconos de Ionic */
+ion-icon {
+    vertical-align: middle;
+}
+
+/* Efecto de brillo para elementos destacados */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(247, 223, 30, 0.5);
+}
+
+/* Efecto de partículas flotantes */
+.floating-particle {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Timeline ajustes */
+.timeline-container {
+    position: relative;
+}
+
+.timeline-item {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+/* Animaciones de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+/* Ajustes responsivos adicionales */
+@media (max-width: 768px) {
+    .timeline-container .absolute {
+        left: 30px !important;
+        transform: none !important;
+    }
+    
+    .md\\:w-1\\/2 {
+        width: 100% !important;
+    }
+    
+    .md\\:text-right, .md\\:pl-12, .md\\:pr-12 {
+        text-align: left !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .md\\:order-1, .md\\:order-2, .md\\:order-3 {
+        order: initial !important;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 0.5rem !important;
+    }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(18, 18, 32, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(247, 223, 30, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(247, 223, 30, 0.7);
+}
+
+/* Loading spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(247, 223, 30, 0.2);
+    border-top: 4px solid #f7df1e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Efecto de cursor de código */
+.code-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: var(--js-primary);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Estilo para elementos de código interactivo */
+.interactive-code {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.interactive-code:hover {
+    background: rgba(247, 223, 30, 0.1);
+    transform: translateX(5px);
+}
+
+/* Tooltip para ejemplos de código */
+.code-tooltip {
+    position: absolute;
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(247, 223, 30, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    z-index: 100;
+    max-width: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.2s ease-out;
+}
