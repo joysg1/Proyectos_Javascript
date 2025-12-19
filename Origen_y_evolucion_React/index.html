@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactLab - Origen y Evolución de React.js</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'react-dark': '#0a0a12',
+                        'react-secondary': '#121220',
+                        'react-accent': '#61dafb',
+                        'react-accent-light': '#88e1ff',
+                        'react-accent-dark': '#00a8ff',
+                        'react-gradient': 'linear-gradient(135deg, #61dafb 0%, #00a8ff 100%)',
+                        'react-accent-secondary': '#ff6b6b',
+                        'react-accent-secondary-light': '#ff8787',
+                        'react-secondary-gradient': 'linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%)',
+                        'react-accent-tertiary': '#ffd93d',
+                        'react-accent-tertiary-light': '#ffed4e',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(97, 218, 251, 0.3)',
+                        'shadow-secondary': 'rgba(255, 107, 107, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'react-pulse': 'react-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'component-rotate': 'componentRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-react-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de React -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-react-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-react-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-react-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="logo-react"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-react-accent-light to-react-accent-tertiary-light bg-clip-text text-transparent">
+                    ReactLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución de React.js: Del Prototipo Interno a la Biblioteca Dominante
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-react-accent/10 border border-react-accent/40 rounded-full text-react-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-react-accent/10 animate-react-pulse">
+                        <ion-icon name="code-slash-outline"></ion-icon>
+                        La biblioteca JavaScript más popular para interfaces de usuario
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-react-accent-secondary/10 border border-react-accent-secondary/40 rounded-full text-react-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-react-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2011 a la revolución del desarrollo frontend actual
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es React? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-react-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-react-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-react-accent to-react-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-react-accent/30">
+                        <ion-icon name="logo-react" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es React?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-react-accent-light font-bold">React</span> es una biblioteca de JavaScript desarrollada por Facebook para construir interfaces de usuario. Su arquitectura basada en componentes y el uso del DOM virtual lo hacen excepcionalmente eficiente para aplicaciones dinámicas.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        React fue creado por <span class="highlight">Jordan Walke</span> en Facebook en 2011 como un proyecto interno. Se liberó al público en 2013 en la JSConf US, cambiando para siempre el desarrollo frontend.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-react-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-react-accent-light"></ion-icon>
+                            <h4 class="font-bold text-react-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Arquitectura basada en componentes reutilizables</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>DOM virtual para renderizado eficiente</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>JSX: JavaScript + XML para templates declarativos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Flujo unidireccional de datos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Técnica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-react-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-react-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-react-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-react-accent-secondary to-red-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-react-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Técnica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="cube-outline" class="text-react-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-react-accent-light">React 0.3.0 (2013)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Primera versión pública con componentes básicos y JSX incipiente.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="layers-outline" class="text-react-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-react-accent-secondary-light">React 0.14 (2015)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Separación de React DOM, paquete React Native, y mejoras de performance.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-react-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-react-accent-tertiary-light">React 16 (2017)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Fibers, fragments, error boundaries, y hooks experimentales.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="sparkles-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">React 18 (2022)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Concurrent rendering, streaming SSR, y nuevas APIs como useTransition.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-react-accent to-react-accent-dark bg-clip-text text-transparent">2011</div>
+                            <div class="text-sm text-text-secondary mt-1">Prototipo interno</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-react-accent-secondary to-red-700 bg-clip-text text-transparent">2013</div>
+                            <div class="text-sm text-text-secondary mt-1">Lanzamiento público</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-react-accent-tertiary to-amber-700 bg-clip-text text-transparent">2015</div>
+                            <div class="text-sm text-text-secondary mt-1">React Native</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2022</div>
+                            <div class="text-sm text-text-secondary mt-1">React 18</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-react-accent to-react-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-react-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-react-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-react-accent/15 border border-react-accent/40 rounded-full text-react-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2011
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Prototipo Interno en Facebook</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Jordan Walke crea FaxJS, el prototipo inicial de React para resolver problemas de actualización de noticias en Facebook.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-react-accent to-react-accent-dark flex items-center justify-center z-10 shadow-lg shadow-react-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-react-accent-secondary to-red-700 flex items-center justify-center z-10 shadow-lg shadow-react-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-react-accent-secondary/15 border border-react-accent-secondary/40 rounded-full text-react-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2013
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento Público</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">React se presenta en JSConf US. La comunidad inicial es escéptica por JSX, pero pronto reconoce su potencial.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2015
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">React Native y Flux</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Facebook lanza React Native para desarrollo móvil y populariza Flux como patrón de arquitectura.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-react-accent-tertiary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-react-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-react-accent-tertiary/15 border border-react-accent-tertiary/40 rounded-full text-react-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2018
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">React Hooks</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Revolución con hooks, permitiendo estado y efectos en componentes funcionales.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2022-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">React 18 y Beyond</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Concurrent rendering, streaming SSR, y el crecimiento del ecosistema con Next.js, Remix y más.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ecosistema -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-react-accent to-react-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-react-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Ecosistema React</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-react-accent hover:shadow-xl hover:shadow-react-accent/20">
+                        <div class="text-3xl mb-4 text-react-accent">
+                            <ion-icon name="server-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Frameworks</h3>
+                        <p class="text-sm text-text-secondary mb-3">Next.js, Remix, Gatsby para SSR, SSG y routing avanzado.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-react-accent/15 text-react-accent-light text-xs rounded">Next.js</span>
+                            <span class="px-2 py-1 bg-react-accent/15 text-react-accent-light text-xs rounded">Remix</span>
+                            <span class="px-2 py-1 bg-react-accent/15 text-react-accent-light text-xs rounded">Gatsby</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-react-accent-secondary hover:shadow-xl hover:shadow-react-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-react-accent-secondary">
+                            <ion-icon name="phone-portrait-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Móvil</h3>
+                        <p class="text-sm text-text-secondary mb-3">React Native para aplicaciones nativas iOS y Android.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-react-accent-secondary/15 text-react-accent-secondary-light text-xs rounded">React Native</span>
+                            <span class="px-2 py-1 bg-react-accent-secondary/15 text-react-accent-secondary-light text-xs rounded">Expo</span>
+                            <span class="px-2 py-1 bg-react-accent-secondary/15 text-react-accent-secondary-light text-xs rounded">Native Apps</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Estado</h3>
+                        <p class="text-sm text-text-secondary mb-3">Redux, Zustand, Context API para gestión de estado.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Redux</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Zustand</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Context</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-react-accent-tertiary hover:shadow-xl hover:shadow-react-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-react-accent-tertiary">
+                            <ion-icon name="construct-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Herramientas</h3>
+                        <p class="text-sm text-text-secondary mb-3">Testing, devtools, y utilidades de desarrollo.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-react-accent-tertiary/15 text-react-accent-tertiary-light text-xs rounded">Testing</span>
+                            <span class="px-2 py-1 bg-react-accent-tertiary/15 text-react-accent-tertiary-light text-xs rounded">DevTools</span>
+                            <span class="px-2 py-1 bg-react-accent-tertiary/15 text-react-accent-tertiary-light text-xs rounded">Vite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Adopción global (2023)</span>
+                            <span class="font-bold text-react-accent-light">83% de desarrolladores</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-react-accent to-react-accent-dark rounded-full" style="width: 83%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Paquetes en npm (2024)</span>
+                            <span class="font-bold text-react-accent-secondary-light">+1.5M paquetes</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-react-accent-secondary to-red-700 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-react-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-react-accent-secondary to-red-700 flex items-center justify-center mr-6 shadow-xl shadow-react-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Tecnologías</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-react-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-react-accent-light">Simulador: Comparación de Tecnologías</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara React con otros frameworks y bibliotecas frontend:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Tecnología:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="react">
+                                            <ion-icon name="logo-react" class="mr-2"></ion-icon> React
+                                        </button>
+                                        <button class="material-btn" data-material="angular">
+                                            <ion-icon name="logo-angular" class="mr-2"></ion-icon> Angular
+                                        </button>
+                                        <button class="material-btn" data-material="vue">
+                                            <ion-icon name="logo-vue" class="mr-2"></ion-icon> Vue
+                                        </button>
+                                        <button class="material-btn" data-material="svelte">
+                                            <ion-icon name="diamond-outline" class="mr-2"></ion-icon> Svelte
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Complejidad del Proyecto</label>
+                                        <span id="thicknessValue" class="font-bold text-react-accent-light">Pequeño</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="20" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Landing Page</span>
+                                        <span>App Media</span>
+                                        <span>Enterprise</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Experiencia del Equipo</label>
+                                        <span id="areaValue" class="font-bold text-react-accent-secondary-light">Media</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Junior</span>
+                                        <span>Intermedio</span>
+                                        <span>Experto</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tiempo de Desarrollo</label>
+                                        <span id="purityValue" class="font-bold text-purple-300">Medio</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Corto</span>
+                                        <span>Medio</span>
+                                        <span>Largo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-react-accent-light">Comparación de Métricas</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por tecnología</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-react-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Performance</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-react-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-react-accent to-react-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Curva de Aprendizaje</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-react-accent-secondary-light">Media</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-react-accent-secondary to-red-700 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Ecosistema</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-purple-300">Extenso</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 97.7%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-react-accent-tertiary mr-2"></ion-icon>
+                                React domina en ecosistema y flexibilidad, ideal para aplicaciones modernas
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-react-accent to-react-accent-dark text-white font-bold rounded-xl shadow-lg shadow-react-accent/30 hover:shadow-xl hover:shadow-react-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-react-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-react-accent-secondary/30 hover:shadow-xl hover:shadow-react-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-react-accent to-react-accent-dark text-white font-bold rounded-xl shadow-lg shadow-react-accent/30 hover:shadow-xl hover:shadow-react-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-react-accent/40 text-react-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-react-accent-secondary to-red-700 text-white font-bold rounded-xl shadow-lg shadow-react-accent-secondary/30 hover:shadow-xl hover:shadow-react-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Frameworks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">ReactLab - Origen y Evolución de React.js</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="logo-react" class="mr-2"></ion-icon> 2011-2024 | Del Prototipo a la Biblioteca Dominante | El Futuro del Frontend
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Desarrollo Web | Arquitectura de Componentes | Ecosistema JavaScript | Innovación Frontend
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-react-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de React
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-react-accent flex items-center gap-2">
+                            <ion-icon name="cube-outline"></ion-icon> Arquitectura
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span><strong>Patrón:</strong> Componentes declarativos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span><strong>Flujo de datos:</strong> Unidireccional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span><strong>DOM:</strong> Virtual (optimizado)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span><strong>SSR:</strong> Con React Server Components</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span><strong>Bundle size:</strong> ~6.4kb (gzipped)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-react-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> APIs Principales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span><strong>Hooks:</strong> useState, useEffect, useContext</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span><strong>Concurrent:</strong> useTransition, useDeferredValue</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span><strong>Context:</strong> Gestión de estado global</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span><strong>Suspense:</strong> Loading states y code splitting</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span><strong>Error Boundaries:</strong> Manejo de errores</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-react-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-react-accent-light"># Comparativa de Rendimiento</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-react-accent-light">DOM Virtual:</span> Actualizaciones optimizadas</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-react-accent-light">Reconciliation:</span> Algoritmo diff eficiente</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-react-accent-light">Code Splitting:</span> Carga bajo demanda</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-react-accent-light">Memoización:</span> React.memo, useMemo, useCallback</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-react-accent-light">Concurrent Mode:</span> Renderizado no bloqueante</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-react-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Frameworks Frontend
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-react-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de React
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Flexibilidad y libertad arquitectónica</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Ecosistema más extenso (npm)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Demanda laboral más alta</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>React Native para móvil</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent"></ion-icon>
+                                <span>Gran comunidad y documentación</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-react-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span>Decisiones arquitectónicas al desarrollador</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span>Curva de aprendizaje para patrones avanzados</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span>Falta de opinión en ciertas áreas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span>JSX puede ser confuso inicialmente</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-react-accent-secondary"></ion-icon>
+                                <span>Configuración inicial compleja sin CRA</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-react-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-react-accent-light"># Casos de Uso por Framework</div>
+                        <div><span class="text-react-accent">"React:"</span> Aplicaciones complejas, equipos grandes, máximo control</div>
+                        <div><span class="text-react-accent-secondary">"Angular:"</span> Enterprise, equipos estructurados, TypeScript-first</div>
+                        <div><span class="text-purple-300">"Vue:"</span> Progressive adoption, proyectos pequeños-medianos</div>
+                        <div><span class="text-react-accent-tertiary">"Svelte:"</span> Performance crítica, bundle pequeño, sintaxis simple</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-react-accent to-react-accent-dark bg-clip-text text-transparent">83%</div>
+                        <div class="text-sm text-text-secondary mt-1">Adopción global</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-react-accent-secondary to-red-700 bg-clip-text text-transparent">1.5M</div>
+                        <div class="text-sm text-text-secondary mt-1">Paquetes npm</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-react-accent-tertiary to-amber-700 bg-clip-text text-transparent">13 años</div>
+                        <div class="text-sm text-text-secondary mt-1">Historia</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">~50%</div>
+                        <div class="text-sm text-text-secondary mt-1">Trabajos frontend</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
