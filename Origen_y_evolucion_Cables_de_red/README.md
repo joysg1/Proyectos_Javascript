@@ -1,1 +1,33 @@
+# CableLab - Origen y Evolución de Cables de Red
+
+## Descripción
+
+## Sitio web educativo interactivo que explora la historia y evolución de los cables de red, desde el telégrafo de 1844 hasta la fibra óptica moderna. Presenta información técnica de manera visual y atractiva.
+
+## Características ✨
+
+    Timeline histórico interactivo desde 1844
+
+    Simulador comparativo de tipos de cables
+
+    Gráficos dinámicos con Chart.js
+
+    Visualizaciones de partículas en Canvas
+
+    Diseño responsive con Tailwind CSS
+
+    Iconos y componentes de Ionic
+
+## Cómo usar 🚀
+
+    Descarga los tres archivos (index.html, styles.css, script.js)
+
+    Colócalos en la misma carpeta
+
+    Abre index.html en tu navegador
+
+    Explora las diferentes secciones y utiliza el simulador
+
+## Tecnologías utilizadas 🛠️
+<div align="center" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 30px 0;"> <div style="background: #E34F26; color: white; padding: 15px 25px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 10px;"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/html5.svg" width="24" height="24" /> HTML5 </div> <div style="background: #1572B6; color: white; padding: 15px 25px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 10px;"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/css3.svg" width="24" height="24" /> CSS3 </div> <div style="background: #F7DF1E; color: black; padding: 15px 25px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 10px;"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/javascript.svg" width="24" height="24" /> JavaScript </div> <div style="background: #06B6D4; color: white; padding: 15px 25px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 10px;"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/tailwindcss.svg" width="24" height="24" /> Tailwind CSS </div> <div style="background: #528DD7; color: white; padding: 15px 25px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 10px;"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/fontawesome.svg" width="24" height="24" /> Ionic Icons </div> </div>
 
