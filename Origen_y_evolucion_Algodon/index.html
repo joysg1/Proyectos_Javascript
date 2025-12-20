@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CottonLab - Origen y Evolución del Algodón</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cotton-dark': '#0a120a',
+                        'cotton-secondary': '#122012',
+                        'cotton-accent': '#4ade80',
+                        'cotton-accent-light': '#86efac',
+                        'cotton-accent-dark': '#16a34a',
+                        'cotton-gradient': 'linear-gradient(135deg, #4ade80 0%, #16a34a 100%)',
+                        'cotton-accent-secondary': '#f59e0b',
+                        'cotton-accent-secondary-light': '#fbbf24',
+                        'cotton-secondary-gradient': 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                        'cotton-accent-tertiary': '#f97316',
+                        'cotton-accent-tertiary-light': '#fb923c',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 32, 18, 0.9)',
+                        'card-bg-solid': '#1b4b1e',
+                        'glass-bg': 'rgba(10, 18, 10, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(74, 222, 128, 0.3)',
+                        'shadow-secondary': 'rgba(245, 158, 11, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'cotton-pulse': 'cotton-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'plant-grow': 'plantGrow 3s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cotton-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de algodón -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cotton-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cotton-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-cotton-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="leaf-outline"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-cotton-accent-light to-cotton-accent-tertiary-light bg-clip-text text-transparent">
+                    CottonLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Algodón: De la Planta Silvestre a la Fibra Dominante
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-cotton-accent/10 border border-cotton-accent/40 rounded-full text-cotton-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-cotton-accent/10 animate-cotton-pulse">
+                        <ion-icon name="leaf-outline"></ion-icon>
+                        La fibra natural más importante para la industria textil
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-cotton-accent-secondary/10 border border-cotton-accent-secondary/40 rounded-full text-cotton-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-cotton-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 3000 a.C. a la revolución industrial y moderna
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es el Algodón? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-cotton-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-cotton-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-cotton-accent to-cotton-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-cotton-accent/30">
+                        <ion-icon name="leaf" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es el Algodón?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-cotton-accent-light font-bold">El algodón</span> es una fibra textil vegetal que crece alrededor de las semillas de la planta del algodón. Es la fibra natural más importante del mundo en términos de producción y representa cerca del 40% de la producción total de fibras textiles.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Originario de regiones tropicales y subtropicales, el algodón fue cultivado por primera vez hace más de <span class="highlight">5,000 años</span> en el subcontinente indio y en América. Su evolución ha transformado la agricultura, la industria textil y la economía global.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-cotton-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-cotton-accent-light"></ion-icon>
+                            <h4 class="font-bold text-cotton-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Fibra celulósica natural, suave y transpirable</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Alta resistencia y durabilidad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Excelente absorbencia de humedad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Biodegradable y renovable</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Histórica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-cotton-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-cotton-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-cotton-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-cotton-accent-secondary to-amber-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-cotton-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Histórica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="time-outline" class="text-cotton-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-cotton-accent-light">3000 a.C. (Indo-Pakistán)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Primeras evidencias de cultivo en el Valle del Indo.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="globe-outline" class="text-cotton-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-cotton-accent-secondary-light">Siglo VIII (Expansión)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Los árabes introducen el algodón en Europa y África.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="build-outline" class="text-cotton-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-cotton-accent-tertiary-light">1764 (Revolución Industrial)</strong>
+                                <p class="text-sm text-text-secondary mt-1">La hiladora mecánica de Hargreaves multiplica la producción.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="flash-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Siglo XXI (Actualidad)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Algodón transgénico, sostenibilidad y comercio global.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-cotton-accent to-cotton-accent-dark bg-clip-text text-transparent">3000 a.C.</div>
+                            <div class="text-sm text-text-secondary mt-1">Origen</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-cotton-accent-secondary to-amber-700 bg-clip-text text-transparent">Siglo VIII</div>
+                            <div class="text-sm text-text-secondary mt-1">Expansión</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-cotton-accent-tertiary to-orange-700 bg-clip-text text-transparent">1764</div>
+                            <div class="text-sm text-text-secondary mt-1">Industrial</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Siglo XXI</div>
+                            <div class="text-sm text-text-secondary mt-1">Moderno</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-cotton-accent to-cotton-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-cotton-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-cotton-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-cotton-accent/15 border border-cotton-accent/40 rounded-full text-cotton-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        3000 a.C.
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Origen en el Valle del Indo</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Primeras evidencias de cultivo en el actual Pakistán. Los habitantes del Valle del Indo domestican el algodón silvestre.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-cotton-accent to-cotton-accent-dark flex items-center justify-center z-10 shadow-lg shadow-cotton-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-cotton-accent-secondary to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-cotton-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-cotton-accent-secondary/15 border border-cotton-accent-secondary/40 rounded-full text-cotton-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Siglo VIII
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Expansión Global</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Los árabes introducen el algodón en Europa y África. Se desarrollan nuevas técnicas de hilado y tejido.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        1793
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Desmotadora de Whitney</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Eli Whitney inventa la desmotadora, revolucionando la producción y haciendo viable el algodón americano.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-cotton-accent-tertiary to-orange-700 flex items-center justify-center z-10 shadow-lg shadow-cotton-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-cotton-accent-tertiary/15 border border-cotton-accent-tertiary/40 rounded-full text-cotton-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Siglo XX
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Revolución Agrícola</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Mecanización del cultivo, pesticidas, y desarrollo de variedades mejoradas. El algodón se convierte en commodity global.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        Siglo XXI
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Era de la Sostenibilidad</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Algodón orgánico, transgénico (Bt), y prácticas sostenibles. Certificaciones y comercio justo dominan la industria.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Variedades y Usos -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-cotton-accent to-cotton-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-cotton-accent/30">
+                        <ion-icon name="leaf" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Variedades y Usos</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-cotton-accent hover:shadow-xl hover:shadow-cotton-accent/20">
+                        <div class="text-3xl mb-4 text-cotton-accent">
+                            <ion-icon name="shirt-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Textil</h3>
+                        <p class="text-sm text-text-secondary mb-3">Ropa, tejidos, denim, toallas y ropa de cama de alta calidad.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-cotton-accent/15 text-cotton-accent-light text-xs rounded">Jeans</span>
+                            <span class="px-2 py-1 bg-cotton-accent/15 text-cotton-accent-light text-xs rounded">Camisetas</span>
+                            <span class="px-2 py-1 bg-cotton-accent/15 text-cotton-accent-light text-xs rounded">Toallas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-cotton-accent-secondary hover:shadow-xl hover:shadow-cotton-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-cotton-accent-secondary">
+                            <ion-icon name="medical-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Médico</h3>
+                        <p class="text-sm text-text-secondary mb-3">Gasas, vendas, hisopos y material de curación estéril.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-cotton-accent-secondary/15 text-cotton-accent-secondary-light text-xs rounded">Gasas</span>
+                            <span class="px-2 py-1 bg-cotton-accent-secondary/15 text-cotton-accent-secondary-light text-xs rounded">Vendas</span>
+                            <span class="px-2 py-1 bg-cotton-accent-secondary/15 text-cotton-accent-secondary-light text-xs rounded">Hisopos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Industrial</h3>
+                        <p class="text-sm text-text-secondary mb-3">Cuerdas, filtros, papel moneda y aislamiento.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Cuerdas</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Filtros</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Papel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-cotton-accent-tertiary hover:shadow-xl hover:shadow-cotton-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-cotton-accent-tertiary">
+                            <ion-icon name="fast-food-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Alimentario</h3>
+                        <p class="text-sm text-text-secondary mb-3">Aceite de semilla, harina para ganado y productos derivados.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-cotton-accent-tertiary/15 text-cotton-accent-tertiary-light text-xs rounded">Aceite</span>
+                            <span class="px-2 py-1 bg-cotton-accent-tertiary/15 text-cotton-accent-tertiary-light text-xs rounded">Forraje</span>
+                            <span class="px-2 py-1 bg-cotton-accent-tertiary/15 text-cotton-accent-tertiary-light text-xs rounded">Biomasa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Producción mundial (2023)</span>
+                            <span class="font-bold text-cotton-accent-light">25 millones de toneladas</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cotton-accent to-cotton-accent-dark rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Uso textil global</span>
+                            <span class="font-bold text-cotton-accent-secondary-light">40% de fibras textiles</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cotton-accent-secondary to-amber-700 rounded-full" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-cotton-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-cotton-accent-secondary to-amber-700 flex items-center justify-center mr-6 shadow-xl shadow-cotton-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Fibras Textiles</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-cotton-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-cotton-accent-light">Simulador: Comparación de Fibras</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara el algodón con otras fibras textiles naturales y sintéticas:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Fibra:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="cotton">
+                                            <ion-icon name="leaf-outline" class="mr-2"></ion-icon> Algodón
+                                        </button>
+                                        <button class="material-btn" data-material="polyester">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> Poliéster
+                                        </button>
+                                        <button class="material-btn" data-material="wool">
+                                            <ion-icon name="paw-outline" class="mr-2"></ion-icon> Lana
+                                        </button>
+                                        <button class="material-btn" data-material="linen">
+                                            <ion-icon name="flower-outline" class="mr-2"></ion-icon> Lino
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Complejidad de Producción</label>
+                                        <span id="thicknessValue" class="font-bold text-cotton-accent-light">Media</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Simple</span>
+                                        <span>Media</span>
+                                        <span>Compleja</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Impacto Ambiental</label>
+                                        <span id="areaValue" class="font-bold text-cotton-accent-secondary-light">Moderado</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="60" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Bajo</span>
+                                        <span>Moderado</span>
+                                        <span>Alto</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Durabilidad</label>
+                                        <span id="purityValue" class="font-bold text-purple-300">Alta</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="1" max="100" value="80" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Baja</span>
+                                        <span>Media</span>
+                                        <span>Alta</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-cotton-accent-light">Comparación de Propiedades</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por fibra</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-cotton-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Confort</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-cotton-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-cotton-accent to-cotton-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Absorción</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-cotton-accent-secondary-light">Alta</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-cotton-accent-secondary to-amber-700 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Sostenibilidad</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-purple-300">Buena</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-cotton-accent-tertiary mr-2"></ion-icon>
+                                El algodón destaca en confort y absorción, ideal para ropa y textiles de calidad
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-cotton-accent to-cotton-accent-dark text-white font-bold rounded-xl shadow-lg shadow-cotton-accent/30 hover:shadow-xl hover:shadow-cotton-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-cotton-accent-secondary to-amber-700 text-white font-bold rounded-xl shadow-lg shadow-cotton-accent-secondary/30 hover:shadow-xl hover:shadow-cotton-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de variedades -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-cotton-accent to-cotton-accent-dark text-white font-bold rounded-xl shadow-lg shadow-cotton-accent/30 hover:shadow-xl hover:shadow-cotton-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-cotton-accent/40 text-cotton-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-cotton-accent-secondary to-amber-700 text-white font-bold rounded-xl shadow-lg shadow-cotton-accent-secondary/30 hover:shadow-xl hover:shadow-cotton-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Fibras
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">CottonLab - Origen y Evolución del Algodón</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="leaf" class="mr-2"></ion-icon> 3000 a.C. - 2024 | De la Planta Silvestre a la Fibra Dominante | El Futuro de los Textiles
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Agricultura Sostenible | Industria Textil | Economía Global | Innovación en Fibras Naturales
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-cotton-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas del Algodón
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-cotton-accent flex items-center gap-2">
+                            <ion-icon name="leaf-outline"></ion-icon> Propiedades Físicas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span><strong>Longitud fibra:</strong> 10-50 mm</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span><strong>Resistencia:</strong> 25-50 g/tex</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span><strong>Elasticidad:</strong> 5-10%</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span><strong>Absorción agua:</strong> 24-27%</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span><strong>Temperatura planchado:</strong> 180-200°C</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-cotton-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Características Químicas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span><strong>Composición:</strong> 88-96% celulosa</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span><strong>PH natural:</strong> 5.5-6.5</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span><strong>Resistencia ácidos:</strong> Baja</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span><strong>Resistencia álcalis:</strong> Alta</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span><strong>Biodegradabilidad:</strong> Excelente</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-cotton-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-cotton-accent-light"># Proceso de Producción</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-cotton-accent-light">Cosecha:</span> Manual o mecánica</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-cotton-accent-light">Desmotado:</span> Separación fibra-semilla</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-cotton-accent-light">Hilado:</span> Transformación en hilo</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-cotton-accent-light">Tejido:</span> Creación de tela</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-cotton-accent-light">Acabado:</span> Blanqueo, teñido, mercerizado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-cotton-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Fibras Textiles
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-cotton-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas del Algodón
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Confort y suavidad superior</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Alta absorción de humedad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Hipoalergénico y transpirable</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Biodegradable y renovable</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent"></ion-icon>
+                                <span>Fácil de teñir y tratar</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-cotton-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span>Consumo intensivo de agua</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span>Uso de pesticidas en cultivo convencional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span>Propenso a encogerse</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span>Tarda en secarse</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-cotton-accent-secondary"></ion-icon>
+                                <span>Se arruga fácilmente</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-cotton-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-cotton-accent-light"># Casos de Uso por Fibra</div>
+                        <div><span class="text-cotton-accent">"Algodón:"</span> Ropa diaria, toallas, ropa de cama, productos médicos</div>
+                        <div><span class="text-blue-300">"Poliéster:"</span> Ropa deportiva, cortinas, rellenos, cuerdas</div>
+                        <div><span class="text-amber-300">"Lana:"</span> Suéteres, alfombras, mantas, prendas de invierno</div>
+                        <div><span class="text-green-300">"Lino:"</span> Ropa de verano, mantelería, decoración</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-cotton-accent to-cotton-accent-dark bg-clip-text text-transparent">25M</div>
+                        <div class="text-sm text-text-secondary mt-1">Toneladas anuales</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-cotton-accent-secondary to-amber-700 bg-clip-text text-transparent">40%</div>
+                        <div class="text-sm text-text-secondary mt-1">Uso textil mundial</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-cotton-accent-tertiary to-orange-700 bg-clip-text text-transparent">5,000+</div>
+                        <div class="text-sm text-text-secondary mt-1">Años de historia</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">~100</div>
+                        <div class="text-sm text-text-secondary mt-1">Países productores</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
