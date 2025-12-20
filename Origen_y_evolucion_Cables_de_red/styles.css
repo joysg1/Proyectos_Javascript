@@ -1,0 +1,397 @@
+/* Estilos personalizados para CableLab */
+
+/* Variables personalizadas */
+:root {
+    --cable-primary: #3498db;
+    --cable-secondary: #e74c3c;
+    --cable-tertiary: #f39c12;
+    --fiber-accent: #9b59b6;
+    --cable-dark: #0a0a12;
+    --cable-card: #121220;
+}
+
+/* Animación para cables */
+@keyframes cableRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes cablePulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes dataFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.8); }
+}
+
+@keyframes signalTransmission {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* Animaciones personalizadas */
+.animate-cable-pulse {
+    animation: cablePulse 3s ease-in-out infinite;
+}
+
+.animate-cable-rotate {
+    animation: cableRotate 20s linear infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-data-flow {
+    animation: dataFlow 3s linear infinite;
+}
+
+.animate-signal {
+    animation: signalTransmission 3s linear infinite;
+}
+
+/* Estilos para botones de tipo de cable */
+.material-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.material-btn:hover {
+    background: rgba(52, 152, 219, 0.1);
+    border-color: rgba(52, 152, 219, 0.3);
+    color: rgb(93, 173, 226);
+}
+
+.material-btn.active {
+    background: rgba(52, 152, 219, 0.2);
+    border-color: rgb(52, 152, 219);
+    color: rgb(93, 173, 226);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Mejoras para la simulación */
+#simulationContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para tarjetas de tipos de cable */
+.method-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para representación de cable */
+.cable-representation {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.05));
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cable-representation:before,
+.cable-representation:after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(52, 152, 219, 0.5);
+    border-radius: 50%;
+}
+
+/* Efectos de vidrio mejorados */
+.glass-effect {
+    background: rgba(18, 18, 32, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mejoras para gráficos */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+/* Representación visual de cables */
+.cable-diagram {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(90deg, 
+        rgba(52, 152, 219, 0.1) 0%, 
+        rgba(52, 152, 219, 0.3) 50%, 
+        rgba(52, 152, 219, 0.1) 100%);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cable-diagram::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: dataFlow 2s linear infinite;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .material-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .timeline-item .min-w-\[120px\] {
+        min-width: 100px !important;
+    }
+    
+    .timeline-item .min-w-\[140px\] {
+        min-width: 120px !important;
+    }
+    
+    .cable-diagram {
+        height: 60px;
+    }
+}
+
+/* Mejoras para sliders en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animación para notificaciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Estilos para los modales dinámicos */
+.fixed.inset-0.bg-black\\/90 .bg-card-bg-solid {
+    transition: transform 0.3s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible,
+.material-btn:focus-visible,
+.slider:focus-visible {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Estilos para iconos de Ionic */
+ion-icon {
+    vertical-align: middle;
+}
+
+/* Efecto de brillo para elementos destacados */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+/* Efecto de partículas flotantes */
+.floating-particle {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Resaltado de texto para términos importantes */
+.highlight {
+    background: linear-gradient(120deg, rgba(52, 152, 219, 0.3) 0%, rgba(52, 152, 219, 0.1) 100%);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+}
+
+/* Timeline ajustes */
+.timeline-container {
+    position: relative;
+}
+
+.timeline-item {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+/* Animaciones de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+/* Animación para señales de datos */
+.data-signal {
+    position: relative;
+}
+
+.data-signal::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #3498db;
+    border-radius: 50%;
+    animation: signalTransmission 2s linear infinite;
+}
+
+/* Ajustes responsivos adicionales */
+@media (max-width: 768px) {
+    .timeline-container .absolute {
+        left: 30px !important;
+        transform: none !important;
+    }
+    
+    .md\\:w-1\\/2 {
+        width: 100% !important;
+    }
+    
+    .md\\:text-right, .md\\:pl-12, .md\\:pr-12 {
+        text-align: left !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .md\\:order-1, .md\\:order-2, .md\\:order-3 {
+        order: initial !important;
+    }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(18, 18, 32, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(52, 152, 219, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 152, 219, 0.7);
+}
+
+/* Loading spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(52, 152, 219, 0.2);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilos para visualización de cables */
+.cable-visual {
+    position: relative;
+    height: 40px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        rgba(52, 152, 219, 0.3) 10px,
+        rgba(52, 152, 219, 0.3) 20px
+    );
+    border-radius: 2px;
+    margin: 10px 0;
+}
+
+.fiber-visual {
+    position: relative;
+    height: 40px;
+    background: linear-gradient(90deg, 
+        rgba(155, 89, 182, 0.1),
+        rgba(155, 89, 182, 0.3),
+        rgba(155, 89, 182, 0.1));
+    border-radius: 2px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.fiber-visual::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent);
+    animation: dataFlow 1.5s linear infinite;
+}
