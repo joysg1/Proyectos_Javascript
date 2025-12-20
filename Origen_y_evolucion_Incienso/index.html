@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncensoLab - Origen y Evolución del Incienso</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'incense-dark': '#1a0f0a',
+                        'incense-secondary': '#2c1810',
+                        'incense-accent': '#d97706',
+                        'incense-accent-light': '#f59e0b',
+                        'incense-accent-dark': '#b45309',
+                        'incense-gradient': 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                        'incense-accent-secondary': '#92400e',
+                        'incense-accent-secondary-light': '#b45309',
+                        'incense-secondary-gradient': 'linear-gradient(135deg, #92400e 0%, #78350f 100%)',
+                        'incense-accent-tertiary': '#fbbf24',
+                        'incense-accent-tertiary-light': '#fcd34d',
+                        'text-primary': '#fef3c7',
+                        'text-secondary': '#fde68a',
+                        'text-muted': '#fbbf24',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#78350f',
+                        'border-light': '#92400e',
+                        'card-bg': 'rgba(44, 24, 16, 0.9)',
+                        'card-bg-solid': '#451a03',
+                        'glass-bg': 'rgba(26, 15, 10, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(217, 119, 6, 0.3)',
+                        'shadow-secondary': 'rgba(146, 64, 14, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'incense-smoke': 'incense-smoke 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'component-rotate': 'componentRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-incense-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de humo -->
+    <canvas id="smoke-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-incense-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-incense-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-incense-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="flame"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-incense-accent-light to-incense-accent-tertiary-light bg-clip-text text-transparent">
+                    IncensoLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución del Incienso: De los Rituales Antiguos a la Aromaterapia Moderna
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-incense-accent/10 border border-incense-accent/40 rounded-full text-incense-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-incense-accent/10 animate-incense-smoke">
+                        <ion-icon name="leaf-outline"></ion-icon>
+                        Una tradición milenaria que conecta culturas y espiritualidad
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-incense-accent-secondary/10 border border-incense-accent-secondary/40 rounded-full text-incense-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-incense-accent-secondary/10">
+                        <ion-icon name="time-outline"></ion-icon>
+                        De 3000 a.C. a la revolución de la aromaterapia actual
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es el Incienso? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-incense-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-incense-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-incense-accent to-incense-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-incense-accent/30">
+                        <ion-icon name="flame" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es el Incienso?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-incense-accent-light font-bold">El incienso</span> es una preparación de resinas aromáticas vegetales, a las que se añaden aceites esenciales de origen natural, que al arder desprende un humo fragante. Ha sido usado durante milenios en rituales religiosos, ceremonias espirituales y para meditación.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Su origen se remonta a las <span class="highlight">civilizaciones antiguas de Egipto, China e India</span> alrededor del 3000 a.C. La palabra "incienso" deriva del latín "incendere", que significa "quemar".
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-incense-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-incense-accent-light"></ion-icon>
+                            <h4 class="font-bold text-incense-accent-light">Tipos Principales</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Incienso de resina:</strong> Olíbano, mirra, benjuí</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Incienso en barra:</strong> Mezcla de polvos y aglutinantes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Incienso en cono:</strong> Quema completa en forma cónica</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Aceites esenciales:</strong> Forma líquida para difusores</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Histórica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-incense-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-incense-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-incense-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-incense-accent-secondary to-brown-800 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-incense-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Histórica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="cube-outline" class="text-incense-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-incense-accent-light">3000-2000 a.C.</strong>
+                                <p class="text-sm text-text-secondary mt-1">Primeros usos en Egipto para rituales religiosos y momificación.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="layers-outline" class="text-incense-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-incense-accent-secondary-light">Siglo I-V d.C.</strong>
+                                <p class="text-sm text-text-secondary mt-1">Adopción en ceremonias cristianas y expansión por la Ruta del Incienso.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-incense-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-incense-accent-tertiary-light">Siglo XIII-XVI</strong>
+                                <p class="text-sm text-text-secondary mt-1">Comercio intensivo entre Asia y Europa, popularización en monasterios.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="sparkles-outline" class="text-amber-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-amber-300">Siglo XX-XXI</strong>
+                                <p class="text-sm text-text-secondary mt-1">Redescubrimiento para aromaterapia, mindfulness y bienestar.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-incense-accent to-incense-accent-dark bg-clip-text text-transparent">3000 a.C.</div>
+                            <div class="text-sm text-text-secondary mt-1">Origen egipcio</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-incense-accent-secondary to-brown-800 bg-clip-text text-transparent">Siglo I</div>
+                            <div class="text-sm text-text-secondary mt-1">Uso cristiano</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-incense-accent-tertiary to-amber-700 bg-clip-text text-transparent">Siglo XIII</div>
+                            <div class="text-sm text-text-secondary mt-1">Ruta comercial</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">Siglo XX</div>
+                            <div class="text-sm text-text-secondary mt-1">Aromaterapia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-incense-accent to-incense-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-incense-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-incense-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-incense-accent/15 border border-incense-accent/40 rounded-full text-incense-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        3000 a.C.
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Orígenes en el Antiguo Egipto</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Primeros registros de uso de incienso en rituales religiosos y para la momificación de faraones.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-incense-accent to-incense-accent-dark flex items-center justify-center z-10 shadow-lg shadow-incense-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-incense-accent-secondary to-brown-800 flex items-center justify-center z-10 shadow-lg shadow-incense-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-incense-accent-secondary/15 border border-incense-accent-secondary/40 rounded-full text-incense-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Siglo I d.C.
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Adopción en el Cristianismo</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">El incienso se incorpora a las ceremonias cristianas como símbolo de las oraciones que ascienden a Dios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-amber-500/15 border border-amber-500/40 rounded-full text-amber-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        Siglo VII-XIII
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">La Ruta del Incienso</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Florece el comercio entre Arabia, India y el Mediterráneo, haciendo del incienso un producto de lujo.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center z-10 shadow-lg shadow-amber-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-incense-accent-tertiary to-yellow-700 flex items-center justify-center z-10 shadow-lg shadow-incense-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-incense-accent-tertiary/15 border border-incense-accent-tertiary/40 rounded-full text-incense-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        Siglo XV-XVIII
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Expansión Global</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Exploradores europeos llevan el incienso a América y se desarrollan nuevas variedades.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-yellow-500/15 border border-yellow-500/40 rounded-full text-yellow-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        Siglo XX-XXI
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Renacimiento Moderno</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Resurgimiento para aromaterapia, mindfulness y bienestar espiritual en la cultura contemporánea.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center z-10 shadow-lg shadow-yellow-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Tipos y Usos -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-incense-accent to-incense-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-incense-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Tipos y Usos del Incienso</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-incense-accent hover:shadow-xl hover:shadow-incense-accent/20">
+                        <div class="text-3xl mb-4 text-incense-accent">
+                            <ion-icon name="leaf-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Resinas Naturales</h3>
+                        <p class="text-sm text-text-secondary mb-3">Olíbano, mirra, benjuí, copal y sándalo en su forma pura.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-incense-accent/15 text-incense-accent-light text-xs rounded">Olíbano</span>
+                            <span class="px-2 py-1 bg-incense-accent/15 text-incense-accent-light text-xs rounded">Mirra</span>
+                            <span class="px-2 py-1 bg-incense-accent/15 text-incense-accent-light text-xs rounded">Sándalo</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-incense-accent-secondary hover:shadow-xl hover:shadow-incense-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-incense-accent-secondary">
+                            <ion-icon name="flame-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Incienso en Barra</h3>
+                        <p class="text-sm text-text-secondary mb-3">Mezcla de polvos aromáticos con aglutinantes, popular en Asia.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-incense-accent-secondary/15 text-incense-accent-secondary-light text-xs rounded">Japonés</span>
+                            <span class="px-2 py-1 bg-incense-accent-secondary/15 text-incense-accent-secondary-light text-xs rounded">Indio</span>
+                            <span class="px-2 py-1 bg-incense-accent-secondary/15 text-incense-accent-secondary-light text-xs rounded">Tibetano</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-amber-500 hover:shadow-xl hover:shadow-amber-500/20">
+                        <div class="text-3xl mb-4 text-amber-400">
+                            <ion-icon name="water-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Aceites Esenciales</h3>
+                        <p class="text-sm text-text-secondary mb-3">Extractos concentrados para difusores y aplicaciones tópicas.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-amber-500/15 text-amber-300 text-xs rounded">Lavanda</span>
+                            <span class="px-2 py-1 bg-amber-500/15 text-amber-300 text-xs rounded">Eucalipto</span>
+                            <span class="px-2 py-1 bg-amber-500/15 text-amber-300 text-xs rounded">Citronela</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-incense-accent-tertiary hover:shadow-xl hover:shadow-incense-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-incense-accent-tertiary">
+                            <ion-icon name="medical-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Aplicaciones</h3>
+                        <p class="text-sm text-text-secondary mb-3">Religión, meditación, aromaterapia y ambientación.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-incense-accent-tertiary/15 text-incense-accent-tertiary-light text-xs rounded">Espiritual</span>
+                            <span class="px-2 py-1 bg-incense-accent-tertiary/15 text-incense-accent-tertiary-light text-xs rounded">Terapéutico</span>
+                            <span class="px-2 py-1 bg-incense-accent-tertiary/15 text-incense-accent-tertiary-light text-xs rounded">Decorativo</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Uso en rituales religiosos (global)</span>
+                            <span class="font-bold text-incense-accent-light">85% de religiones</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-incense-accent to-incense-accent-dark rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Crecimiento mercado aromaterapia (2024)</span>
+                            <span class="font-bold text-incense-accent-secondary-light">+12% anual</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-incense-accent-secondary to-brown-700 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-incense-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-incense-accent-secondary to-brown-700 flex items-center justify-center mr-6 shadow-xl shadow-incense-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Aromas</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-incense-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-incense-accent-light">Simulador: Comparación de Aromas</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara diferentes tipos de incienso y sus propiedades:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Tipo de Incienso:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="olibano">
+                                            <ion-icon name="leaf" class="mr-2"></ion-icon> Olíbano
+                                        </button>
+                                        <button class="material-btn" data-material="sándalo">
+                                            <ion-icon name="leaf" class="mr-2"></ion-icon> Sándalo
+                                        </button>
+                                        <button class="material-btn" data-material="lavanda">
+                                            <ion-icon name="flower-outline" class="mr-2"></ion-icon> Lavanda
+                                        </button>
+                                        <button class="material-btn" data-material="mirra">
+                                            <ion-icon name="leaf" class="mr-2"></ion-icon> Mirra
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Intensidad del Aroma</label>
+                                        <span id="intensityValue" class="font-bold text-incense-accent-light">Media</span>
+                                    </div>
+                                    <input type="range" id="intensitySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Sutil</span>
+                                        <span>Media</span>
+                                        <span>Intensa</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Duración de la Quema</label>
+                                        <span id="durationValue" class="font-bold text-incense-accent-secondary-light">30 min</span>
+                                    </div>
+                                    <input type="range" id="durationSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>15 min</span>
+                                        <span>30 min</span>
+                                        <span>60 min</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Propósito de Uso</label>
+                                        <span id="purposeValue" class="font-bold text-amber-300">Meditación</span>
+                                    </div>
+                                    <input type="range" id="purposeSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Relajación</span>
+                                        <span>Meditación</span>
+                                        <span>Energía</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-incense-accent-light">Comparación de Propiedades</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por tipo de incienso</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-incense-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Propiedades Relajantes</div>
+                                <div id="relaxationValue" class="text-2xl font-bold text-incense-accent-light">Altas</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="relaxationBar" class="h-full bg-gradient-to-r from-incense-accent to-incense-accent-dark rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Duración Aroma</div>
+                                <div id="aromaValue" class="text-2xl font-bold text-incense-accent-secondary-light">Media-Alta</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="aromaBar" class="h-full bg-gradient-to-r from-incense-accent-secondary to-brown-700 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Uso Espiritual</div>
+                                <div id="spiritualValue" class="text-2xl font-bold text-amber-300">Tradicional</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="spiritualBar" class="h-full bg-gradient-to-r from-amber-500 to-amber-700 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-incense-accent-tertiary mr-2"></ion-icon>
+                                El olíbano es ideal para meditación profunda, con propiedades espirituales históricas
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-incense-accent to-incense-accent-dark text-white font-bold rounded-xl shadow-lg shadow-incense-accent/30 hover:shadow-xl hover:shadow-incense-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-incense-accent-secondary to-brown-700 text-white font-bold rounded-xl shadow-lg shadow-incense-accent-secondary/30 hover:shadow-xl hover:shadow-incense-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de tipos -->
+                <div id="typesInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-incense-accent to-incense-accent-dark text-white font-bold rounded-xl shadow-lg shadow-incense-accent/30 hover:shadow-xl hover:shadow-incense-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución Histórica
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-incense-accent/40 text-incense-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Propiedades
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-incense-accent-secondary to-brown-700 text-white font-bold rounded-xl shadow-lg shadow-incense-accent-secondary/30 hover:shadow-xl hover:shadow-incense-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Aromas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">IncensoLab - Origen y Evolución del Incienso</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="flame" class="mr-2"></ion-icon> 3000 a.C.-2024 | De los Rituales Antiguos a la Aromaterapia Moderna | El Futuro del Bienestar
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Aromaterapia | Historia Cultural | Propiedades Terapéuticas | Espiritualidad y Bienestar
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para propiedades -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-incense-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Propiedades del Incienso
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-incense-accent flex items-center gap-2">
+                            <ion-icon name="leaf-outline"></ion-icon> Propiedades Físicas
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Composición:</strong> Resinas, aceites esenciales, aglutinantes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Temperatura quema:</strong> 200-300°C</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Duración:</strong> 15-60 minutos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Alcance aroma:</strong> 20-50 m²</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span><strong>Conservación:</strong> 2-5 años en condiciones óptimas</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-incense-accent-secondary flex items-center gap-2">
+                            <ion-icon name="medical-outline"></ion-icon> Beneficios Terapéuticos
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span><strong>Relajación:</strong> Reduce estrés y ansiedad</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span><strong>Concentración:</strong> Mejora enfoque mental</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span><strong>Sueño:</strong> Facilita el descanso profundo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span><strong>Respiración:</strong> Alivia congestión</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span><strong>Espiritualidad:</strong> Conecta con prácticas meditativas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-incense-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-incense-accent-light"># Métodos de Producción Tradicional</div>
+                        <div><span class="text-amber-300">1.</span> <span class="text-incense-accent-light">Recolección:</span> Resinas de árboles Boswellia y Commiphora</div>
+                        <div><span class="text-amber-300">2.</span> <span class="text-incense-accent-light">Secado:</span> 3-6 meses en condiciones controladas</div>
+                        <div><span class="text-amber-300">3.</span> <span class="text-incense-accent-light">Mezcla:</span> Combinación con aceites esenciales</div>
+                        <div><span class="text-amber-300">4.</span> <span class="text-incense-accent-light">Formado:</span> Barras, conos o gránulos</div>
+                        <div><span class="text-amber-300">5.</span> <span class="text-incense-accent-light">Curado:</span> Maduración por 6-12 meses</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-incense-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Tipos de Incienso
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-incense-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas del Olíbano
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span>Uso histórico en rituales espirituales</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span>Propiedades antiinflamatorias demostradas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span>Aroma equilibrado y duradero</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span>Ideal para meditación profunda</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent"></ion-icon>
+                                <span>Cosecha sostenible en Somalia y Omán</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-incense-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Consideraciones
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span>Costo más elevado que alternativas sintéticas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span>Disponibilidad limitada por factores climáticos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span>Necesita quemador especial para resinas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span>Precauciones en espacios mal ventilados</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-incense-accent-secondary"></ion-icon>
+                                <span>Alergias potenciales en personas sensibles</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-incense-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-incense-accent-light"># Usos por Tipo de Incienso</div>
+                        <div><span class="text-incense-accent">"Olíbano:"</span> Meditación, rituales, conexión espiritual</div>
+                        <div><span class="text-incense-accent-secondary">"Sándalo:"</span> Relajación, yoga, ambientes tranquilos</div>
+                        <div><span class="text-amber-300">"Lavanda:"</span> Sueño, ansiedad, espacios de descanso</div>
+                        <div><span class="text-incense-accent-tertiary">"Mirra:"</span> Purificación, ceremonias, energía positiva</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-incense-accent to-incense-accent-dark bg-clip-text text-transparent">5000+</div>
+                        <div class="text-sm text-text-secondary mt-1">Años de historia</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-incense-accent-secondary to-brown-700 bg-clip-text text-transparent">85%</div>
+                        <div class="text-sm text-text-secondary mt-1">Religiones que lo usan</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-incense-accent-tertiary to-yellow-700 bg-clip-text text-transparent">$4.2B</div>
+                        <div class="text-sm text-text-secondary mt-1">Mercado global 2024</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">+12%</div>
+                        <div class="text-sm text-text-secondary mt-1">Crecimiento anual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
