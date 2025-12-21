@@ -20,7 +20,7 @@
 
 ## Cómo usar 🚀
 
-    Clona o descarga los archivos
+    Descarga los archivos
 
     Abre index.html en cualquier navegador moderno
 
