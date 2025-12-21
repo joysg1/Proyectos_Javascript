@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AureliaLab - Origen y Evolución de Aurelia.js</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aurelia-dark': '#0a0a12',
+                        'aurelia-secondary': '#121220',
+                        'aurelia-accent': '#ff4b82',
+                        'aurelia-accent-light': '#ff7ba3',
+                        'aurelia-accent-dark': '#e6396d',
+                        'aurelia-gradient': 'linear-gradient(135deg, #ff4b82 0%, #e6396d 100%)',
+                        'aurelia-accent-secondary': '#683ab7',
+                        'aurelia-accent-secondary-light': '#8a5cf6',
+                        'aurelia-secondary-gradient': 'linear-gradient(135deg, #683ab7 0%, #8a5cf6 100%)',
+                        'aurelia-accent-tertiary': '#4fc3f7',
+                        'aurelia-accent-tertiary-light': '#81d4fa',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(255, 75, 130, 0.3)',
+                        'shadow-secondary': 'rgba(104, 58, 183, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'aurelia-pulse': 'aurelia-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'component-rotate': 'componentRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-aurelia-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de Aurelia -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-aurelia-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aurelia-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-aurelia-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="diamond-outline"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-aurelia-accent-light to-aurelia-accent-tertiary-light bg-clip-text text-transparent">
+                    AureliaLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución de Aurelia.js: El Framework Progresivo para Aplicaciones Web Modernas
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-aurelia-accent/10 border border-aurelia-accent/40 rounded-full text-aurelia-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-aurelia-accent/10 animate-aurelia-pulse">
+                        <ion-icon name="code-slash-outline"></ion-icon>
+                        El framework progresivo para aplicaciones web ambiciosas
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-aurelia-accent-secondary/10 border border-aurelia-accent-secondary/40 rounded-full text-aurelia-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-aurelia-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2015 a la vanguardia del desarrollo frontend
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es Aurelia? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-aurelia-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-aurelia-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-aurelia-accent to-aurelia-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-aurelia-accent/30">
+                        <ion-icon name="diamond-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es Aurelia?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-aurelia-accent-light font-bold">Aurelia</span> es un framework JavaScript moderno y progresivo para construir aplicaciones web de alto rendimiento. Su arquitectura modular y enfoque en estándares web lo hacen excepcionalmente productivo.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Aurelia fue creado por <span class="highlight">Rob Eisenberg</span> y su equipo en 2015 como un framework progresivo que respeta los estándares web. Se destacó por su sintaxis limpia y su enfoque en convenciones sobre configuraciones.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-aurelia-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-aurelia-accent-light"></ion-icon>
+                            <h4 class="font-bold text-aurelia-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Arquitectura modular y pluggable</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Binding bidireccional sin configuración</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Dependency injection integrada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Componentes basados en estándares web</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Técnica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-aurelia-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-aurelia-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-aurelia-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-aurelia-accent-secondary to-purple-700 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-aurelia-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Técnica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="cube-outline" class="text-aurelia-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-aurelia-accent-light">Aurelia 1.0 (2015)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Lanzamiento inicial con binding bidireccional y componentes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="layers-outline" class="text-aurelia-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-aurelia-accent-secondary-light">Aurelia 2 (2018)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Reescritura completa con mejor rendimiento y modernización.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-aurelia-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-aurelia-accent-tertiary-light">Aurelia 2.0 (2021)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Soporte para TypeScript moderno y mejoras de performance.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="sparkles-outline" class="text-cyan-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-cyan-300">Aurelia Next (2024)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Integración con Web Components y mejoras en CLI.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark bg-clip-text text-transparent">2015</div>
+                            <div class="text-sm text-text-secondary mt-1">Lanzamiento inicial</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 bg-clip-text text-transparent">2018</div>
+                            <div class="text-sm text-text-secondary mt-1">Aurelia 2 anunciado</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-aurelia-accent-tertiary to-cyan-700 bg-clip-text text-transparent">2021</div>
+                            <div class="text-sm text-text-secondary mt-1">Aurelia 2 estable</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">2024</div>
+                            <div class="text-sm text-text-secondary mt-1">Evolución continua</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-aurelia-accent to-aurelia-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-aurelia-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-aurelia-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-aurelia-accent/15 border border-aurelia-accent/40 rounded-full text-aurelia-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2014
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Nacimiento de la Idea</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Rob Eisenberg, creador de Durandal, comienza a trabajar en un nuevo framework que evoluciona las mejores prácticas.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-aurelia-accent to-aurelia-accent-dark flex items-center justify-center z-10 shadow-lg shadow-aurelia-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-aurelia-accent-secondary to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-aurelia-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-aurelia-accent-secondary/15 border border-aurelia-accent-secondary/40 rounded-full text-aurelia-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2015
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento Público</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Aurelia 1.0 se lanza al público con gran acogida por su sintaxis limpia y enfoque en estándares.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2018
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Anuncio de Aurelia 2</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Se anuncia la reescritura completa para mejorar rendimiento y adaptarse a las nuevas tecnologías web.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-aurelia-accent-tertiary to-cyan-700 flex items-center justify-center z-10 shadow-lg shadow-aurelia-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-aurelia-accent-tertiary/15 border border-aurelia-accent-tertiary/40 rounded-full text-aurelia-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2021
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Aurelia 2 Estable</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Se lanza la versión estable de Aurelia 2 con mejoras significativas en rendimiento y TypeScript.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-cyan-500/15 border border-cyan-500/40 rounded-full text-cyan-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2024-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Evolución Continua</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Integración con Web Components, mejoras en CLI y crecimiento del ecosistema.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-teal-700 flex items-center justify-center z-10 shadow-lg shadow-cyan-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ecosistema -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-aurelia-accent to-aurelia-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-aurelia-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Ecosistema Aurelia</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-aurelia-accent hover:shadow-xl hover:shadow-aurelia-accent/20">
+                        <div class="text-3xl mb-4 text-aurelia-accent">
+                            <ion-icon name="construct-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Core Features</h3>
+                        <p class="text-sm text-text-secondary mb-3">Binding, DI, routing, validation y testing integrados.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-aurelia-accent/15 text-aurelia-accent-light text-xs rounded">Binding</span>
+                            <span class="px-2 py-1 bg-aurelia-accent/15 text-aurelia-accent-light text-xs rounded">DI</span>
+                            <span class="px-2 py-1 bg-aurelia-accent/15 text-aurelia-accent-light text-xs rounded">Routing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-aurelia-accent-secondary hover:shadow-xl hover:shadow-aurelia-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-aurelia-accent-secondary">
+                            <ion-icon name="cog-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">CLI y Herramientas</h3>
+                        <p class="text-sm text-text-secondary mb-3">CLI, Webpack integration, y herramientas de desarrollo.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-aurelia-accent-secondary/15 text-aurelia-accent-secondary-light text-xs rounded">CLI</span>
+                            <span class="px-2 py-1 bg-aurelia-accent-secondary/15 text-aurelia-accent-secondary-light text-xs rounded">Webpack</span>
+                            <span class="px-2 py-1 bg-aurelia-accent-secondary/15 text-aurelia-accent-secondary-light text-xs rounded">Vite</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="extension-puzzle-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Plugins Oficiales</h3>
+                        <p class="text-sm text-text-secondary mb-3">i18n, validation, dialog, y ui components.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">i18n</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Validation</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">UI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-aurelia-accent-tertiary hover:shadow-xl hover:shadow-aurelia-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-aurelia-accent-tertiary">
+                            <ion-icon name="layers-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Integraciones</h3>
+                        <p class="text-sm text-text-secondary mb-3">TypeScript, Web Components, SSR, y PWA.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-aurelia-accent-tertiary/15 text-aurelia-accent-tertiary-light text-xs rounded">TypeScript</span>
+                            <span class="px-2 py-1 bg-aurelia-accent-tertiary/15 text-aurelia-accent-tertiary-light text-xs rounded">SSR</span>
+                            <span class="px-2 py-1 bg-aurelia-accent-tertiary/15 text-aurelia-accent-tertiary-light text-xs rounded">PWA</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Satisfacción desarrolladores (2023)</span>
+                            <span class="font-bold text-aurelia-accent-light">94% satisfechos</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark rounded-full" style="width: 94%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Adopción empresarial (2024)</span>
+                            <span class="font-bold text-aurelia-accent-secondary-light">+30% crecimiento</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-aurelia-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-aurelia-accent-secondary to-purple-700 flex items-center justify-center mr-6 shadow-xl shadow-aurelia-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Simulador de Tecnologías</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-aurelia-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-aurelia-accent-light">Simulador: Comparación de Frameworks</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara Aurelia con otros frameworks frontend:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Framework:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="aurelia">
+                                            <ion-icon name="diamond-outline" class="mr-2"></ion-icon> Aurelia
+                                        </button>
+                                        <button class="material-btn" data-material="angular">
+                                            <ion-icon name="logo-angular" class="mr-2"></ion-icon> Angular
+                                        </button>
+                                        <button class="material-btn" data-material="vue">
+                                            <ion-icon name="logo-vue" class="mr-2"></ion-icon> Vue
+                                        </button>
+                                        <button class="material-btn" data-material="react">
+                                            <ion-icon name="logo-react" class="mr-2"></ion-icon> React
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Complejidad del Proyecto</label>
+                                        <span id="thicknessValue" class="font-bold text-aurelia-accent-light">Pequeño</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="20" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Landing Page</span>
+                                        <span>App Media</span>
+                                        <span>Enterprise</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Experiencia del Equipo</label>
+                                        <span id="areaValue" class="font-bold text-aurelia-accent-secondary-light">Media</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Junior</span>
+                                        <span>Intermedio</span>
+                                        <span>Experto</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tiempo de Desarrollo</label>
+                                        <span id="purityValue" class="font-bold text-cyan-300">Medio</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Corto</span>
+                                        <span>Medio</span>
+                                        <span>Largo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-aurelia-accent-light">Comparación de Métricas</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por framework</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-aurelia-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Performance</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-aurelia-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Curva de Aprendizaje</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-aurelia-accent-secondary-light">Media</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Ecosistema</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-cyan-300">En Crecimiento</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-cyan-500 to-teal-700 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-aurelia-accent-tertiary mr-2"></ion-icon>
+                                Aurelia destaca en productividad y estándares web, ideal para aplicaciones empresariales
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark text-white font-bold rounded-xl shadow-lg shadow-aurelia-accent/30 hover:shadow-xl hover:shadow-aurelia-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Simulación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 text-white font-bold rounded-xl shadow-lg shadow-aurelia-accent-secondary/30 hover:shadow-xl hover:shadow-aurelia-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark text-white font-bold rounded-xl shadow-lg shadow-aurelia-accent/30 hover:shadow-xl hover:shadow-aurelia-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-aurelia-accent/40 text-aurelia-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 text-white font-bold rounded-xl shadow-lg shadow-aurelia-accent-secondary/30 hover:shadow-xl hover:shadow-aurelia-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Frameworks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">AureliaLab - Origen y Evolución de Aurelia.js</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="diamond-outline" class="mr-2"></ion-icon> 2015-2024 | Del Framework Progresivo a la Vanguardia Frontend | El Futuro del Desarrollo Web
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Desarrollo Web | Arquitectura de Componentes | Ecosistema JavaScript | Innovación Frontend
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-aurelia-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Aurelia
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-aurelia-accent flex items-center gap-2">
+                            <ion-icon name="cube-outline"></ion-icon> Arquitectura
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span><strong>Patrón:</strong> MVVM (Model-View-ViewModel)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span><strong>Binding:</strong> Bidireccional automático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span><strong>DI:</strong> Dependency Injection integrada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span><strong>Routing:</strong> Router de primer nivel</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span><strong>Bundle size:</strong> ~60kb (gzipped)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-aurelia-accent-secondary flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Características Principales
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span><strong>Convención sobre Configuración</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span><strong>Web Components ready</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span><strong>TypeScript first-class</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span><strong>Testing integrado</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span><strong>CLI avanzado</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-aurelia-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-aurelia-accent-light"># Ventajas de Rendimiento</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-aurelia-accent-light">Binding optimizado:</span> Actualizaciones eficientes</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-aurelia-accent-light">Lazy loading:</span> Carga bajo demanda de recursos</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-aurelia-accent-light">Tree shaking:</span> Eliminación de código no usado</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-aurelia-accent-light">AOT Compilation:</span> Compilación anticipada</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-aurelia-accent-light">Observables integrados:</span> Reactividad eficiente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-aurelia-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Frameworks Frontend
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-aurelia-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de Aurelia
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Sintaxis limpia y estándar</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Curva de aprendizaje suave</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Productividad elevada</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Respeto a estándares web</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent"></ion-icon>
+                                <span>Documentación excepcional</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-aurelia-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Desafíos
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span>Ecosistema más pequeño vs competidores</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span>Menor adopción en startups</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span>Comunidad más reducida</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span>Menor visibilidad en redes sociales</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-aurelia-accent-secondary"></ion-icon>
+                                <span>Requerimientos de aprendizaje inicial</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-aurelia-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-aurelia-accent-light"># Casos de Uso por Framework</div>
+                        <div><span class="text-aurelia-accent">"Aurelia:"</span> Aplicaciones empresariales, equipos que valoran estándares, productividad a largo plazo</div>
+                        <div><span class="text-aurelia-accent-secondary">"Angular:"</span> Enterprise, TypeScript-first, equipos grandes con estructura</div>
+                        <div><span class="text-purple-300">"Vue:"</span> Adopción progresiva, proyectos pequeños-medianos, desarrollo rápido</div>
+                        <div><span class="text-aurelia-accent-tertiary">"React:"</span> Máxima flexibilidad, ecosistema extenso, equipos que prefieren libertad</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-aurelia-accent to-aurelia-accent-dark bg-clip-text text-transparent">94%</div>
+                        <div class="text-sm text-text-secondary mt-1">Satisfacción</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-aurelia-accent-secondary to-purple-700 bg-clip-text text-transparent">9 años</div>
+                        <div class="text-sm text-text-secondary mt-1">Historia</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-aurelia-accent-tertiary to-cyan-700 bg-clip-text text-transparent">85%</div>
+                        <div class="text-sm text-text-secondary mt-1">Productividad</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">30%</div>
+                        <div class="text-sm text-text-secondary mt-1">Crecimiento anual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gráficos detallados (se crea dinámicamente) -->
+
+    <script src="script.js"></script>
+</body>
+</html>
