@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViteReactLab - Origen y Evolución de Vite + React</title>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vite-dark': '#0a0a12',
+                        'vite-secondary': '#121220',
+                        'vite-accent': '#646cff',
+                        'vite-accent-light': '#747bff',
+                        'vite-accent-dark': '#535bf2',
+                        'vite-gradient': 'linear-gradient(135deg, #646cff 0%, #535bf2 100%)',
+                        'vite-accent-secondary': '#61dafb',
+                        'vite-accent-secondary-light': '#7ae2ff',
+                        'vite-secondary-gradient': 'linear-gradient(135deg, #61dafb 0%, #21a1f1 100%)',
+                        'vite-accent-tertiary': '#ff6b6b',
+                        'vite-accent-tertiary-light': '#ff8585',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'text-muted': '#94a3b8',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'info': '#3b82f6',
+                        'border': '#334155',
+                        'border-light': '#475569',
+                        'card-bg': 'rgba(18, 18, 32, 0.9)',
+                        'card-bg-solid': '#1e1b4b',
+                        'glass-bg': 'rgba(10, 10, 18, 0.95)',
+                        'shadow': 'rgba(0, 0, 0, 0.6)',
+                        'shadow-accent': 'rgba(100, 108, 255, 0.3)',
+                        'shadow-secondary': 'rgba(97, 218, 251, 0.3)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'jetbrains': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'vite-pulse': 'vite-pulse 3s ease-in-out infinite',
+                        'data-flow': 'data-flow 3s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                        'type-rotate': 'typeRotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-vite-dark text-text-primary font-inter min-h-screen overflow-x-hidden">
+    <!-- Canvas para partículas de Vite + React -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header -->
+    <header class="relative bg-glass-bg backdrop-blur-xl border-b border-border py-12 md:py-16 px-4 mb-12 shadow-2xl overflow-hidden z-10">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-vite-accent to-transparent opacity-70"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vite-accent-secondary to-transparent opacity-50"></div>
+        
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center relative z-10">
+                <div class="text-vite-accent text-4xl md:text-5xl mb-4 animate-pulse-glow">
+                    <ion-icon name="flash-outline"></ion-icon>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-vite-accent-light to-vite-accent-secondary-light bg-clip-text text-transparent">
+                    ViteReactLab
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-8 leading-relaxed">
+                    Origen y Evolución de Vite + React: El Bundler del Futuro con la Biblioteca Más Popular
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-vite-accent/10 border border-vite-accent/40 rounded-full text-vite-accent-light font-semibold backdrop-blur-sm shadow-lg shadow-vite-accent/10 animate-vite-pulse">
+                        <ion-icon name="rocket-outline"></ion-icon>
+                        Desarrollo Frontend ultrarrápido con Hot Module Replacement nativo
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-6 py-3 bg-vite-accent-secondary/10 border border-vite-accent-secondary/40 rounded-full text-vite-accent-secondary-light font-semibold backdrop-blur-sm shadow-lg shadow-vite-accent-secondary/10">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        De 2020 al estándar de facto para desarrollo moderno con React
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl px-4 mb-16 relative z-10">
+        <!-- Sección principal de tarjetas -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Tarjeta 1: ¿Qué es Vite + React? -->
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-vite-accent/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-vite-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-vite-accent to-vite-accent-dark flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-vite-accent/30">
+                        <ion-icon name="logo-react" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">¿Qué es Vite + React?</h2>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-vite-accent-light font-bold">Vite</span> es un build tool moderno creado por Evan You (creador de Vue.js) que proporciona un entorno de desarrollo extremadamente rápido gracias a su arquitectura basada en ES modules nativos y pre-bundling con esbuild.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        <span class="text-vite-accent-secondary font-bold">React</span> es la biblioteca de JavaScript más popular para construir interfaces de usuario, desarrollada por Facebook en 2013. Juntos, forman una combinación poderosa para desarrollo frontend moderno.
+                    </p>
+                    
+                    <div class="bg-gray-900/70 border-l-4 border-vite-accent rounded-r-lg p-4 mt-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <ion-icon name="flash-outline" class="text-vite-accent-light"></ion-icon>
+                            <h4 class="font-bold text-vite-accent-light">Características Clave</h4>
+                        </div>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Tiempos de inicio de servidor instantáneos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Hot Module Replacement (HMR) ultrarrápido</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Build optimizado con Rollup y esbuild</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Soporte nativo para TypeScript, JSX, CSS Modules</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Evolución Técnica -->
+            <div class="bg-card-bg backdrop-blur-xl border border-vite-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-vite-accent-secondary/30 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-vite-accent-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-center mb-6 pb-6 border-b border-border-light">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-vite-accent-secondary to-cyan-800 flex items-center justify-center mr-4 md:mr-6 shadow-xl shadow-vite-accent-secondary/30">
+                        <ion-icon name="git-branch-outline" class="text-2xl md:text-3xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Evolución Técnica</h2>
+                </div>
+                <div class="space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="cube-outline" class="text-vite-accent mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vite-accent-light">Vite 1.0 (2020)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Primera versión pública enfocada en Vue.js, pero con soporte para React.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="layers-outline" class="text-vite-accent-secondary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vite-accent-secondary-light">Vite 2.0 (2021)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Soporte nativo para React, arquitectura de plugins, mejora masiva de DX.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="rocket-outline" class="text-vite-accent-tertiary mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-vite-accent-tertiary-light">React 18 (2022)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Concurrent Features, Server Components, y mejoras de rendimiento.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 bg-gray-900/30 rounded-lg hover:bg-gray-900/50 transition-colors">
+                            <ion-icon name="sparkles-outline" class="text-purple-400 mt-1"></ion-icon>
+                            <div>
+                                <strong class="text-purple-300">Vite 4.0 (2022)</strong>
+                                <p class="text-sm text-text-secondary mt-1">Soporte para React Server Components, mejor rendimiento y menores bundles.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vite-accent to-vite-accent-dark bg-clip-text text-transparent">2020</div>
+                            <div class="text-sm text-text-secondary mt-1">Lanzamiento Vite</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vite-accent-secondary to-cyan-800 bg-clip-text text-transparent">2021</div>
+                            <div class="text-sm text-text-secondary mt-1">Vite 2.0 + React</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-vite-accent-tertiary to-red-800 bg-clip-text text-transparent">2022</div>
+                            <div class="text-sm text-text-secondary mt-1">React 18 + Vite 4</div>
+                        </div>
+                        <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                            <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">2024</div>
+                            <div class="text-sm text-text-secondary mt-1">Vite 5.0 + React 19</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de Evolución -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vite-accent to-vite-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-vite-accent/30">
+                        <ion-icon name="time-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Historia de la Evolución</h2>
+                </div>
+                
+                <div class="relative timeline-container">
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-vite-accent to-transparent opacity-60"></div>
+                    
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-vite-accent/15 border border-vite-accent/40 rounded-full text-vite-accent-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2013
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Nacimiento de React</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Facebook presenta React, revolucionando el desarrollo frontend con componentes y Virtual DOM.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vite-accent to-vite-accent-dark flex items-center justify-center z-10 shadow-lg shadow-vite-accent/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vite-accent-secondary to-cyan-800 flex items-center justify-center z-10 shadow-lg shadow-vite-accent-secondary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-vite-accent-secondary/15 border border-vite-accent-secondary/40 rounded-full text-vite-accent-secondary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2020
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Lanzamiento de Vite</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Evan You (creador de Vue) presenta Vite para resolver problemas de velocidad en herramientas como Webpack.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-purple-500/15 border border-purple-500/40 rounded-full text-purple-300 font-bold mb-3 text-sm min-w-[120px]">
+                                        2021
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Vite 2.0 con React</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Vite 2.0 agrega soporte nativo para React, haciéndolo popular en la comunidad React.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:pr-12 order-2"></div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-vite-accent-tertiary to-red-800 flex items-center justify-center z-10 shadow-lg shadow-vite-accent-tertiary/50 order-1">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3">
+                                    <div class="inline-block px-4 py-2 bg-vite-accent-tertiary/15 border border-vite-accent-tertiary/40 rounded-full text-vite-accent-tertiary-light font-bold mb-3 text-sm min-w-[120px]">
+                                        2022
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">React 18 + Vite 4</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">React 18 introduce Concurrent Features, y Vite 4 mejora rendimiento y DX.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 5 -->
+                        <div class="relative timeline-item">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                                <div class="md:w-1/2 md:text-right md:pr-12 order-2 md:order-1">
+                                    <div class="inline-block px-4 py-2 bg-pink-500/15 border border-pink-500/40 rounded-full text-pink-300 font-bold mb-3 text-sm min-w-[140px]">
+                                        2024-Presente
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">Dominio del Ecosistema</h3>
+                                    <p class="text-text-secondary text-sm md:text-base">Vite se convierte en el build tool predilecto para React, con mejoras constantes.</p>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-700 flex items-center justify-center z-10 shadow-lg shadow-pink-500/50 order-1 md:order-2">
+                                    <div class="w-5 h-5 rounded-full bg-white"></div>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ecosistema -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-border rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vite-accent to-vite-accent-dark flex items-center justify-center mr-6 shadow-xl shadow-vite-accent/30">
+                        <ion-icon name="apps-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Ecosistema Vite + React</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vite-accent hover:shadow-xl hover:shadow-vite-accent/20">
+                        <div class="text-3xl mb-4 text-vite-accent">
+                            <ion-icon name="logo-react"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Frameworks React</h3>
+                        <p class="text-sm text-text-secondary mb-3">Next.js, Remix, Gatsby, React Router, React Query.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vite-accent/15 text-vite-accent-light text-xs rounded">Next.js</span>
+                            <span class="px-2 py-1 bg-vite-accent/15 text-vite-accent-light text-xs rounded">Remix</span>
+                            <span class="px-2 py-1 bg-vite-accent/15 text-vite-accent-light text-xs rounded">Gatsby</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vite-accent-secondary hover:shadow-xl hover:shadow-vite-accent-secondary/20">
+                        <div class="text-3xl mb-4 text-vite-accent-secondary">
+                            <ion-icon name="construct-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Plugins Vite</h3>
+                        <p class="text-sm text-text-secondary mb-3">@vitejs/plugin-react, vite-plugin-pwa, vite-plugin-svgr.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vite-accent-secondary/15 text-vite-accent-secondary-light text-xs rounded">plugin-react</span>
+                            <span class="px-2 py-1 bg-vite-accent-secondary/15 text-vite-accent-secondary-light text-xs rounded">PWA</span>
+                            <span class="px-2 py-1 bg-vite-accent-secondary/15 text-vite-accent-secondary-light text-xs rounded">SVGR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20">
+                        <div class="text-3xl mb-4 text-purple-400">
+                            <ion-icon name="layers-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Estado y UI</h3>
+                        <p class="text-sm text-text-secondary mb-3">Redux, Zustand, Material-UI, Tailwind CSS, Chakra UI.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Zustand</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">Tailwind</span>
+                            <span class="px-2 py-1 bg-purple-500/15 text-purple-300 text-xs rounded">MUI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-border-light rounded-xl p-5 transition-all duration-300 hover:-translate-y-2 hover:border-vite-accent-tertiary hover:shadow-xl hover:shadow-vite-accent-tertiary/20">
+                        <div class="text-3xl mb-4 text-vite-accent-tertiary">
+                            <ion-icon name="extension-puzzle-outline"></ion-icon>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Herramientas</h3>
+                        <p class="text-sm text-text-secondary mb-3">Testing Library, Vitest, ESLint, Prettier, Storybook.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-vite-accent-tertiary/15 text-vite-accent-tertiary-light text-xs rounded">Vitest</span>
+                            <span class="px-2 py-1 bg-vite-accent-tertiary/15 text-vite-accent-tertiary-light text-xs rounded">Testing</span>
+                            <span class="px-2 py-1 bg-vite-accent-tertiary/15 text-vite-accent-tertiary-light text-xs rounded">Storybook</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barras de progreso -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Adopción de Vite en proyectos React (2024)</span>
+                            <span class="font-bold text-vite-accent-light">65% de proyectos nuevos</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-vite-accent to-vite-accent-dark rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-text-secondary">Tiempo de build vs Webpack</span>
+                            <span class="font-bold text-vite-accent-secondary-light">10x más rápido</span>
+                        </div>
+                        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-vite-accent-secondary to-cyan-800 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Simulación Interactiva -->
+        <section class="mb-16">
+            <div class="bg-card-bg backdrop-blur-xl border border-vite-accent-secondary/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-vite-accent-secondary to-cyan-800 flex items-center justify-center mr-6 shadow-xl shadow-vite-accent-secondary/30">
+                        <ion-icon name="construct-outline" class="text-2xl text-white"></ion-icon>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Comparador de Build Tools</h2>
+                </div>
+                
+                <div id="simulationContainer" class="space-y-6">
+                    <div class="bg-gray-900/40 border border-border rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <ion-icon name="calculator-outline" class="text-vite-accent-light"></ion-icon>
+                            <h3 class="text-xl font-bold text-vite-accent-light">Simulador: Vite vs Webpack vs CRA</h3>
+                        </div>
+                        <p class="text-text-secondary mb-6">Compara Vite con otras herramientas de build para proyectos React:</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Controles -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-text-secondary mb-2">Seleccionar Build Tool:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <button class="material-btn active" data-material="vite">
+                                            <ion-icon name="flash-outline" class="mr-2"></ion-icon> Vite + React
+                                        </button>
+                                        <button class="material-btn" data-material="webpack">
+                                            <ion-icon name="cog-outline" class="mr-2"></ion-icon> Webpack
+                                        </button>
+                                        <button class="material-btn" data-material="cra">
+                                            <ion-icon name="build-outline" class="mr-2"></ion-icon> Create React App
+                                        </button>
+                                        <button class="material-btn" data-material="parcel">
+                                            <ion-icon name="cube-outline" class="mr-2"></ion-icon> Parcel
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tamaño del Proyecto</label>
+                                        <span id="thicknessValue" class="font-bold text-vite-accent-light">Mediano</span>
+                                    </div>
+                                    <input type="range" id="thicknessSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Pequeño</span>
+                                        <span>Mediano</span>
+                                        <span>Grande</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Experiencia del Equipo</label>
+                                        <span id="areaValue" class="font-bold text-vite-accent-secondary-light">Media</span>
+                                    </div>
+                                    <input type="range" id="areaSlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Junior</span>
+                                        <span>Intermedio</span>
+                                        <span>Experto</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <label class="text-text-secondary">Tiempo de Desarrollo</label>
+                                        <span id="purityValue" class="font-bold text-purple-300">Medio</span>
+                                    </div>
+                                    <input type="range" id="puritySlider" min="1" max="100" value="50" class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider">
+                                    <div class="flex justify-between text-xs text-text-muted mt-1">
+                                        <span>Corto</span>
+                                        <span>Medio</span>
+                                        <span>Largo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de simulación -->
+                            <div class="space-y-6">
+                                <!-- Gráfico de líneas -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-vite-accent-light">Comparación de Métricas</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="lineChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Puntuación relativa por herramienta</div>
+                                </div>
+                                
+                                <!-- Gráfico de radar -->
+                                <div class="bg-gray-900/50 rounded-xl p-4">
+                                    <h4 class="font-bold text-lg mb-4 text-center text-vite-accent-secondary-light">Análisis Multidimensional</h4>
+                                    <div class="w-full h-48">
+                                        <canvas id="radarChartCanvas"></canvas>
+                                    </div>
+                                    <div class="text-center text-xs text-text-secondary mt-2">Comparación de características</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados numéricos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Velocidad Build</div>
+                                <div id="strengthValue" class="text-2xl font-bold text-vite-accent-light">Excelente</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="strengthBar" class="h-full bg-gradient-to-r from-vite-accent to-vite-accent-dark rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Configuración</div>
+                                <div id="conductivityValue" class="text-2xl font-bold text-vite-accent-secondary-light">Simple</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="conductivityBar" class="h-full bg-gradient-to-r from-vite-accent-secondary to-cyan-800 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                                <div class="text-text-muted text-sm mb-1">Ecosistema</div>
+                                <div id="transparencyValue" class="text-2xl font-bold text-purple-300">En Crecimiento</div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden mt-2">
+                                    <div id="transparencyBar" class="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div id="simulationConclusion" class="text-text-secondary inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
+                                <ion-icon name="bulb-outline" class="text-vite-accent-tertiary mr-2"></ion-icon>
+                                Vite ofrece el mejor equilibrio entre velocidad, configuración simple y experiencia de desarrollo
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center mt-8">
+                            <button id="runSimulationBtn" class="px-6 py-3 bg-gradient-to-r from-vite-accent to-vite-accent-dark text-white font-bold rounded-xl shadow-lg shadow-vite-accent/30 hover:shadow-xl hover:shadow-vite-accent/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="play-outline" class="mr-2"></ion-icon> Ejecutar Comparación
+                            </button>
+                            <button id="resetSimulationBtn" class="px-6 py-3 bg-gray-800 border border-border text-text-primary font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                                <ion-icon name="refresh-outline" class="mr-2"></ion-icon> Reiniciar
+                            </button>
+                            <button id="showDetailsBtn" class="px-6 py-3 bg-gradient-to-r from-vite-accent-secondary to-cyan-800 text-white font-bold rounded-xl shadow-lg shadow-vite-accent-secondary/30 hover:shadow-xl hover:shadow-vite-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                                <ion-icon name="analytics-outline" class="mr-2"></ion-icon> Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de versiones -->
+                <div id="productionInfo" class="mt-8">
+                    <!-- Se llenará con JavaScript -->
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button id="simulateEvolutionBtn" class="px-6 py-3 bg-gradient-to-r from-vite-accent to-vite-accent-dark text-white font-bold rounded-xl shadow-lg shadow-vite-accent/30 hover:shadow-xl hover:shadow-vite-accent/40 transition-all duration-300 hover:-translate-y-1 animate-pulse-glow">
+                            <ion-icon name="rocket-outline" class="mr-2"></ion-icon> Simular Evolución
+                        </button>
+                        <button id="viewSpecsBtn" class="px-6 py-3 bg-gray-800 border border-vite-accent/40 text-vite-accent-light font-bold rounded-xl hover:bg-gray-700 transition-all duration-300">
+                            <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Ver Especificaciones
+                        </button>
+                        <button id="compareMaterialsBtn" class="px-6 py-3 bg-gradient-to-r from-vite-accent-secondary to-cyan-800 text-white font-bold rounded-xl shadow-lg shadow-vite-accent-secondary/30 hover:shadow-xl hover:shadow-vite-accent-secondary/40 transition-all duration-300 hover:-translate-y-1">
+                            <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparar Build Tools
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 pt-8 pb-6 border-t border-border bg-gray-900/50 backdrop-blur-lg">
+        <div class="container mx-auto max-w-6xl px-4 text-center">
+            <p class="text-lg mb-2">ViteReactLab - Origen y Evolución de Vite + React</p>
+            <p class="text-text-secondary mb-4">
+                <ion-icon name="logo-react" class="mr-2"></ion-icon> 2013-2024 | De Facebook y Vue.js al Estándar Moderno | El Futuro del Desarrollo Frontend
+            </p>
+            <p class="text-sm text-text-muted">
+                Investigación en Desarrollo Web | Build Tools | React Ecosystem | Innovación en DX
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal para especificaciones -->
+    <div id="specsModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-vite-accent-light">
+                <ion-icon name="document-text-outline" class="mr-2"></ion-icon> Especificaciones Técnicas de Vite + React
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vite-accent flex items-center gap-2">
+                            <ion-icon name="flash-outline"></ion-icon> Arquitectura de Vite
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span><strong>ES Modules:</strong> Servidor de desarrollo nativo sin bundling</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span><strong>Pre-bundling:</strong> Esbuild para dependencias de npm</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span><strong>HMR:</strong> Hot Module Replacement nativo y rápido</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span><strong>Build:</strong> Rollup para producción optimizado</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span><strong>TypeScript:</strong> Soporte nativo sin compilación</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vite-accent-secondary flex items-center gap-2">
+                            <ion-icon name="cube-outline"></ion-icon> Características React
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span><strong>Fast Refresh:</strong> Mejor que Hot Reload tradicional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span><strong>JSX:</strong> Soporte nativo sin configuración extra</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span><strong>CSS Modules:</strong> Soporte automático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span><strong>SVG como React:</strong> Transformación automática</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span><strong>Env Variables:</strong> Soporte completo</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-vite-accent rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-vite-accent-light"># Ventajas de Vite + React</div>
+                        <div><span class="text-purple-300">1.</span> <span class="text-vite-accent-light">Tiempo de inicio instantáneo:</span> Servidor en menos de 1s</div>
+                        <div><span class="text-purple-300">2.</span> <span class="text-vite-accent-light">HMR ultrarrápido:</span> Actualizaciones en milisegundos</div>
+                        <div><span class="text-purple-300">3.</span> <span class="text-vite-accent-light">Configuración mínima:</span> Zero config por defecto</div>
+                        <div><span class="text-purple-300">4.</span> <span class="text-vite-accent-light">Build optimizado:</span> Rollup + esbuild en producción</div>
+                        <div><span class="text-purple-300">5.</span> <span class="text-vite-accent-light">Plugin ecosystem:</span> Extensible y moderno</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comparación -->
+    <div id="compareModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50 hidden transition-opacity duration-500">
+        <div class="bg-card-bg-solid border border-border rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-transform duration-500 scale-95">
+            <button id="closeCompareModal" class="modal-close-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-text-muted hover:text-white hover:bg-gray-700 transition-colors text-xl">
+                &times;
+            </button>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-vite-accent-light">
+                <ion-icon name="scale-outline" class="mr-2"></ion-icon> Comparativa de Build Tools para React
+            </h2>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vite-accent flex items-center gap-2">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon> Ventajas de Vite
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Tiempos de build 10-100x más rápidos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Zero config por defecto</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Hot Module Replacement nativo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Arquitectura moderna basada en ES modules</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent"></ion-icon>
+                                <span>Soporte nativo para TypeScript y JSX</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-vite-accent-secondary flex items-center gap-2">
+                            <ion-icon name="close-circle-outline"></ion-icon> Consideraciones
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span>Ecosistema de plugins más joven</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span>Menor compatibilidad con legacy browsers</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span>Algunas dependencias requieren polyfills</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span>Configuración avanzada requiere más conocimiento</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <ion-icon name="ellipse" class="text-xs mt-2 text-vite-accent-secondary"></ion-icon>
+                                <span>Menor adopción en proyectos legacy</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900/50 border-l-4 border-vite-accent-secondary rounded-r-lg p-4">
+                    <div class="font-mono text-sm space-y-1">
+                        <div class="text-vite-accent-light"># Casos de Uso por Herramienta</div>
+                        <div><span class="text-vite-accent">"Vite:"</span> Proyectos nuevos, desarrollo rápido, DX moderno</div>
+                        <div><span class="text-vite-accent-secondary">"Webpack:"</span> Proyectos legacy, configuración compleja, plugins maduros</div>
+                        <div><span class="text-purple-300">"Create React App:"</span> Aprendizaje, proyectos simples, zero config tradicional</div>
+                        <div><span class="text-vite-accent-tertiary">"Parcel:"</span> Prototipado rápido, zero config alternativo</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vite-accent to-vite-accent-dark bg-clip-text text-transparent">65%</div>
+                        <div class="text-sm text-text-secondary mt-1">Adopción en nuevos proyectos</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vite-accent-secondary to-cyan-800 bg-clip-text text-transparent">10x</div>
+                        <div class="text-sm text-text-secondary mt-1">Más rápido que Webpack</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-vite-accent-tertiary to-red-800 bg-clip-text text-transparent">4 años</div>
+                        <div class="text-sm text-text-secondary mt-1">Historia de Vite</div>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">~90%</div>
+                        <div class="text-sm text-text-secondary mt-1">Satisfacción DX</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
